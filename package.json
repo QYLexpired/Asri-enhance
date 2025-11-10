@@ -1,0 +1,22 @@
+{
+  "name": "Asri-enhance",
+  "version": "0.0.0",
+  "private": true,
+  "description": "SiYuan plugin: Asri-enhance (TypeScript setup)",
+  "scripts": {
+    "build": "npm run build:js && npm run build:css",
+    "build:js": "esbuild src/index.ts --bundle --minify --target=es2018 --format=cjs --platform=browser --external:siyuan --outfile=index.js",
+    "build:css": "sass styles/index.scss index.css --style=expanded",
+    "watch": "concurrently \"npm run watch:js\" \"npm run watch:css\"",
+    "watch:js": "esbuild src/index.ts --bundle --minify --target=es2018 --format=cjs --platform=browser --external:siyuan --outfile=index.js --watch",
+    "watch:css": "sass styles/index.scss index.css --style=expanded --watch",
+    "package": "node package.js"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "concurrently": "^9.2.1",
+    "esbuild": "^0.23.0",
+    "sass": "^1.93.3",
+    "typescript": "^5.6.3"
+  }
+}
