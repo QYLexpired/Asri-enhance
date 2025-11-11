@@ -1,0 +1,62 @@
+@use "public" as *;
+[data-asri-palette="wilderness"] {
+    .asri-config {
+        --b3-theme-accent: var(--b3-theme-on-background);
+    }
+    #asri-enhance-wilderness:not(:hover) {
+        color: var(--b3-theme-accent);
+        & .b3-menu__icon {
+          color: var(--b3-theme-accent);
+        }
+    }
+    &[data-theme-mode="light"] {
+        --wilderness-base-accent: #5cb8a9;
+        --asri-theme-accent-customized: var(--wilderness-base-accent);
+        --b3-theme-primary: #5cb8a9;
+        --b3-theme-accent: #5cb8a9;
+        --b3-theme-background: #fffcf0;
+        --b3-theme-surface: #f2f0e5;
+        --b3-theme-on-background: #242322;
+        --b3-theme-on-surface: #52514d;
+        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+        .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
+          background-color: #26846133;
+        }
+        [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+            background-color: #26846133 !important;
+        }
+    }
+    &[data-theme-mode="dark"] {
+        --wilderness-base-accent: #568a82;
+        --asri-theme-accent-customized: var(--wilderness-base-accent);
+        --b3-theme-primary: var(--wilderness-base-accent);
+        --b3-theme-surface: #232a2e;
+        --b3-theme-background: #2d353b;
+        --b3-theme-on-background: #ece4d0;
+        --b3-theme-on-surface: #e3ddcc;
+      }
+      .protyle-title__input,
+      [data-type="NodeHeading"],
+      // .b3-dialog__header,
+      :where(h1, h2, h3, h4, h5, h6) {
+        color: var(--b3-theme-primary);
+      }
+    }
+    #{$primary-color-reverse-selectors,
+    ".b3-button--outline"} {
+      [data-asri-palette="wilderness"][data-theme-mode="light"] & {
+        --b3-theme-primary: var(--wilderness-base-accent);
+        --b3-theme-on-primary: #ffffff;
+      }
+      [data-asri-palette="wilderness"][data-theme-mode="dark"] & {
+        --b3-theme-primary: #568a82;
+        --b3-theme-on-primary: #fff;
+      }
+    }
+    .b3-button--outline,
+    .protyle-breadcrumb__icon {
+      [data-asri-palette="wilderness"][data-theme-mode="light"] & {
+        --b3-theme-primary: var(--b3-theme-accent);
+      }
+}
+
