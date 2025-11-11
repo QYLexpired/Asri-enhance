@@ -34,6 +34,10 @@
         --b3-theme-background: #2d353b;
         --b3-theme-on-background: #ece4d0;
         --b3-theme-on-surface: #e3ddcc;
+        --b3-border-color: oklch( from var(--b3-theme-background) 0.42 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
+      }
+      .layout__resize:not(:hover)::after {
+        background-color: var(--b3-border-color) !important;
       }
       .protyle-title__input,
       [data-type="NodeHeading"],
