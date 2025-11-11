@@ -6,6 +6,7 @@ import { applyMidnightConfig } from "./palette/midnight";
 import { applySaltConfig } from "./palette/salt";
 import { applyColoredHeadingConfig } from "./more/coloredheading";
 import { applyColoredOutlineConfig } from "./more/coloredoutline";
+import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
 import { removeAmberConfig, removeWildernessConfig, removeMidnightConfig, removeSaltConfig, clearAllPluginConfig } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
@@ -68,6 +69,8 @@ class AsriEnhancePlugin extends Plugin {
 		});
 		applyColoredOutlineConfig(this).catch(() => {
 		});
+		applyTypewriterConfig(this).catch(() => {
+		});
 		initSlashNavi();
 		setTimeout(() => {
 			applyAmberConfig(this).catch(() => {
@@ -82,6 +85,8 @@ class AsriEnhancePlugin extends Plugin {
 			});
 			applyColoredOutlineConfig(this).catch(() => {
 			});
+			applyTypewriterConfig(this).catch(() => {
+			});
 		}, 500);
 		setTimeout(() => {
 			applyAmberConfig(this).catch(() => {
@@ -95,6 +100,8 @@ class AsriEnhancePlugin extends Plugin {
 			applyColoredHeadingConfig(this).catch(() => {
 			});
 			applyColoredOutlineConfig(this).catch(() => {
+			});
+			applyTypewriterConfig(this).catch(() => {
 			});
 		}, 1500);
 	}
@@ -115,6 +122,8 @@ class AsriEnhancePlugin extends Plugin {
 			this.themeModeObserver.disconnect();
 			this.themeModeObserver = null;
 		}
+		// Ensure typewriter listeners are removed when plugin unloads
+		removeFocusEditing();
 		destroySlashNavi();
 	}
 	async uninstall() {
