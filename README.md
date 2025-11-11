@@ -1,5 +1,10 @@
-# Asri-enhance
-##### This is a third-party enhancement plugin for the Asri theme, only compatible with the Asri theme.
-##### Updates
-Add preset color schemes: Amber, Wilderness, Midnight
-Add feature toggles: Colored Heading, Colored Outline
+## Asri Theme Enhancement Plugin
+An enhancement plugin designed specifically for the Asri theme.
+
+### More Preset Color Schemes
+- Ported from QYL theme: Amber, Wilderness, Midnight
+- Ported from Savor theme: Salt
+
+### Improved Editing Experience
+- Adds arrow-key navigation to the slash menu
+- Adds Colored Headings and Colored Outline features
