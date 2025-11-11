@@ -1,0 +1,31 @@
+{
+  "name": "Asri-enhance",
+  "author": "QYL",
+  "url": "https://github.com/QYLexpired/Asri-enhance",
+  "version": "1.2",
+  "minAppVersion": "3.3.0",
+  "backends": [
+    "all"
+  ],
+  "frontends": [
+    "all"
+  ],
+  "disabledInPublish": false,
+  "displayName": {
+    "default": "Asri Theme Enhancer",
+    "zh_CN": "Asri主题增强"
+  },
+  "description": {
+    "default": "Asri Theme Enhancer",
+    "zh_CN": "Asri主题增强"
+  },
+  "readme": {
+    "default": "README.md",
+    "zh_CN": "README_zh_CN.md"
+  },
+  "funding": {
+    "custom": [
+      "https://afdian.com/a/QYLexpired"
+    ]
+  }
+}

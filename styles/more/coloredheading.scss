@@ -1,0 +1,46 @@
+[data-asri-enhance-coloredheading="true"] {
+    #asri-enhance-colored-heading:not(:hover) {
+        color: var(--b3-theme-accent);
+        & .b3-menu__icon {
+          color: var(--b3-theme-accent);
+        }
+    }
+    :is(.b3-typography,.protyle-wysiwyg) {
+        h1 {
+            color: oklch(from var(--b3-theme-primary) l c calc(h + 50));
+        }
+        h2 {
+            color: oklch(from var(--b3-theme-primary) l c calc(h + 100));
+        }
+        h3 {
+            color: oklch(from var(--b3-theme-primary) l c calc(h + 150));
+        }
+        h4 {
+            color: oklch(from var(--b3-theme-primary) l c calc(h + 200));
+        }
+        h5 {
+            color: oklch(from var(--b3-theme-primary) l c calc(h + 250));
+        }
+        h6 {
+            color: oklch(from var(--b3-theme-primary) l c calc(h + 300));
+        }
+    }
+    :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h1 [spellcheck] {
+        color: oklch(from var(--b3-theme-primary) l c calc(h + 50));
+    }
+    :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h2 [spellcheck] {
+        color: oklch(from var(--b3-theme-primary) l c calc(h + 100));
+    }
+    :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h3 [spellcheck] {
+        color: oklch(from var(--b3-theme-primary) l c calc(h + 150));
+    }
+    :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h4 [spellcheck] {
+        color: oklch(from var(--b3-theme-primary) l c calc(h + 200));
+    }
+    :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h5 [spellcheck] {
+        color: oklch(from var(--b3-theme-primary) l c calc(h + 250));
+    }
+    :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h6 [spellcheck] {
+        color: oklch(from var(--b3-theme-primary) l c calc(h + 300));
+    }
+}
