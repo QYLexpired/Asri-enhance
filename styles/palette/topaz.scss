@@ -1,0 +1,78 @@
+@use "public" as *;
+
+[data-asri-palette="topaz"] {
+    .asri-config {
+        --b3-theme-accent: var(--b3-theme-on-background);
+    }
+    #asri-enhance-topaz:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        color: var(--b3-theme-accent);
+        & .b3-menu__icon {
+          color: var(--b3-theme-accent);
+        }
+    }
+    &[data-theme-mode="light"] {
+        --topaz-base-accent: #4136c9;
+        --asri-theme-accent-customized: var(--topaz-base-accent);
+        --b3-theme-primary: #4c5064;
+        --b3-theme-accent: #4136c9;
+        --b3-theme-background: #dddbc7;
+        --b3-theme-surface: #c6c5b3;
+        --b3-theme-on-background: #333853;
+        --b3-theme-on-surface: #4a4f62;
+        --b3-border-color: oklch( from var(--b3-theme-background) 0.8 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
+        --b3-theme-surface-lighter: var(--b3-border-color);
+        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+        .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
+          background-color: #48419e33;
+        }
+        [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+            background-color: #48419e33 !important;
+        }
+        .b3-dialog .layout-tab-bar .item--focus {
+          background-color: #f3f3f3;
+        }
+        .layout__center+.layout__resize--lr::after {
+          background-color: var(--b3-border-color);
+        }
+        .protyle-wysiwyg [data-node-id].table table thead tr th, .b3-typography table thead tr th {
+          background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
+        }
+        .protyle-wysiwyg [data-node-id].table table tbody tr:nth-child(2n) td, .b3-typography table tbody tr:nth-child(2n) td {
+          background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
+        }
+    }
+    &[data-theme-mode="dark"] {
+        --topaz-base-accent: #827dff;
+        --asri-theme-accent-customized: var(--topaz-base-accent);
+        --b3-theme-primary: var(--topaz-base-accent);
+        --b3-theme-surface: #383433;
+        --b3-theme-background: #201d1c;
+        --b3-theme-on-background: #f9e5cd;
+        --b3-theme-on-surface: #d9c4a4;
+    }
+    .protyle-title__input,
+    [data-type="NodeHeading"],
+    :where(h1, h2, h3, h4, h5, h6) {
+        color: var(--b3-theme-primary);
+    }
+}
+
+#{$primary-color-reverse-selectors,
+".b3-button--outline"} {
+  [data-asri-palette="topaz"][data-theme-mode="light"] & {
+    --b3-theme-primary: var(--topaz-base-accent);
+    --b3-theme-on-primary: #FBF0D0;
+  }
+  [data-asri-palette="topaz"][data-theme-mode="dark"] & {
+    --b3-theme-primary: #827dff;
+    --b3-theme-on-primary: #FBF0D0;
+  }
+}
+
+.b3-button--outline,
+.protyle-breadcrumb__icon {
+  [data-asri-palette="topaz"][data-theme-mode="light"] & {
+    --b3-theme-primary: var(--b3-theme-accent);
+  }
+}
+
