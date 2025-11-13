@@ -1,7 +1,6 @@
 import { Plugin } from "siyuan";
 import { removeRosepineConfig } from "../utils/storage";
 import { onPaletteClick, applyPaletteConfig, type PaletteInfo } from "./manager";
-
 const ROSE_PINE_PALETTE_INFO: PaletteInfo = {
 	name: "rosepine",
 	configKey: "asri-enhance-rosepine",
@@ -11,17 +10,13 @@ const ROSE_PINE_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-midnight",
 		"asri-enhance-salt",
 		"asri-enhance-topaz",
+		"asri-enhance-oxygen",
 	],
 };
-
 export async function onRosepineClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	return onPaletteClick(plugin, ROSE_PINE_PALETTE_INFO, event);
 }
-
 export async function applyRosepineConfig(plugin: Plugin): Promise<void> {
 	return applyPaletteConfig(plugin, ROSE_PINE_PALETTE_INFO);
 }
-
 export { removeRosepineConfig };
-
-

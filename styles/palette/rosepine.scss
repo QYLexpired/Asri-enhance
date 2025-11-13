@@ -1,5 +1,4 @@
 @use "public" as *;
-
 [data-asri-palette="rosepine"] {
 	.asri-config {
 		--b3-theme-accent: var(--b3-theme-on-background);
@@ -26,9 +25,6 @@
 		[data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
 			background-color: #b4637a33 !important;
 		}
-		.b3-dialog .layout-tab-bar .item--focus {
-			background-color: #f6ede5;
-		}
 	}
 	&[data-theme-mode="dark"] {
 		--rosepine-base-accent: #c7758c;
@@ -50,7 +46,6 @@
 		color: var(--b3-theme-primary);
 	}
 }
-
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
 	[data-asri-palette="rosepine"][data-theme-mode="light"] & {
@@ -62,12 +57,9 @@
 		--b3-theme-on-primary: #000000;
 	}
 }
-
 .b3-button--outline,
 .protyle-breadcrumb__icon {
 	[data-asri-palette="rosepine"][data-theme-mode="light"] & {
 		--b3-theme-primary: var(--b3-theme-accent);
 	}
 }
-
-

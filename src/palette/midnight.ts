@@ -10,6 +10,7 @@ const MIDNIGHT_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-salt",
 		"asri-enhance-rosepine",
 		"asri-enhance-topaz",
+		"asri-enhance-oxygen",
 	],
 };
 export async function onMidnightClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

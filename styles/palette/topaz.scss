@@ -1,5 +1,4 @@
 @use "public" as *;
-
 [data-asri-palette="topaz"] {
     .asri-config {
         --b3-theme-accent: var(--b3-theme-on-background);
@@ -21,12 +20,13 @@
         --b3-theme-on-surface: #4a4f62;
         --b3-border-color: oklch( from var(--b3-theme-background) 0.8 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
         --b3-theme-surface-lighter: var(--b3-border-color);
+        --b3-menu-background: oklch(from var(--b3-theme-background) 0.88 c h);
         .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
         .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-          background-color: #48419e33;
+          background-color: #7b642133;
         }
         [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-            background-color: #48419e33 !important;
+            background-color: #7b642133 !important;
         }
         .b3-dialog .layout-tab-bar .item--focus {
           background-color: #f3f3f3;
@@ -56,7 +56,6 @@
         color: var(--b3-theme-primary);
     }
 }
-
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
   [data-asri-palette="topaz"][data-theme-mode="light"] & {
@@ -68,11 +67,9 @@
     --b3-theme-on-primary: #FBF0D0;
   }
 }
-
 .b3-button--outline,
 .protyle-breadcrumb__icon {
   [data-asri-palette="topaz"][data-theme-mode="light"] & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }
-

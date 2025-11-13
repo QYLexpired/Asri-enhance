@@ -1,5 +1,5 @@
 [data-asri-enhance-coloredheading="true"] {
-    #asri-enhance-colored-heading:not(:hover) {
+    #asri-enhance-colored-heading:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
         color: var(--b3-theme-accent);
         & .b3-menu__icon {
           color: var(--b3-theme-accent);

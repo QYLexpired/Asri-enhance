@@ -7,8 +7,10 @@
   "salt": "Salt",
   "rosePine": "Rosé Pine",
   "goldenTopaz": "Golden Topaz",
+  "oxygen": "Oxygen",
   "more": "More",
   "coloredHeading": "Colored Heading",
   "coloredOutline": "Colored Outline",
-  "typewriterMode": "Typewriter Mode"
+  "typewriterMode": "Typewriter Mode",
+  "listBulletLine": "List Bullet Lines"
 }

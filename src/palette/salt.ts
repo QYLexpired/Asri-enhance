@@ -10,6 +10,7 @@ const SALT_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-midnight",
 		"asri-enhance-rosepine",
 		"asri-enhance-topaz",
+		"asri-enhance-oxygen",
 	],
 };
 export async function onSaltClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

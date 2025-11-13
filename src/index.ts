@@ -6,9 +6,11 @@ import { applyMidnightConfig } from "./palette/midnight";
 import { applySaltConfig } from "./palette/salt";
 import { applyRosepineConfig } from "./palette/rosepine";
 import { applyTopazConfig } from "./palette/topaz";
+import { applyOxygenConfig } from "./palette/oxygen";
 import { applyColoredHeadingConfig } from "./more/coloredheading";
 import { applyColoredOutlineConfig } from "./more/coloredoutline";
 import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
+import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
@@ -28,7 +30,8 @@ class AsriEnhancePlugin extends Plugin {
 				target.closest("#asri-enhance-midnight") ||
 				target.closest("#asri-enhance-salt") ||
 				target.closest("#asri-enhance-rosepine") ||
-				target.closest("#asri-enhance-topaz")
+				target.closest("#asri-enhance-topaz") ||
+				target.closest("#asri-enhance-oxygen")
 			) {
 				return;
 			}
@@ -58,6 +61,8 @@ class AsriEnhancePlugin extends Plugin {
 						});
 						applyTopazConfig(this).catch(() => {
 						});
+						applyOxygenConfig(this).catch(() => {
+						});
 					}
 				}
 			});
@@ -78,11 +83,15 @@ class AsriEnhancePlugin extends Plugin {
 		});
 		applyTopazConfig(this).catch(() => {
 		});
+		applyOxygenConfig(this).catch(() => {
+		});
 		applyColoredHeadingConfig(this).catch(() => {
 		});
 		applyColoredOutlineConfig(this).catch(() => {
 		});
 		applyTypewriterConfig(this).catch(() => {
+		});
+		applyListBulletLineConfig(this).catch(() => {
 		});
 		initSlashNavi();
 		setTimeout(() => {
@@ -98,11 +107,15 @@ class AsriEnhancePlugin extends Plugin {
 			});
 			applyTopazConfig(this).catch(() => {
 			});
+			applyOxygenConfig(this).catch(() => {
+			});
 			applyColoredHeadingConfig(this).catch(() => {
 			});
 			applyColoredOutlineConfig(this).catch(() => {
 			});
 			applyTypewriterConfig(this).catch(() => {
+			});
+			applyListBulletLineConfig(this).catch(() => {
 			});
 		}, 500);
 		setTimeout(() => {
@@ -118,11 +131,15 @@ class AsriEnhancePlugin extends Plugin {
 			});
 			applyTopazConfig(this).catch(() => {
 			});
+			applyOxygenConfig(this).catch(() => {
+			});
 			applyColoredHeadingConfig(this).catch(() => {
 			});
 			applyColoredOutlineConfig(this).catch(() => {
 			});
 			applyTypewriterConfig(this).catch(() => {
+			});
+			applyListBulletLineConfig(this).catch(() => {
 			});
 		}, 1500);
 	}
@@ -143,6 +160,7 @@ class AsriEnhancePlugin extends Plugin {
 			this.themeModeObserver.disconnect();
 			this.themeModeObserver = null;
 		}
+		removeListBulletLineEffect();
 		removeFocusEditing();
 		destroySlashNavi();
 	}
