@@ -11,6 +11,7 @@ const AMBER_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-rosepine",
 		"asri-enhance-topaz",
 		"asri-enhance-oxygen",
+		"asri-enhance-shade",
 	],
 };
 export async function onAmberClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

@@ -9,6 +9,10 @@
           color: var(--b3-theme-accent);
         }
     }
+    #asriChroma {
+      pointer-events: none;
+      opacity: 0.38;
+    }
     &[data-theme-mode="light"] {
         --amber-base-accent: #9d7a53;
         --asri-theme-accent-customized: var(--amber-base-accent);

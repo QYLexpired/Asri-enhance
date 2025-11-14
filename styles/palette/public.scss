@@ -15,7 +15,7 @@ $primary-color-reverse-selectors: (
   ".b3-chip--current"
 );
 [data-theme-mode="light"] {
-    &:is([data-asri-palette="amber"], [data-asri-palette="wilderness"], [data-asri-palette="salt"], [data-asri-palette="topaz"], [data-asri-palette="rosepine"], [data-asri-palette="oxygen"]) {
+    &:is([data-asri-palette="amber"], [data-asri-palette="wilderness"], [data-asri-palette="salt"], [data-asri-palette="topaz"], [data-asri-palette="rosepine"], [data-asri-palette="oxygen"], [data-asri-palette="shade"]) {
         #asri-enhance-palette:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
           color: var(--b3-theme-accent);
           & .b3-menu__icon {
@@ -25,7 +25,7 @@ $primary-color-reverse-selectors: (
     }
 }
 [data-theme-mode="dark"] {
-    &:is([data-asri-palette="amber"], [data-asri-palette="wilderness"], [data-asri-palette="midnight"], [data-asri-palette="topaz"], [data-asri-palette="rosepine"], [data-asri-palette="oxygen"]) {
+    &:is([data-asri-palette="amber"], [data-asri-palette="wilderness"], [data-asri-palette="midnight"], [data-asri-palette="topaz"], [data-asri-palette="rosepine"], [data-asri-palette="oxygen"], [data-asri-palette="shade"]) {
         #asri-enhance-palette:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
           color: var(--b3-theme-accent);
           & .b3-menu__icon {

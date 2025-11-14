@@ -9,13 +9,17 @@
           color: var(--b3-theme-accent);
         }
     }
+    #asriChroma {
+      pointer-events: none;
+      opacity: 0.38;
+    }
     &[data-theme-mode="light"] {
         --topaz-base-accent: #4136c9;
         --asri-theme-accent-customized: var(--topaz-base-accent);
         --b3-theme-primary: #4c5064;
         --b3-theme-accent: #4136c9;
         --b3-theme-background: #dddbc7;
-        --b3-theme-surface: #c6c5b3;
+        --b3-theme-surface: #cecdb4;
         --b3-theme-on-background: #333853;
         --b3-theme-on-surface: #4a4f62;
         --b3-border-color: oklch( from var(--b3-theme-background) 0.8 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );

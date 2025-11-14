@@ -11,6 +11,7 @@ const OXYGEN_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-salt",
 		"asri-enhance-rosepine",
 		"asri-enhance-topaz",
+		"asri-enhance-shade",
 	],
 };
 export async function onOxygenClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

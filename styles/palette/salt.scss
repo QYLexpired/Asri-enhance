@@ -14,6 +14,10 @@
           color: var(--b3-theme-accent);
         }
     }
+    #asriChroma {
+        pointer-events: none;
+        opacity: 0.38;
+    }
     --salt-base-accent: #007a95;
     --asri-theme-accent-customized: var(--salt-base-accent);
     --b3-theme-primary: #007a95;

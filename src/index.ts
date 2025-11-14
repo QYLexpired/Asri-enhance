@@ -7,6 +7,7 @@ import { applySaltConfig } from "./palette/salt";
 import { applyRosepineConfig } from "./palette/rosepine";
 import { applyTopazConfig } from "./palette/topaz";
 import { applyOxygenConfig } from "./palette/oxygen";
+import { applyShadeConfig } from "./palette/shade";
 import { applyColoredHeadingConfig } from "./more/coloredheading";
 import { applyColoredOutlineConfig } from "./more/coloredoutline";
 import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
@@ -31,7 +32,8 @@ class AsriEnhancePlugin extends Plugin {
 				target.closest("#asri-enhance-salt") ||
 				target.closest("#asri-enhance-rosepine") ||
 				target.closest("#asri-enhance-topaz") ||
-				target.closest("#asri-enhance-oxygen")
+				target.closest("#asri-enhance-oxygen") ||
+				target.closest("#asri-enhance-shade")
 			) {
 				return;
 			}
@@ -63,6 +65,8 @@ class AsriEnhancePlugin extends Plugin {
 						});
 						applyOxygenConfig(this).catch(() => {
 						});
+						applyShadeConfig(this).catch(() => {
+						});
 					}
 				}
 			});
@@ -84,6 +88,8 @@ class AsriEnhancePlugin extends Plugin {
 		applyTopazConfig(this).catch(() => {
 		});
 		applyOxygenConfig(this).catch(() => {
+		});
+		applyShadeConfig(this).catch(() => {
 		});
 		applyColoredHeadingConfig(this).catch(() => {
 		});
@@ -109,6 +115,8 @@ class AsriEnhancePlugin extends Plugin {
 			});
 			applyOxygenConfig(this).catch(() => {
 			});
+			applyShadeConfig(this).catch(() => {
+			});
 			applyColoredHeadingConfig(this).catch(() => {
 			});
 			applyColoredOutlineConfig(this).catch(() => {
@@ -132,6 +140,8 @@ class AsriEnhancePlugin extends Plugin {
 			applyTopazConfig(this).catch(() => {
 			});
 			applyOxygenConfig(this).catch(() => {
+			});
+			applyShadeConfig(this).catch(() => {
 			});
 			applyColoredHeadingConfig(this).catch(() => {
 			});
