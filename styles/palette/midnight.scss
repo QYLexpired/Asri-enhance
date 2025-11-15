@@ -5,7 +5,7 @@
     }
 }
 [data-asri-palette="midnight"][data-theme-mode="dark"] {
-    .asri-config {
+    .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
     #asri-enhance-midnight:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {

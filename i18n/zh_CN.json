@@ -11,7 +11,9 @@
   "shade": "林荫",
   "more": "更多",
   "coloredHeading": "彩色标题",
-  "coloredOutline": "彩色大纲",
   "typewriterMode": "打字机模式",
-  "listBulletLine": "列表子弹线"
+  "listBulletLine": "列表子弹线",
+  "detailAdjustment": "细节调整",
+  "sidebarTopSticky": "侧栏顶部常驻显示",
+  "coverImageFade": "题头图渐隐"
 }

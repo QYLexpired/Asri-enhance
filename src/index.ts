@@ -9,9 +9,10 @@ import { applyTopazConfig } from "./palette/topaz";
 import { applyOxygenConfig } from "./palette/oxygen";
 import { applyShadeConfig } from "./palette/shade";
 import { applyColoredHeadingConfig } from "./more/coloredheading";
-import { applyColoredOutlineConfig } from "./more/coloredoutline";
 import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
+import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
+import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
@@ -93,11 +94,13 @@ class AsriEnhancePlugin extends Plugin {
 		});
 		applyColoredHeadingConfig(this).catch(() => {
 		});
-		applyColoredOutlineConfig(this).catch(() => {
-		});
 		applyTypewriterConfig(this).catch(() => {
 		});
 		applyListBulletLineConfig(this).catch(() => {
+		});
+		applySidebarTopStickyConfig(this).catch(() => {
+		});
+		applyCoverImageFadeConfig(this).catch(() => {
 		});
 		initSlashNavi();
 		setTimeout(() => {
@@ -119,11 +122,13 @@ class AsriEnhancePlugin extends Plugin {
 			});
 			applyColoredHeadingConfig(this).catch(() => {
 			});
-			applyColoredOutlineConfig(this).catch(() => {
-			});
 			applyTypewriterConfig(this).catch(() => {
 			});
 			applyListBulletLineConfig(this).catch(() => {
+			});
+			applySidebarTopStickyConfig(this).catch(() => {
+			});
+			applyCoverImageFadeConfig(this).catch(() => {
 			});
 		}, 500);
 		setTimeout(() => {
@@ -145,11 +150,13 @@ class AsriEnhancePlugin extends Plugin {
 			});
 			applyColoredHeadingConfig(this).catch(() => {
 			});
-			applyColoredOutlineConfig(this).catch(() => {
-			});
 			applyTypewriterConfig(this).catch(() => {
 			});
 			applyListBulletLineConfig(this).catch(() => {
+			});
+			applySidebarTopStickyConfig(this).catch(() => {
+			});
+			applyCoverImageFadeConfig(this).catch(() => {
 			});
 		}, 1500);
 	}

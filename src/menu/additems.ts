@@ -8,9 +8,10 @@ import { onTopazClick } from "../palette/topaz";
 import { onOxygenClick } from "../palette/oxygen";
 import { onShadeClick } from "../palette/shade";
 import { onColoredHeadingClick } from "../more/coloredheading";
-import { onColoredOutlineClick } from "../more/coloredoutline";
 import { onTypewriterClick } from "../more/typewriter";
 import { onListBulletLineClick } from "../more/listbulletline";
+import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
+import { onCoverImageFadeClick } from "../detail/coverimagefade";
 export type Unsubscribe = () => void;
 export function listenBarModeClick(
 	plugin: Plugin,
@@ -174,7 +175,7 @@ export function addMoreAfterTopbarFusionPlus(
 							const button = document.createElement("button");
 							button.className = "b3-menu__item asri-enhance";
 							button.id = "asri-enhance-more";
-							button.innerHTML = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-colored-heading"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.coloredHeading || "coloredHeading"}</span></button><button class="b3-menu__item" id="asri-enhance-colored-outline"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.coloredOutline || "coloredOutline"}</span></button><button class="b3-menu__item" id="asri-enhance-typewriter"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.typewriterMode || "typewriterMode"}</span></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button></div></div>`;
+							button.innerHTML = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-colored-heading"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.coloredHeading || "coloredHeading"}</span></button><button class="b3-menu__item" id="asri-enhance-typewriter"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.typewriterMode || "typewriterMode"}</span></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button></div></div>`;
 							if (topbarFusionPlus.nextSibling) {
 								parent.insertBefore(button, topbarFusionPlus.nextSibling);
 							} else {
@@ -185,10 +186,6 @@ export function addMoreAfterTopbarFusionPlus(
 						if (coloredHeadingItem) {
 							coloredHeadingItem.onclick = (event) => onColoredHeadingClick(plugin, event);
 						}
-						const coloredOutlineItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-colored-outline");
-						if (coloredOutlineItem) {
-							coloredOutlineItem.onclick = (event) => onColoredOutlineClick(plugin, event);
-						}
 						const typewriterItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-typewriter");
 						if (typewriterItem) {
 							typewriterItem.onclick = (event) => onTypewriterClick(plugin, event);
@@ -196,6 +193,34 @@ export function addMoreAfterTopbarFusionPlus(
 						const listBulletLineItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-list-bullet-line");
 						if (listBulletLineItem) {
 							listBulletLineItem.onclick = (event) => onListBulletLineClick(plugin, event);
+						}
+						const detailAdjustmentItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-detail-adjustment");
+						if (detailAdjustmentItem) {
+							const detailAdjustmentSubmenu = detailAdjustmentItem.querySelector<HTMLElement>(".b3-menu__submenu .b3-menu__items");
+							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-sidebar-top-sticky")) {
+								const sidebarTopStickyIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
+								const sidebarTopStickyButton = document.createElement("button");
+								sidebarTopStickyButton.className = "b3-menu__item";
+								sidebarTopStickyButton.id = "asri-enhance-sidebar-top-sticky";
+								sidebarTopStickyButton.innerHTML = `${sidebarTopStickyIcon}<span class="b3-menu__label">${plugin.i18n?.sidebarTopSticky || "sidebarTopSticky"}</span>`;
+								detailAdjustmentSubmenu.appendChild(sidebarTopStickyButton);
+							}
+							const sidebarTopStickyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-sidebar-top-sticky");
+							if (sidebarTopStickyItem) {
+								sidebarTopStickyItem.onclick = (event) => onSidebarTopStickyClick(plugin, event);
+							}
+							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-cover-image-fade")) {
+								const coverImageFadeIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
+								const coverImageFadeButton = document.createElement("button");
+								coverImageFadeButton.className = "b3-menu__item";
+								coverImageFadeButton.id = "asri-enhance-cover-image-fade";
+								coverImageFadeButton.innerHTML = `${coverImageFadeIcon}<span class="b3-menu__label">${plugin.i18n?.coverImageFade || "coverImageFade"}</span>`;
+								detailAdjustmentSubmenu.appendChild(coverImageFadeButton);
+							}
+							const coverImageFadeItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-cover-image-fade");
+							if (coverImageFadeItem) {
+								coverImageFadeItem.onclick = (event) => onCoverImageFadeClick(plugin, event);
+							}
 						}
 					}
 					return;

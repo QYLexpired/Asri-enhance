@@ -11,7 +11,9 @@
   "shade": "Shade",
   "more": "More",
   "coloredHeading": "Colored Heading",
-  "coloredOutline": "Colored Outline",
   "typewriterMode": "Typewriter Mode",
-  "listBulletLine": "List Bullet Lines"
+  "listBulletLine": "List Bullet Lines",
+  "detailAdjustment": "Detail Adjustment",
+  "sidebarTopSticky": "Sidebar Top Sticky",
+  "coverImageFade": "Cover Image Fade"
 }
