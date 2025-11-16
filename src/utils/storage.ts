@@ -71,6 +71,36 @@ export async function clearAllPluginConfig(
 		await saveData(plugin, configFile, config);
 	}
 }
+export async function disableAllPalettesForCurrentTheme(
+	plugin: Plugin,
+	configFile: string = "config.json",
+): Promise<void> {
+	const htmlEl = document.documentElement;
+	if (!htmlEl) return;
+	const themeMode = htmlEl.getAttribute("data-theme-mode") || "light";
+	const config = await loadData(plugin, configFile);
+	if (!config) return;
+	let hasChanges = false;
+	PALETTE_NAMES.forEach((palette) => {
+		const configKey = `${PALETTE_PREFIX}${palette}`;
+		const paletteConfig = config[configKey];
+		if (paletteConfig !== undefined) {
+			if (typeof paletteConfig === "boolean") {
+				delete config[configKey];
+				hasChanges = true;
+			} else if (paletteConfig && typeof paletteConfig === "object") {
+				if (paletteConfig[themeMode] === true) {
+					paletteConfig[themeMode] = false;
+					config[configKey] = paletteConfig;
+					hasChanges = true;
+				}
+			}
+		}
+	});
+	if (hasChanges) {
+		await saveData(plugin, configFile, config);
+	}
+}
 export const removeAmberConfig = (
 	plugin: Plugin,
 	configFile: string = "config.json",

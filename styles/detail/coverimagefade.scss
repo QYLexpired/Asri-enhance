@@ -1,5 +1,5 @@
-[data-asri-enhance-cover-image-fade="true"] {
-    #asri-enhance-cover-image-fade {
+[data-asri-enhance-cover-image-fade="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-cover-image-fade, #asri-enhance-detail-adjustment {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {

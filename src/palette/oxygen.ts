@@ -17,7 +17,7 @@ const OXYGEN_PALETTE_INFO: PaletteInfo = {
 export async function onOxygenClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	return onPaletteClick(plugin, OXYGEN_PALETTE_INFO, event);
 }
-export async function applyOxygenConfig(plugin: Plugin): Promise<void> {
-	return applyPaletteConfig(plugin, OXYGEN_PALETTE_INFO);
+export async function applyOxygenConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+	return applyPaletteConfig(plugin, OXYGEN_PALETTE_INFO, config);
 }
 export { removeOxygenConfig };

@@ -17,7 +17,7 @@ const TOPAZ_PALETTE_INFO: PaletteInfo = {
 export async function onTopazClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	return onPaletteClick(plugin, TOPAZ_PALETTE_INFO, event);
 }
-export async function applyTopazConfig(plugin: Plugin): Promise<void> {
-	return applyPaletteConfig(plugin, TOPAZ_PALETTE_INFO);
+export async function applyTopazConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+	return applyPaletteConfig(plugin, TOPAZ_PALETTE_INFO, config);
 }
 export { removeTopazConfig };

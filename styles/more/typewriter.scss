@@ -1,4 +1,4 @@
-[data-asri-enhance-typewriter="true"] {
+[data-asri-enhance-typewriter="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
     #asri-enhance-typewriter:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
         color: var(--b3-theme-accent);
         & .b3-menu__icon {

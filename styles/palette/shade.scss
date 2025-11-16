@@ -1,5 +1,5 @@
 @use "public" as *;
-[data-asri-palette="shade"] {
+[data-asri-palette="shade"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
@@ -13,7 +13,7 @@
       pointer-events: none;
       opacity: 0.38;
     }
-    &[data-theme-mode="light"] {
+    &[data-theme-mode="light"][data-light-theme="Asri"] {
         --shade-base-accent: #78a181;
         --asri-theme-accent-customized: var(--shade-base-accent);
         --b3-theme-primary: #78a181;
@@ -38,7 +38,7 @@
           background-color: #f3f3f3;
         }
     }
-    &[data-theme-mode="dark"] {
+    &[data-theme-mode="dark"][data-dark-theme="Asri"] {
         --shade-base-accent: #88ba92;
         --asri-theme-accent-customized: var(--shade-base-accent);
         --b3-theme-primary: var(--shade-base-accent);
@@ -58,18 +58,18 @@
 }
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
-  [data-asri-palette="shade"][data-theme-mode="light"] & {
+  [data-asri-palette="shade"][data-theme-mode="light"][data-light-theme="Asri"] & {
     --b3-theme-primary: #b5d4bc;
     --b3-theme-on-primary: #1d2d19;
   }
-  [data-asri-palette="shade"][data-theme-mode="dark"] & {
+  [data-asri-palette="shade"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
     --b3-theme-primary: #4a9d5a;
     --b3-theme-on-primary: #0f1a12;
   }
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-  [data-asri-palette="shade"][data-theme-mode="light"] & {
+  [data-asri-palette="shade"][data-theme-mode="light"][data-light-theme="Asri"] & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }

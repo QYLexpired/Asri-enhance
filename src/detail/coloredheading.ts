@@ -23,13 +23,13 @@ export async function onColoredHeadingClick(plugin: Plugin, event?: MouseEvent):
 	await saveData(plugin, CONFIG_FILE, config).catch(() => {
 	});
 }
-export async function applyColoredHeadingConfig(plugin: Plugin): Promise<void> {
+export async function applyColoredHeadingConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
 	const htmlEl = document.documentElement;
 	if (!htmlEl) {
 		return;
 	}
-	const config = await loadData(plugin, CONFIG_FILE);
-	if (config && config[CONFIG_KEY] === true) {
+	const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
+	if (configData && configData[CONFIG_KEY] === true) {
 		htmlEl.setAttribute("data-asri-enhance-coloredheading", "true");
 	} else {
 		htmlEl.removeAttribute("data-asri-enhance-coloredheading");

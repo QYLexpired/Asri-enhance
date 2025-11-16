@@ -51,14 +51,15 @@ export async function onPaletteClick(
 }
 export async function applyPaletteConfig(
 	plugin: Plugin,
-	paletteInfo: PaletteInfo
+	paletteInfo: PaletteInfo,
+	config?: Record<string, any> | null
 ): Promise<void> {
 	const htmlEl = document.documentElement;
 	if (!htmlEl) return;
 	const themeMode = htmlEl.getAttribute("data-theme-mode") || "light";
-	const config = await loadData(plugin, CONFIG_FILE);
-	if (config && config[paletteInfo.configKey]) {
-		const paletteConfig = config[paletteInfo.configKey];
+	const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
+	if (configData && configData[paletteInfo.configKey]) {
+		const paletteConfig = configData[paletteInfo.configKey];
 		const shouldApply = typeof paletteConfig === "boolean" 
 			? paletteConfig 
 			: (paletteConfig[themeMode] === true);

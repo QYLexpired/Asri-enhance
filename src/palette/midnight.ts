@@ -17,7 +17,7 @@ const MIDNIGHT_PALETTE_INFO: PaletteInfo = {
 export async function onMidnightClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	return onPaletteClick(plugin, MIDNIGHT_PALETTE_INFO, event);
 }
-export async function applyMidnightConfig(plugin: Plugin): Promise<void> {
-	return applyPaletteConfig(plugin, MIDNIGHT_PALETTE_INFO);
+export async function applyMidnightConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+	return applyPaletteConfig(plugin, MIDNIGHT_PALETTE_INFO, config);
 }
 export { removeMidnightConfig };

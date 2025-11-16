@@ -17,7 +17,7 @@ const SHADE_PALETTE_INFO: PaletteInfo = {
 export async function onShadeClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	return onPaletteClick(plugin, SHADE_PALETTE_INFO, event);
 }
-export async function applyShadeConfig(plugin: Plugin): Promise<void> {
-	return applyPaletteConfig(plugin, SHADE_PALETTE_INFO);
+export async function applyShadeConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+	return applyPaletteConfig(plugin, SHADE_PALETTE_INFO, config);
 }
 export { removeShadeConfig };

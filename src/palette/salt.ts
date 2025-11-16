@@ -17,7 +17,7 @@ const SALT_PALETTE_INFO: PaletteInfo = {
 export async function onSaltClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	return onPaletteClick(plugin, SALT_PALETTE_INFO, event);
 }
-export async function applySaltConfig(plugin: Plugin): Promise<void> {
-	return applyPaletteConfig(plugin, SALT_PALETTE_INFO);
+export async function applySaltConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+	return applyPaletteConfig(plugin, SALT_PALETTE_INFO, config);
 }
 export { removeSaltConfig };

@@ -157,13 +157,13 @@ export async function onTypewriterClick(plugin: Plugin, event?: MouseEvent): Pro
 	await saveData(plugin, CONFIG_FILE, config).catch(() => {
 	});
 }
-export async function applyTypewriterConfig(plugin: Plugin): Promise<void> {
+export async function applyTypewriterConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
 	const htmlEl = document.documentElement;
 	if (!htmlEl) {
 		return;
 	}
-	const config = await loadData(plugin, CONFIG_FILE);
-	if (config && config[CONFIG_KEY] === true) {
+	const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
+	if (configData && configData[CONFIG_KEY] === true) {
 		htmlEl.setAttribute("data-asri-enhance-typewriter", "true");
 		initFocusEditing();
 	} else {

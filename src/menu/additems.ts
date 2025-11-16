@@ -7,7 +7,8 @@ import { onRosepineClick } from "../palette/rosepine";
 import { onTopazClick } from "../palette/topaz";
 import { onOxygenClick } from "../palette/oxygen";
 import { onShadeClick } from "../palette/shade";
-import { onColoredHeadingClick } from "../more/coloredheading";
+import { onColoredHeadingClick } from "../detail/coloredheading";
+import { onColoredTreeClick } from "../detail/coloredtree";
 import { onTypewriterClick } from "../more/typewriter";
 import { onListBulletLineClick } from "../more/listbulletline";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
@@ -175,16 +176,12 @@ export function addMoreAfterTopbarFusionPlus(
 							const button = document.createElement("button");
 							button.className = "b3-menu__item asri-enhance";
 							button.id = "asri-enhance-more";
-							button.innerHTML = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-colored-heading"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.coloredHeading || "coloredHeading"}</span></button><button class="b3-menu__item" id="asri-enhance-typewriter"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.typewriterMode || "typewriterMode"}</span></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button></div></div>`;
+							button.innerHTML = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-typewriter"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.typewriterMode || "typewriterMode"}</span></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line"><svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg><span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button></div></div>`;
 							if (topbarFusionPlus.nextSibling) {
 								parent.insertBefore(button, topbarFusionPlus.nextSibling);
 							} else {
 								parent.appendChild(button);
 							}
-						}
-						const coloredHeadingItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-colored-heading");
-						if (coloredHeadingItem) {
-							coloredHeadingItem.onclick = (event) => onColoredHeadingClick(plugin, event);
 						}
 						const typewriterItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-typewriter");
 						if (typewriterItem) {
@@ -220,6 +217,30 @@ export function addMoreAfterTopbarFusionPlus(
 							const coverImageFadeItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-cover-image-fade");
 							if (coverImageFadeItem) {
 								coverImageFadeItem.onclick = (event) => onCoverImageFadeClick(plugin, event);
+							}
+							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-heading")) {
+								const coloredHeadingIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
+								const coloredHeadingButton = document.createElement("button");
+								coloredHeadingButton.className = "b3-menu__item";
+								coloredHeadingButton.id = "asri-enhance-colored-heading";
+								coloredHeadingButton.innerHTML = `${coloredHeadingIcon}<span class="b3-menu__label">${plugin.i18n?.coloredHeading || "coloredHeading"}</span>`;
+								detailAdjustmentSubmenu.appendChild(coloredHeadingButton);
+							}
+							const coloredHeadingItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-colored-heading");
+							if (coloredHeadingItem) {
+								coloredHeadingItem.onclick = (event) => onColoredHeadingClick(plugin, event);
+							}
+							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree")) {
+								const coloredTreeIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
+								const coloredTreeButton = document.createElement("button");
+								coloredTreeButton.className = "b3-menu__item";
+								coloredTreeButton.id = "asri-enhance-colored-tree";
+								coloredTreeButton.innerHTML = `${coloredTreeIcon}<span class="b3-menu__label">${plugin.i18n?.coloredTree || "coloredTree"}</span>`;
+								detailAdjustmentSubmenu.appendChild(coloredTreeButton);
+							}
+							const coloredTreeItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-colored-tree");
+							if (coloredTreeItem) {
+								coloredTreeItem.onclick = (event) => onColoredTreeClick(plugin, event);
 							}
 						}
 					}
