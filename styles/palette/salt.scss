@@ -1,5 +1,5 @@
 @use "public" as *;
-[data-asri-palette="salt"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-theme-mode="dark"][data-light-theme="Asri"] {
     #asri-enhance-salt {
         display: none;
     }
