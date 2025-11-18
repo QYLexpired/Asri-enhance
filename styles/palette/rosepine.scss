@@ -22,6 +22,8 @@
 		--b3-theme-surface: #f2e9e1;
 		--b3-theme-on-background: #575279;
 		--b3-theme-on-surface: #797593;
+		--b3-border-color: oklch( from var(--b3-theme-background) 0.88 c h );
+        --b3-theme-surface-lighter: var(--b3-border-color);
 		.layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
 		.layout__center :not(.av__views) > .layout-tab-bar .item--focus {
 			background-color: #b4637a33;

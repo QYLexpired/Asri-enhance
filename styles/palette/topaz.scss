@@ -35,9 +35,6 @@
         .b3-dialog .layout-tab-bar .item--focus {
           background-color: #f3f3f3;
         }
-        .layout__center+.layout__resize--lr::after {
-          background-color: var(--b3-border-color);
-        }
         .protyle-wysiwyg [data-node-id].table table thead tr th, .b3-typography table thead tr th {
           background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
         }

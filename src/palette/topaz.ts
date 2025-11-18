@@ -12,6 +12,7 @@ const TOPAZ_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-rosepine",
 		"asri-enhance-oxygen",
 		"asri-enhance-shade",
+		"asri-enhance-gruvbox",
 	],
 };
 export async function onTopazClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

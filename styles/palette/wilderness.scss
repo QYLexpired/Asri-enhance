@@ -22,7 +22,7 @@
         --b3-theme-surface: #f2f0e5;
         --b3-theme-on-background: #242322;
         --b3-theme-on-surface: #52514d;
-        --b3-border-color: oklch( from var(--b3-theme-background) 0.88 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
+        --b3-border-color: oklch( from var(--b3-theme-background) 0.9 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
         --b3-theme-surface-lighter: var(--b3-border-color);
         .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
         .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
@@ -41,9 +41,6 @@
         --b3-theme-on-background: #ece4d0;
         --b3-theme-on-surface: #e3ddcc;
         --b3-border-color: oklch( from var(--b3-theme-background) 0.42 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
-      }
-      .layout__center+.layout__resize--lr::after {
-        background-color: var(--b3-border-color);
       }
       .protyle-title__input,
       [data-type="NodeHeading"],

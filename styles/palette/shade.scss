@@ -28,9 +28,6 @@
         .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
           background-color: #2d853e33;
         }
-        .layout__center+.layout__resize--lr::after {
-          background-color: var(--b3-border-color);
-        }
         [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
             background-color: #2d853e33 !important;
         }

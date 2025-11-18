@@ -12,6 +12,7 @@ const ROSE_PINE_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-topaz",
 		"asri-enhance-oxygen",
 		"asri-enhance-shade",
+		"asri-enhance-gruvbox",
 	],
 };
 export async function onRosepineClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

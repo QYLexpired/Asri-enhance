@@ -26,7 +26,9 @@
     --b3-theme-surface: oklch(0.8996 0.0098 189.04);
     --b3-theme-on-background: oklch(0.28 0.0159 264.27);
     --b3-theme-on-surface: oklch(0.4498 0.0098 189.04);
-    --b3-menu-background: oklch(from var(--b3-theme-background) 0.925 c h);
+    --b3-border-color: oklch( from var(--b3-theme-background) 0.88 c h );
+    --b3-theme-surface-lighter: var(--b3-border-color);
+    --b3-menu-background: oklch(from var(--b3-theme-background) 0.96 c h);
     .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
     .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
       background-color: #24767333;

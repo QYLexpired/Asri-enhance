@@ -12,6 +12,7 @@ const SHADE_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-rosepine",
 		"asri-enhance-topaz",
 		"asri-enhance-oxygen",
+		"asri-enhance-gruvbox",
 	],
 };
 export async function onShadeClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

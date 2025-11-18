@@ -9,6 +9,7 @@
   "goldenTopaz": "托帕石",
   "oxygen": "氧",
   "shade": "林荫",
+  "gruvbox": "格鲁夫",
   "more": "更多",
   "coloredHeading": "彩色标题",
   "typewriterMode": "打字机模式",
@@ -16,5 +17,6 @@
   "detailAdjustment": "细节调整",
   "sidebarTopSticky": "侧栏顶部常驻显示",
   "coverImageFade": "题头图渐隐",
-  "coloredTree": "彩色文档树"
+  "coloredTree": "彩色文档树",
+  "hideTabBreadcrumb": "隐藏页签/面包屑"
 }

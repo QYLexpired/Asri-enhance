@@ -8,12 +8,14 @@ import { applyRosepineConfig } from "./palette/rosepine";
 import { applyTopazConfig } from "./palette/topaz";
 import { applyOxygenConfig } from "./palette/oxygen";
 import { applyShadeConfig } from "./palette/shade";
+import { applyGruvboxConfig } from "./palette/gruvbox";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
+import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
@@ -34,12 +36,14 @@ class AsriEnhancePlugin extends Plugin {
 			applyTopazConfig(this, config).catch(() => {}),
 			applyOxygenConfig(this, config).catch(() => {}),
 			applyShadeConfig(this, config).catch(() => {}),
+			applyGruvboxConfig(this, config).catch(() => {}),
 			applyColoredHeadingConfig(this, config).catch(() => {}),
 			applyColoredTreeConfig(this, config).catch(() => {}),
 			applyTypewriterConfig(this, config).catch(() => {}),
 			applyListBulletLineConfig(this, config).catch(() => {}),
 			applySidebarTopStickyConfig(this, config).catch(() => {}),
 			applyCoverImageFadeConfig(this, config).catch(() => {}),
+			applyHideTabBreadcrumbConfig(this, config).catch(() => {}),
 		]);
 	}
 	async onload() {
@@ -57,7 +61,8 @@ class AsriEnhancePlugin extends Plugin {
 					target.closest("#asri-enhance-rosepine") ||
 					target.closest("#asri-enhance-topaz") ||
 					target.closest("#asri-enhance-oxygen") ||
-					target.closest("#asri-enhance-shade")
+					target.closest("#asri-enhance-shade") ||
+					target.closest("#asri-enhance-gruvbox")
 				) {
 					return;
 				}

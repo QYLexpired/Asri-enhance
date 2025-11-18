@@ -1,6 +1,6 @@
 import { Plugin } from "siyuan";
 const PALETTE_PREFIX = "asri-enhance-";
-export const PALETTE_NAMES = ["amber", "wilderness", "midnight", "salt", "rosepine", "topaz", "oxygen", "shade"] as const;
+export const PALETTE_NAMES = ["amber", "wilderness", "midnight", "salt", "rosepine", "topaz", "oxygen", "shade", "gruvbox"] as const;
 export type PaletteName = typeof PALETTE_NAMES[number];
 export async function saveData(
 	plugin: Plugin,
@@ -133,3 +133,7 @@ export const removeShadeConfig = (
 	plugin: Plugin,
 	configFile: string = "config.json",
 ) => removePaletteConfig(plugin, "shade", configFile);
+export const removeGruvboxConfig = (
+	plugin: Plugin,
+	configFile: string = "config.json",
+) => removePaletteConfig(plugin, "gruvbox", configFile);

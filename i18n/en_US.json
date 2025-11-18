@@ -9,6 +9,7 @@
   "goldenTopaz": "Golden Topaz",
   "oxygen": "Oxygen",
   "shade": "Shade",
+  "gruvbox": "Gruvbox",
   "more": "More",
   "coloredHeading": "Colored Heading",
   "typewriterMode": "Typewriter Mode",
@@ -16,5 +17,6 @@
   "detailAdjustment": "Detail Adjustment",
   "sidebarTopSticky": "Sidebar Top Sticky",
   "coverImageFade": "Cover Image Fade",
-  "coloredTree": "Colored File Tree"
+  "coloredTree": "Colored File Tree",
+  "hideTabBreadcrumb": "Hide TabHeader & Breadcrumb"
 }

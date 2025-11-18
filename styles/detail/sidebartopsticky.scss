@@ -7,7 +7,7 @@
             }
         }
     }
-    body:not(.body-asri--mobile,.body-asri--android,.body-asri--iosApp) .file-tree:where(.sy__file,.sy__outline,.sy__bookmark,.sy__tag,.sy__backlink) .block__icons {
+    body:not(.body-asri--mobile) .file-tree:where(.sy__file,.sy__outline,.sy__bookmark,.sy__tag,.sy__backlink) .block__icons {
         min-height: 42px;
         transition: none !important;
         &::before {
