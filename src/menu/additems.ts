@@ -9,12 +9,14 @@ import { onOxygenClick } from "../palette/oxygen";
 import { onShadeClick } from "../palette/shade";
 import { onGruvboxClick } from "../palette/gruvbox";
 import { onColoredHeadingClick } from "../detail/coloredheading";
+import { onHeadingLevelHintClick } from "../detail/headinglevelhint";
 import { onColoredTreeClick } from "../detail/coloredtree";
 import { onTypewriterClick } from "../more/typewriter";
 import { onListBulletLineClick } from "../more/listbulletline";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onCoverImageFadeClick } from "../detail/coverimagefade";
 import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
+import { onPaperTextureClick } from "../detail/papertexture";
 export type Unsubscribe = () => void;
 export function listenBarModeClick(
 	plugin: Plugin,
@@ -224,6 +226,18 @@ export function addMoreAfterTopbarFusionPlus(
 							if (coverImageFadeItem) {
 								coverImageFadeItem.onclick = (event) => onCoverImageFadeClick(plugin, event);
 							}
+							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-paper-texture")) {
+								const paperTextureIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
+								const paperTextureButton = document.createElement("button");
+								paperTextureButton.className = "b3-menu__item";
+								paperTextureButton.id = "asri-enhance-paper-texture";
+								paperTextureButton.innerHTML = `${paperTextureIcon}<span class="b3-menu__label">${plugin.i18n?.paperTexture || "paperTexture"}</span>`;
+								detailAdjustmentSubmenu.appendChild(paperTextureButton);
+							}
+							const paperTextureItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-paper-texture");
+							if (paperTextureItem) {
+								paperTextureItem.onclick = (event) => onPaperTextureClick(plugin, event);
+							}
 							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-heading")) {
 								const coloredHeadingIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
 								const coloredHeadingButton = document.createElement("button");
@@ -235,6 +249,23 @@ export function addMoreAfterTopbarFusionPlus(
 							const coloredHeadingItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-colored-heading");
 							if (coloredHeadingItem) {
 								coloredHeadingItem.onclick = (event) => onColoredHeadingClick(plugin, event);
+							}
+							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-heading-level-hint")) {
+								const headingLevelHintIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
+								const headingLevelHintButton = document.createElement("button");
+								headingLevelHintButton.className = "b3-menu__item";
+								headingLevelHintButton.id = "asri-enhance-heading-level-hint";
+								headingLevelHintButton.innerHTML = `${headingLevelHintIcon}<span class="b3-menu__label">${plugin.i18n?.headingLevelHint || "headingLevelHint"}</span>`;
+								if (detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree")) {
+									const coloredTreeButton = detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree");
+									detailAdjustmentSubmenu.insertBefore(headingLevelHintButton, coloredTreeButton);
+								} else {
+									detailAdjustmentSubmenu.appendChild(headingLevelHintButton);
+								}
+							}
+							const headingLevelHintItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-heading-level-hint");
+							if (headingLevelHintItem) {
+								headingLevelHintItem.onclick = (event) => onHeadingLevelHintClick(plugin, event);
 							}
 							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree")) {
 								const coloredTreeIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;

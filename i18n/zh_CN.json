@@ -12,11 +12,13 @@
   "gruvbox": "格鲁夫",
   "more": "更多",
   "coloredHeading": "彩色标题",
+  "headingLevelHint": "标题层级提示",
   "typewriterMode": "打字机模式",
   "listBulletLine": "列表子弹线",
   "detailAdjustment": "细节调整",
   "sidebarTopSticky": "侧栏顶部常驻显示",
   "coverImageFade": "题头图渐隐",
   "coloredTree": "彩色文档树",
-  "hideTabBreadcrumb": "隐藏页签/面包屑"
+  "hideTabBreadcrumb": "隐藏页签/面包屑",
+  "paperTexture": "纸张纹理"
 }

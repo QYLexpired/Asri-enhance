@@ -12,11 +12,13 @@
   "gruvbox": "Gruvbox",
   "more": "More",
   "coloredHeading": "Colored Heading",
+  "headingLevelHint": "Heading Level Hint",
   "typewriterMode": "Typewriter Mode",
   "listBulletLine": "List Bullet Lines",
   "detailAdjustment": "Detail Adjustment",
   "sidebarTopSticky": "Sidebar Top Sticky",
   "coverImageFade": "Cover Image Fade",
   "coloredTree": "Colored File Tree",
-  "hideTabBreadcrumb": "Hide TabHeader & Breadcrumb"
+  "hideTabBreadcrumb": "Hide TabHeader & Breadcrumb",
+  "paperTexture": "Paper Texture"
 }

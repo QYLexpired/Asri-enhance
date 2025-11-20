@@ -11,10 +11,12 @@ import { applyShadeConfig } from "./palette/shade";
 import { applyGruvboxConfig } from "./palette/gruvbox";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
+import { applyHeadingLevelHintConfig } from "./detail/headinglevelhint";
 import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
+import { applyPaperTextureConfig } from "./detail/papertexture";
 import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
@@ -39,11 +41,13 @@ class AsriEnhancePlugin extends Plugin {
 			applyGruvboxConfig(this, config).catch(() => {}),
 			applyColoredHeadingConfig(this, config).catch(() => {}),
 			applyColoredTreeConfig(this, config).catch(() => {}),
+			applyHeadingLevelHintConfig(this, config).catch(() => {}),
 			applyTypewriterConfig(this, config).catch(() => {}),
 			applyListBulletLineConfig(this, config).catch(() => {}),
 			applySidebarTopStickyConfig(this, config).catch(() => {}),
 			applyCoverImageFadeConfig(this, config).catch(() => {}),
 			applyHideTabBreadcrumbConfig(this, config).catch(() => {}),
+			applyPaperTextureConfig(this, config).catch(() => {}),
 		]);
 	}
 	async onload() {
