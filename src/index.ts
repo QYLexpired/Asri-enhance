@@ -9,6 +9,7 @@ import { applyTopazConfig } from "./palette/topaz";
 import { applyOxygenConfig } from "./palette/oxygen";
 import { applyShadeConfig } from "./palette/shade";
 import { applyGruvboxConfig } from "./palette/gruvbox";
+import { applyGlitchConfig } from "./palette/glitch";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyHeadingLevelHintConfig } from "./detail/headinglevelhint";
@@ -39,6 +40,7 @@ class AsriEnhancePlugin extends Plugin {
 			applyOxygenConfig(this, config).catch(() => {}),
 			applyShadeConfig(this, config).catch(() => {}),
 			applyGruvboxConfig(this, config).catch(() => {}),
+			applyGlitchConfig(this, config).catch(() => {}),
 			applyColoredHeadingConfig(this, config).catch(() => {}),
 			applyColoredTreeConfig(this, config).catch(() => {}),
 			applyHeadingLevelHintConfig(this, config).catch(() => {}),
@@ -66,7 +68,8 @@ class AsriEnhancePlugin extends Plugin {
 					target.closest("#asri-enhance-topaz") ||
 					target.closest("#asri-enhance-oxygen") ||
 					target.closest("#asri-enhance-shade") ||
-					target.closest("#asri-enhance-gruvbox")
+					target.closest("#asri-enhance-gruvbox") ||
+					target.closest("#asri-enhance-glitch")
 				) {
 					return;
 				}

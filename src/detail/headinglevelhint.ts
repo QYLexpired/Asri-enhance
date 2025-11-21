@@ -1,10 +1,8 @@
 import { Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
-
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-headinglevelhint";
 const DATA_ATTR = "data-asri-enhance-headinglevelhint";
-
 export async function onHeadingLevelHintClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	if (event) {
 		event.preventDefault();
@@ -26,7 +24,6 @@ export async function onHeadingLevelHintClick(plugin: Plugin, event?: MouseEvent
 	await saveData(plugin, CONFIG_FILE, config).catch(() => {
 	});
 }
-
 export async function applyHeadingLevelHintConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
 	const htmlEl = document.documentElement;
 	if (!htmlEl) {
@@ -39,4 +36,3 @@ export async function applyHeadingLevelHintConfig(plugin: Plugin, config?: Recor
 		htmlEl.removeAttribute(DATA_ATTR);
 	}
 }
-

@@ -1,13 +1,14 @@
 ## Asri Theme Enhancement Plugin
 An enhancement plugin designed specifically for the Asri theme.
 ### Update Notes
-- Added detail adjustment: Heading Level Hint
+- Added inspiration palette: Glitch
+- Added detail adjustments: Heading Level Hint, Paper Texture
 ### Instructions
 - Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to open the Asri theme settings menu. All plugin features are configured inside the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> sections.
 - The plugin only supports the Asri theme.
 ### More Preset Color Schemes
 In addition to the original color schemes of the Asri theme, this plugin adds many preset color schemes
-- Inspiration palette: Oxygen, Shade
+- Inspiration palette: Oxygen, Shade, Glitch
 - Ported from QYL: Amber, Wilderness, Midnight
 - Ported from Savor: Salt
 - Ported from Obsidian's theme: Golden Topaz

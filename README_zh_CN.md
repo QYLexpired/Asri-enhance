@@ -1,13 +1,14 @@
 ## Asri主题增强插件
 专为Asri主题设计的增强插件
 ### 更新
+- 新增灵感配色：故障
 - 新增细节调整：标题层级提示、纸张纹理
 ### 使用说明
 - 点击顶栏<span data-type="kbd">外观模式</span>按钮，可出现Asri主题的设置菜单，本插件的所有功能在<span data-type="kbd">更多预设配色</span>和<span data-type="kbd">更多</span>两个选项中进行配置
 - 本插件仅适配Asri主题
 ### 更多预设配色
 在Asri主题原有配色基础上，额外增加大量预设配色方案
-- 灵感配色：氧、林荫
+- 灵感配色：氧、林荫、故障
 - 移植于QYL主题：琥珀、旷野、午夜
 - 移植于Savor主题：Salt
 - 移植于Obsidian主题：Golden Topaz

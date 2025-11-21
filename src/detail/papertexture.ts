@@ -1,10 +1,8 @@
 import { Plugin } from "siyuan";
 import { loadData, saveData } from "../utils/storage";
-
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-paper-texture";
 const DATA_ATTRIBUTE = "data-asri-enhance-paper-texture";
-
 export async function onPaperTextureClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	if (event) {
 		event.preventDefault();
@@ -26,7 +24,6 @@ export async function onPaperTextureClick(plugin: Plugin, event?: MouseEvent): P
 	await saveData(plugin, CONFIG_FILE, config).catch(() => {
 	});
 }
-
 export async function applyPaperTextureConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
 	const htmlEl = document.documentElement;
 	if (!htmlEl) {
@@ -39,4 +36,3 @@ export async function applyPaperTextureConfig(plugin: Plugin, config?: Record<st
 		htmlEl.removeAttribute(DATA_ATTRIBUTE);
 	}
 }
-

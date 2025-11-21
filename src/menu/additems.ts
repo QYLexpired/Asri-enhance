@@ -8,6 +8,7 @@ import { onTopazClick } from "../palette/topaz";
 import { onOxygenClick } from "../palette/oxygen";
 import { onShadeClick } from "../palette/shade";
 import { onGruvboxClick } from "../palette/gruvbox";
+import { onGlitchClick } from "../palette/glitch";
 import { onColoredHeadingClick } from "../detail/coloredheading";
 import { onHeadingLevelHintClick } from "../detail/headinglevelhint";
 import { onColoredTreeClick } from "../detail/coloredtree";
@@ -97,6 +98,27 @@ export function listenBarModeClick(
 						const gruvboxItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-gruvbox");
 						if (gruvboxItem) {
 							gruvboxItem.onclick = (event) => onGruvboxClick(plugin, event);
+						}
+						// Add glitch palette item if missing
+						const submenuItems = parent.querySelector<HTMLElement>(
+							"#asri-enhance-palette .b3-menu__submenu .b3-menu__items",
+						);
+						if (submenuItems && !submenuItems.querySelector("#asri-enhance-glitch")) {
+							const glitchButton = document.createElement("button");
+							glitchButton.className = "b3-menu__item";
+							glitchButton.id = "asri-enhance-glitch";
+							glitchButton.innerHTML =
+								`<svg class="b3-menu__icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24">` +
+								`<g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">` +
+								`<path d="M19 3h-4a2 2 0 0 0-2 2v12a4 4 0 0 0 8 0V5a2 2 0 0 0-2-2"></path>` +
+								`<path d="m13 7.35-2-2a2 2 0 0 0-2.828 0L5.344 8.178a2 2 0 0 0 0 2.828l9 9"></path>` +
+								`<path d="M7.3 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12m0-4v.01"></path>` +
+								`</g></svg><span class="b3-menu__label">${plugin.i18n?.glitch || "glitch"}</span>`;
+							submenuItems.appendChild(glitchButton);
+						}
+						const glitchItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-glitch");
+						if (glitchItem) {
+							glitchItem.onclick = (event) => onGlitchClick(plugin, event);
 						}
 					}
 					callback(event);
