@@ -36,7 +36,7 @@ SOFTWARE.
             background-image: var(--asri-enhance-paper-texture);
             background-color: var(--b3-theme-background);
             mix-blend-mode: multiply;
-            opacity: 0.3;
+            opacity: 0.28;
             pointer-events: none;
             z-index: 99;
         }
@@ -44,7 +44,7 @@ SOFTWARE.
     &[data-theme-mode="dark"] {
         body:not(.body-asri--mobile) {
             &::before {
-                opacity: 0.08;
+                opacity: 0.075;
                 mix-blend-mode: color-dodge;
             }
         }

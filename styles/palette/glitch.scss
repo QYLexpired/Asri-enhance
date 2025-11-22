@@ -5,6 +5,15 @@
     @content;
   }
 }
+#{$primary-color-reverse-selectors,
+  ".b3-button--outline"} {
+    [data-asri-palette="glitch"][data-theme-mode="light"][data-light-theme="Asri"] & {
+      --b3-theme-on-primary: #080374;
+    }
+    [data-asri-palette="glitch"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
+      --b3-theme-on-primary: #000000;
+    }
+  }
 [data-asri-palette="glitch"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
   .asri-config:not(#topbarFusionPlus) {
     --b3-theme-accent: var(--b3-theme-on-background);
@@ -57,14 +66,6 @@
       --b3-theme-on-background: #454545;
       --b3-theme-on-surface: oklch(from var(--b3-theme-on-background) l c h / 0.65);
     }
-    // &[data-theme-mode=dark] .b3-switch:checked {
-    //     --glitch-c2: rgb(178, 132, 6);
-    // }
-    // @include darkmode-counterpart(true) {
-    //     .b3-switch:checked {
-    //         --glitch-c2: rgb(178, 132, 6);
-    //     }
-    // }
     .config-bazaar__panel .b3-card:hover {
       @include glitch-border(1.5px, $border-radius: 18.5px);
       outline: none !important;
@@ -90,8 +91,8 @@
     }
     :is(.protyle, .b3-typography),
     .b3-dialog__header {
-      --glitch-c1: #69ffe2;
-      --glitch-c2: #9c99ff;
+      --glitch-c1: #52d7bd;
+      --glitch-c2: #6e6cc1;
       --glitch-s1: 100px;
       --glitch-s2: 2000px;
     }
@@ -103,19 +104,19 @@
       background: $texture-glicth;
     }
     .protyle-title__input,
-    :is(h1, h2, h3, h4, h5, h6),
-    [data-type="NodeHeading"]:not([style*="background-color"]),
+    :is(h1, h2, h3, h4, h5, h6):not([data-asri-enhance-coloredheading="true"] :where(h1, h2, h3, h4, h5, h6)),
+    [data-type="NodeHeading"]:not([style*="background-color"]):not([data-asri-enhance-coloredheading="true"] [data-type="NodeHeading"]),
     .b3-dialog__header {
       @include glitch-background;
-      --glitch-c1: #69ffe2;
-      --glitch-c2: #9c99ff;
+      --glitch-c1: #00d1a8;
+      --glitch-c2: #5854e9;
       --glitch-s1: 100px;
       --glitch-s2: 2000px;
       background: $texture-glicth;
       background-clip: text;
       // color: rgb(from var(--b3-theme-on-background) r g b / 0.1);
       color: transparent;
-      caret-color: auto;
+      caret-color: #32b6d3;
       // @include darkmode-counterpart {
       //   color: rgb(from var(--b3-theme-on-background) r g b / 0.2);
       // }
@@ -173,17 +174,17 @@
         background: $texture-glicth;
       }
       .protyle-title__input,
-      :is(h1, h2, h3, h4, h5, h6),
-      [data-type="NodeHeading"]:not([style*="background-color"]),
+      :is(h1, h2, h3, h4, h5, h6):not([data-asri-enhance-coloredheading="true"] :where(h1, h2, h3, h4, h5, h6)),
+      [data-type="NodeHeading"]:not([style*="background-color"]):not([data-asri-enhance-coloredheading="true"] [data-type="NodeHeading"]),
       .b3-dialog__header {
         @include glitch-background;
-        --glitch-c1: #00ff51;
-        --glitch-c2: #537af9;
+        --glitch-c1: #bebd00;
+        --glitch-c2: #6489ff;
         background: $texture-glicth;
         background-clip: text;
         // color: rgb(from var(--b3-theme-on-background) r g b / 0.1);
         color: transparent;
-        caret-color: auto;
+        caret-color: #695dff;
         // @include darkmode-counterpart {
         //   color: rgb(from var(--b3-theme-on-background) r g b / 0.2);
         // }
