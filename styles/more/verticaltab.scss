@@ -1,0 +1,106 @@
+[data-asri-enhance-vertical-tab="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-vertical-tab {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    & body.asri-tfp {
+        #asri-enhance-vertical-tab {
+            opacity: 0.38;
+        }
+    }
+    & body:not(.asri-tfp, .body-asri--mobilem, .body--window) {
+        .asri-enhance-verticaltab {
+            flex-direction: row;
+            & .layout-tab-container > .protyle > .protyle-breadcrumb {
+                margin-top: 3px;
+            }
+            & .layout-tab-container > :not(.protyle) {
+                margin-top: 42px;
+            }
+            &.asri-enhance-verticaltab-toponly:is(.layout__center:has(+ .layout__resize.fn__none) .asri-enhance-verticaltab-toponly) {
+                & .protyle > .protyle-breadcrumb {
+                    & .protyle-breadcrumb__space ~ * {
+                        margin-top: 78px;
+                        filter: drop-shadow(0 0 3px var(--b3-theme-background));
+                    }
+                }
+                & .protyle-background__img .protyle-icons {
+                    top: 42px;
+                }
+            }
+            & > .fn__flex.fn__none + .asri-enhance-verticaltab-resize {
+                display: none;
+            }
+            & > .fn__flex:first-child {
+                flex: 1;
+                flex-direction: column;
+                height: 100%;
+                width: var(--asri-enhance-vertical-tab-width);
+                max-width: var(--asri-enhance-vertical-tab-width);
+                min-width: var(--asri-enhance-vertical-tab-width);
+                box-sizing: border-box;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                & > .layout-tab-bar:not(.layout-tab-bar--readonly) {
+                    flex: 1;
+                    flex-direction: column;
+                    margin: 0;
+                    overflow-y: scroll;
+                    & .item {
+                        width: calc(var(--asri-enhance-vertical-tab-width) - 20px);
+                        max-width: calc(var(--asri-enhance-vertical-tab-width) - 20px);
+                        min-width: calc(var(--asri-enhance-vertical-tab-width) - 20px);
+                        margin: 8px 0 0 0;
+                        &:first-child {
+                            margin: 10px 0 0 0;
+                        }
+                        &.item--pin {
+                            height: 28px;
+                            padding: 0;
+                            & .item__text {
+                                display: flex !important;
+                            }
+                            & +.item:not(.item--pin,.item--readonly) {
+                                margin-top: 16px;
+                                &::before {
+                                    height: 2px;
+                                    width: calc(var(--asri-enhance-vertical-tab-width) - 28px);
+                                    inset-inline-start: 4px;
+                                    top: -8px;
+                                }
+                            }
+                        }
+                        & :is(.item__icon,.item__graphic, .item__text) {
+                            transform: none;
+                        }
+                        & .item__text {
+                            max-width: fit-content;
+                        }
+                        & .item__close {
+                            margin-left: auto;
+                        }
+                    }
+                }
+                & > .layout-tab-bar--readonly {
+                    flex: 0 0 auto;
+                    margin: 0;
+                    & > .item--readonly {
+                        & > .fn__flex-1 {
+                            flex: 1;
+                        }
+                        & > [data-type="new"] {
+                            margin: 0 0 0 10px;
+                        }
+                        & > [data-type="more"] {
+                            margin: 0 10px 0 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

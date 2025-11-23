@@ -1,6 +1,7 @@
 ## Asri Theme Enhancement Plugin
 An enhancement plugin designed specifically for the Asri theme.
 ### Update Notes
+- New feature: Vertical Tab
 - Added inspiration palette: Glitch
 - Added detail adjustments: Heading Level Hint, Paper Texture
 ### Instructions
@@ -19,6 +20,7 @@ Introduces commonly used features not yet supported by the Asri theme
 - Slash menu arrow-key navigation
 - Typewriter Mode
 - List Bullet Lines
+- Vertical Tab (cannot be enabled simultaneously with Top Bar Fusion+; only affects the tab bar in the top-left corner)
 ### Theme Detail Adjustments
 Detail adjustments tuned to the Asri theme's style
 - Sidebar Top Sticky: removes the sidebar top collapse/expand animation so the top area stays visible
