@@ -84,6 +84,9 @@
                 box-sizing: border-box;
                 padding-left: 0 !important;
                 padding-right: 0 !important;
+                &[style*="padding-top:"][style*="42px"] {
+                    padding-top: 38px !important;
+                }
                 & > .layout-tab-bar:not(.layout-tab-bar--readonly) {
                     flex: 1;
                     flex-direction: column;

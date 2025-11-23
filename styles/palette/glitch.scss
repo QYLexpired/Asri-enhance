@@ -104,14 +104,14 @@
       background: $texture-glicth;
     }
     .protyle-title__input,
-    :is(h1, h2, h3, h4, h5, h6):not([data-asri-enhance-coloredheading="true"] :where(h1, h2, h3, h4, h5, h6)),
-    [data-type="NodeHeading"]:not([style*="background-color"]):not([data-asri-enhance-coloredheading="true"] [data-type="NodeHeading"]),
+    :is(h1, h2, h3, h4, h5, h6),
+    [data-type="NodeHeading"]:not([style*="background-color"]),
     .b3-dialog__header {
       @include glitch-background;
       --glitch-c1: #00d1a8;
       --glitch-c2: #5854e9;
-      --glitch-s1: 100px;
-      --glitch-s2: 2000px;
+      --glitch-s1: 50px;
+      --glitch-s2: 50px;
       background: $texture-glicth;
       background-clip: text;
       // color: rgb(from var(--b3-theme-on-background) r g b / 0.1);
@@ -174,12 +174,14 @@
         background: $texture-glicth;
       }
       .protyle-title__input,
-      :is(h1, h2, h3, h4, h5, h6):not([data-asri-enhance-coloredheading="true"] :where(h1, h2, h3, h4, h5, h6)),
-      [data-type="NodeHeading"]:not([style*="background-color"]):not([data-asri-enhance-coloredheading="true"] [data-type="NodeHeading"]),
+      :is(h1, h2, h3, h4, h5, h6),
+      [data-type="NodeHeading"]:not([style*="background-color"]),
       .b3-dialog__header {
         @include glitch-background;
         --glitch-c1: #bebd00;
         --glitch-c2: #6489ff;
+        --glitch-s1: 50px;
+        --glitch-s2: 50px;
         background: $texture-glicth;
         background-clip: text;
         // color: rgb(from var(--b3-theme-on-background) r g b / 0.1);
