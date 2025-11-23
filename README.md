@@ -2,6 +2,7 @@
 An enhancement plugin designed specifically for the Asri theme.
 ### Update Notes
 - New feature: Vertical Tab
+- Optimized colored heading effects for Auriflow and Glitch color schemes
 - Added inspiration palette: Glitch
 - Added detail adjustments: Heading Level Hint, Paper Texture
 ### Instructions
