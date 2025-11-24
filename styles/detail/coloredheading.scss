@@ -88,7 +88,9 @@
     /* 故障配色 */
     &[data-asri-palette="glitch"] {
         :is(h1, h2, h3, h4, h5, h6),
-        [data-type="NodeHeading"]:not([style*="background-color"]) {
+        [data-type="NodeHeading"]:not([style*="background-color"]),
+        :is(h1, h2, h3, h4, h5, h6) span,
+        [data-type="NodeHeading"]:not([style*="background-color"]) span {
             background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
             background-clip: text;
             color: transparent;
@@ -118,6 +120,96 @@
             &:is(h6, .h6) {
                 --glitch-c1: rgb(255 185 130) !important;
                 --glitch-c2: rgb(221 124 213) !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h1] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h1] .b3-list-item__text span {
+            --glitch-c1: rgb(255 230 0) !important;
+            --glitch-c2: rgb(255 93 93) !important;
+            background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --glitch-c1: rgb(255 230 0) !important;
+                --glitch-c2: rgb(255 93 93) !important;
+                background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h2] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h2] .b3-list-item__text span {
+            --glitch-c1: rgb(186 255 114) !important;
+            --glitch-c2: rgb(232 124 0) !important;
+            background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --glitch-c1: rgb(186 255 114) !important;
+                --glitch-c2: rgb(232 124 0) !important;
+                background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h3] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h3] .b3-list-item__text span {
+            --glitch-c1: rgb(24 255 175) !important;
+            --glitch-c2: rgb(114 158 100) !important;
+            background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --glitch-c1: rgb(24 255 175) !important;
+                --glitch-c2: rgb(114 158 100) !important;
+                background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h4] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h4] .b3-list-item__text span {
+            --glitch-c1: rgb(185 130 255) !important;
+            --glitch-c2: rgb(81 202 214) !important;
+            background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --glitch-c1: rgb(185 130 255) !important;
+                --glitch-c2: rgb(81 202 214) !important;
+                background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h5] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h5] .b3-list-item__text span {
+            --glitch-c1: rgb(165 225 255) !important;
+            --glitch-c2: rgb(136 70 246) !important;
+            background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --glitch-c1: rgb(165 225 255) !important;
+                --glitch-c2: rgb(136 70 246) !important;
+                background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text span {
+            --glitch-c1: rgb(255 185 130) !important;
+            --glitch-c2: rgb(221 124 213) !important;
+            background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --glitch-c1: rgb(255 185 130) !important;
+                --glitch-c2: rgb(221 124 213) !important;
+                background: repeating-conic-gradient( var(--glitch-c1) 0 .00005%, var(--glitch-c2) 0 .00017%) 0 0/var(--glitch-s1) var(--glitch-s2);
+                background-clip: text;
+                color: transparent !important;
             }
         }
         &[data-asri-enhance-headinglevelhint="true"] {
@@ -171,7 +263,9 @@
     /* 鎏金配色 */
     &[data-asri-palette="auriflow"] {
         :is(h1, h2, h3, h4, h5, h6),
-        [data-type="NodeHeading"]:not([style*="background-color"]) {
+        [data-type="NodeHeading"]:not([style*="background-color"]),
+        :is(h1, h2, h3, h4, h5, h6) span,
+        [data-type="NodeHeading"]:not([style*="background-color"]) span {
             background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
             background-clip: text;
             color: transparent;
@@ -201,6 +295,96 @@
             &:is(h6, .h6) {
                 --foil-local-clr: rgb(151 106 225);
                 --foil-base-clr: rgb(183 160 209);
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h1] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h1] .b3-list-item__text span {
+            --foil-local-clr: rgb(190 100 100);
+            --foil-base-clr: rgb(225 145 173);
+            background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --foil-local-clr: rgb(190 100 100);
+                --foil-base-clr: rgb(225 145 173);
+                background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h2] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h2] .b3-list-item__text span {
+            --foil-local-clr: rgb(191 138 103);
+            --foil-base-clr: rgb(245 126 49);
+            background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --foil-local-clr: rgb(191 138 103);
+                --foil-base-clr: rgb(245 126 49);
+                background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h3] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h3] .b3-list-item__text span {
+            --foil-local-clr: rgb(117 173 79);
+            --foil-base-clr: rgb(138 194 140);
+            background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --foil-local-clr: rgb(117 173 79);
+                --foil-base-clr: rgb(138 194 140);
+                background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h4] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h4] .b3-list-item__text span {
+            --foil-local-clr: rgb(60, 153, 158);
+            --foil-base-clr: rgb(158, 206, 211);
+            background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --foil-local-clr: rgb(60, 153, 158);
+                --foil-base-clr: rgb(158, 206, 211);
+                background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h5] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h5] .b3-list-item__text span {
+            --foil-local-clr: rgb(117 153 253);
+            --foil-base-clr: rgb(125 139 221);
+            background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --foil-local-clr: rgb(117 153 253);
+                --foil-base-clr: rgb(125 139 221);
+                background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+                background-clip: text;
+                color: transparent !important;
+            }
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text,
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text span {    
+            --foil-local-clr: rgb(151 106 225);
+            --foil-base-clr: rgb(183 160 209);
+            background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+            background-clip: text;
+            color: transparent !important;
+            &::before {
+                --foil-local-clr: rgb(151 106 225);
+                --foil-base-clr: rgb(183 160 209);
+                background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);
+                background-clip: text;
+                color: transparent !important;
             }
         }
         &[data-asri-enhance-headinglevelhint="true"] {
