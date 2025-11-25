@@ -1,5 +1,3 @@
-## Asri Theme Enhancement Plugin
-An enhancement plugin designed specifically for the Asri theme.
 ### Update Notes
 - New feature: Vertical Tab
 - Optimized colored heading effects for Auriflow and Glitch color schemes
@@ -25,7 +23,7 @@ Introduces commonly used features not yet supported by the Asri theme
 ### Theme Detail Adjustments
 Detail adjustments tuned to the Asri theme's style
 - Sidebar Top Sticky: removes the sidebar top collapse/expand animation so the top area stays visible
-- Cover Image Fade: adds a fade mask to the bottom of cover images
+- Cover Image Fade
 - Paper Texture
 - Colored Heading
 - Heading Level Hint

@@ -27,8 +27,11 @@
                 }
             }
             & .asri-enhance-verticaltab-resize {
-                height: calc(100% - 48px);
-                top: 48px;
+                height: calc(100% - 49px);
+                top: 49px;
+            }
+            & .protyle-background__img .protyle-icons {
+                top: 86px;
             }
         }
         /* 右侧栏收起 */
@@ -39,16 +42,25 @@
                 }
             }
             & .protyle-background__img .protyle-icons {
-                top: 76px;
+                top: 86px;
             }
         }
         .asri-enhance-verticaltab {
             flex-direction: row;
             & .protyle-content {
-                margin-top: -42px;
+                padding-top: 46px;
+                & .protyle-top {
+                    margin-top: -46px;
+                    & .protyle-background {
+                        transform: translateY(-46px);
+                        & .protyle-background__img.fn__none+.protyle-background__ia {
+                            transform: translateY(46px);
+                        }
+                    }
+                }
             }
             & .protyle-background__img .protyle-icons {
-                top: 52px;
+                top: 56px;
             }
             & .protyle-background__icon {
                 z-index: 0;
@@ -69,7 +81,7 @@
                 }
             }
             & .layout-tab-container > :not(.protyle) {
-                margin-top: 42px;
+                margin-top: 48px;
             }
             & > .fn__flex.fn__none + .asri-enhance-verticaltab-resize {
                 display: none;
@@ -86,6 +98,23 @@
                 padding-right: 0 !important;
                 &[style*="padding-top:"][style*="42px"] {
                     padding-top: 38px !important;
+                    & + .asri-enhance-verticaltab-resize {
+                        height: calc(100% - 49px);
+                        top: 49px;
+                        & + .layout-tab-container > .protyle {
+                            & > .protyle-breadcrumb {
+                                & .protyle-breadcrumb__bar {
+                                    transform: translateY(38px);
+                                }
+                                & .protyle-breadcrumb__space ~ * {  
+                                    transform: translateY(38px);
+                                }
+                            }
+                            & .protyle-background__img .protyle-icons {
+                                top: 86px;
+                            }
+                        }
+                    }
                 }
                 & > .layout-tab-bar:not(.layout-tab-bar--readonly) {
                     flex: 1;
