@@ -7,7 +7,7 @@
             }
         }
     }
-    .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         content: '';
         box-sizing: border-box;
         border-left: 2px solid var(--b3-theme-accent);
@@ -33,55 +33,55 @@
         color: var(--b3-theme-accent);
     }
     /* 无序列表紧接无序列表 */
-    [data-subtype="u"] > [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="u"] > [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 33px;
         height: calc(var(--asri-bullet-line-height) - 1px);
         top: calc(var(--asri-bullet-line-height) * -1 + 19px + ((var(--b3-font-size-editor) - 16px) * 0.75));/* var(--b3-font-size-editor)是适配不同字体大小 */
     }
     /* 无序列表紧接有序列表 */
-    [data-subtype="u"] > [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="u"] > [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 24px;
         height: calc(var(--asri-bullet-line-height) - 1px);
         top: calc(var(--asri-bullet-line-height) * -1 + 19px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 无序列表紧接任务列表 */
-    [data-subtype="u"] > [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="u"] > [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 28px;
         height: calc(var(--asri-bullet-line-height) - 1px);
         top: calc(var(--asri-bullet-line-height) * -1 + 19px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 有序列表紧接有序列表 */
-    [data-subtype="o"] > [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="o"] > [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 25px;
         height: calc(var(--asri-bullet-line-height) - 8px);
         top: calc(var(--asri-bullet-line-height) * -1 + 27px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 有序列表紧接无序列表 */
-    [data-subtype="o"] > [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="o"] > [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 33px;
         height: calc(var(--asri-bullet-line-height) - 9px);
         top: calc(var(--asri-bullet-line-height) * -1 + 27px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 有序列表紧接任务列表 */
-    [data-subtype="o"] > [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="o"] > [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 28px;
         height: calc(var(--asri-bullet-line-height) - 9px);
         top: calc(var(--asri-bullet-line-height) * -1 + 27px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 任务列表紧接任务列表 */
-    [data-subtype="t"] > [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="t"] > [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 28px;
         height: calc(var(--asri-bullet-line-height) - 5px);
         top: calc(var(--asri-bullet-line-height) * -1 + 23px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 任务列表紧接无序列表 */
-    [data-subtype="t"] > [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="t"] > [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 33px;
         height: calc(var(--asri-bullet-line-height) - 6px);
         top: calc(var(--asri-bullet-line-height) * -1 + 24px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 任务列表紧接有序列表 */
-    [data-subtype="t"] > [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl)::after {
+    [data-subtype="t"] > [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
         width: 24px;
         height: calc(var(--asri-bullet-line-height) - 6px);
         top: calc(var(--asri-bullet-line-height) * -1 + 24px + ((var(--b3-font-size-editor) - 16px) * 0.75));

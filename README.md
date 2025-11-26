@@ -1,4 +1,5 @@
 ### Update Notes
+- Adapted to List View plugin: Fixed style conflicts with List Bullet Lines
 - New feature: Vertical Tab
 - Optimized colored heading effects for Auriflow and Glitch color schemes
 - Added inspiration palette: Glitch

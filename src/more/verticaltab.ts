@@ -4,6 +4,7 @@ const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-vertical-tab";
 const DEFAULT_WIDTH = 150;
 let mutationObserver: MutationObserver | null = null;
+let resizeObserver: MutationObserver | null = null;
 let debounceTimer: number | null = null;
 let isDragging = false;
 let dragStartX = 0;
@@ -22,6 +23,28 @@ function findLayoutCenter(maxRetries: number = 10, interval: number = 100): Prom
 			if (center) {
 				resolve(center);
 				return;
+			}
+			attempts++;
+			if (attempts >= maxRetries) {
+				resolve(null);
+				return;
+			}
+			setTimeout(tryFind, interval);
+		};
+		tryFind();
+	});
+}
+function findLayoutResize(maxRetries: number = 10, interval: number = 100): Promise<{ center: HTMLElement; resize: HTMLElement } | null> {
+	return new Promise((resolve) => {
+		let attempts = 0;
+		const tryFind = () => {
+			const center = document.querySelector(".layout__center") as HTMLElement;
+			if (center) {
+				const resize = center.nextElementSibling as HTMLElement;
+				if (resize && resize.classList.contains("layout__resize")) {
+					resolve({ center, resize });
+					return;
+				}
 			}
 			attempts++;
 			if (attempts >= maxRetries) {
@@ -203,6 +226,47 @@ function addClassToTopLeftWnd(center: HTMLElement): void {
 	}
 	isUpdating = false;
 }
+async function startResizeObserver(): Promise<void> {
+	if (resizeObserver) {
+		resizeObserver.disconnect();
+		resizeObserver = null;
+	}
+	const result = await findLayoutResize();
+	if (!result) {
+		return;
+	}
+	const { center, resize } = result;
+	const updateCenterClass = () => {
+		if (resize.classList.contains("fn__none")) {
+			center.classList.add("asri-enhance-dockr-fold");
+		} else {
+			center.classList.remove("asri-enhance-dockr-fold");
+		}
+	};
+	updateCenterClass();
+	resizeObserver = new MutationObserver((mutations) => {
+		for (const mutation of mutations) {
+			if (mutation.type === "attributes" && mutation.attributeName === "class") {
+				updateCenterClass();
+				break;
+			}
+		}
+	});
+	resizeObserver.observe(resize, {
+		attributes: true,
+		attributeFilter: ["class"],
+	});
+}
+function stopResizeObserver(): void {
+	if (resizeObserver) {
+		resizeObserver.disconnect();
+		resizeObserver = null;
+	}
+	const center = document.querySelector(".layout__center") as HTMLElement;
+	if (center) {
+		center.classList.remove("asri-enhance-dockr-fold");
+	}
+}
 async function startObserver(): Promise<void> {
 	if (mutationObserver) {
 		mutationObserver.disconnect();
@@ -214,6 +278,7 @@ async function startObserver(): Promise<void> {
 	}
 	setWidth(DEFAULT_WIDTH);
 	addClassToTopLeftWnd(center);
+	startResizeObserver().catch(() => {});
 	const debouncedCallback = () => {
 		if (isUpdating) {
 			return;
@@ -239,6 +304,7 @@ export function stopObserver(): void {
 		mutationObserver.disconnect();
 		mutationObserver = null;
 	}
+	stopResizeObserver();
 	if (debounceTimer !== null) {
 		clearTimeout(debounceTimer);
 		debounceTimer = null;

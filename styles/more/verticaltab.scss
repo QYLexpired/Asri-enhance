@@ -35,7 +35,7 @@
             }
         }
         /* 右侧栏收起 */
-        .layout__center:has(+ .layout__resize.fn__none) .asri-enhance-verticaltab-toponly {
+        .layout__center.asri-enhance-dockr-fold .asri-enhance-verticaltab-toponly {
             & .protyle > .protyle-breadcrumb {
                 & .protyle-breadcrumb__space ~ * {
                     transform: translateY(38px);
