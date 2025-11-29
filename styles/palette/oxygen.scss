@@ -64,7 +64,7 @@
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-  [data-asri-palette="oxygen"][data-theme-mode="light"][data-light-theme="Asri"] & {
+  [data-asri-palette="oxygen"][data-light-theme="Asri"] & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }

@@ -13,6 +13,7 @@ const AMBER_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-oxygen",
 		"asri-enhance-shade",
 		"asri-enhance-gruvbox",
+		"asri-enhance-glitch",
 	],
 };
 export async function onAmberClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

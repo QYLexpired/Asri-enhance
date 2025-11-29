@@ -1,3 +1,4 @@
+@use "../asri/overflowfadein" as *;
 [data-asri-enhance-vertical-tab="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
     #asri-enhance-vertical-tab {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
@@ -75,7 +76,7 @@
                     border-radius: 6px;
                     backdrop-filter: blur(8px) saturate(1.5) brightness(1);
                 }
-                & .protyle-breadcrumb__space ~ * {
+                & .protyle-breadcrumb__space ~ *:not([data-type="exit-focus"]:hover) {
                     background-color: rgb(from var(--b3-theme-background) r g b/0.4);
                     backdrop-filter: blur(8px) saturate(1.5) brightness(1);
                 }
@@ -96,6 +97,8 @@
                 box-sizing: border-box;
                 padding-left: 0 !important;
                 padding-right: 0 !important;
+                transition: padding-top 0.2s;
+                padding-top: 0px;
                 &[style*="padding-top:"][style*="42px"] {
                     padding-top: 38px !important;
                     & + .asri-enhance-verticaltab-resize {
@@ -117,6 +120,7 @@
                     }
                 }
                 & > .layout-tab-bar:not(.layout-tab-bar--readonly) {
+                    @include overflow-indicator-fadein-mask($fadeout-size-m, "top bottom");
                     flex: 1;
                     flex-direction: column;
                     margin: 0;
@@ -160,6 +164,7 @@
                     flex: 0 0 auto;
                     margin: 0;
                     & > .item--readonly {
+                        justify-content: center;
                         & > .fn__flex-1 {
                             flex: 1;
                         }

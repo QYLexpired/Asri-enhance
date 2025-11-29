@@ -1,10 +1,4 @@
 @use "public" as *;
-@mixin darkmode-counterpart($root: false) {
-  $selector: if($root, "&[data-theme-mode=dark]", "[data-theme-mode=dark] &");
-  #{$selector} {
-    @content;
-  }
-}
 #{$primary-color-reverse-selectors,
   ".b3-button--outline"} {
     [data-asri-palette="glitch"][data-theme-mode="light"][data-light-theme="Asri"] & {
@@ -89,6 +83,13 @@
       @include glitch-background;
       // -webkit-font-smoothing: auto;
     }
+    input[type="radio" i]:checked {
+      --glitch-c1: #67c6ff;
+      --glitch-c2: #6c45ff;
+      --glitch-s1: 50px;
+      --glitch-s2: 1000px;
+      background: $texture-glicth;
+    }
     :is(.protyle, .b3-typography),
     .b3-dialog__header {
       --glitch-c1: #52d7bd;
@@ -171,6 +172,11 @@
       .b3-switch:checked {
         --glitch-c1: #41ffd5;
         --glitch-c2: #8944e7;
+        background: $texture-glicth;
+      }
+      input[type="radio" i]:checked {
+        --glitch-c1: #00ffaf;
+        --glitch-c2: #0083ff;
         background: $texture-glicth;
       }
       .protyle-title__input,

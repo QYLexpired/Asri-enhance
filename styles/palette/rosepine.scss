@@ -14,10 +14,10 @@
 		opacity: 0.38;
 	  }
 	&[data-theme-mode="light"][data-light-theme="Asri"] {
-		--rosepine-base-accent: #ec88a4;
+		--rosepine-base-accent: #d88aa0;
 		--asri-theme-accent-customized: var(--rosepine-base-accent);
-		--b3-theme-primary: #b4637a;
-		--b3-theme-accent: #da7e98;
+		--b3-theme-primary: #d88aa0;
+		--b3-theme-accent: #d88aa0;
 		--b3-theme-background: #faf4ed;
 		--b3-theme-surface: #f2e9e1;
 		--b3-theme-on-background: #575279;
@@ -65,7 +65,7 @@
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-	[data-asri-palette="rosepine"][data-theme-mode="light"][data-light-theme="Asri"] & {
+	[data-asri-palette="rosepine"][data-light-theme="Asri"] & {
 		--b3-theme-primary: var(--b3-theme-accent);
 	}
 }

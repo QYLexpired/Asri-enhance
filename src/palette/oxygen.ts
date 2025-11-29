@@ -13,6 +13,7 @@ const OXYGEN_PALETTE_INFO: PaletteInfo = {
 		"asri-enhance-topaz",
 		"asri-enhance-shade",
 		"asri-enhance-gruvbox",
+		"asri-enhance-glitch",
 	],
 };
 export async function onOxygenClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

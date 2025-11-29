@@ -1,9 +1,8 @@
 ### Update Notes
-- Adapted to List View plugin: Fixed style conflicts with List Bullet Lines
-- New feature: Vertical Tab
-- Optimized colored heading effects for Auriflow and Glitch color schemes
-- Added inspiration palette: Glitch
-- Added detail adjustments: Heading Level Hint, Paper Texture
+- Added an overflow fade effect when vertically scrolling the vertical tab bar
+- Fixed an issue where enabling another color scheme after Glitch would not persist correctly
+- Optimized the Golden Topaz color scheme
+- Optimized various visual details
 ### Instructions
 - Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to open the Asri theme settings menu. All plugin features are configured inside the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> sections.
 - The plugin only supports the Asri theme.

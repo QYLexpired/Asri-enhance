@@ -37,3 +37,9 @@
         --b3-theme-on-primary: #fff;
     }
 }
+.b3-button--outline,
+.protyle-breadcrumb__icon {
+    [data-asri-palette="midnight"][data-theme-mode="dark"][data-light-theme="Asri"] & {
+        --b3-theme-primary: var(--b3-theme-accent);
+    }
+}
