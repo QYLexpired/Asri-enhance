@@ -15,6 +15,10 @@ let mouseUpHandler: (() => void) | null = null;
 let isUpdating = false;
 let rafId: number | null = null;
 let pendingWidth: number | null = null;
+let spacingObserver: MutationObserver | null = null;
+let currentTopLeftElement: HTMLElement | null = null;
+let toolbarElement: HTMLElement | null = null;
+let spacingDebounceTimer: number | null = null;
 function findLayoutCenter(maxRetries: number = 10, interval: number = 100): Promise<HTMLElement | null> {
 	return new Promise((resolve) => {
 		let attempts = 0;
@@ -45,6 +49,25 @@ function findLayoutResize(maxRetries: number = 10, interval: number = 100): Prom
 					resolve({ center, resize });
 					return;
 				}
+			}
+			attempts++;
+			if (attempts >= maxRetries) {
+				resolve(null);
+				return;
+			}
+			setTimeout(tryFind, interval);
+		};
+		tryFind();
+	});
+}
+function findToolbar(maxRetries: number = 10, interval: number = 100): Promise<HTMLElement | null> {
+	return new Promise((resolve) => {
+		let attempts = 0;
+		const tryFind = () => {
+			const toolbar = document.querySelector("#toolbar") as HTMLElement | null;
+			if (toolbar) {
+				resolve(toolbar);
+				return;
 			}
 			attempts++;
 			if (attempts >= maxRetries) {
@@ -183,6 +206,7 @@ function addClassToTopLeftWnd(center: HTMLElement): void {
 		if (el !== topLeftElement) {
 			el.classList.remove("asri-enhance-verticaltab");
 			el.classList.remove("asri-enhance-verticaltab-toponly");
+			el.classList.remove("asri-enhance-verticaltab-dockr-expand-spacing");
 			const resizeElement = el.querySelector(".layout__resize.layout__resize--lr.asri-enhance-verticaltab-resize");
 			if (resizeElement) {
 				resizeElement.remove();
@@ -194,6 +218,7 @@ function addClassToTopLeftWnd(center: HTMLElement): void {
 		if (shouldAddClass) {
 			topLeftElement.classList.add("asri-enhance-verticaltab");
 		}
+		currentTopLeftElement = topLeftElement;
 		const topLeftRect = topLeftElement.getBoundingClientRect();
 		const topLeftTop = topLeftRect.top;
 		const tolerance = 1;
@@ -223,8 +248,73 @@ function addClassToTopLeftWnd(center: HTMLElement): void {
 			}
 			setupResizeElement(resizeElement);
 		}
+		updateSpacingClass(topLeftElement);
 	}
 	isUpdating = false;
+}
+function getTopbarRightSpacing(): number {
+	const targetToolbar = toolbarElement ?? (document.querySelector("#toolbar") as HTMLElement | null);
+	if (!targetToolbar) {
+		return 0;
+	}
+	toolbarElement = targetToolbar;
+	const spacingStr = getComputedStyle(targetToolbar).getPropertyValue("--topbar-right-spacing");
+	if (!spacingStr) {
+		return 0;
+	}
+	const spacing = parseFloat(spacingStr);
+	return isNaN(spacing) ? 0 : spacing;
+}
+function updateSpacingClass(targetElement?: HTMLElement): void {
+	const target = targetElement ?? currentTopLeftElement;
+	if (!target) {
+		return;
+	}
+	const hasSpacing = getTopbarRightSpacing() > 0;
+	if (hasSpacing) {
+		target.classList.add("asri-enhance-verticaltab-dockr-expand-spacing");
+	} else {
+		target.classList.remove("asri-enhance-verticaltab-dockr-expand-spacing");
+	}
+}
+async function startSpacingObserver(): Promise<void> {
+	stopSpacingObserver();
+	const toolbar = await findToolbar();
+	if (!toolbar) {
+		return;
+	}
+	toolbarElement = toolbar;
+	const observer = new MutationObserver((mutations) => {
+		for (const mutation of mutations) {
+			if (mutation.type === "attributes" && mutation.attributeName === "style") {
+				if (spacingDebounceTimer !== null) {
+					clearTimeout(spacingDebounceTimer);
+				}
+				spacingDebounceTimer = window.setTimeout(() => {
+					updateSpacingClass();
+					spacingDebounceTimer = null;
+				}, 500);
+				break;
+			}
+		}
+	});
+	observer.observe(toolbar, {
+		attributes: true,
+		attributeFilter: ["style"],
+	});
+	spacingObserver = observer;
+	updateSpacingClass();
+}
+function stopSpacingObserver(): void {
+	if (spacingObserver) {
+		spacingObserver.disconnect();
+		spacingObserver = null;
+	}
+	if (spacingDebounceTimer !== null) {
+		clearTimeout(spacingDebounceTimer);
+		spacingDebounceTimer = null;
+	}
+	toolbarElement = null;
 }
 async function startResizeObserver(): Promise<void> {
 	if (resizeObserver) {
@@ -279,6 +369,7 @@ async function startObserver(): Promise<void> {
 	setWidth(DEFAULT_WIDTH);
 	addClassToTopLeftWnd(center);
 	startResizeObserver().catch(() => {});
+	startSpacingObserver();
 	const debouncedCallback = () => {
 		if (isUpdating) {
 			return;
@@ -305,6 +396,7 @@ export function stopObserver(): void {
 		mutationObserver = null;
 	}
 	stopResizeObserver();
+	stopSpacingObserver();
 	if (debounceTimer !== null) {
 		clearTimeout(debounceTimer);
 		debounceTimer = null;
@@ -314,6 +406,7 @@ export function stopObserver(): void {
 	allWndElements.forEach((el) => {
 		el.classList.remove("asri-enhance-verticaltab");
 		el.classList.remove("asri-enhance-verticaltab-toponly");
+		el.classList.remove("asri-enhance-verticaltab-dockr-expand-spacing");
 		const resizeElement = el.querySelector(".layout__resize.layout__resize--lr.asri-enhance-verticaltab-resize") as HTMLElement;
 		if (resizeElement) {
 			const mousedownHandler = (resizeElement as any).__asriMousedownHandler;
@@ -335,6 +428,7 @@ export function stopObserver(): void {
 	}
 	isUpdating = false;
 	isDragging = false;
+	currentTopLeftElement = null;
 }
 export async function onVerticalTabClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
 	if (event) {

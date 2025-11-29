@@ -1,4 +1,5 @@
 ### Update Notes
+- Optimized the vertical tab to prevent breadcrumbs from overlapping with top bar buttons in rare cases
 - Added an overflow fade effect when vertically scrolling the vertical tab bar
 - Fixed an issue where enabling another color scheme after Glitch would not persist correctly
 - Optimized the Golden Topaz color scheme

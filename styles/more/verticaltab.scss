@@ -60,6 +60,11 @@
                     }
                 }
             }
+            &.asri-enhance-verticaltab-dockr-expand-spacing {
+                & .protyle-breadcrumb__space ~ * {
+                    transform: translateY(38px);
+                }
+            }
             & .protyle-background__img .protyle-icons {
                 top: 56px;
             }
