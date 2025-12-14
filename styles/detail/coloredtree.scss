@@ -7,7 +7,7 @@
             }
         }
     }
-    .sy__file > .fn__flex-1 > ul.b3-list.b3-list--background { 
+    .sy__file > .fn__flex-1 > ul.b3-list.b3-list--background {
         &:nth-of-type(8n+1) {
             --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 0) / 0.1);
             & .b3-list-item--focus {

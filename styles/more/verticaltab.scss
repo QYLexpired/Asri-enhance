@@ -13,6 +13,9 @@
             opacity: 0.38;
         }
     }
+    &[data-asri-palette=polar] body:not(.asri-tfp) .protyle .protyle-breadcrumb {
+        box-shadow: none;
+    }
     & body:not(.asri-tfp, .body-asri--mobilem, .body--window) {
         /* 左侧栏收起 */
         .layout__resize.fn__none + .layout__center .asri-enhance-verticaltab {
@@ -114,7 +117,7 @@
                                 & .protyle-breadcrumb__bar {
                                     transform: translateY(38px);
                                 }
-                                & .protyle-breadcrumb__space ~ * {  
+                                & .protyle-breadcrumb__space ~ * {
                                     transform: translateY(38px);
                                 }
                             }

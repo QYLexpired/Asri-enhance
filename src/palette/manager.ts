@@ -60,8 +60,8 @@ export async function applyPaletteConfig(
 	const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
 	if (configData && configData[paletteInfo.configKey]) {
 		const paletteConfig = configData[paletteInfo.configKey];
-		const shouldApply = typeof paletteConfig === "boolean" 
-			? paletteConfig 
+		const shouldApply = typeof paletteConfig === "boolean"
+			? paletteConfig
 			: (paletteConfig[themeMode] === true);
 		if (shouldApply) {
 			htmlEl.removeAttribute("data-asri-palette");

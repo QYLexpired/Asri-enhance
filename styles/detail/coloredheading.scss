@@ -373,7 +373,7 @@
             }
         }
         .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text,
-        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text span {    
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text span {
             --foil-local-clr: rgb(151 106 225);
             --foil-base-clr: rgb(183 160 209);
             background: repeating-radial-gradient(rgba(180, 135, 30, var(--foil-shadow-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 30% 50%/2500px 2500px, repeating-conic-gradient(var(--foil-local-clr) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 60% 60%/2500px 2500px, repeating-conic-gradient(rgba(245, 227, 199, var(--foil-highlight-opacity)) 0 0.0001%, rgba(0, 0, 0, 0) 0 0.0002%) 50% 50%/2500px 2500px, var(--foil-base-clr);

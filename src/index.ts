@@ -20,6 +20,7 @@ import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { applyPaperTextureConfig } from "./detail/papertexture";
 import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
+import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
@@ -52,6 +53,7 @@ class AsriEnhancePlugin extends Plugin {
 			applyCoverImageFadeConfig(this, config).catch(() => {}),
 			applyHideTabBreadcrumbConfig(this, config).catch(() => {}),
 			applyPaperTextureConfig(this, config).catch(() => {}),
+			applyMoreAnimationsConfig(this, config).catch(() => {}),
 		]);
 	}
 	async onload() {
@@ -89,7 +91,7 @@ class AsriEnhancePlugin extends Plugin {
 			queueMicrotask(() => {
 				const target = event.target as HTMLElement;
 				if (!target) return;
-				const shouldDisable = 
+				const shouldDisable =
 					target.id?.startsWith("prst-palette") ||
 					target.closest("[id^='prst-palette']") !== null ||
 					target.id === "pickColor" ||

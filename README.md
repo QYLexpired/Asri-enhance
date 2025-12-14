@@ -1,23 +1,19 @@
 ### Update Notes
-- Optimized the vertical tab to prevent breadcrumbs from overlapping with top bar buttons in rare cases
-- Added an overflow fade effect when vertically scrolling the vertical tab bar
-- Fixed an issue where enabling another color scheme after Glitch would not persist correctly
-- Optimized the Golden Topaz color scheme
-- Optimized various visual details
+- Added feature - Detail Adjustments - More Animations
 ### Instructions
 - Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to open the Asri theme settings menu. All plugin features are configured inside the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> sections.
 - The plugin only supports the Asri theme.
 ### More Preset Color Schemes
 In addition to the original color schemes of the Asri theme, this plugin adds many preset color schemes
 - Inspiration palette: Oxygen, Shade, Glitch
-- Ported from QYL: Amber, Wilderness, Midnight
-- Ported from Savor: Salt
-- Ported from Obsidian's theme: Golden Topaz
-- Ported from VSCode's theme: Rosé Pine
-- Ported from Vim's theme: Gruvbox
+- Ported from QYL theme: Amber, Wilderness, Midnight
+- Ported from Savor theme: Salt
+- Ported from Obsidian theme: Golden Topaz
+- Ported from VSCode theme: Rosé Pine
+- Ported from Vim theme: Gruvbox
 ### Improved Editing Experience
 Introduces commonly used features not yet supported by the Asri theme
-- Slash menu arrow-key navigation
+- Slash menu arrow-key navigation (automatically enabled)
 - Typewriter Mode
 - List Bullet Lines
 - Vertical Tab (cannot be enabled simultaneously with Top Bar Fusion+; only affects the tab bar in the top-left corner)
@@ -30,3 +26,4 @@ Detail adjustments tuned to the Asri theme's style
 - Heading Level Hint
 - Colored File Tree
 - Hide TabHeader & Breadcrumb (only effective when Top Bar Fusion+ is enabled; recommended together with the progressive blur effect)
+- More Animations

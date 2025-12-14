@@ -19,6 +19,7 @@ import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onCoverImageFadeClick } from "../detail/coverimagefade";
 import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
 import { onPaperTextureClick } from "../detail/papertexture";
+import { onMoreAnimationsClick } from "../detail/moreanimations";
 export type Unsubscribe = () => void;
 export function listenBarModeClick(
 	plugin: Plugin,
@@ -316,6 +317,18 @@ export function addMoreAfterTopbarFusionPlus(
 							const hideTabBreadcrumbItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab-breadcrumb");
 							if (hideTabBreadcrumbItem) {
 								hideTabBreadcrumbItem.onclick = (event) => onHideTabBreadcrumbClick(plugin, event);
+							}
+							if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-moreanimations")) {
+								const moreAnimationsIcon = `<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>`;
+								const moreAnimationsButton = document.createElement("button");
+								moreAnimationsButton.className = "b3-menu__item";
+								moreAnimationsButton.id = "asri-enhance-moreanimations";
+								moreAnimationsButton.innerHTML = `${moreAnimationsIcon}<span class="b3-menu__label">${plugin.i18n?.moreAnimations || "moreAnimations"}</span>`;
+								detailAdjustmentSubmenu.appendChild(moreAnimationsButton);
+							}
+							const moreAnimationsItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-moreanimations");
+							if (moreAnimationsItem) {
+								moreAnimationsItem.onclick = (event) => onMoreAnimationsClick(plugin, event);
 							}
 						}
 					}
