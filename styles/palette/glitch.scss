@@ -59,6 +59,8 @@
       --b3-theme-surface: #f0f0f0;
       --b3-theme-on-background: #454545;
       --b3-theme-on-surface: oklch(from var(--b3-theme-on-background) l c h / 0.65);
+      --b3-border-color: oklch( from var(--b3-theme-background) 0.925 c h );
+      --b3-theme-surface-lighter: var(--b3-border-color);
     }
     .config-bazaar__panel .b3-card:hover {
       @include glitch-border(1.5px, $border-radius: 18.5px);
@@ -168,6 +170,8 @@
       --b3-theme-surface: #2c2e36;
       --b3-theme-on-background: #dcdcdc;
       --b3-theme-on-surface: oklch(from var(--b3-theme-on-background) l c h / 0.65);
+      --b3-border-color: oklch(from var(--b3-theme-background) 0.32 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h);
+      --b3-theme-surface-lighter: var(--b3-border-color);
       --glitch-c1: #3cdec2;
       --glitch-c2: #8d89e4;
       .b3-switch:checked {

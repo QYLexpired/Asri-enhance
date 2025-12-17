@@ -1,8 +1,6 @@
 # EditorConfig 配置文件
 # 统一编辑器行为，确保跨编辑器的一致性
-
 root = true
-
 # 所有文件通用设置
 [*]
 charset = utf-8
@@ -11,29 +9,23 @@ insert_final_newline = true
 trim_trailing_whitespace = true
 indent_style = tab
 indent_size = 4
-
 # TypeScript/JavaScript 文件
 [*.{ts,tsx,js,jsx}]
 indent_style = tab
 indent_size = 4
-
 # JSON 文件
 [*.json]
 indent_style = space
 indent_size = 2
-
 # SCSS/CSS 文件
 [*.{scss,css}]
 indent_style = space
 indent_size = 4
-
 # Markdown 文件
 [*.md]
 trim_trailing_whitespace = false
 indent_size = 2
-
 # 配置文件
 [*.{yml,yaml}]
 indent_style = space
 indent_size = 2
-

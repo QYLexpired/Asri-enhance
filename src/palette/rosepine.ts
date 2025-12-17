@@ -5,6 +5,7 @@ const ROSE_PINE_PALETTE_INFO: PaletteInfo = {
 	name: "rosepine",
 	configKey: "asri-enhance-rosepine",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-wilderness",
 		"asri-enhance-midnight",

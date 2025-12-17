@@ -10,7 +10,10 @@
     // 按钮光效
     #barWorkspace,
     .config__panel .config__tab-container:not([data-name="bazaar"]) .b3-button--outline,
-    #configBazaarReadme .b3-button {
+    #configBazaarReadme .b3-button,
+    .b3-button[data-type="rebuildIndex"],
+    .b3-button[data-type="genRepo"],
+    .b3-dialog__content .b3-button--outline {
         overflow: hidden;
         position: relative;
         &::before {
@@ -33,14 +36,21 @@
             }
         }
     }
+    // 块标
+    .protyle-gutters {
+        & button {
+            transition: scale 0.5s cubic-bezier(0.25, 0.46, 0.15, 1.8);
+            &:hover {
+                scale: 1.15;
+            }
+        }
+    }
     // 解锁/锁定
     .protyle-breadcrumb .block__icon[data-subtype="lock"] svg {
         animation: asri-enhance-animation-lock 0.5s var(--asri-enhance-ease-2);
-        transform-origin: 50% 70%;
     }
     .protyle-breadcrumb .block__icon[data-subtype="unlock"] svg {
         animation: asri-enhance-animation-unlock 0.5s var(--asri-enhance-ease-2);
-        transform-origin: 50% 70%;
         color: var(--b3-theme-accent)
     }
     @keyframes asri-enhance-animation-lock {
@@ -77,34 +87,22 @@
             transform: rotate(0deg);
         }
     }
-    // 列表折叠/展开
+    // 列表折叠
     .protyle-wysiwyg [data-node-id].li[fold="1"] {
-        animation: asri-enhance-animation-list-fold 0.3s var(--asri-enhance-ease-spring-3);
-        transform-origin: left;
-    }
-    .protyle-wysiwyg [data-node-id].li:not([fold="1"]) {
-        animation: asri-enhance-animation-list-expand 0.3s var(--asri-enhance-ease-spring-2);
-        transform-origin: left;
+        animation: asri-enhance-animation-list-fold 0.45s var(--asri-enhance-ease-spring-3);
+        transform-origin: top left;
     }
     @keyframes asri-enhance-animation-list-fold {
         0% {
-          transform: scaleX(1.8);
+          transform: scaleX(1.8) scaleY(1.5);
         }
         100% {
-          transform: scaleX(1);
+          transform: scaleX(1) scaleY(1);
         }
-    }
-    @keyframes asri-enhance-animation-list-expand {
-      0% {
-        transform: scaleX(0.3);
-      }
-      100% {
-        transform: scaleX(1);
-      }
     }
     // 块折叠
     .protyle-wysiwyg [data-node-id][fold="1"]:not(.li) {
-        animation: asri-enhance-animation-block-fold 0.3s var(--asri-enhance-ease-spring-3);
+        animation: asri-enhance-animation-block-fold 0.45s var(--asri-enhance-ease-spring-3);
         transform-origin: top;
     }
     @keyframes asri-enhance-animation-block-fold {
@@ -205,4 +203,3 @@
     --asri-enhance-ease-bounce-4: linear(0, 0.004, 0.016 3%, 0.062, 0.141, 0.25, 0.391, 0.562 18.2%, 1 24.3%, 0.81, 0.676 32.3%, 0.629, 0.595, 0.575, 0.568, 0.575, 0.595, 0.629, 0.676 48.2%, 0.811, 1 56.2%, 0.918, 0.86, 0.825, 0.814, 0.825, 0.86, 0.918, 1 77.2%, 0.94 80.6%, 0.925, 0.92, 0.925, 0.94 87.5%, 1 90.9%, 0.974, 0.965, 0.974, 1);
     --asri-enhance-ease-bounce-5: linear(0, 0.004, 0.016 2.5%, 0.063, 0.141, 0.25 10.1%, 0.562, 1 20.2%, 0.783, 0.627, 0.534 30.9%, 0.511, 0.503, 0.511, 0.534 38%, 0.627, 0.782, 1 48.7%, 0.892, 0.815, 0.769 56.3%, 0.757, 0.753, 0.757, 0.769 61.3%, 0.815, 0.892, 1 68.8%, 0.908 72.4%, 0.885, 0.878, 0.885, 0.908 79.4%, 1 83%, 0.954 85.5%, 0.943, 0.939, 0.943, 0.954 90.5%, 1 93%, 0.977, 0.97, 0.977, 1);
 }
-

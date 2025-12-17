@@ -87,55 +87,55 @@
         top: calc(var(--asri-bullet-line-height) * -1 + 24px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 无序空列表紧接无序列表 */
-    [data-subtype="u"] > .protyle-action + [data-subtype="u"] > .asri-bullet-line:first-child::after {
+    [data-subtype="u"] > .protyle-action + [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 30px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
         left: -15px;
     }
     /* 无序空列表紧接有序列表 */
-    [data-subtype="u"] > .protyle-action + [data-subtype="o"] > .asri-bullet-line:first-child::after {
+    [data-subtype="u"] > .protyle-action + [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 20px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
         left: -15px;
     }
     /* 无序空列表紧接任务列表 */
-    [data-subtype="u"] > .protyle-action + [data-subtype="t"] > .asri-bullet-line:first-child::after {
+    [data-subtype="u"] > .protyle-action + [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 20px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
         left: -15px;
     }
     /* 有序空列表紧接有序列表 */
-    [data-subtype="o"] > .protyle-action + [data-subtype="o"] > .asri-bullet-line:first-child::after {
+    [data-subtype="o"] > .protyle-action + [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 13px;
         left: -7px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 有序空列表紧接无序列表 */
-    [data-subtype="o"] > .protyle-action + [data-subtype="u"] > .asri-bullet-line:first-child::after {
+    [data-subtype="o"] > .protyle-action + [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 22px;
         left: -7px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 有序空列表紧接任务列表 */
-    [data-subtype="o"] > .protyle-action + [data-subtype="t"] > .asri-bullet-line:first-child::after {
+    [data-subtype="o"] > .protyle-action + [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 17px;
         left: -7px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 任务空列表紧接任务列表 */
-    [data-subtype="t"] > .protyle-action + [data-subtype="t"] > .asri-bullet-line:first-child::after {
+    [data-subtype="t"] > .protyle-action + [data-subtype="t"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 20px;
         left: -10px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 任务空列表紧接无序列表 */
-    [data-subtype="t"] > .protyle-action + [data-subtype="u"] > .asri-bullet-line:first-child::after {
+    [data-subtype="t"] > .protyle-action + [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 24px;
         left: -10px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));
     }
     /* 任务空列表紧接有序列表 */
-    [data-subtype="t"] > .protyle-action + [data-subtype="o"] > .asri-bullet-line:first-child::after {
+    [data-subtype="t"] > .protyle-action + [data-subtype="o"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line):first-child::after {
         width: 16px;
         left: -10px;
         top: calc(var(--asri-bullet-line-height) * -1 + 16px + ((var(--b3-font-size-editor) - 16px) * 0.75));

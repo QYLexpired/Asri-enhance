@@ -5,6 +5,7 @@ const SALT_PALETTE_INFO: PaletteInfo = {
 	name: "salt",
 	configKey: "asri-enhance-salt",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-wilderness",
 		"asri-enhance-midnight",

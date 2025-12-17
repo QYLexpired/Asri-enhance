@@ -5,6 +5,7 @@ const TOPAZ_PALETTE_INFO: PaletteInfo = {
 	name: "topaz",
 	configKey: "asri-enhance-topaz",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-wilderness",
 		"asri-enhance-midnight",

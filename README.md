@@ -1,11 +1,13 @@
 ### Update Notes
-- Added feature - Detail Adjustments - More Animations
+- Added inspiration palette: Sakura
+- Optimized some animations
+- Optimized list bullet lines
 ### Instructions
 - Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to open the Asri theme settings menu. All plugin features are configured inside the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> sections.
 - The plugin only supports the Asri theme.
 ### More Preset Color Schemes
 In addition to the original color schemes of the Asri theme, this plugin adds many preset color schemes
-- Inspiration palette: Oxygen, Shade, Glitch
+- Inspiration palette: Oxygen, Shade, Glitch, Sakura
 - Ported from QYL theme: Amber, Wilderness, Midnight
 - Ported from Savor theme: Salt
 - Ported from Obsidian theme: Golden Topaz

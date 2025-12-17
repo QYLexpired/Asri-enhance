@@ -1,6 +1,7 @@
 import { Plugin } from "siyuan";
 import { listenBarModeClick, addMoreAfterTopbarFusionPlus, type Unsubscribe } from "./menu/additems";
 import { applyAmberConfig } from "./palette/amber";
+import { applySakuraConfig } from "./palette/sakura";
 import { applyWildernessConfig } from "./palette/wilderness";
 import { applyMidnightConfig } from "./palette/midnight";
 import { applySaltConfig } from "./palette/salt";
@@ -34,6 +35,7 @@ class AsriEnhancePlugin extends Plugin {
 	private async applyAllConfigs(config?: Record<string, any> | null): Promise<void> {
 		await Promise.all([
 			applyAmberConfig(this, config).catch(() => {}),
+			applySakuraConfig(this, config).catch(() => {}),
 			applyWildernessConfig(this, config).catch(() => {}),
 			applyMidnightConfig(this, config).catch(() => {}),
 			applySaltConfig(this, config).catch(() => {}),
@@ -65,6 +67,7 @@ class AsriEnhancePlugin extends Plugin {
 				if (!target) return;
 				if (
 					target.closest("#asri-enhance-amber") ||
+					target.closest("#asri-enhance-sakura") ||
 					target.closest("#asri-enhance-wilderness") ||
 					target.closest("#asri-enhance-midnight") ||
 					target.closest("#asri-enhance-salt") ||

@@ -5,6 +5,7 @@ const SHADE_PALETTE_INFO: PaletteInfo = {
 	name: "shade",
 	configKey: "asri-enhance-shade",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-wilderness",
 		"asri-enhance-midnight",

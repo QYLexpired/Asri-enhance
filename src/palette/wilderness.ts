@@ -5,6 +5,7 @@ const WILDERNESS_PALETTE_INFO: PaletteInfo = {
 	name: "wilderness",
 	configKey: "asri-enhance-wilderness",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-midnight",
 		"asri-enhance-salt",

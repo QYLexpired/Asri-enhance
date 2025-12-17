@@ -5,6 +5,7 @@ const GRUVBOX_PALETTE_INFO: PaletteInfo = {
 	name: "gruvbox",
 	configKey: "asri-enhance-gruvbox",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-wilderness",
 		"asri-enhance-midnight",

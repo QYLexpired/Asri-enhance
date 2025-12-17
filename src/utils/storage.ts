@@ -2,6 +2,7 @@ import { Plugin } from "siyuan";
 const PALETTE_PREFIX = "asri-enhance-";
 export const PALETTE_NAMES = [
 	"amber",
+	"sakura",
 	"wilderness",
 	"midnight",
 	"salt",
@@ -116,6 +117,10 @@ export const removeAmberConfig = (
 	plugin: Plugin,
 	configFile: string = "config.json",
 ) => removePaletteConfig(plugin, "amber", configFile);
+export const removeSakuraConfig = (
+	plugin: Plugin,
+	configFile: string = "config.json",
+) => removePaletteConfig(plugin, "sakura", configFile);
 export const removeWildernessConfig = (
 	plugin: Plugin,
 	configFile: string = "config.json",

@@ -5,6 +5,7 @@ const GLITCH_PALETTE_INFO: PaletteInfo = {
 	name: "glitch",
 	configKey: "asri-enhance-glitch",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-wilderness",
 		"asri-enhance-midnight",

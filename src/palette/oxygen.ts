@@ -5,6 +5,7 @@ const OXYGEN_PALETTE_INFO: PaletteInfo = {
 	name: "oxygen",
 	configKey: "asri-enhance-oxygen",
 	otherConfigKeys: [
+		"asri-enhance-sakura",
 		"asri-enhance-amber",
 		"asri-enhance-wilderness",
 		"asri-enhance-midnight",
