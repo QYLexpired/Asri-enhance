@@ -1,0 +1,24 @@
+[data-asri-enhance-sidebar-top-sticky="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-sidebar-top-sticky, #asri-enhance-detail-adjustment {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    body:not(.body-asri--mobile) .file-tree:where(.sy__file,.sy__outline,.sy__bookmark,.sy__tag,.sy__backlink) .block__icons {
+        min-height: 42px;
+        transition: none !important;
+        &::before {
+            display: none;
+        }
+        &>:where(div,span) {
+            transform: unset !important;
+            &:first-child {
+                transform: unset !important;
+                opacity: 1 !important;
+            }
+        }
+    }
+}

@@ -1,0 +1,83 @@
+@use "public" as *;
+[data-asri-palette="topaz"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    .asri-config:not(#topbarFusionPlus) {
+        --b3-theme-accent: var(--b3-theme-on-background);
+    }
+    #asri-enhance-topaz:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        color: var(--b3-theme-accent);
+        & .b3-menu__icon {
+          color: var(--b3-theme-accent);
+        }
+    }
+    #asriChroma {
+      pointer-events: none;
+      opacity: 0.38;
+    }
+    &[data-theme-mode="light"][data-light-theme="Asri"] {
+        --topaz-base-accent: #736ccb;
+        --asri-theme-accent-customized: var(--topaz-base-accent);
+        --b3-theme-primary: #736ccb;
+        --b3-theme-accent: #736ccb;
+        --b3-theme-background: #dddbc7;
+        --b3-theme-surface: #d4d3b6;
+        --b3-theme-on-background: #0c1549;
+        --b3-theme-on-surface: #474c5e;
+        --b3-border-color: oklch( from var(--b3-theme-background) 0.8 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
+        --b3-theme-surface-lighter: var(--b3-border-color);
+        --b3-menu-background: oklch(from var(--b3-theme-background) 0.88 c h);
+        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+        .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
+          background-color: #5a3ca833;
+        }
+        [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+            background-color: #5a3ca833 !important;
+        }
+        .b3-dialog .layout-tab-bar .item--focus {
+          background-color: #f3f3f3;
+        }
+        .protyle-wysiwyg [data-node-id].table table thead tr th, .b3-typography table thead tr th {
+          background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
+        }
+        .protyle-wysiwyg [data-node-id].table table tbody tr:nth-child(2n) td, .b3-typography table tbody tr:nth-child(2n) td {
+          background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
+        }
+    }
+    &[data-theme-mode="dark"][data-dark-theme="Asri"] {
+        --topaz-base-accent: #827dff;
+        --asri-theme-accent-customized: var(--topaz-base-accent);
+        --b3-theme-primary: var(--topaz-base-accent);
+        --b3-theme-surface: #383433;
+        --b3-theme-background: #201d1c;
+        --b3-theme-on-background: #f9e5cd;
+        --b3-theme-on-surface: #d9c4a4;
+        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+        .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
+          background-color: #cebbff4d;
+        }
+        [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+            background-color: #cebbff4d !important;
+        }
+    }
+    .protyle-title__input,
+    [data-type="NodeHeading"],
+    :where(h1, h2, h3, h4, h5, h6) {
+        color: var(--b3-theme-primary);
+    }
+}
+#{$primary-color-reverse-selectors,
+".b3-button--outline"} {
+  [data-asri-palette="topaz"][data-theme-mode="light"][data-light-theme="Asri"] & {
+    --b3-theme-primary: var(--topaz-base-accent);
+    --b3-theme-on-primary: #FBF0D0;
+  }
+  [data-asri-palette="topaz"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
+    --b3-theme-primary: #827dff;
+    --b3-theme-on-primary: #FBF0D0;
+  }
+}
+.b3-button--outline,
+.protyle-breadcrumb__icon {
+  [data-asri-palette="topaz"][data-light-theme="Asri"] & {
+    --b3-theme-primary: var(--b3-theme-accent);
+  }
+}

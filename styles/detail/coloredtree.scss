@@ -1,0 +1,108 @@
+[data-asri-enhance-colored-tree="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-colored-tree, #asri-enhance-detail-adjustment {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            & .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    .sy__file > .fn__flex-1 > ul.b3-list.b3-list--background {
+        &:nth-of-type(8n+1) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 0) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 0) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 0) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 0) / 0.2);
+                }
+            }
+        }
+        &:nth-of-type(8n+2) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 45) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 45) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 45) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 45) / 0.2);
+                }
+            }
+        }
+        &:nth-of-type(8n+3) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 90) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 90) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 90) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 90) / 0.2);
+                }
+            }
+        }
+        &:nth-of-type(8n+4) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 135) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 135) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 135) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 135) / 0.2);
+                }
+            }
+        }
+        &:nth-of-type(8n+5) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 180) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 180) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 180) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 180) / 0.2);
+                }
+            }
+        }
+        &:nth-of-type(8n+6) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 225) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 225) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 225) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 225) / 0.2);
+                }
+            }
+        }
+        &:nth-of-type(8n+7) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 270) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 270) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 270) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 270) / 0.2);
+                }
+            }
+        }
+        &:nth-of-type(8n+8) {
+            --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + 315) / 0.1);
+            & .b3-list-item--focus {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 315) / 0.2) !important;
+            }
+            & [data-type="navigation-root"] {
+                background-color: oklch(from var(--b3-theme-accent) l c calc(h + 315) / 0.1);
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + 315) / 0.2);
+                }
+            }
+        }
+    }
+}

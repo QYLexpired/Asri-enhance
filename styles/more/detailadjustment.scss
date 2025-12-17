@@ -1,0 +1,8 @@
+#asri-enhance-detail-adjustment .b3-menu__submenu {
+    transform: translateX(-200%);
+}
+@media (max-width: 600px) {
+    #asri-enhance-detail-adjustment .b3-menu__submenu {
+        transform: translateX(0);
+    }
+}
