@@ -22,8 +22,8 @@
                 transition-delay: 0s;
                 &:is(:hover, .asri-enhance-sidememo-highlight) {
                     border-radius: 4px;
-                    background-color: oklch(from var(--b3-theme-accent) l c h / 0.2);
-                    box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.35);
+                    background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
+                    box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
                     color: var(--b3-theme-accent) !important;
                     text-decoration: none;
                 }
@@ -31,8 +31,8 @@
             & [memo] {
                 transition: all 0.25s;
                 &.asri-enhance-sidememo-highlight {
-                    background-color: oklch(from var(--b3-theme-accent) l c h / 0.2);
-                    box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.35);
+                    background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
+                    box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
                     color: var(--b3-theme-accent);
                 }
             }
@@ -58,8 +58,8 @@
                     color: var(--b3-theme-on-surface);
                     transition: all 0.25s, top 0s;
                     &:is(:hover, .asri-enhance-sidememo-highlight) {
-                        box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.35);
-                        background-color: oklch(from var(--b3-theme-accent) l c h / 0.2);
+                        background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
+                        box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
                     }
                     & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title) {
                         font-weight: 500;
@@ -71,7 +71,7 @@
                         cursor: pointer;
                         color: var(--b3-theme-on-surface-light);
                         transition: all 0.25s;
-                        margin-bottom: 0.5em;
+                        margin-bottom: 0.25em;
                         &:hover {
                             color: var(--b3-theme-accent);
                         }
@@ -87,11 +87,33 @@
     }
     //markdown解析
     .asri-enhance-sidememo-container {
+        & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content) {
+            & > * {
+                margin: 0.125em 0;
+            }
+        }
+        h1 {
+            font-size: 1.75em;
+        }
+        h2 {
+            font-size: 1.55em;
+        }
+        h3 {
+            font-size: 1.38em;
+        }
+        h4 {
+            font-size: 1.25em;
+        }
+        h5 {
+            font-size: 1.13em;
+        }
+        h6 {
+            font-size: 1em;
+        }
         blockquote {
             position: relative;
             padding: 16px 20px;
             box-shadow: 0 0 0 .5px inset var(--b3-border-color-trans);
-            margin: 1em 0;
             background-color: var(--b3-theme-surface-light);
             corner-shape: superellipse(1.4);
             border-radius: 14px;
@@ -110,7 +132,6 @@
         }
         code {
             padding: .2em .4em;
-            margin: 0;
             font-size: 85%;
             font-family: var(--b3-font-family-code);
             word-break: break-word;
@@ -141,7 +162,6 @@
             border-radius: 11.2px;
             border-collapse: collapse;
             empty-cells: show;
-            margin: 0;
             overflow: auto;
             border-spacing: 0;
             width: max-content;
@@ -264,6 +284,15 @@
                     margin-bottom: 0;
                     padding-left: 1.05em;
                 }
+            }
+        }
+        pre {
+            background-color: var(--b3-theme-surface);
+            corner-shape: superellipse(1.4);
+            border-radius: 14px;
+            padding: 0.5em;
+            & code {
+                background-color: transparent;
             }
         }
     }

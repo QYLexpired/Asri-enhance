@@ -4,6 +4,37 @@ import { createFetchInterceptor } from "../utils/fetchInterceptor";
 import { marked } from "../module/marked/marked.esm.js";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-side-memo";
+function attachNoRightClick(el: HTMLElement): void {
+    try {
+        if (!el)
+            return;
+        if ((el as any).__asriNoRightClickAttached)
+            return;
+        (el as any).__asriNoRightClickAttached = true;
+        const stopAll = (ev: Event) => {
+            try {
+                if (ev.type === "contextmenu") {
+                    ev.preventDefault();
+                    ev.stopPropagation();
+                    return;
+                }
+                const me = ev as MouseEvent;
+                if (typeof me.button === "number" && me.button === 2) {
+                    try { me.preventDefault(); } catch (e) { }
+                    try { me.stopPropagation(); } catch (e) { }
+                }
+            }
+            catch (e) { }
+        };
+        try {
+            el.addEventListener("contextmenu", stopAll, { capture: true, passive: false });
+            el.addEventListener("mousedown", stopAll, { capture: true, passive: false });
+            el.addEventListener("mouseup", stopAll, { capture: true, passive: false });
+        }
+        catch (e) { }
+    }
+    catch (e) { }
+}
 function updateAllProtyleMemoClasses(): void {
     const htmlEl = document.documentElement;
     const isActive = !!(htmlEl && htmlEl.hasAttribute("data-asri-enhance-side-memo"));
@@ -50,6 +81,10 @@ function ensureSidememoContainers(): void {
                 titleEl.appendChild(container);
             }
             try {
+                attachNoRightClick(container);
+            }
+            catch (e) { }
+            try {
                 const computed = getComputedStyle(titleEl).position;
                 if (!computed || computed === "static") {
                     titleEl.style.position = "relative";
@@ -60,6 +95,10 @@ function ensureSidememoContainers(): void {
             const protyleContent = titleEl.closest(".protyle-content") as HTMLElement | null;
             if (protyleContent) {
                 populateSidememoContainer(container, protyleContent);
+                try {
+                    attachNoRightClick(container);
+                }
+                catch (e) { }
             }
         }
         catch (err) {
@@ -76,6 +115,12 @@ function ensureSidememoContainers(): void {
             }
             catch (e) {
             }
+        }
+        else {
+            try {
+                attachNoRightClick(container);
+            }
+            catch (e) { }
         }
     });
 }
