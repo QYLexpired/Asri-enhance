@@ -151,6 +151,22 @@ function ensureSidememoContainers(): void {
 				titleEl.appendChild(container);
 			}
 			try {
+				const protyleTop = titleEl.closest(".protyle-top") as
+					| HTMLElement
+					| null;
+				if (protyleTop) {
+					if (titleEl.classList.contains("fn__none")) {
+						protyleTop.classList.add(
+							"asri-enhance-sidememo-protyle-title-none",
+						);
+					} else {
+						protyleTop.classList.remove(
+							"asri-enhance-sidememo-protyle-title-none",
+						);
+					}
+				}
+			} catch (e) {}
+			try {
 				attachNoRightClick(container);
 			} catch (e) {}
 			try {
@@ -180,6 +196,16 @@ function ensureSidememoContainers(): void {
 		if (!titleParent) return;
 		if (!titleParent.closest(".asri-enhance-sidememo")) {
 			try {
+				try {
+					const protyleTop = titleParent.closest(
+						".protyle-top",
+					) as HTMLElement | null;
+					if (protyleTop) {
+						protyleTop.classList.remove(
+							"asri-enhance-sidememo-protyle-title-none",
+						);
+					}
+				} catch (e) {}
 				container.remove();
 			} catch (e) {}
 		} else {
@@ -480,37 +506,49 @@ function populateSidememoContainer(
 							"--asri-enhance-sidememo-container-width",
 						) || "";
 					const initialWidth = Math.max(
-						100,
-						Math.min(500, Math.round(parseFloat(widthStr) || 200)),
+						50,
+						Math.min(600, Math.round(parseFloat(widthStr) || 200)),
 					);
 					let dragMove: ((ev: MouseEvent) => void) | null = null;
 					let dragUp: (() => void) | null = null;
+					let _rafId: number | null = null;
+					let _pendingWidth: number | null = null;
 					dragMove = (mv: MouseEvent) => {
 						try {
-							const newWidth = Math.max(
-								100,
-								Math.min(
-									500,
-									Math.round(
-										initialWidth + (startX - mv.clientX),
-									),
-								),
+							const computed = Math.round(
+								initialWidth + (startX - mv.clientX),
 							);
-							asriParent.style.setProperty(
-								"--asri-enhance-sidememo-container-width",
-								`${newWidth}px`,
-							);
+							const clamped = Math.max(50, Math.min(600, computed));
+							_pendingWidth = clamped;
+							if (_rafId === null) {
+								_rafId = requestAnimationFrame(() => {
+									try {
+										if (_pendingWidth !== null) {
+											asriParent.style.setProperty(
+												"--asri-enhance-sidememo-container-width",
+												`${_pendingWidth}px`,
+											);
+										}
+									} catch (e) {}
+									_rafId = null;
+									_pendingWidth = null;
+								});
+							}
 						} catch (e) {}
 					};
 					dragUp = () => {
 						try {
 							if (dragMove)
-								document.removeEventListener(
-									"mousemove",
-									dragMove,
-								);
+								document.removeEventListener("mousemove", dragMove);
 							if (dragUp)
 								document.removeEventListener("mouseup", dragUp);
+						} catch (e) {}
+						try {
+							if (_rafId !== null) {
+								cancelAnimationFrame(_rafId);
+								_rafId = null;
+								_pendingWidth = null;
+							}
 						} catch (e) {}
 						const handlers = (it.el as any).__asriSidememoHandlers;
 						if (handlers) {
