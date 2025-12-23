@@ -24,11 +24,13 @@
                     transition: all 0.25s;
                     transition-delay: 0s;
                     &:is(:hover, .asri-enhance-sidememo-highlight) {
-                        border-radius: 4px;
-                        background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
-                        box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
-                        color: var(--b3-theme-accent) !important;
-                        text-decoration: none;
+                        &:not([asri-enhance-sidememo-fold="true"]:hover) {
+                            border-radius: 4px;
+                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
+                            box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
+                            color: var(--b3-theme-accent) !important;
+                            text-decoration: none;
+                        }
                         &.asri-enhance-sidememo-highlight {
                             font-size: 1.15em;
                         }
@@ -70,6 +72,7 @@
                     }
                     &.asri-enhance-sidememo-item-fold {
                         padding: 0.5em;
+                        opacity: 0.38;
                         & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title) {
                             padding: 0;
                         }

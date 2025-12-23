@@ -1,10 +1,11 @@
 ### Updates
-##### v1.8.4
+##### v1.8.5
+- Fixed an issue where Side Memo sometimes failed to render KaTeX formulas and syntax highlighting
 - Right-click the title area (first line) of a Side Memo card to temporarily collapse that note
-- When Side Memo is active for the current editor, hovering over an unfolded inline note will no longer show a tooltip (panels where tooltips are still appropriate — e.g. backlinks panel, flashcard interface — are unaffected)
+- When Side Memo is active for the current editor, hovering over an unfolded inline note will no longer show a tooltip (panels where tooltips are still appropriate — e.g., backlinks panel, flashcard interface — remain unaffected)
 ### Usage
-- Click the top-bar <span data-type="kbd">Appearance Mode</span> button to open the Asri theme settings menu. All plugin features are configurable under the <span data-type="kbd">More Preset Palettes</span> and <span data-type="kbd">More</span> options.
-- This plugin is built specifically for the Asri theme. Disable it when using other themes to avoid style conflicts.
+- Click the top-bar `Appearance Mode` button to open the Asri theme settings menu. All plugin features are configurable under the `More Preset Palettes` and `More` options.
+- This plugin is only compatible with the Asri theme. Disable it when using other themes to avoid style conflicts.
 ### More Preset Palettes
 Adds many additional preset color schemes on top of Asri's original palettes:
 - Inspiration palettes: Oxygen, Tree-lined, Glitch, Sakura
@@ -25,7 +26,7 @@ Introduces useful editing features not yet available in the base Asri theme:
     - Long-press a Side Memo card for 1s, then drag to resize the Side Memo width
     - Supports parsing Markdown
     - Supports parsing HTML
-        - <span style="color: var(--b3-theme-error)">Note: This conflicts with the Asri theme's full-width display. Disable the full-width setting if necessary.</span>
+        - `Note: This conflicts with the Asri theme's full-width display. Disable the full-width setting if necessary.`
 ### Theme Detail Adjustments
 Fine-grained adjustments that follow the Asri theme's style:
 - Sidebar top sticky — remove the Asri theme's sidebar-top collapse/expand animation so the top area remains visible

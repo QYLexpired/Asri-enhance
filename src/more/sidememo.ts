@@ -54,6 +54,73 @@ function applySyntaxHighlighting(container: HTMLElement) {
         });
     } catch (err) {}
 }
+async function initSidememoRely(): Promise<boolean> {
+	try {
+		const head = document.head;
+		const createLink = (id: string, href: string) => {
+			try {
+				if (document.getElementById(id)) return;
+				const link = document.createElement("link");
+				link.id = id;
+				link.rel = "stylesheet";
+				link.type = "text/css";
+				link.href = href;
+				head.appendChild(link);
+			} catch (e) {}
+		};
+		const createScript = (id: string, src: string) =>
+			new Promise<void>((resolve, reject) => {
+				try {
+					if (document.getElementById(id)) {
+						resolve();
+						return;
+					}
+					const script = document.createElement("script");
+					script.id = id;
+					script.src = src;
+					script.async = true;
+					script.onload = () => {
+						try {
+							resolve();
+						} catch (e) {}
+					};
+					script.onerror = () => {
+						try {
+							reject();
+						} catch (e) {}
+					};
+					head.appendChild(script);
+				} catch (e) {
+					reject(e);
+				}
+			});
+		const needKatex = !(window as any).katex;
+		const needHljs = !(window as any).hljs;
+		if (!needKatex && !needHljs) {
+			return true;
+		}
+		const resources: Array<Record<string, string>> = [];
+		if (needKatex) {
+			resources.push({ type: "link", id: "protyleKatexStyle", href: "/stage/protyle/js/katex/katex.min.css?v=0.16.9" });
+			resources.push({ type: "script", id: "protyleKatexScript", src: "/stage/protyle/js/katex/katex.min.js?v=0.16.9" });
+			resources.push({ type: "script", id: "protyleKatexMhchemScript", src: "/stage/protyle/js/katex/mhchem.min.js?v=0.16.9" });
+		}
+		if (needHljs) {
+			resources.push({ type: "link", id: "protyleHljsStyle", href: "/stage/protyle/js/highlight.js/styles/github.min.css?v=11.11.1" });
+			resources.push({ type: "script", id: "protyleHljsScript", src: "/stage/protyle/js/highlight.js/highlight.min.js?v=11.11.1" });
+		}
+		for (const r of resources) {
+			try {
+				if (r.type === "link") {
+					createLink(r.id, (r as any).href);
+				} else {
+					await createScript(r.id, (r as any).src);
+				}
+			} catch (e) {}
+		}
+	} catch (e) {}
+	return ((window as any).katex !== undefined) || ((window as any).hljs !== undefined);
+}
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-side-memo";
 let sidememoDocumentRightClickHandler: ((ev: MouseEvent) => void) | null = null;
@@ -1028,6 +1095,7 @@ export async function onSideMemoClick(
 	} else {
 		htmlEl.setAttribute("data-asri-enhance-side-memo", "true");
 		config[CONFIG_KEY] = true;
+		await initSidememoRely().catch(() => {});
 		updateAllProtyleMemoClasses();
 		startObserver().catch(() => {});
 	}
@@ -1045,6 +1113,7 @@ export async function applySidememoConfig(
 		config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
 	if (configData && configData[CONFIG_KEY] === true) {
 		htmlEl.setAttribute("data-asri-enhance-side-memo", "true");
+		await initSidememoRely().catch(() => {});
 		updateAllProtyleMemoClasses();
 		startObserver().catch(() => {});
 	} else {
