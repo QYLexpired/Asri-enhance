@@ -1,4 +1,3 @@
-import katex from 'katex';
 const inlineRule = /^(\${1,2})(?!\$)((?:\\.|[^\\\n])*?(?:\\.|[^\\\n\$]))\1(?=[\s?!\.,:？！。，：]|$)/;
 const inlineRuleNonStandard = /^(\${1,2})(?!\$)((?:\\.|[^\\\n])*?(?:\\.|[^\\\n\$]))\1/;
 const blockRule = /^(\${1,2})\n((?:\\[^]|[^\\])+?)\n\1(?:\n|$)/;
@@ -11,7 +10,21 @@ export default function(options = {}) {
   };
 }
 function createRenderer(options, newlineAfter) {
-  return (token) => katex.renderToString(token.text, { ...options, displayMode: token.displayMode }) + (newlineAfter ? '\n' : '');
+  return (token) => {
+    try {
+      const katexGlobal =
+        typeof window !== "undefined" && (window).katex
+          ? (window).katex
+          : null;
+      if (katexGlobal && typeof katexGlobal.renderToString === "function") {
+        try {
+          return katexGlobal.renderToString(token.text, { ...options, displayMode: token.displayMode }) + (newlineAfter ? '\n' : '');
+        } catch (e) {
+        }
+      }
+    } catch (e) {}
+    return token.raw + (newlineAfter ? '\n' : '');
+  };
 }
 function inlineKatex(options, renderer) {
   const nonStandard = options && options.nonStandard;
