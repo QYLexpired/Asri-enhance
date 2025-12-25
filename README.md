@@ -1,4 +1,6 @@
 ### Updates
+##### v1.8.6
+- Added detail adjustment option: Single-column slash menu
 ##### v1.8.5
 - Fixed an issue where Side Memo sometimes failed to render KaTeX formulas and syntax highlighting
 - Right-click the title area (first line) of a Side Memo card to temporarily collapse that note

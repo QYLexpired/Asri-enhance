@@ -23,6 +23,7 @@ import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { applyPaperTextureConfig } from "./detail/papertexture";
 import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
+import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
@@ -58,6 +59,7 @@ class AsriEnhancePlugin extends Plugin {
             applyHideTabBreadcrumbConfig(this, config).catch(() => { }),
             applyPaperTextureConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
+            applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
         ]);
     }
     async onload() {

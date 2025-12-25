@@ -7,17 +7,33 @@
             }
         }
     }
-    body:not(.body-asri--mobile) .file-tree:where(.sy__file,.sy__outline,.sy__bookmark,.sy__tag,.sy__backlink) .block__icons {
+    body:not(.body-asri--mobile) .file-tree .block__icons {
         min-height: 42px;
-        transition: none !important;
+        transition: none;
         &::before {
             display: none;
         }
-        &>:where(div,span) {
-            transform: unset !important;
-            &:first-child {
-                transform: unset !important;
+        & .block__icon {
+            transition: opacity 0.3s;
+        }
+        &:not(:hover) {
+            & .block__logo {
+                transform: none;
                 opacity: 1 !important;
+            }
+            & .block__icon {
+                transform: none;
+                opacity: 0;
+            }
+        }
+        &:hover {
+            & .block__logo {
+                transform: none;
+                opacity: 1;
+            }
+            & .block__icon {
+                transform: none;
+                opacity: 1;
             }
         }
     }
