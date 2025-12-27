@@ -1,4 +1,8 @@
 ### Updates
+##### v1.9.0
+- Added feature - Liquid Glass: When enabled, adds iOS 16/macOS 16 liquid glass effects to certain components
+    - Currently supported components: Editor toolbar, cover image area, text appearance menu, emoji panel
+    - This is an experimental feature; if you encounter style errors or readability issues, please disable it promptly
 ##### v1.8.6
 - Added detail adjustment option: Single-column slash menu
 ##### v1.8.5

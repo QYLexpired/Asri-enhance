@@ -18,6 +18,7 @@ import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
+import { applyLiquidGlassConfig } from "./more/liquidglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { applyPaperTextureConfig } from "./detail/papertexture";
@@ -54,6 +55,7 @@ class AsriEnhancePlugin extends Plugin {
             applyListBulletLineConfig(this, config).catch(() => { }),
             applyVerticalTabConfig(this, config).catch(() => { }),
             applySidememoConfig(this, config).catch(() => { }),
+            applyLiquidGlassConfig(this, config).catch(() => { }),
             applySidebarTopStickyConfig(this, config).catch(() => { }),
             applyCoverImageFadeConfig(this, config).catch(() => { }),
             applyHideTabBreadcrumbConfig(this, config).catch(() => { }),

@@ -1,0 +1,52 @@
+[data-asri-enhance-liquid-glass="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-liquid-glass {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    body:not(.body-asri--mobile) {
+        .protyle-toolbar {
+            backdrop-filter: url(#asri-enhance-liquid-glass-filter-toolbar) blur(2px);
+            background-color: oklch(from var(--b3-theme-surface) l c h / 0.3);
+        }
+        .protyle-icons {
+            backdrop-filter: url(#asri-enhance-liquid-glass-filter-protyleicons);
+            background-color: oklch(from var(--b3-theme-background) l c h / 0.3);
+            & .protyle-icon {
+                color: var(--b3-theme-on-background);
+                background-color: transparent;
+            }
+            &:has( > [data-type="position"]) {
+                backdrop-filter: url(#asri-enhance-liquid-glass-filter-protyleicons-l);
+            }
+            &:has(.protyle-icon--text) {
+                backdrop-filter: url(#asri-enhance-liquid-glass-filter-protyleicons-text);
+            }
+        }
+        .protyle-background__action {
+            backdrop-filter: url(#asri-enhance-liquid-glass-filter-protylebackgroundaction);
+            background-color: oklch(from var(--b3-theme-background) l c h / 0.3);
+            & .b3-button {
+                color: var(--b3-theme-on-background) !important;
+            }
+        }
+        .protyle-util:has(.protyle-font) {
+            backdrop-filter: url(#asri-enhance-liquid-glass-filter-protylefont) blur(3px);
+            background-color: oklch(from var(--b3-theme-surface) l c h / 0.3);
+        }
+        [data-key=dialog-emojis] .b3-dialog__container {
+            backdrop-filter: url(#asri-enhance-liquid-glass-filter-emoji) blur(3px);
+            background-color: oklch(from var(--b3-menu-background) l c h / 0.3);
+        }
+        .b3-switch {
+            --sscu: 6px;
+        }
+        .b3-switch:checked:active:not(:disabled)::after {
+            backdrop-filter: url(#asri-enhance-liquid-glass-filter-switch);
+            background-color: transparent;
+        }
+    }
+}

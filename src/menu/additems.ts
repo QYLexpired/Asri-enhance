@@ -23,6 +23,7 @@ import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
 import { onPaperTextureClick } from "../detail/papertexture";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
 import { onSingleColumnSlashMenuClick } from "../detail/singlecolumnslashmenu";
+import { onLiquidGlassClick } from "../more/liquidglass";
 const PALETTE_ICON_SVG = '<svg class="b3-menu__icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 3h-4a2 2 0 0 0-2 2v12a4 4 0 0 0 8 0V5a2 2 0 0 0-2-2"></path><path d="m13 7.35l-2-2a2 2 0 0 0-2.828 0L5.344 8.178a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12m0-4v.01"></path></g></svg>';
 const MORE_ICON_SVG = '<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>';
 export type Unsubscribe = () => void;
@@ -191,7 +192,7 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 1
                             const button = document.createElement("button");
                             button.className = "b3-menu__item asri-enhance";
                             button.id = "asri-enhance-more";
-                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-typewriter">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.typewriterMode || "typewriterMode"}</span></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button></div></div>`;
+                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-typewriter">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.typewriterMode || "typewriterMode"}</span></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-liquid-glass">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.liquidGlass || "liquidGlass"}</span></button></div></div>`;
                             if (topbarFusionPlus.nextSibling) {
                                 parent.insertBefore(button, topbarFusionPlus.nextSibling);
                             }
@@ -214,6 +215,10 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 1
                         const sideMemoItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-sidememo");
                         if (sideMemoItem) {
                             sideMemoItem.onclick = (event) => onSideMemoClick(plugin, event);
+                        }
+                        const liquidGlassItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-liquid-glass");
+                        if (liquidGlassItem) {
+                            liquidGlassItem.onclick = (event) => onLiquidGlassClick(plugin, event);
                         }
                         const detailAdjustmentItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-detail-adjustment");
                         if (detailAdjustmentItem) {
