@@ -41,12 +41,5 @@
             backdrop-filter: url(#asri-enhance-liquid-glass-filter-emoji) blur(3px);
             background-color: oklch(from var(--b3-menu-background) l c h / 0.3);
         }
-        .b3-switch {
-            --sscu: 6px;
-        }
-        .b3-switch:checked:active:not(:disabled)::after {
-            backdrop-filter: url(#asri-enhance-liquid-glass-filter-switch);
-            background-color: transparent;
-        }
     }
 }
