@@ -18,13 +18,13 @@ import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
-import { applyLiquidGlassConfig } from "./more/liquidglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { applyPaperTextureConfig } from "./detail/papertexture";
 import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
+import { applyDisableWindowTransparencyConfig } from "./detail/disablewindowtransparency";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
@@ -55,13 +55,13 @@ class AsriEnhancePlugin extends Plugin {
             applyListBulletLineConfig(this, config).catch(() => { }),
             applyVerticalTabConfig(this, config).catch(() => { }),
             applySidememoConfig(this, config).catch(() => { }),
-            applyLiquidGlassConfig(this, config).catch(() => { }),
             applySidebarTopStickyConfig(this, config).catch(() => { }),
             applyCoverImageFadeConfig(this, config).catch(() => { }),
             applyHideTabBreadcrumbConfig(this, config).catch(() => { }),
             applyPaperTextureConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
+            applyDisableWindowTransparencyConfig(this, config).catch(() => { }),
         ]);
     }
     async onload() {
