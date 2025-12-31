@@ -13,7 +13,6 @@ import { onGlitchClick } from "../palette/glitch";
 import { onColoredHeadingClick } from "../detail/coloredheading";
 import { onHeadingLevelHintClick } from "../detail/headinglevelhint";
 import { onColoredTreeClick } from "../detail/coloredtree";
-import { onTypewriterClick } from "../more/typewriter";
 import { onListBulletLineClick } from "../more/listbulletline";
 import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick } from "../more/sidememo";
@@ -192,17 +191,13 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 1
                             const button = document.createElement("button");
                             button.className = "b3-menu__item asri-enhance";
                             button.id = "asri-enhance-more";
-                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-typewriter">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.typewriterMode || "typewriterMode"}</span></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button></div></div>`;
+                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button></div></div>`;
                             if (topbarFusionPlus.nextSibling) {
                                 parent.insertBefore(button, topbarFusionPlus.nextSibling);
                             }
                             else {
                                 parent.appendChild(button);
                             }
-                        }
-                        const typewriterItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-typewriter");
-                        if (typewriterItem) {
-                            typewriterItem.onclick = (event) => onTypewriterClick(plugin, event);
                         }
                         const listBulletLineItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-list-bullet-line");
                         if (listBulletLineItem) {

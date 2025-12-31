@@ -14,10 +14,10 @@
       opacity: 0.38;
     }
     &[data-theme-mode="light"][data-light-theme="Asri"] {
-        --wilderness-base-accent: #5cb8a9;
+        --wilderness-base-accent: #6aaca2;
         --asri-theme-accent-customized: var(--wilderness-base-accent);
-        --b3-theme-primary: #5cb8a9;
-        --b3-theme-accent: #5cb8a9;
+        --b3-theme-primary: var(--wilderness-base-accent);
+        --b3-theme-accent: var(--wilderness-base-accent);
         --b3-theme-background: #fffcf0;
         --b3-theme-surface: #f2f0e5;
         --b3-theme-on-background: #242322;
@@ -33,11 +33,12 @@
         }
     }
     &[data-theme-mode="dark"][data-dark-theme="Asri"] {
-        --wilderness-base-accent: #568a82;
+        --wilderness-base-accent: #67ada2;
         --asri-theme-accent-customized: var(--wilderness-base-accent);
         --b3-theme-primary: var(--wilderness-base-accent);
-        --b3-theme-surface: #232a2e;
+        --b3-theme-accent: var(--wilderness-base-accent);
         --b3-theme-background: #2d353b;
+        --b3-theme-surface: #232a2e;
         --b3-theme-on-background: #ece4d0;
         --b3-theme-on-surface: #e3ddcc;
         --b3-border-color: oklch( from var(--b3-theme-background) 0.42 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
@@ -56,7 +57,7 @@
         --b3-theme-on-primary: #ffffff;
       }
       [data-asri-palette="wilderness"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
-        --b3-theme-primary: #568a82;
+        --b3-theme-primary: var(--wilderness-base-accent);
         --b3-theme-on-primary: #fff;
       }
     }

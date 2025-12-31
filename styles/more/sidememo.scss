@@ -350,4 +350,8 @@
             }
         }
     }
+    // Asri主题全宽显示
+    .protyle-wysiwyg {
+        --protyle-spacing: var(--asri-enhance-protyle-padding-right-re) max(calc(var(--asri-enhance-sidememo-protyle-padding) - max(calc(var(--asri-enhance-protyle-padding-right-re) - var(--asri-enhance-sidememo-protyle-padding)), 0px)), 24px) !important;
+    }
 }

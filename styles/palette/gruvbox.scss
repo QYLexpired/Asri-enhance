@@ -16,8 +16,8 @@
     &[data-theme-mode="light"][data-light-theme="Asri"] {
         --gruvbox-base-accent: #d55a5a;
         --asri-theme-accent-customized: var(--gruvbox-base-accent);
-        --b3-theme-primary: #d55a5a;
-        --b3-theme-accent: #d55a5a;
+        --b3-theme-primary: var(--gruvbox-base-accent);
+        --b3-theme-accent: var(--gruvbox-base-accent);
         --b3-theme-background: #fcf2c7;
         --b3-theme-surface: #f2e6bd;
         --b3-theme-on-background: #4a2e1f;
@@ -40,8 +40,9 @@
         --gruvbox-base-accent: #bbb44b;
         --asri-theme-accent-customized: var(--gruvbox-base-accent);
         --b3-theme-primary: var(--gruvbox-base-accent);
-        --b3-theme-surface: #1e2021;
+        --b3-theme-accent: var(--gruvbox-base-accent);
         --b3-theme-background: #282828;
+        --b3-theme-surface: #1e2021;
         --b3-theme-on-background: #fff8de;
         --b3-theme-on-surface: #bab09c;
         --b3-border-color: oklch( from var(--b3-theme-background) 0.38 c h );
@@ -61,8 +62,7 @@
         color: var(--b3-theme-primary);
     }
 }
-#{$primary-color-reverse-selectors,
-  ".b3-button--outline"} {
+#{$primary-color-reverse-selectors} {
     [data-asri-palette="gruvbox"][data-theme-mode="light"][data-light-theme="Asri"] & {
       --b3-theme-primary: #e1d671;
       --b3-theme-on-primary: #534300;

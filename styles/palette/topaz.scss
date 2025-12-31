@@ -14,23 +14,23 @@
       opacity: 0.38;
     }
     &[data-theme-mode="light"][data-light-theme="Asri"] {
-        --topaz-base-accent: #736ccb;
+        --topaz-base-accent: #5e7cc6;
         --asri-theme-accent-customized: var(--topaz-base-accent);
-        --b3-theme-primary: #736ccb;
-        --b3-theme-accent: #736ccb;
+        --b3-theme-primary: var(--topaz-base-accent);
+        --b3-theme-accent: var(--topaz-base-accent);
         --b3-theme-background: #dddbc7;
         --b3-theme-surface: #d4d3b6;
-        --b3-theme-on-background: #0c1549;
-        --b3-theme-on-surface: #474c5e;
+        --b3-theme-on-background: #043d41;
+        --b3-theme-on-surface: #697b7a;
         --b3-border-color: oklch( from var(--b3-theme-background) 0.8 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
         --b3-theme-surface-lighter: var(--b3-border-color);
         --b3-menu-background: oklch(from var(--b3-theme-background) 0.88 c h);
         .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
         .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-          background-color: #5a3ca833;
+          background-color: #3c6da838;
         }
         [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-            background-color: #5a3ca833 !important;
+            background-color: #3c6da838 !important;
         }
         .b3-dialog .layout-tab-bar .item--focus {
           background-color: #f3f3f3;
@@ -46,8 +46,9 @@
         --topaz-base-accent: #827dff;
         --asri-theme-accent-customized: var(--topaz-base-accent);
         --b3-theme-primary: var(--topaz-base-accent);
-        --b3-theme-surface: #383433;
+        --b3-theme-accent: var(--topaz-base-accent);
         --b3-theme-background: #201d1c;
+        --b3-theme-surface: #383433;
         --b3-theme-on-background: #f9e5cd;
         --b3-theme-on-surface: #d9c4a4;
         .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
@@ -64,14 +65,16 @@
         color: var(--b3-theme-primary);
     }
 }
+#{$primary-color-reverse-selectors} {
+  [data-asri-palette="topaz"][data-theme-mode="light"][data-light-theme="Asri"] & {
+    --b3-theme-primary: #a1adc9;
+    --b3-theme-on-primary: #001055;
+  }
+}
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
-  [data-asri-palette="topaz"][data-theme-mode="light"][data-light-theme="Asri"] & {
-    --b3-theme-primary: var(--topaz-base-accent);
-    --b3-theme-on-primary: #FBF0D0;
-  }
   [data-asri-palette="topaz"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
-    --b3-theme-primary: #827dff;
+    --b3-theme-primary: var(--topaz-base-accent);
     --b3-theme-on-primary: #FBF0D0;
   }
 }

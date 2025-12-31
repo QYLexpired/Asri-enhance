@@ -16,8 +16,8 @@
 	&[data-theme-mode="light"][data-light-theme="Asri"] {
 		--rosepine-base-accent: #d88aa0;
 		--asri-theme-accent-customized: var(--rosepine-base-accent);
-		--b3-theme-primary: #d88aa0;
-		--b3-theme-accent: #d88aa0;
+		--b3-theme-primary: var(--rosepine-base-accent);
+		--b3-theme-accent: var(--rosepine-base-accent);
 		--b3-theme-background: #faf4ed;
 		--b3-theme-surface: #f2e9e1;
 		--b3-theme-on-background: #575279;
@@ -37,8 +37,8 @@
 		--asri-theme-accent-customized: var(--rosepine-base-accent);
 		--b3-theme-primary: var(--rosepine-base-accent);
 		--b3-theme-accent: var(--rosepine-base-accent);
-		--b3-theme-surface: #1f1d2e;
 		--b3-theme-background: #151320;
+		--b3-theme-surface: #1f1d2e;
 		--b3-theme-on-background: #e0def4;
 		--b3-theme-on-surface: #908caa;
 		.layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,

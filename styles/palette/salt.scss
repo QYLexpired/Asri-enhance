@@ -20,12 +20,12 @@
     }
     --salt-base-accent: #007a95;
     --asri-theme-accent-customized: var(--salt-base-accent);
-    --b3-theme-primary: #007a95;
-    --b3-theme-accent: #007a95;
+    --b3-theme-primary: var(--salt-base-accent);
+    --b3-theme-accent: var(--salt-base-accent);
     --b3-theme-background: #eaf2f2;
     --b3-theme-surface: oklch(0.8996 0.0098 189.04);
     --b3-theme-on-background: oklch(0.28 0.0159 264.27);
-    --b3-theme-on-surface: oklch(0.4498 0.0098 189.04);
+    --b3-theme-on-surface: #6a6a6a;
     --b3-border-color: oklch( from var(--b3-theme-background) 0.88 c h );
     --b3-theme-surface-lighter: var(--b3-border-color);
     --b3-menu-background: oklch(from var(--b3-theme-background) 0.96 c h);

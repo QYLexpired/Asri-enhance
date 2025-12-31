@@ -14,7 +14,7 @@
             display: none;
         }
         & .block__icon {
-            transition: opacity 0.3s;
+            transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
         }
         &:not(:hover) {
             & .block__logo {
@@ -24,6 +24,7 @@
             & .block__icon {
                 transform: none;
                 opacity: 0;
+                filter: blur(3px);
             }
         }
         &:hover {
@@ -34,6 +35,7 @@
             & .block__icon {
                 transform: none;
                 opacity: 1;
+                filter: blur(0px);
             }
         }
     }

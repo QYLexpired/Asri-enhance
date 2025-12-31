@@ -14,7 +14,6 @@ import { applyGlitchConfig } from "./palette/glitch";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyHeadingLevelHintConfig } from "./detail/headinglevelhint";
-import { applyTypewriterConfig, removeFocusEditing } from "./more/typewriter";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
@@ -51,7 +50,6 @@ class AsriEnhancePlugin extends Plugin {
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyHeadingLevelHintConfig(this, config).catch(() => { }),
-            applyTypewriterConfig(this, config).catch(() => { }),
             applyListBulletLineConfig(this, config).catch(() => { }),
             applyVerticalTabConfig(this, config).catch(() => { }),
             applySidememoConfig(this, config).catch(() => { }),
@@ -198,7 +196,6 @@ class AsriEnhancePlugin extends Plugin {
             this.paletteDisableDebounceTimer = null;
         }
         removeListBulletLineEffect();
-        removeFocusEditing();
         destroySlashNavi();
         stopVerticalTabObserver();
         removeAllSidememoArtifacts();

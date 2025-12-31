@@ -17,7 +17,7 @@
     --oxygen-base-accent: #f57d26;
     --asri-theme-accent-customized: var(--oxygen-base-accent);
     --b3-theme-primary: var(--oxygen-base-accent);
-    --b3-theme-accent: #f57d26;
+    --b3-theme-accent: var(--oxygen-base-accent);
     --b3-theme-background: #fdf6e3;
     --b3-theme-surface: #efebd4;
     --b3-theme-on-background: #435058;
@@ -37,9 +37,9 @@
     --oxygen-base-accent: #efa685;
     --asri-theme-accent-customized: var(--oxygen-base-accent);
     --b3-theme-primary: var(--oxygen-base-accent);
-    --b3-theme-accent: #efa685;
-    --b3-theme-surface: #364852;
+    --b3-theme-accent: var(--oxygen-base-accent);
     --b3-theme-background: #272e33;
+    --b3-theme-surface: #364852;
     --b3-theme-on-background: #e2dac5;
     --b3-theme-on-surface: #d3cab4;
     --b3-border-color: oklch(from var(--b3-theme-background) 0.42 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h);

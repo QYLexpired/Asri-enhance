@@ -1,9 +1,11 @@
 ### Updates
-##### v1.9.1
-- Added detail adjustment option: Disable window transparency effect
-- Removed liquid glass feature
+##### v1.9.2
+- Fixed conflict between side memo and Asri theme's full-width display function
+- Redid dark mode Wilderness color scheme
+- Removed typewriter mode feature
+- Fine-tuned some color schemes
 ### About the Plugin
-- [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features
+- [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
 ### How to Use
 - All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. All features of this plugin are configured in the <span data-type="kbd">More Preset Color Schemes</span> and <span data-type="kbd">More</span> options
@@ -16,9 +18,8 @@ Based on the original color schemes of the Asri theme, additional preset color s
 - Ported from VSCode theme: Rosé Pine
 - Ported from Vim theme: Gruvbox
 ### Enhance Editing Experience
-Introduce practical features not yet supported by the main Asri theme
+Add a series of practical features and ensure the style completely matches the Asri theme
 - Slash menu keyboard arrow key navigation (automatically enabled)
-- Typewriter mode
 - List bullet lines
 - Vertical tabs (cannot be enabled simultaneously with top bar fusion+, only affects the tab bar in the top left corner)
 - Side memo (displays inline notes or block notes on the right side of the editor)
@@ -27,7 +28,6 @@ Introduce practical features not yet supported by the main Asri theme
     - Long press the side memo card for 1s to drag and adjust the side memo width
     - Supports markdown parsing (including formulas, code syntax highlighting)
     - Supports HTML parsing
-    - *Note: Conflicts with the full-width display feature of the Asri theme, disable this feature if necessary*
 ### Theme Detail Adjustments
 Detailed adjustments made completely in accordance with the Asri theme style
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top

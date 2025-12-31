@@ -82,11 +82,11 @@
                     padding: 0 2px;
                     background-color: rgb(from var(--b3-theme-background) r g b/0.4);
                     border-radius: 6px;
-                    backdrop-filter: blur(8px) saturate(1.5) brightness(1);
+                    backdrop-filter: blur(8px) saturate(1.2) brightness(1);
                 }
                 & .protyle-breadcrumb__space ~ *:not([data-type="exit-focus"]:hover) {
                     background-color: rgb(from var(--b3-theme-background) r g b/0.4);
-                    backdrop-filter: blur(8px) saturate(1.5) brightness(1);
+                    backdrop-filter: blur(8px) saturate(1.2) brightness(1);
                 }
             }
             & .layout-tab-container > :not(.protyle) {

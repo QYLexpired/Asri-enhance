@@ -16,8 +16,8 @@
     &[data-theme-mode="light"][data-light-theme="Asri"] {
         --amber-base-accent: #9d7a53;
         --asri-theme-accent-customized: var(--amber-base-accent);
-        --b3-theme-primary: #947c60;
-        --b3-theme-accent: #ca7615;
+        --b3-theme-primary: var(--amber-base-accent);
+        --b3-theme-accent: #c99f5a;
         --b3-theme-background: #fdf6e2;
         --b3-theme-surface: #efe8d4;
         --b3-theme-on-background: #463829;
@@ -40,8 +40,9 @@
         --amber-base-accent: #a46349;
         --asri-theme-accent-customized: var(--amber-base-accent);
         --b3-theme-primary: var(--amber-base-accent);
-        --b3-theme-surface: #413632;
+        --b3-theme-accent: #d7a06d;
         --b3-theme-background: #2b221e;
+        --b3-theme-surface: #413632;
         --b3-theme-on-background: #e6cfbc;
         --b3-theme-on-surface: #e6cfbca2;
       }
@@ -59,7 +60,7 @@
         --b3-theme-on-primary: #fefaef;
       }
       [data-asri-palette="amber"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
-        --b3-theme-primary: #7f452e;
+        --b3-theme-primary: var(--amber-base-accent);
         --b3-theme-on-primary: #fff;
       }
     }
