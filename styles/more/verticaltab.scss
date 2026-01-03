@@ -67,6 +67,9 @@
                 & .protyle-breadcrumb__space ~ * {
                     transform: translateY(38px);
                 }
+                & .protyle-background__img .protyle-icons {
+                    top: 86px;
+                }
             }
             & .protyle-background__img .protyle-icons {
                 top: 56px;

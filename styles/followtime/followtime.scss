@@ -1,0 +1,34 @@
+[data-asri-enhance-follow-time="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    .asri-config:not(#topbarFusionPlus) {
+        --b3-theme-accent: var(--b3-theme-on-background);
+    }
+    #asri-enhance-follow-time {
+        & svg {
+            background-color: var(--b3-theme-primary);
+            border-radius: 15px
+        }
+        &:is(:hover, .b3-menu__item--show, .b3-menu__item--current) svg {
+            outline: 1px solid oklch(from var(--b3-theme-on-primary) l c h / 0.5);
+        }
+    }
+    & :is(#pickColor, #followSysAccent, #followCoverImgColor) {
+        & svg {
+            background-color: transparent !important;
+            outline: unset !important;
+        }
+    }
+    #asriChroma {
+        pointer-events: unset !important;
+        opacity: 1 !important;
+        cursor: pointer !important;
+    }
+    --asri-c-0: unset;
+    --asri-on-primary-reverse: unset;
+    --asri-base-color: oklch(from var(--asri-enhance-follow-time-base) l c calc(h + var(--asri-enhance-follow-time-vary, 0)));
+    &[data-theme-mode="light"] {
+        --asri-enhance-follow-time-base: #3478f6;
+    }
+    &[data-theme-mode="dark"] {
+        --asri-enhance-follow-time-base: #118bff;
+    }
+}

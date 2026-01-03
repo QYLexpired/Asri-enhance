@@ -1,5 +1,6 @@
 import { Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
+import { removeFollowTimeConfig } from "../followtime/followtime";
 const CONFIG_FILE = "config.json";
 export interface PaletteConfig {
     light: boolean;
@@ -34,6 +35,15 @@ export async function onPaletteClick(plugin: Plugin, paletteInfo: PaletteInfo, _
             }
         }
         config[paletteInfo.configKey] = paletteConfig;
+        if (config["asri-enhance-follow-time"]) {
+            const followTimeConfig = config["asri-enhance-follow-time"];
+            if (typeof followTimeConfig === "object") {
+                followTimeConfig[themeMode] = false;
+                config["asri-enhance-follow-time"] = followTimeConfig;
+            }
+            htmlEl.removeAttribute("data-asri-enhance-follow-time");
+            removeFollowTimeConfig(plugin, CONFIG_FILE).catch(() => {});
+        }
     };
     if (document.startViewTransition) {
         const transition = document.startViewTransition(() => {
@@ -62,6 +72,7 @@ export async function applyPaletteConfig(plugin: Plugin, paletteInfo: PaletteInf
         if (shouldApply) {
             htmlEl.removeAttribute("data-asri-palette");
             htmlEl.setAttribute("data-asri-palette", paletteInfo.name);
+            htmlEl.removeAttribute("data-asri-enhance-follow-time");
         }
         else {
             if (htmlEl.getAttribute("data-asri-palette") === paletteInfo.name) {

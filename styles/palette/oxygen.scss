@@ -9,6 +9,12 @@
       color: var(--b3-theme-accent);
     }
   }
+  & :is(#pickColor, #followSysAccent, #followCoverImgColor) {
+    & svg {
+        background-color: transparent !important;
+        outline: unset !important;
+    }
+}
   #asriChroma {
     pointer-events: none;
     opacity: 0.38;

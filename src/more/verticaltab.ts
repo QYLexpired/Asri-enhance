@@ -227,6 +227,17 @@ function updateSpacingClass(targetElement?: HTMLElement): void {
     if (!target) {
         return;
     }
+    const center = document.querySelector(".layout__center") as HTMLElement;
+    if (!center) {
+        return;
+    }
+    const dockrExpanded = document.querySelector(".layout__dockr > .fn__flex:not(.fn__none)") !== null;
+    if (dockrExpanded) {
+        center.classList.remove("asri-enhance-dockr-fold");
+    }
+    else {
+        center.classList.add("asri-enhance-dockr-fold");
+    }
     const hasSpacing = getTopbarRightSpacing() > 0;
     if (hasSpacing) {
         target.classList.add("asri-enhance-verticaltab-dockr-expand-spacing");
@@ -278,6 +289,10 @@ export function stopObserver(): void {
         catch (err) {
         }
         fetchInterceptorDisconnect = null;
+    }
+    const center = document.querySelector(".layout__center") as HTMLElement;
+    if (center) {
+        center.classList.remove("asri-enhance-dockr-fold");
     }
     const allWndElements = document.querySelectorAll('[data-type="wnd"]') as NodeListOf<HTMLElement>;
     allWndElements.forEach((el) => {

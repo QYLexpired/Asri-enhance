@@ -16,6 +16,7 @@ import { onColoredTreeClick } from "../detail/coloredtree";
 import { onListBulletLineClick } from "../more/listbulletline";
 import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick } from "../more/sidememo";
+import { onLiquidGlassClick } from "../detail/liquidglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onCoverImageFadeClick } from "../detail/coverimagefade";
 import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
@@ -23,6 +24,7 @@ import { onPaperTextureClick } from "../detail/papertexture";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
 import { onSingleColumnSlashMenuClick } from "../detail/singlecolumnslashmenu";
 import { onDisableWindowTransparencyClick } from "../detail/disablewindowtransparency";
+import { onFollowTimeClick } from "../followtime/followtime";
 const PALETTE_ICON_SVG = '<svg class="b3-menu__icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 3h-4a2 2 0 0 0-2 2v12a4 4 0 0 0 8 0V5a2 2 0 0 0-2-2"></path><path d="m13 7.35l-2-2a2 2 0 0 0-2.828 0L5.344 8.178a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12m0-4v.01"></path></g></svg>';
 const MORE_ICON_SVG = '<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>';
 export type Unsubscribe = () => void;
@@ -107,6 +109,21 @@ export function listenBarModeClick(plugin: Plugin, callback: (event: MouseEvent)
                         const glitchItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-glitch");
                         if (glitchItem) {
                             glitchItem.onclick = (event) => onGlitchClick(plugin, event);
+                        }
+                        // Add follow time button after followCoverImgColor
+                        const followCoverImgColor = document.querySelector<HTMLElement>('#commonMenu[data-name="barmode"] #followCoverImgColor');
+                        if (followCoverImgColor && !parent.querySelector("#asri-enhance-follow-time")) {
+                            const followTimeButton = document.createElement("button");
+                            followTimeButton.className = "b3-menu__item asri-enhance";
+                            followTimeButton.id = "asri-enhance-follow-time";
+                            followTimeButton.innerHTML = `<svg class="b3-menu__icon"></svg><span class="b3-menu__label">${plugin.i18n?.followTime || "Follow Time"}</span>`;
+                            if (followCoverImgColor.nextSibling) {
+                                parent.insertBefore(followTimeButton, followCoverImgColor.nextSibling);
+                            } else {
+                                parent.appendChild(followTimeButton);
+                            }
+                            // Bind click event
+                            followTimeButton.onclick = (event) => onFollowTimeClick(plugin, event);
                         }
                     }
                     callback(event);
@@ -329,6 +346,17 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 1
                             const moreAnimationsItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-moreanimations");
                             if (moreAnimationsItem) {
                                 moreAnimationsItem.onclick = (event) => onMoreAnimationsClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-liquid-glass")) {
+                                const liquidGlassButton = document.createElement("button");
+                                liquidGlassButton.className = "b3-menu__item";
+                                liquidGlassButton.id = "asri-enhance-liquid-glass";
+                                liquidGlassButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.liquidGlass || "liquidGlass"}<svg class="b3-menu__icon ariaLabel asri-enhance-experimental" aria-label="${plugin.i18n?.experimentalFeature || "Experimental Feature"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg></span>`;
+                                detailAdjustmentSubmenu.appendChild(liquidGlassButton);
+                            }
+                            const liquidGlassItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-liquid-glass");
+                            if (liquidGlassItem) {
+                                liquidGlassItem.onclick = (event) => onLiquidGlassClick(plugin, event);
                             }
                         }
                     }

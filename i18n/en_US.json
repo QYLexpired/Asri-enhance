@@ -25,6 +25,9 @@
   "paperTexture": "Paper Texture",
   "moreAnimations": "More Animations",
   "sidememo": "Side Memo",
+  "liquidGlass": "Liquid Glass",
+  "experimentalFeature": "Experimental Feature",
   "singleColumnSlashMenu": "Single Column Slash Menu",
-  "disableWindowTransparency": "Disable Window Transparency Effects"
+  "disableWindowTransparency": "Disable Window Transparency Effects",
+  "followTime": "Follow Time"
 }

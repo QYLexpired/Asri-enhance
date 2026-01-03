@@ -17,6 +17,7 @@ import { applyHeadingLevelHintConfig } from "./detail/headinglevelhint";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
+import { applyLiquidGlassConfig } from "./detail/liquidglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { applyPaperTextureConfig } from "./detail/papertexture";
@@ -24,7 +25,9 @@ import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
 import { applyDisableWindowTransparencyConfig } from "./detail/disablewindowtransparency";
+import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
+import { removeFollowTimeConfig } from "./followtime/followtime";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
     private unsubscribeBarModeClick: Unsubscribe | null = null;
@@ -53,6 +56,7 @@ class AsriEnhancePlugin extends Plugin {
             applyListBulletLineConfig(this, config).catch(() => { }),
             applyVerticalTabConfig(this, config).catch(() => { }),
             applySidememoConfig(this, config).catch(() => { }),
+            applyLiquidGlassConfig(this, config).catch(() => { }),
             applySidebarTopStickyConfig(this, config).catch(() => { }),
             applyCoverImageFadeConfig(this, config).catch(() => { }),
             applyHideTabBreadcrumbConfig(this, config).catch(() => { }),
@@ -60,6 +64,7 @@ class AsriEnhancePlugin extends Plugin {
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
             applyDisableWindowTransparencyConfig(this, config).catch(() => { }),
+            applyFollowTimeConfig(this, config).catch(() => { }),
         ]);
     }
     async onload() {
@@ -84,10 +89,12 @@ class AsriEnhancePlugin extends Plugin {
                     return;
                 }
                 const asriConfig = target.closest(".asri-config");
-                if (asriConfig && asriConfig.id !== "topbarFusionPlus") {
+                if (asriConfig && asriConfig.id !== "topbarFusionPlus" && asriConfig.id !== "asriChroma") {
                     PALETTE_NAMES.forEach((palette) => {
                         removePaletteConfig(this, palette, "config.json").catch(() => {
                         });
+                    });
+                    removeFollowTimeConfig(this, "config.json").catch(() => {
                     });
                 }
             });
@@ -112,8 +119,10 @@ class AsriEnhancePlugin extends Plugin {
                     }
                     this.paletteDisableDebounceTimer = window.setTimeout(() => {
                         disableAllPalettesForCurrentTheme(this, "config.json").then(() => {
-                            loadData(this, "config.json").then((newConfig) => {
-                                this.applyAllConfigs(newConfig).catch(() => { });
+                            removeFollowTimeConfig(this, "config.json").then(() => {
+                                loadData(this, "config.json").then((newConfig) => {
+                                    this.applyAllConfigs(newConfig).catch(() => { });
+                                }).catch(() => { });
                             }).catch(() => { });
                         }).catch(() => { });
                         this.paletteDisableDebounceTimer = null;
