@@ -16,32 +16,39 @@
             --asri-enhance-sidememo-container-width: 200px;
             --asri-enhance-sidememo-protyle-padding: calc((var(--b3-width-protyle-content) - var(--b3-width-protyle-wysiwyg)) / 2);
             --asri-enhance-sidememo-re: 35px;
-            & .protyle-top:not(.asri-enhance-sidememo-protyle-title-none) ~ .protyle-wysiwyg {
-                --asri-enhance-protyle-padding-right-re: max(var(--asri-enhance-sidememo-protyle-padding), calc(var(--asri-enhance-sidememo-container-width) + var(--asri-enhance-sidememo-re) + 24px));
-                padding-right: var(--asri-enhance-protyle-padding-right-re) !important;
-                padding-left: max(calc(var(--asri-enhance-sidememo-protyle-padding) - max(calc(var(--asri-enhance-protyle-padding-right-re) - var(--asri-enhance-sidememo-protyle-padding)), 0px)), 24px) !important;
-                & span[data-type~=inline-memo] {
-                    transition: all 0.25s;
-                    transition-delay: 0s;
-                    &:is(:hover, .asri-enhance-sidememo-highlight) {
-                        &:not([asri-enhance-sidememo-fold="true"]:hover) {
-                            border-radius: 4px;
-                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
-                            box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
-                            color: var(--b3-theme-accent) !important;
-                            text-decoration: none;
-                        }
-                        &.asri-enhance-sidememo-highlight {
-                            font-size: 1.15em;
+            --asri-enhance-protyle-padding-right-re: max(var(--asri-enhance-sidememo-protyle-padding), calc(var(--asri-enhance-sidememo-container-width) + var(--asri-enhance-sidememo-re) + 24px));
+            --asri-enhance-protyle-padding-left-re: max(calc(var(--asri-enhance-sidememo-protyle-padding) - max(calc(var(--asri-enhance-protyle-padding-right-re) - var(--asri-enhance-sidememo-protyle-padding)), 0px)), 24px);
+            & .protyle-top:not(.asri-enhance-sidememo-protyle-title-none) {
+                & ~ .protyle-wysiwyg {
+                    padding-right: var(--asri-enhance-protyle-padding-right-re) !important;
+                    padding-left: var(--asri-enhance-protyle-padding-left-re) !important;
+                    & span[data-type~=inline-memo] {
+                        transition: all 0.25s;
+                        transition-delay: 0s;
+                        &:is(:hover, .asri-enhance-sidememo-highlight) {
+                            &:not([asri-enhance-sidememo-fold="true"]:hover) {
+                                border-radius: 4px;
+                                background-color: oklch(from var(--b3-theme-accent) l c h / 0.12) !important;
+                                box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25) !important;
+                                color: var(--b3-theme-accent) !important;
+                                text-decoration: none;
+                            }
+                            &.asri-enhance-sidememo-highlight {
+                                font-size: 1.15em;
+                            }
                         }
                     }
-                }
-                & [memo] {
-                    transition: all 0.25s;
-                    &.asri-enhance-sidememo-highlight {
-                        background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
-                        box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
-                        color: var(--b3-theme-accent);
+                    & [memo] {
+                        transition: all 0.25s;
+                        &.asri-enhance-sidememo-highlight {
+                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.12) !important;
+                            box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25) !important;
+                            color: var(--b3-theme-accent) !important;
+                            &  > .protyle-attr .protyle-attr--memo {
+                                transform: scale(1.5);
+                                color: var(--b3-theme-accent);
+                            }
+                        }
                     }
                 }
             }
@@ -53,11 +60,11 @@
                 transition: all 0.25s;
                 &.asri-enhance-sidememo-container-resize {
                     opacity: 0.38;
-                    & :is(.asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item) {
+                    & :is(.asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item, .asri-enhance-sidememo-filememo-item) {
                         cursor: grab;
                     }
                 }
-                & :is(.asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item) {
+                & :is(.asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item, .asri-enhance-sidememo-filememo-item) {
                     width: var(--asri-enhance-sidememo-container-width);
                     max-width: calc(var(--b3-width-protyle-content) - 2 * var(--asri-enhance-sidememo-re));
                     border-radius: 14px;
@@ -66,21 +73,21 @@
                     color: var(--b3-theme-on-surface);
                     transition: all 0.25s, top 0s;
                     box-sizing: border-box;
-                    &:is(:hover, .asri-enhance-sidememo-highlight) {
+                    &:is(:hover, .asri-enhance-sidememo-highlight):not(.asri-enhance-sidememo-filememo-item) {
                         background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
                         box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
                     }
                     &.asri-enhance-sidememo-item-fold {
                         padding: 0.5em;
                         opacity: 0.38;
-                        & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title) {
+                        & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title) {
                             padding: 0;
                         }
-                        & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content) {
+                        & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content, .asri-enhance-sidememo-filememo-item-content) {
                             display: none;
                         }
                     }
-                    & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title) {
+                    & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title) {
                         font-weight: 500;
                         display: -webkit-box;
                         overflow: hidden;
@@ -95,7 +102,7 @@
                             color: var(--b3-theme-accent);
                         }
                     }
-                    & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content) {
+                    & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content, .asri-enhance-sidememo-filememo-item-content) {
                         word-wrap: break-word;
                         max-height: 500px;
                         overflow: scroll;
@@ -108,7 +115,7 @@
     }
     //markdown解析
     .asri-enhance-sidememo-container {
-        & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content) {
+        & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content, .asri-enhance-sidememo-filememo-item-content) {
             & > * {
                 margin: 0.25em 0;
                 &:first-child {

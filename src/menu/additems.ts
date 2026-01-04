@@ -110,7 +110,6 @@ export function listenBarModeClick(plugin: Plugin, callback: (event: MouseEvent)
                         if (glitchItem) {
                             glitchItem.onclick = (event) => onGlitchClick(plugin, event);
                         }
-                        // Add follow time button after followCoverImgColor
                         const followCoverImgColor = document.querySelector<HTMLElement>('#commonMenu[data-name="barmode"] #followCoverImgColor');
                         if (followCoverImgColor && !parent.querySelector("#asri-enhance-follow-time")) {
                             const followTimeButton = document.createElement("button");
@@ -122,7 +121,6 @@ export function listenBarModeClick(plugin: Plugin, callback: (event: MouseEvent)
                             } else {
                                 parent.appendChild(followTimeButton);
                             }
-                            // Bind click event
                             followTimeButton.onclick = (event) => onFollowTimeClick(plugin, event);
                         }
                     }

@@ -3,6 +3,7 @@ import { saveData, loadData } from "../utils/storage";
 import { createFetchInterceptor } from "../utils/fetchInterceptor";
 import { marked } from "../module/marked/marked.esm.js";
 import markedKatex from "../module/marked/marked-katex-extension.js";
+let globalPlugin: Plugin | null = null;
 try {
     if (marked && typeof marked.use === "function" && typeof markedKatex === "function") {
         marked.use(markedKatex({ throwOnError: false }));
@@ -31,28 +32,42 @@ try {
     }
 } catch (e) {}
 function applySyntaxHighlighting(container: HTMLElement) {
-    try {
-        const globalHljs = (window as any)?.hljs;
-        if (!globalHljs) return;
-        const codeEls = Array.from(container.querySelectorAll<HTMLElement>("pre code"));
-        codeEls.forEach((el) => {
-            try {
-                if (typeof globalHljs.highlightElement === "function") {
-                    globalHljs.highlightElement(el);
-                } else {
-                    const cls = el.className || "";
-                    const langMatch = cls.match(/language-([a-z0-9-]+)/i);
-                    const lang = (langMatch && langMatch[1]) || "";
-                    const codeText = el.textContent || "";
-                    if (lang && globalHljs.getLanguage && globalHljs.getLanguage(lang)) {
-                        el.innerHTML = globalHljs.highlight(codeText, { language: lang }).value;
-                    } else if (globalHljs.highlightAuto) {
-                        el.innerHTML = globalHljs.highlightAuto(codeText).value;
-                    }
-                }
-            } catch (err) {}
-        });
-    } catch (err) {}
+	try {
+		const globalHljs = (window as any)?.hljs;
+		if (!globalHljs) return;
+		const codeEls = Array.from(container.querySelectorAll<HTMLElement>("pre code"));
+		codeEls.forEach((el) => {
+			try {
+				if (typeof globalHljs.highlightElement === "function") {
+					globalHljs.highlightElement(el);
+				} else {
+					const cls = el.className || "";
+					const langMatch = cls.match(/language-([a-z0-9-]+)/i);
+					const lang = (langMatch && langMatch[1]) || "";
+					const codeText = el.textContent || "";
+					if (lang && globalHljs.getLanguage && globalHljs.getLanguage(lang)) {
+						el.innerHTML = globalHljs.highlight(codeText, { language: lang }).value;
+					} else if (globalHljs.highlightAuto) {
+						el.innerHTML = globalHljs.highlightAuto(codeText).value;
+					}
+				}
+			} catch (err) {}
+		});
+	} catch (err) {}
+}
+async function showMergeMemoTip(): Promise<void> {
+	try {
+		await fetch('/api/notification/pushMsg', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				msg: globalPlugin?.i18n?.mergedSideMemoEditTip,
+				timeout: 3000
+			})
+		});
+	} catch (e) {}
 }
 async function initSidememoRely(): Promise<boolean> {
 	try {
@@ -164,6 +179,15 @@ function attachNoRightClick(el: HTMLElement): void {
 	} catch (e) {}
 }
 function updateAllProtyleMemoClasses(): void {
+	const protyleTitles = Array.from(
+		document.querySelectorAll<HTMLElement>(".protyle-title"),
+	);
+	protyleTitles.forEach((titleEl) => {
+		try {
+			const height = titleEl.getBoundingClientRect().height;
+			titleEl.style.setProperty("--asri-enhance-sidememo-title-height", `${height}px`);
+		} catch (e) {}
+	});
 	const htmlEl = document.documentElement;
 	const isActive = !!(
 		htmlEl && htmlEl.hasAttribute("data-asri-enhance-side-memo")
@@ -174,7 +198,7 @@ function updateAllProtyleMemoClasses(): void {
 	protyleContents.forEach((el) => {
 		try {
 			const hasInlineOrBlockMemo =
-				el.querySelector('[data-type="inline-memo"], [memo]') !== null;
+				el.querySelector('[data-type*="inline-memo"], [memo]') !== null;
 			if (isActive && hasInlineOrBlockMemo) {
 				el.classList.add("asri-enhance-sidememo");
 				el.classList.remove("asri-enhance-sidememo-none");
@@ -288,11 +312,11 @@ function ensureSidememoContainers(): void {
 				const target = ev.target as HTMLElement | null;
 				if (!target || !target.closest) return;
 				const titleEl = target.closest(
-					".asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title",
+					".asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title",
 				) as HTMLElement | null;
 				if (!titleEl) return;
 				const itemEl = titleEl.closest(
-					".asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item",
+					".asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item, .asri-enhance-sidememo-filememo-item",
 				) as HTMLElement | null;
 				if (!itemEl) return;
 				try {
@@ -304,16 +328,18 @@ function ensureSidememoContainers(): void {
 					try {
 						const uid = itemEl.getAttribute("asri-enhance-sidememo-uid");
 						if (uid) {
-							const selector = `[data-type="inline-memo"][asri-enhance-sidememo-uid="${uid}"], [memo][asri-enhance-sidememo-uid="${uid}"]`;
-							const source = document.querySelector(selector) as HTMLElement | null;
-							if (source && source.setAttribute) {
-								if (isFolded) source.setAttribute("asri-enhance-sidememo-fold", "true");
-								else {
-									try {
-										source.removeAttribute("asri-enhance-sidememo-fold");
-									} catch (e) {}
+							const selector = `[data-type*="inline-memo"][asri-enhance-sidememo-uid="${uid}"], [memo][asri-enhance-sidememo-uid="${uid}"]`;
+							const sources = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
+							sources.forEach(source => {
+								if (source && source.setAttribute) {
+									if (isFolded) source.setAttribute("asri-enhance-sidememo-fold", "true");
+									else {
+										try {
+											source.removeAttribute("asri-enhance-sidememo-fold");
+										} catch (e) {}
+									}
 								}
-							}
+							});
 						}
 					} catch (e) {}
 					try {
@@ -334,7 +360,7 @@ function populateSidememoContainer(
 ): void {
 	const existingMemoEls = Array.from(
 		protyleContent.querySelectorAll<HTMLElement>(
-			'[data-type="inline-memo"], [memo]',
+			'[data-type*="inline-memo"], [memo]',
 		),
 	);
 	existingMemoEls.forEach((m) => {
@@ -396,7 +422,7 @@ function populateSidememoContainer(
 	}
 	const memoElements = Array.from(
 		protyleContent.querySelectorAll<HTMLElement>(
-			'[data-type="inline-memo"], [memo]',
+			'[data-type*="inline-memo"], [memo]',
 		),
 	);
 	type ItemWithTop = {
@@ -405,76 +431,145 @@ function populateSidememoContainer(
 		height: number;
 		uid?: string;
 		sourceEl?: HTMLElement;
+		sourceEls?: HTMLElement[];
 		index?: number;
+		type: 'inline' | 'block' | 'file';
 	};
 	const items: ItemWithTop[] = [];
-	memoElements.forEach((memoEl) => {
+	const inlineMemoElements = memoElements.filter(memoEl =>
+		memoEl.hasAttribute("data-type") &&
+		memoEl.getAttribute("data-type")?.split(/\s+/).includes("inline-memo")
+	);
+	const processedInlineMemos = new Set<HTMLElement>();
+	const mergedInlineMemos: Array<{elements: HTMLElement[], content: string}> = [];
+	inlineMemoElements.forEach((memoEl, index) => {
+		if (processedInlineMemos.has(memoEl)) return;
+		const content = memoEl.getAttribute("data-inline-memo-content") || "";
+		const group: HTMLElement[] = [memoEl];
+		processedInlineMemos.add(memoEl);
+		for (let i = index + 1; i < inlineMemoElements.length; i++) {
+			const nextMemo = inlineMemoElements[i];
+			if (processedInlineMemos.has(nextMemo)) continue;
+			const nextContent = nextMemo.getAttribute("data-inline-memo-content") || "";
+			if (content === nextContent && areConsecutiveSiblings(group[group.length - 1], nextMemo)) {
+				group.push(nextMemo);
+				processedInlineMemos.add(nextMemo);
+			} else {
+				break;
+			}
+		}
+		mergedInlineMemos.push({ elements: group, content });
+	});
+	function isOnlyZeroWidthSpaces(text: string): boolean {
+		if (!text) return true;
+		const zeroWidthRegex = /^[\u200B\u200C\u200D\u200E\u200F\uFEFF]*$/;
+		return zeroWidthRegex.test(text);
+	}
+	function areConsecutiveSiblings(el1: HTMLElement, el2: HTMLElement): boolean {
+		if (!el1.parentElement || !el2.parentElement) return false;
+		if (el1.parentElement !== el2.parentElement) return false;
+		const siblings = Array.from(el1.parentElement.childNodes);
+		const index1 = siblings.indexOf(el1);
+		const index2 = siblings.indexOf(el2);
+		if (index2 <= index1) return false;
+		for (let i = index1 + 1; i < index2; i++) {
+			const node = siblings[i];
+			if (node.nodeType === Node.TEXT_NODE) {
+				const textContent = node.textContent || "";
+				if (!isOnlyZeroWidthSpaces(textContent)) {
+					return false;
+				}
+			}
+			if (node.nodeType === Node.ELEMENT_NODE) {
+				return false;
+			}
+		}
+		return true;
+	}
+	const blockMemoElements = memoElements.filter(memoEl => memoEl.hasAttribute("memo") && !memoEl.classList.contains("protyle-wysiwyg"));
+	const fileMemoElements = memoElements.filter(memoEl => memoEl.hasAttribute("memo") && memoEl.classList.contains("protyle-wysiwyg"));
+	const allMemoGroups: Array<any> = [...mergedInlineMemos, ...blockMemoElements, ...fileMemoElements];
+	allMemoGroups.sort((a, b) => {
+		let aNode: Node, bNode: Node;
+		if ('elements' in a) {
+			aNode = a.elements[0];
+		} else {
+			aNode = a;
+		}
+		if ('elements' in b) {
+			bNode = b.elements[0];
+		} else {
+			bNode = b;
+		}
+		const position = aNode.compareDocumentPosition(bNode);
+		if (position & Node.DOCUMENT_POSITION_FOLLOWING) return -1;
+		if (position & Node.DOCUMENT_POSITION_PRECEDING) return 1;
+		return 0;
+	});
+	allMemoGroups.forEach((memoGroup, groupIndex) => {
 		try {
-			if (
-				memoEl.hasAttribute("data-type") &&
-				memoEl.getAttribute("data-type") === "inline-memo"
-			) {
-				const titleText = (memoEl.textContent || "").trim();
-				const contentText =
-					memoEl.getAttribute("data-inline-memo-content") || "";
+			const isInlineMemoGroup = 'elements' in memoGroup;
+			const isBlockMemo = memoGroup instanceof HTMLElement && memoGroup.hasAttribute("memo") && !memoGroup.classList.contains("protyle-wysiwyg");
+			const isFileMemo = memoGroup instanceof HTMLElement && memoGroup.hasAttribute("memo") && memoGroup.classList.contains("protyle-wysiwyg");
+			if (isInlineMemoGroup) {
+				const { elements, content } = memoGroup as {elements: HTMLElement[], content: string};
+				const titleText = elements.map(el => (el.textContent || "").trim()).join("");
 				const item = document.createElement("div");
 				item.className = "asri-enhance-sidememo-inlinememo-item";
 				item.style.position = "absolute";
 				const title = document.createElement("div");
 				title.className = "asri-enhance-sidememo-inlinememo-item-title";
 				title.textContent = titleText;
-				const content = document.createElement("div");
-				content.className =
-					"asri-enhance-sidememo-inlinememo-item-content";
+				const contentDiv = document.createElement("div");
+				contentDiv.className = "asri-enhance-sidememo-inlinememo-item-content";
 				try {
 					const mdHtml =
 						typeof marked === "function"
-							? marked(contentText)
+							? marked(content)
 							: marked && (marked.parse || marked.default)
 								? marked.parse
-									? marked.parse(contentText)
+									? marked.parse(content)
 									: marked.default
-										? marked.default(contentText)
-										: contentText
-								: contentText;
-					content.innerHTML = mdHtml;
+										? marked.default(content)
+										: content
+								: content;
+					contentDiv.innerHTML = mdHtml;
 					try {
-						applySyntaxHighlighting(content);
+						applySyntaxHighlighting(contentDiv);
 					} catch (e) {}
 				} catch (e) {
-					content.textContent = contentText;
+					contentDiv.textContent = content;
 				}
 				item.appendChild(title);
-				item.appendChild(content);
+				item.appendChild(contentDiv);
 				try {
-					if (memoEl.getAttribute && memoEl.getAttribute("asri-enhance-sidememo-fold") === "true") {
+					if (elements.some(el => el.getAttribute && el.getAttribute("asri-enhance-sidememo-fold") === "true")) {
 						item.classList.add("asri-enhance-sidememo-item-fold");
 					}
 				} catch (e) {}
 				let top = 0;
 				try {
-					const memoRect = memoEl.getBoundingClientRect();
-					const titleRect =
-						container.parentElement?.getBoundingClientRect();
+					const firstMemoRect = elements[0].getBoundingClientRect();
+					const titleRect = container.parentElement?.getBoundingClientRect();
 					if (titleRect) {
-						top = Math.max(0, memoRect.top - titleRect.bottom + 4);
+						top = Math.max(0, firstMemoRect.top - titleRect.bottom + 4);
 					} else {
-						const protyleRect =
-							protyleContent.getBoundingClientRect();
-						top = Math.max(0, memoRect.top - protyleRect.top);
+						const protyleRect = protyleContent.getBoundingClientRect();
+						top = Math.max(0, firstMemoRect.top - protyleRect.top);
 					}
 				} catch (e) {}
-				let uid = memoEl.getAttribute("asri-enhance-sidememo-uid");
+				let uid = elements[0].getAttribute("asri-enhance-sidememo-uid");
 				if (!uid) {
 					uid = `asri-enhance-sidememo-${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
 					try {
-						memoEl.setAttribute("asri-enhance-sidememo-uid", uid);
+						elements.forEach(el => el.setAttribute("asri-enhance-sidememo-uid", uid));
 					} catch (e) {}
 				}
 				item.setAttribute("asri-enhance-sidememo-uid", uid);
 				item.style.top = `${top}px`;
-				items.push({ el: item, top, height: 0, uid, sourceEl: memoEl, index: items.length });
-			} else if (memoEl.hasAttribute("memo")) {
+				items.push({ el: item, top, height: 0, uid, sourceEls: elements, index: groupIndex, type: 'inline' });
+			} else if (isBlockMemo) {
+				const memoEl = memoGroup as HTMLElement;
 				const titleText = (memoEl.textContent || "").trim();
 				const contentText = memoEl.getAttribute("memo") || "";
 				const item = document.createElement("div");
@@ -533,7 +628,68 @@ function populateSidememoContainer(
 				}
 				item.setAttribute("asri-enhance-sidememo-uid", uid);
 				item.style.top = `${top}px`;
-				items.push({ el: item, top, height: 0, uid, sourceEl: memoEl, index: items.length });
+				items.push({ el: item, top, height: 0, uid, sourceEl: memoEl, index: groupIndex, type: 'block' });
+			} else if (isFileMemo) {
+				const memoEl = memoGroup as HTMLElement;
+				let titleText = "";
+				try {
+					const prevSibling = memoEl.previousElementSibling;
+					if (prevSibling && prevSibling.classList.contains("protyle-top")) {
+						const titleInput = prevSibling.querySelector<HTMLElement>(".protyle-title .protyle-title__input");
+						if (titleInput) {
+							titleText = (titleInput.textContent || "").trim();
+						}
+					}
+				} catch (e) {}
+				if (!titleText) {
+					titleText = (memoEl.textContent || "").trim();
+				}
+				const contentText = memoEl.getAttribute("memo") || "";
+				const item = document.createElement("div");
+				item.className = "asri-enhance-sidememo-filememo-item";
+				item.style.position = "absolute";
+				const title = document.createElement("div");
+				title.className = "asri-enhance-sidememo-filememo-item-title";
+				title.textContent = titleText;
+				const content = document.createElement("div");
+				content.className =
+					"asri-enhance-sidememo-filememo-item-content";
+				try {
+					const mdHtml =
+						typeof marked === "function"
+							? marked(contentText)
+							: marked && (marked.parse || marked.default)
+								? marked.parse
+									? marked.parse(contentText)
+									: marked.default
+										? marked.default(contentText)
+										: contentText
+								: contentText;
+					content.innerHTML = mdHtml;
+					try {
+						applySyntaxHighlighting(content);
+					} catch (e) {}
+				} catch (e) {
+					content.textContent = contentText;
+				}
+				item.appendChild(title);
+				item.appendChild(content);
+				try {
+					if (memoEl.getAttribute && memoEl.getAttribute("asri-enhance-sidememo-fold") === "true") {
+						item.classList.add("asri-enhance-sidememo-item-fold");
+					}
+				} catch (e) {}
+				let top = 20;
+				let uid = memoEl.getAttribute("asri-enhance-sidememo-uid");
+				if (!uid) {
+					uid = `asri-enhance-sidememo-${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
+					try {
+						memoEl.setAttribute("asri-enhance-sidememo-uid", uid);
+					} catch (e) {}
+				}
+				item.setAttribute("asri-enhance-sidememo-uid", uid);
+				item.style.top = `${top}px`;
+				items.push({ el: item, top, height: 0, uid, sourceEl: memoEl, index: groupIndex, type: 'file' });
 			}
 		} catch (err) {}
 	});
@@ -548,7 +704,6 @@ function populateSidememoContainer(
 		}
 	});
 	const GAP = 8;
-	items.sort((a, b) => (a.index || 0) - (b.index || 0));
 	let cursor = 0;
 	items.forEach((it) => {
 		const desiredTop = Math.max(0, it.top);
@@ -559,7 +714,9 @@ function populateSidememoContainer(
 	const toggleTooltipMemoNoneFor = (relatedEl: HTMLElement | null, add: boolean) => {
 		try {
 			if (!relatedEl) return;
-			if (!(relatedEl.hasAttribute && relatedEl.getAttribute("data-type") === "inline-memo")) return;
+			const isInlineMemo = relatedEl.hasAttribute && relatedEl.getAttribute("data-type") === "inline-memo";
+			const isFileMemo = relatedEl.hasAttribute("memo") && relatedEl.classList.contains("protyle-wysiwyg");
+			if (!isInlineMemo && !isFileMemo) return;
 			if (add) {
 				try {
 					if (relatedEl.getAttribute && relatedEl.getAttribute("asri-enhance-sidememo-fold") === "true") {
@@ -584,28 +741,32 @@ function populateSidememoContainer(
 	};
 	items.forEach((it) => {
 		try {
-			const related = it.sourceEl ?? null;
-			if (!related) return;
-			const onItemEnter = () =>
-				related.classList.add("asri-enhance-sidememo-highlight");
-			const onItemLeave = () =>
-				related.classList.remove("asri-enhance-sidememo-highlight");
+			const relatedEls = it.sourceEls || (it.sourceEl ? [it.sourceEl] : []);
+			if (relatedEls.length === 0) return;
+			const onItemEnter = () => {
+				relatedEls.forEach(el => el.classList.add("asri-enhance-sidememo-highlight"));
+			};
+			const onItemLeave = () => {
+				relatedEls.forEach(el => el.classList.remove("asri-enhance-sidememo-highlight"));
+			};
 			const onMemoEnter = () => {
 				it.el.classList.add("asri-enhance-sidememo-highlight");
 				try {
-					toggleTooltipMemoNoneFor(related, true);
+					relatedEls.forEach(el => toggleTooltipMemoNoneFor(el, true));
 				} catch (e) {}
 			};
 			const onMemoLeave = () => {
 				it.el.classList.remove("asri-enhance-sidememo-highlight");
 				try {
-					toggleTooltipMemoNoneFor(related, false);
+					relatedEls.forEach(el => toggleTooltipMemoNoneFor(el, false));
 				} catch (e) {}
 			};
 			it.el.addEventListener("mouseenter", onItemEnter);
 			it.el.addEventListener("mouseleave", onItemLeave);
-			related.addEventListener("mouseenter", onMemoEnter);
-			related.addEventListener("mouseleave", onMemoLeave);
+			relatedEls.forEach(related => {
+				related.addEventListener("mouseenter", onMemoEnter);
+				related.addEventListener("mouseleave", onMemoLeave);
+			});
 			const onItemMouseDown = (startEvent: MouseEvent) => {
 				if (startEvent.button !== 0) return;
 				let lastClientX = startEvent.clientX;
@@ -649,7 +810,7 @@ function populateSidememoContainer(
 					document.removeEventListener("mousemove", preMove);
 					document.removeEventListener("mouseup", cancelBefore);
 					const startX = lastClientX;
-					const asriParent = related.closest(
+					const asriParent = relatedEls[0]?.closest(
 						".asri-enhance-sidememo",
 					) as HTMLElement | null;
 					if (!asriParent) return;
@@ -754,7 +915,7 @@ function populateSidememoContainer(
 			};
 			try {
 				const titleEl = it.el.querySelector<HTMLElement>(
-					".asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title",
+					".asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title",
 				);
 				if (titleEl) {
 					const onTitleLeftClick = (ev: MouseEvent) => {
@@ -763,21 +924,42 @@ function populateSidememoContainer(
 							ev.stopPropagation();
 						} catch (e) {}
 						try {
+							if (it.type === 'file') {
+								const firstRelated = relatedEls[0];
+								try {
+									const prevSibling = firstRelated.previousElementSibling;
+									if (prevSibling && prevSibling.classList.contains("protyle-top")) {
+										const memoAttr = prevSibling.querySelector<HTMLElement>(".protyle-title .protyle-attr--memo");
+										if (memoAttr) {
+											const clickEvent = new MouseEvent("click", {
+												bubbles: true,
+												cancelable: true,
+												view: window,
+												button: 0,
+											});
+											memoAttr.dispatchEvent(clickEvent);
+											return;
+										}
+									}
+								} catch (e) {}
+							}
+							const firstRelated = relatedEls[0];
+							const isMergedInlineMemo = relatedEls.length > 1;
 							if (
-								related.hasAttribute &&
-								related.hasAttribute("memo")
+								firstRelated?.hasAttribute &&
+								firstRelated.hasAttribute("memo")
 							) {
 								let targetEl: HTMLElement | null = null;
 								try {
-									targetEl =
-										related.querySelector<HTMLElement>(
-											".protyle-attr .protyle-attr--memo",
-										);
+									const protyleAttr = firstRelated.querySelector<HTMLElement>(":scope > .protyle-attr");
+									if (protyleAttr) {
+										targetEl = protyleAttr.querySelector<HTMLElement>(".protyle-attr--memo");
+									}
 								} catch (e) {
 									targetEl = null;
 								}
 								const rect = (
-									targetEl ?? related
+									targetEl ?? firstRelated
 								).getBoundingClientRect();
 								const clientX = Math.round(
 									rect.left + rect.width / 2,
@@ -797,12 +979,14 @@ function populateSidememoContainer(
 									if (targetEl) {
 										targetEl.dispatchEvent(clickEvent);
 									} else {
-										related.dispatchEvent(clickEvent);
+										firstRelated.dispatchEvent(clickEvent);
 									}
 								} catch (e) {}
+							} else if (isMergedInlineMemo) {
+								showMergeMemoTip().catch(() => {});
 							} else {
 								const targetRect =
-									related.getBoundingClientRect();
+									firstRelated.getBoundingClientRect();
 								const clientX = Math.round(
 									targetRect.left + targetRect.width / 2,
 								);
@@ -818,7 +1002,7 @@ function populateSidememoContainer(
 									clientY,
 								});
 								try {
-									related.dispatchEvent(ctxEvent);
+									firstRelated.dispatchEvent(ctxEvent);
 								} catch (e) {}
 							}
 						} catch (e) {}
@@ -834,16 +1018,18 @@ function populateSidememoContainer(
 							try {
 								const uid = it.el.getAttribute("asri-enhance-sidememo-uid");
 								if (uid) {
-									const selector = `[data-type="inline-memo"][asri-enhance-sidememo-uid="${uid}"], [memo][asri-enhance-sidememo-uid="${uid}"]`;
-									const source = document.querySelector(selector) as HTMLElement | null;
-									if (source && source.setAttribute) {
-										if (isFolded) source.setAttribute("asri-enhance-sidememo-fold", "true");
-										else {
-											try {
-												source.removeAttribute("asri-enhance-sidememo-fold");
-											} catch (e) {}
+									const selector = `[data-type*="inline-memo"][asri-enhance-sidememo-uid="${uid}"], [memo][asri-enhance-sidememo-uid="${uid}"]`;
+									const sources = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
+									sources.forEach(source => {
+										if (source && source.setAttribute) {
+											if (isFolded) source.setAttribute("asri-enhance-sidememo-fold", "true");
+											else {
+												try {
+													source.removeAttribute("asri-enhance-sidememo-fold");
+												} catch (e) {}
+											}
 										}
-									}
+									});
 								}
 							} catch (e) {}
 						} catch (e) {}
@@ -884,10 +1070,12 @@ function populateSidememoContainer(
 				it.el.addEventListener("mousedown", onItemMouseDown);
 			}
 			try {
-				(related as any).__asriSidememoHandlers = {
-					enter: onMemoEnter,
-					leave: onMemoLeave,
-				};
+				relatedEls.forEach(related => {
+					(related as any).__asriSidememoHandlers = {
+						enter: onMemoEnter,
+						leave: onMemoLeave,
+					};
+				});
 			} catch (e) {}
 		} catch (e) {}
 	});
@@ -955,7 +1143,7 @@ export function removeAllSidememoArtifacts(): void {
 							if (handlers.titleRightClick) {
 								try {
 									const titleEl = child.querySelector(
-										".asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title",
+										".asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title",
 									) as HTMLElement | null;
 									if (titleEl)
 										titleEl.removeEventListener(
@@ -995,7 +1183,7 @@ export function removeAllSidememoArtifacts(): void {
 				el.classList.remove("asri-enhance-sidememo-none");
 				const memos = Array.from(
 					el.querySelectorAll<HTMLElement>(
-						'[data-type="inline-memo"], [memo]',
+						'[data-type*="inline-memo"], [memo]',
 					),
 				);
 				memos.forEach((m) => {
@@ -1044,7 +1232,7 @@ async function startObserver(): Promise<void> {
 	}
 	try {
 		const interceptor = createFetchInterceptor(
-			/setUILayout|transactions|setBlockAttrs|getDoc/,
+			/setUILayout|transactions|setBlockAttrs|getDoc|renameDoc/,
 			(_url?: string) => {
 				try {
 					setTimeout(() => {
@@ -1105,6 +1293,7 @@ export async function applySidememoConfig(
 	plugin: Plugin,
 	config?: Record<string, any> | null,
 ): Promise<void> {
+	globalPlugin = plugin;
 	const htmlEl = document.documentElement;
 	if (!htmlEl) {
 		return;
