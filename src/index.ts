@@ -117,9 +117,27 @@ class AsriEnhancePlugin extends Plugin {
                     if (this.paletteDisableDebounceTimer !== null) {
                         clearTimeout(this.paletteDisableDebounceTimer);
                     }
+                    let paletteName: string | null = null;
+                    if (target.id?.startsWith("prst-palette")) {
+                        paletteName = target.id.replace("prst-palette-", "");
+                    } else {
+                        const closestPrstPalette = target.closest("[id^='prst-palette']");
+                        if (closestPrstPalette) {
+                            paletteName = closestPrstPalette.id.replace("prst-palette-", "");
+                        }
+                    }
                     this.paletteDisableDebounceTimer = window.setTimeout(() => {
                         disableAllPalettesForCurrentTheme(this, "config.json").then(() => {
                             removeFollowTimeConfig(this, "config.json").then(() => {
+                                if (paletteName) {
+                                    const htmlEl = document.documentElement;
+                                    if (htmlEl) {
+                                        const currentPalette = htmlEl.getAttribute("data-asri-palette");
+                                        if (currentPalette !== paletteName) {
+                                            htmlEl.setAttribute("data-asri-palette", paletteName);
+                                        }
+                                    }
+                                }
                                 loadData(this, "config.json").then((newConfig) => {
                                     this.applyAllConfigs(newConfig).catch(() => { });
                                 }).catch(() => { });

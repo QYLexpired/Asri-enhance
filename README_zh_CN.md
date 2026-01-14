@@ -1,15 +1,7 @@
 ### 更新
-##### v1.9.3~v1.9.4
-- 改进侧边备注
-    - 新增支持显示文档备注
-    - 当两个紧密相连行内备注（即两个行内备注间不存在任何文字）的备注内容相同时，将合并显示为一个侧边备注
-    - 修复行内备注同时为其他类型的行内元素时不显示侧边备注的问题
-    - 优化侧边备注卡片的排序逻辑
-- 增加功能：主题色跟随时间变化
-- 增加细节调整：液态玻璃<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
-    - 不支持iOS/iPadOS/Safari/Firefox
-    - 目前支持组件：开关按钮、文字工具栏、题头图区域按钮
-- 修复左侧栏和右侧栏同时展开时垂直页签的样式错误
+##### v1.9.5
+- 优化液态玻璃效果
+- 修复部分情况下无法正常切换到Asri本体配色的问题
 ### 关于插件
 - [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
 - 仅适配Asri主题，使用其他主题时应关闭此插件以防止样式错误

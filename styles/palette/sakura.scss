@@ -58,15 +58,14 @@
     color: var(--b3-theme-primary);
   }
 }
-#{$primary-color-reverse-selectors,
-".b3-button--outline"} {
+#{$primary-color-reverse-selectors} {
   [data-asri-palette="sakura"][data-theme-mode="light"][data-light-theme="Asri"] & {
-    --b3-theme-primary: var(--sakura-base-accent);
-    --b3-theme-on-primary: #781919;
+    --b3-theme-primary: #ffcaca;
+    --b3-theme-on-primary: #9e4a4a;
   }
   [data-asri-palette="sakura"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
-    --b3-theme-primary: var(--sakura-base-accent);
-    --b3-theme-on-primary: #4f0606;
+    --b3-theme-primary: #e39f9f;
+    --b3-theme-on-primary: #440000;
   }
 }
 .b3-button--outline,
