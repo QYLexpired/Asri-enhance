@@ -10,6 +10,9 @@
         &:is(:hover, .b3-menu__item--show, .b3-menu__item--current) svg {
             outline: 1px solid oklch(from var(--b3-theme-on-primary) l c h / 0.5);
         }
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+        }
     }
     & :is(#pickColor, #followSysAccent, #followCoverImgColor) {
         & svg {

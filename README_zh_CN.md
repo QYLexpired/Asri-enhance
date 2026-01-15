@@ -1,7 +1,3 @@
-### 更新
-##### v1.9.5
-- 优化液态玻璃效果
-- 修复部分情况下无法正常切换到Asri本体配色的问题
 ### 关于插件
 - [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
 - 仅适配Asri主题，使用其他主题时应关闭此插件以防止样式错误

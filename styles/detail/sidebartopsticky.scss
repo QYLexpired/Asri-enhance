@@ -13,29 +13,21 @@
         &::before {
             display: none;
         }
-        & .block__icon {
+        & > :is(div, span) {
+            transform: none;
             transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
-        }
-        &:not(:hover) {
-            & .block__logo {
-                transform: none;
+            &:not(.block__icon) {
                 opacity: 1 !important;
             }
-            & .block__icon {
-                transform: none;
+            &.block__icon {
                 opacity: 0;
                 filter: blur(3px);
             }
         }
-        &:hover {
-            & .block__logo {
-                transform: none;
+        &:hover > :is(div, span) {
+            &.block__icon {
                 opacity: 1;
-            }
-            & .block__icon {
-                transform: none;
-                opacity: 1;
-                filter: blur(0px);
+                filter: none;
             }
         }
     }
