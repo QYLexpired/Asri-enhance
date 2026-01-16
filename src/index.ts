@@ -25,6 +25,7 @@ import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
 import { applyDisableWindowTransparencyConfig } from "./detail/disablewindowtransparency";
+import { applySmoothCaretConfig } from "./detail/smoothcaret";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { removeFollowTimeConfig } from "./followtime/followtime";
@@ -64,6 +65,7 @@ class AsriEnhancePlugin extends Plugin {
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
             applyDisableWindowTransparencyConfig(this, config).catch(() => { }),
+            applySmoothCaretConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
         ]);
     }

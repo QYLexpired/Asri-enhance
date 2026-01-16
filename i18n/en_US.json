@@ -29,6 +29,7 @@
   "experimentalFeature": "Experimental Feature",
   "singleColumnSlashMenu": "Single Column Slash Menu",
   "disableWindowTransparency": "Disable Window Transparency Effects",
+  "smoothCaret": "Smooth Caret",
   "followTime": "Follow Time",
   "mergedSideMemoEditTip": "This is a side memo card displaying multiple merged inline memos, which need to be edited separately at each source inline memo location"
 }

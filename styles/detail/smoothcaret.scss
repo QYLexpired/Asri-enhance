@@ -1,0 +1,30 @@
+[data-asri-enhance-smoothcaret="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-smooth-caret,
+    #asri-enhance-detail-adjustment {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            & .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    .protyle-wysiwyg {
+        caret-color: transparent !important;
+    }
+    .protyle-title__input {
+        caret-color: transparent !important;
+    }
+    #asri-enhance-smooth-caret-item {
+        position: fixed;
+        width: 2px;
+        pointer-events: none;
+        background-color: oklch(from var(--b3-theme-on-background) l 0.35 h);
+        transition: 0.5s cubic-bezier(0.1, 0.9, 0.2, 1);
+        z-index: 999;
+        will-change: transform, height;
+        &.asri-enhance-smooth-caret-item-none {
+            display: none;
+            animation: none;
+        }
+    }
+}
