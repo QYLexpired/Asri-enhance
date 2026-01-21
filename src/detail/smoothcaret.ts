@@ -4,6 +4,7 @@ const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-smoothcaret";
 const CARET_ITEM_ID = 'asri-enhance-smooth-caret-item';
 let smoothCaretEventHandler: (() => void) | null = null;
+let throttledCaretEventHandler: (() => void) | null = null;
 const initSmoothCaret = () => {
     document.getElementById(CARET_ITEM_ID)?.remove();
     const caretElement = document.createElement('div');
@@ -29,8 +30,8 @@ const initSmoothCaret = () => {
             }
             if (rect) {
                 caretElement.classList.remove('asri-enhance-smooth-caret-item-none');
-                caretElement.style.transform = `translate3d(${rect.left}px, ${rect.top}px, 0)`;
-                caretElement.style.height = `${rect.height * 1.1}px`;
+                caretElement.style.transform = `translate3d(${rect.left - 1}px, ${rect.top + rect.height / 2 - rect.height * 0.6}px, 0)`;
+                caretElement.style.height = `${rect.height * 1.2}px`;
                 return;
             }
         }
@@ -42,9 +43,20 @@ const initSmoothCaret = () => {
             isAnimationFramePending = true;
         }
     };
+    let throttleTimer: number | null = null;
+    const handleThrottledCaretUpdate = () => {
+        if (throttleTimer) return;
+        throttleTimer = window.setTimeout(() => {
+            throttleTimer = null;
+            handleCaretUpdateTrigger();
+        }, 300);
+    };
+    throttledCaretEventHandler = handleThrottledCaretUpdate;
     smoothCaretEventHandler = handleCaretUpdateTrigger;
     document.addEventListener('selectionchange', handleCaretUpdateTrigger);
     document.addEventListener('scroll', handleCaretUpdateTrigger, { capture: true, passive: true });
+    document.addEventListener('keyup', handleThrottledCaretUpdate);
+    document.addEventListener('mouseup', handleThrottledCaretUpdate);
     updateCaretPosition();
 };
 const destroySmoothCaret = () => {
@@ -53,6 +65,11 @@ const destroySmoothCaret = () => {
         document.removeEventListener('selectionchange', smoothCaretEventHandler);
         document.removeEventListener('scroll', smoothCaretEventHandler);
         smoothCaretEventHandler = null;
+    }
+    if (throttledCaretEventHandler) {
+        document.removeEventListener('keyup', throttledCaretEventHandler);
+        document.removeEventListener('mouseup', throttledCaretEventHandler);
+        throttledCaretEventHandler = null;
     }
 };
 export async function onSmoothCaretClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

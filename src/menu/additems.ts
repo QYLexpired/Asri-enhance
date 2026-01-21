@@ -65,7 +65,16 @@ export function listenBarModeClick(plugin: Plugin, callback: (event: MouseEvent)
                             button.className = "b3-menu__item asri-enhance";
                             button.id = "asri-enhance-palette";
                             button.innerHTML = `${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.morePresetColors || "morePresetColors"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sakura || "Sakura"}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.amber || "amber"}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wilderness || "wilderness"}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.midnight || "midnight"}</span></button><button class="b3-menu__item" id="asri-enhance-salt">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.salt || "salt"}</span></button><button class="b3-menu__item" id="asri-enhance-rosepine">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.rosePine || "Rosé Pine"}</span></button><button class="b3-menu__item" id="asri-enhance-topaz">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.goldenTopaz || "Golden Topaz"}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.oxygen || "Oxygen"}</span></button><button class="b3-menu__item" id="asri-enhance-shade">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.shade || "Shade"}</span></button><button class="b3-menu__item" id="asri-enhance-gruvbox">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.gruvbox || "Gruvbox"}</span></button><button class="b3-menu__item" id="asri-enhance-glitch">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.glitch || "glitch"}</span></button></div></div>`;
-                            parent.insertBefore(button, pickColor);
+                            let insertBeforeElement = pickColor;
+                            let previousElement = pickColor.previousElementSibling;
+                            while (previousElement) {
+                                if (previousElement.classList && previousElement.classList.contains('b3-menu__separator')) {
+                                    insertBeforeElement = previousElement as HTMLElement;
+                                    break;
+                                }
+                                previousElement = previousElement.previousElementSibling;
+                            }
+                            parent.insertBefore(button, insertBeforeElement);
                         }
                         const amberItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-amber");
                         if (amberItem) {
@@ -263,6 +272,11 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 1
                             if (disableWindowTransparencyItem) {
                                 disableWindowTransparencyItem.onclick = (event) => onDisableWindowTransparencyClick(plugin, event);
                             }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector(".b3-menu__separator")) {
+                                const separator = document.createElement("button");
+                                separator.className = "b3-menu__separator";
+                                detailAdjustmentSubmenu.appendChild(separator);
+                            }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-cover-image-fade")) {
                                 const coverImageFadeButton = document.createElement("button");
                                 coverImageFadeButton.className = "b3-menu__item";
@@ -324,17 +338,6 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 1
                             if (coloredTreeItem) {
                                 coloredTreeItem.onclick = (event) => onColoredTreeClick(plugin, event);
                             }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-hide-tab-breadcrumb")) {
-                                const hideTabBreadcrumbButton = document.createElement("button");
-                                hideTabBreadcrumbButton.className = "b3-menu__item";
-                                hideTabBreadcrumbButton.id = "asri-enhance-hide-tab-breadcrumb";
-                                hideTabBreadcrumbButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.hideTabBreadcrumb || "hideTabBreadcrumb"}</span>`;
-                                detailAdjustmentSubmenu.appendChild(hideTabBreadcrumbButton);
-                            }
-                            const hideTabBreadcrumbItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab-breadcrumb");
-                            if (hideTabBreadcrumbItem) {
-                                hideTabBreadcrumbItem.onclick = (event) => onHideTabBreadcrumbClick(plugin, event);
-                            }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-moreanimations")) {
                                 const moreAnimationsButton = document.createElement("button");
                                 moreAnimationsButton.className = "b3-menu__item";
@@ -345,6 +348,22 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 1
                             const moreAnimationsItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-moreanimations");
                             if (moreAnimationsItem) {
                                 moreAnimationsItem.onclick = (event) => onMoreAnimationsClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu) {
+                                const separator = document.createElement("button");
+                                separator.className = "b3-menu__separator";
+                                detailAdjustmentSubmenu.appendChild(separator);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-hide-tab-breadcrumb")) {
+                                const hideTabBreadcrumbButton = document.createElement("button");
+                                hideTabBreadcrumbButton.className = "b3-menu__item";
+                                hideTabBreadcrumbButton.id = "asri-enhance-hide-tab-breadcrumb";
+                                hideTabBreadcrumbButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.hideTabBreadcrumb || "hideTabBreadcrumb"}</span>`;
+                                detailAdjustmentSubmenu.appendChild(hideTabBreadcrumbButton);
+                            }
+                            const hideTabBreadcrumbItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab-breadcrumb");
+                            if (hideTabBreadcrumbItem) {
+                                hideTabBreadcrumbItem.onclick = (event) => onHideTabBreadcrumbClick(plugin, event);
                             }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-smooth-caret")) {
                                 const smoothCaretButton = document.createElement("button");

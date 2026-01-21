@@ -16,15 +16,15 @@
     }
     #asri-enhance-smooth-caret-item {
         position: fixed;
-        width: 2px;
+        width: 2.5px;
+        border-radius: 8px;
         pointer-events: none;
-        background-color: oklch(from var(--b3-theme-on-background) l 0.35 h);
+        background-color: oklch(from var(--b3-theme-accent) l c h);
         transition: 0.5s cubic-bezier(0.1, 0.9, 0.2, 1);
         z-index: 999;
         will-change: transform, height;
         &.asri-enhance-smooth-caret-item-none {
             display: none;
-            animation: none;
         }
     }
 }

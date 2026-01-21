@@ -1,6 +1,7 @@
 ### 更新
-##### v1.9.7
-- 增加细节调整：平滑光标<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
+##### v1.9.8
+- 优化平滑光标
+- 优化菜单结构
 ### 关于插件
 - [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
 - 仅适配Asri主题，使用其他主题时应关闭此插件以防止样式错误
