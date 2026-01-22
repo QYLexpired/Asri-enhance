@@ -1,7 +1,12 @@
 ### Updates
-##### v1.9.8
+##### v1.9.9
 - Optimized smooth caret
+    - Fixed issue where cursor position doesn't update when editor position changes
+    - Fixed abnormal cursor position and shape in some cases
+    - Fixed cursor z-index being too high
+    - auriflow and glitch presets use special cursor styles
 - Optimized menu structure
+- Optimized hide tabs/breadcrumbs feature: show exit focus button when focused, reduce progressive blur intensity
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors

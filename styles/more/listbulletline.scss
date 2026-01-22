@@ -12,25 +12,28 @@
         box-sizing: border-box;
         border-left: 2px solid var(--b3-theme-accent);
         border-bottom: 2px solid var(--b3-theme-accent);
-        border-bottom-left-radius: 8px;
+        border-bottom-left-radius: 12px;
+        corner-shape: superellipse(1.4);
         position: absolute;
         left: -18px;
-        animation: listbulletlines 0.3s;
+        animation: listbulletlines 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
     }
     @keyframes listbulletlines {
         0% {
+            filter: blur(1px);
             opacity: 0;
         }
         100% {
+            filter: blur(0px);
             opacity: 1;
         }
     }
     /* 参与连线的列表符号高亮 */
     .protyle-wysiwyg [data-node-id].li:is([data-subtype="o"], [data-subtype="u"], [data-subtype="t"]).asri-bullet-highlight > .protyle-action {
         color: var(--b3-theme-accent);
-    }
-    .protyle-wysiwyg .li [data-node-id].li:is([data-subtype="o"], [data-subtype="u"], [data-subtype="t"]).asri-bullet-highlight > .protyle-action::after {
-        color: var(--b3-theme-accent);
+        &::after {
+            color: var(--b3-theme-accent);
+        }
     }
     /* 无序列表紧接无序列表 */
     [data-subtype="u"] > [data-subtype="u"] > .asri-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {

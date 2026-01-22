@@ -154,10 +154,10 @@
       box-shadow: none;
     }
     .protyle-wysiwyg[data-readonly="false"] [data-node-id].asri-selected-block::before {
-      --glitch-c1: #ff64fe;
-      --glitch-c2: #4be4d8;
-      --glitch-s1: 500px;
-      --glitch-s2: 500px;
+      --glitch-c1: #67c6ff;
+      --glitch-c2: #6c45ff;
+      --glitch-s1: 50px;
+      --glitch-s2: 1000px;
       background: $texture-glicth;
     }
     .toolbar #barWorkspace {
@@ -186,6 +186,11 @@
         background: $texture-glicth;
       }
       input[type="radio" i]:checked {
+        --glitch-c1: #00ffaf;
+        --glitch-c2: #0083ff;
+        background: $texture-glicth;
+      }
+      .protyle-wysiwyg[data-readonly="false"] [data-node-id].asri-selected-block::before {
         --glitch-c1: #00ffaf;
         --glitch-c2: #0083ff;
         background: $texture-glicth;

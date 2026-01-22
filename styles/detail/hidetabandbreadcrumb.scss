@@ -11,20 +11,62 @@
         opacity: 0.38;
     }
     body.asri-tfp:not(.body-asri--mobile) .fn__flex-column[data-type=wnd]>.fn__flex:first-child {
-        transition: opacity 0.3s ease-in-out;
-        &:not(:hover) {
-            opacity: 0;
+        transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
+        opacity: 0;
+        filter: blur(3px);
+        &:hover {
+            opacity: 1;
+            filter: blur(0px);
         }
         & + .layout-tab-container > .protyle {
             & > .protyle-breadcrumb {
-                transition: opacity 0.3s ease-in-out;
-                &:not(:hover) {
+                & .protyle-breadcrumb__bar {
+                    transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
                     opacity: 0;
+                    filter: blur(3px);
+                    &:hover {
+                        opacity: 1;
+                        filter: blur(0px);
+                        & ~ .protyle-breadcrumb__space ~ * {
+                            opacity: 0;
+                            filter: blur(3px);
+                        }
+                    }
+                }
+                & .protyle-breadcrumb__space {
+                    &:hover {
+                        & ~ * {
+                            opacity: 0 !important;
+                            filter: blur(3px) !important;
+                        }
+                    }
+                    & ~ * {
+                        transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
+                        opacity: 0;
+                        filter: blur(3px);
+                        &[data-type="exit-focus"]:not(.fn__none) {
+                            opacity: 1 !important;
+                            filter: blur(0px) !important;
+                            & ~ * {
+                                opacity: 1 !important;
+                                filter: blur(0px) !important;
+                            }
+                        }
+                    }
+                }
+                &:hover {
+                    & .protyle-breadcrumb__space ~ * {
+                        opacity: 1;
+                        filter: blur(0px);
+                    }
                 }
             }
         }
     }
     .asri-tfp:not(.asri-disable-backdrop-blur,.body-asri--mobile).asri-tfp-progressive :where(.layout__wnd--active,[data-type=wnd]) .layout-tab-container {
         --pgbb: 0px !important;
+       & .protyle {
+            --pgbb: 0.25px !important;
+       }
     }
 }

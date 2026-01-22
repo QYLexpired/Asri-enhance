@@ -5,16 +5,47 @@ const CONFIG_KEY = "asri-enhance-smoothcaret";
 const CARET_ITEM_ID = 'asri-enhance-smooth-caret-item';
 let smoothCaretEventHandler: (() => void) | null = null;
 let throttledCaretEventHandler: (() => void) | null = null;
+let throttleTimers: number[] = [];
+let cachedZIndex = 0;
+let lastEditableElement: Element | null = null;
 const initSmoothCaret = () => {
     document.getElementById(CARET_ITEM_ID)?.remove();
     const caretElement = document.createElement('div');
     caretElement.id = CARET_ITEM_ID;
     document.body.appendChild(caretElement);
     let isAnimationFramePending = false;
+    const calculateCaretZIndex = (targetElement: Element): number => {
+        if (targetElement === lastEditableElement) {
+            return cachedZIndex;
+        }
+        let currentElement: Element | null = targetElement;
+        while (currentElement && currentElement !== document.documentElement) {
+            const computedStyle = window.getComputedStyle(currentElement);
+            const zIndexValue = computedStyle.zIndex;
+            const createsStackingContext =
+                (computedStyle.position !== 'static' && zIndexValue !== 'auto') ||
+                computedStyle.position === 'fixed' || computedStyle.position === 'sticky' ||
+                parseFloat(computedStyle.opacity) < 1 ||
+                computedStyle.transform !== 'none' ||
+                computedStyle.perspective !== 'none' ||
+                computedStyle.willChange !== 'auto';
+            if (createsStackingContext && zIndexValue !== 'auto') {
+                const zIndex = parseInt(zIndexValue) || 0;
+                cachedZIndex = zIndex;
+                lastEditableElement = targetElement;
+                return zIndex;
+            }
+            currentElement = currentElement.parentElement;
+        }
+        cachedZIndex = 0;
+        lastEditableElement = targetElement;
+        return 0;
+    };
     const updateCaretPosition = () => {
         isAnimationFramePending = false;
         const sel = window.getSelection();
-        if (sel.rangeCount && sel.focusNode?.parentElement?.closest('[contenteditable]')) {
+        const editableElement = sel.focusNode?.parentElement?.closest('[contenteditable]');
+        if (sel.rangeCount && editableElement) {
             const range = sel.getRangeAt(0);
             let rect = range.getClientRects()[0];
             if (!rect || rect.height === 0) {
@@ -32,6 +63,8 @@ const initSmoothCaret = () => {
                 caretElement.classList.remove('asri-enhance-smooth-caret-item-none');
                 caretElement.style.transform = `translate3d(${rect.left - 1}px, ${rect.top + rect.height / 2 - rect.height * 0.6}px, 0)`;
                 caretElement.style.height = `${rect.height * 1.2}px`;
+                const baseZIndex = calculateCaretZIndex(editableElement);
+                caretElement.style.zIndex = (baseZIndex + 1).toString();
                 return;
             }
         }
@@ -43,13 +76,20 @@ const initSmoothCaret = () => {
             isAnimationFramePending = true;
         }
     };
-    let throttleTimer: number | null = null;
     const handleThrottledCaretUpdate = () => {
-        if (throttleTimer) return;
-        throttleTimer = window.setTimeout(() => {
-            throttleTimer = null;
-            handleCaretUpdateTrigger();
-        }, 300);
+        throttleTimers.forEach(timer => clearTimeout(timer));
+        throttleTimers = [];
+        const delays = [200, 400, 600];
+        delays.forEach(delay => {
+            const timer = window.setTimeout(() => {
+                handleCaretUpdateTrigger();
+                const index = throttleTimers.indexOf(timer);
+                if (index > -1) {
+                    throttleTimers.splice(index, 1);
+                }
+            }, delay);
+            throttleTimers.push(timer);
+        });
     };
     throttledCaretEventHandler = handleThrottledCaretUpdate;
     smoothCaretEventHandler = handleCaretUpdateTrigger;
@@ -61,9 +101,13 @@ const initSmoothCaret = () => {
 };
 const destroySmoothCaret = () => {
     document.getElementById(CARET_ITEM_ID)?.remove();
+    throttleTimers.forEach(timer => clearTimeout(timer));
+    throttleTimers = [];
+    cachedZIndex = 0;
+    lastEditableElement = null;
     if (smoothCaretEventHandler) {
         document.removeEventListener('selectionchange', smoothCaretEventHandler);
-        document.removeEventListener('scroll', smoothCaretEventHandler);
+        document.removeEventListener('scroll', smoothCaretEventHandler, { capture: true });
         smoothCaretEventHandler = null;
     }
     if (throttledCaretEventHandler) {
