@@ -12,6 +12,7 @@ export const PALETTE_NAMES = [
     "shade",
     "gruvbox",
     "glitch",
+    "nostalgia",
 ] as const;
 export type PaletteName = typeof PALETTE_NAMES[number];
 export async function saveData(plugin: Plugin, fileName: string, data: Record<string, any>): Promise<void> {
@@ -117,3 +118,4 @@ export const removeOxygenConfig = (plugin: Plugin, configFile: string = "config.
 export const removeShadeConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "shade", configFile);
 export const removeGruvboxConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "gruvbox", configFile);
 export const removeGlitchConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "glitch", configFile);
+export const removeNostalgiaConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "nostalgia", configFile);

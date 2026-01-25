@@ -15,6 +15,7 @@ const GRUVBOX_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-oxygen",
         "asri-enhance-shade",
         "asri-enhance-glitch",
+        "asri-enhance-nostalgia",
     ],
 };
 export async function onGruvboxClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

@@ -15,6 +15,7 @@ const SAKURA_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-shade",
         "asri-enhance-gruvbox",
         "asri-enhance-glitch",
+        "asri-enhance-nostalgia",
     ],
 };
 export async function onSakuraClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

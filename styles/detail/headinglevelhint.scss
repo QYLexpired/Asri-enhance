@@ -15,7 +15,8 @@
             font-weight: 900;
             font-size: 2em;
             position: absolute;
-            top: -0.3em;
+            top: 50%;
+            transform: translateY(-50%);
             right: 8px;
             color: inherit;
             opacity: 0.2;

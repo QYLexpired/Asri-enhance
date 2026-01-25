@@ -1,12 +1,8 @@
 ### Updates
-##### v1.9.9
-- Optimized smooth caret
-    - Fixed issue where cursor position doesn't update when editor position changes
-    - Fixed abnormal cursor position and shape in some cases
-    - Fixed cursor z-index being too high
-    - auriflow and glitch presets use special cursor styles
-- Optimized menu structure
-- Optimized hide tabs/breadcrumbs feature: show exit focus button when focused, reduce progressive blur intensity
+##### v1.9.10
+- Add preset color scheme: Nostalgia
+- Make vertical tabs and topbar fusion+ can be enabled simultaneously
+- Refactoring list bullet lines
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
@@ -16,7 +12,7 @@
 Based on the original color schemes of the Asri theme, additional preset color schemes are added
 - Theme color follow time
 - Inspired color schemes: Oxygen, Shade, Glitch, Sakura
-- Ported from QYL theme: Amber, Wilderness, Midnight
+- Ported from QYL theme: Amber, Wilderness, Midnight, Nostalgia
 - Ported from Savor theme: Salt
 - Ported from Obsidian theme: Golden Topaz
 - Ported from VSCode theme: Rosé Pine
@@ -25,13 +21,14 @@ Based on the original color schemes of the Asri theme, additional preset color s
 Add a series of practical features and ensure the style completely matches the Asri theme
 - Slash menu keyboard arrow key navigation (automatically enabled)
 - List bullet lines
-- Vertical tabs (cannot be enabled simultaneously with top bar fusion+, only affects the tab bar in the top left corner)
+- Vertical tabs (only affects the tab bar in the top left corner)
 - Side memo (displays inline notes or block notes on the right side of the editor)
     - Left-click the title area (first line) of the side memo card to open the note editing window
     - Right-click the title area (first line) of the side memo card to temporarily collapse the note
     - Long press the side memo card for 1s to drag and adjust the side memo width
     - Supports markdown parsing (including formulas, code syntax highlighting)
     - Supports HTML parsing
+- Smooth caret<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
 ### Theme Detail Adjustments
 Detailed adjustments made completely in accordance with the Asri theme style
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
@@ -42,7 +39,6 @@ Detailed adjustments made completely in accordance with the Asri theme style
 - Colored headings
 - Heading level hints
 - Colored document tree
-- Hide tabs/breadcrumbs (only takes effect when top bar fusion+ is enabled, recommended to pair with progressive blur effect)
+- Hide tabs/breadcrumbs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
 - More animations
-- Smooth caret<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
 - Liquid glass<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>

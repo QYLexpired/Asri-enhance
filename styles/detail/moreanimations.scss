@@ -102,7 +102,7 @@
         }
     }
     // 列表子弹线
-    .asri-bullet-line:not(.protyle-wysiwyg--select,.protyle-wysiwyg--hl):not([custom-list-view] .asri-bullet-line)::after {
+    .asri-enhance-bullet-line:not(.protyle-wysiwyg--select,.protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
         animation: asri-enhance-animation-list-bullet 0.3s var(--asri-enhance-ease-out-1);
         transform-origin: left top;
     }

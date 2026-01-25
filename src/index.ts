@@ -11,6 +11,7 @@ import { applyOxygenConfig } from "./palette/oxygen";
 import { applyShadeConfig } from "./palette/shade";
 import { applyGruvboxConfig } from "./palette/gruvbox";
 import { applyGlitchConfig } from "./palette/glitch";
+import { applyNostalgiaConfig } from "./palette/nostalgia";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyHeadingLevelHintConfig } from "./detail/headinglevelhint";
@@ -25,7 +26,7 @@ import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
 import { applyDisableWindowTransparencyConfig } from "./detail/disablewindowtransparency";
-import { applySmoothCaretConfig } from "./detail/smoothcaret";
+import { applySmoothCaretConfig } from "./more/smoothcaret";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { removeFollowTimeConfig } from "./followtime/followtime";
@@ -51,6 +52,7 @@ class AsriEnhancePlugin extends Plugin {
             applyShadeConfig(this, config).catch(() => { }),
             applyGruvboxConfig(this, config).catch(() => { }),
             applyGlitchConfig(this, config).catch(() => { }),
+            applyNostalgiaConfig(this, config).catch(() => { }),
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyHeadingLevelHintConfig(this, config).catch(() => { }),
@@ -87,7 +89,8 @@ class AsriEnhancePlugin extends Plugin {
                     target.closest("#asri-enhance-oxygen") ||
                     target.closest("#asri-enhance-shade") ||
                     target.closest("#asri-enhance-gruvbox") ||
-                    target.closest("#asri-enhance-glitch")) {
+                    target.closest("#asri-enhance-glitch") ||
+                    target.closest("#asri-enhance-nostalgia")) {
                     return;
                 }
                 const asriConfig = target.closest(".asri-config");

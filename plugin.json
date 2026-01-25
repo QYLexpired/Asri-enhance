@@ -2,7 +2,7 @@
   "name": "Asri-enhance",
   "author": "QYL",
   "url": "https://github.com/QYLexpired/Asri-enhance",
-  "version": "1.9.9",
+  "version": "1.9.10",
   "minAppVersion": "3.4.0",
   "backends": [
     "all"
