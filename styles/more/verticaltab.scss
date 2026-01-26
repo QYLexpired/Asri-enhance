@@ -175,6 +175,7 @@
                 display: none;
             }
             & > .fn__flex:first-child {
+                background-color: var(--b3-theme-background);
                 flex: 1;
                 flex-direction: column;
                 height: 100%;

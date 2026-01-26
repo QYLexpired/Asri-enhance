@@ -1,5 +1,5 @@
 ### Updates
-##### v1.9.10 ~ v1.9.11
+##### v1.9.10 ~ v1.9.12
 - Add detail adjustments: Adjust window transparency value, whole window transparency
 - Remove detail adjustments: Disable window transparency effect (now can be achieved by setting window transparency to 0)
 - Add preset color scheme: Nostalgia
