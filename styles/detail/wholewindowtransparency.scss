@@ -1,0 +1,40 @@
+[data-asri-enhance-wholewindowtransparency="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-wholewindowtransparency {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) :is(.layout__dockl,.layout__dockb):not(.layout--float) .layout-tab-container, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) .dock.dock-layout-expanded, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) .dock#dockBottom, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) #dockBottom.fn__none.has-layout-dockb-float~.status, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) #dockBottom:not(.fn__none)~.status {
+        background-color: transparent !important;
+    }
+    body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) {
+        background-color: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
+        .fn__flex-column[data-type=wnd]>.fn__flex:first-child {
+            background-color: transparent;
+            & ~ .layout-tab-container {
+                background-color: transparent;
+                & .protyle {
+                    background-color: transparent;
+                    & .protyle-breadcrumb {
+                        background-color: transparent;          
+                    }
+                }
+            }
+        }
+        .layout__empty {
+            background-color: transparent;
+        }
+        #dockLeft {
+            background-color: transparent;
+        }
+        #dockRight {
+            background-color: transparent;
+        }
+        .layout__dockl + .layout__resize--lr::after, .layout__center + .layout__resize--lr::after {
+            background-color: var(--b3-border-color-trans);
+        }
+    }
+}

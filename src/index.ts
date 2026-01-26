@@ -25,7 +25,8 @@ import { applyPaperTextureConfig } from "./detail/papertexture";
 import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
-import { applyDisableWindowTransparencyConfig } from "./detail/disablewindowtransparency";
+import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyvalue";
+import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
 import { applySmoothCaretConfig } from "./more/smoothcaret";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
@@ -66,7 +67,8 @@ class AsriEnhancePlugin extends Plugin {
             applyPaperTextureConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
-            applyDisableWindowTransparencyConfig(this, config).catch(() => { }),
+            applyWindowTransparencyValueConfig(this, config).catch(() => { }),
+            applyWholeWindowTransparencyConfig(this, config).catch(() => { }),
             applySmoothCaretConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
         ]);

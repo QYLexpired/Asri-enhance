@@ -24,8 +24,10 @@ import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
 import { onPaperTextureClick } from "../detail/papertexture";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
 import { onSingleColumnSlashMenuClick } from "../detail/singlecolumnslashmenu";
-import { onDisableWindowTransparencyClick } from "../detail/disablewindowtransparency";
+import { onWindowTransparencyValueClick, saveWindowTransparencyValue } from "../detail/windowtransparencyvalue";
+import { onWholeWindowTransparencyClick } from "../detail/wholewindowtransparency";
 import { onSmoothCaretClick } from "../more/smoothcaret";
+import { loadData } from "../utils/storage";
 import { onFollowTimeClick } from "../followtime/followtime";
 const PALETTE_ICON_SVG = '<svg class="b3-menu__icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 3h-4a2 2 0 0 0-2 2v12a4 4 0 0 0 8 0V5a2 2 0 0 0-2-2"></path><path d="m13 7.35l-2-2a2 2 0 0 0-2.828 0L5.344 8.178a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12m0-4v.01"></path></g></svg>';
 const MORE_ICON_SVG = '<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>';
@@ -270,18 +272,61 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             if (singleColumnSlashMenuItem) {
                                 singleColumnSlashMenuItem.onclick = (event) => onSingleColumnSlashMenuClick(plugin, event);
                             }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-disable-window-transparency")) {
-                                const disableWindowTransparencyButton = document.createElement("button");
-                                disableWindowTransparencyButton.className = "b3-menu__item";
-                                disableWindowTransparencyButton.id = "asri-enhance-disable-window-transparency";
-                                disableWindowTransparencyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.disableWindowTransparency || "disableWindowTransparency"}</span>`;
-                                detailAdjustmentSubmenu.appendChild(disableWindowTransparencyButton);
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-windowtransparencyvalue")) {
+                                const separator = document.createElement("button");
+                                separator.className = "b3-menu__separator";
+                                detailAdjustmentSubmenu.appendChild(separator);
+                                const subtitle = document.createElement("div");
+                                subtitle.className = "menu-item__subtitle";
+                                subtitle.style.userSelect = "none";
+                                subtitle.style.padding = "0 12px";
+                                subtitle.textContent = plugin.i18n?.windowTransparencyValueSubtitle || "windowTransparencyValueSubtitle";
+                                detailAdjustmentSubmenu.appendChild(subtitle);
+                                const windowTransparencyValueButton = document.createElement("button");
+                                windowTransparencyValueButton.className = "b3-menu__item";
+                                windowTransparencyValueButton.id = "asri-enhance-windowtransparencyvalue";
+                                windowTransparencyValueButton.innerHTML = `<div aria-label="${plugin.i18n?.windowTransparencyValue || "windowTransparencyValue"}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.1" value="0.5"></div>`;
+                                detailAdjustmentSubmenu.appendChild(windowTransparencyValueButton);
                             }
-                            const disableWindowTransparencyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-disable-window-transparency");
-                            if (disableWindowTransparencyItem) {
-                                disableWindowTransparencyItem.onclick = (event) => onDisableWindowTransparencyClick(plugin, event);
+                            const windowTransparencyValueItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-windowtransparencyvalue");
+                            if (windowTransparencyValueItem) {
+                                windowTransparencyValueItem.onclick = (event) => onWindowTransparencyValueClick(plugin, event);
+                                const slider = windowTransparencyValueItem.querySelector<HTMLInputElement>("input[type='range']");
+                                if (slider) {
+                                    loadData(plugin, "config.json").then((config) => {
+                                        const savedValue = config?.["asri-enhance-windowtransparencyvalue"];
+                                        if (savedValue !== undefined) {
+                                            const value = parseFloat(savedValue);
+                                            slider.value = String(value);
+                                            const label = slider.parentElement?.getAttribute("aria-label")?.split(":")[0];
+                                            if (label) {
+                                                slider.parentElement?.setAttribute("aria-label", `${label}: ${value}`);
+                                            }
+                                        }
+                                    }).catch(() => { });
+                                    slider.addEventListener("input", async (event) => {
+                                        const target = event.target as HTMLInputElement;
+                                        const value = parseFloat(target.value);
+                                        await saveWindowTransparencyValue(plugin, value);
+                                        const label = target.parentElement?.getAttribute("aria-label")?.split(":")[0];
+                                        if (label) {
+                                            target.parentElement?.setAttribute("aria-label", `${label}: ${value}`);
+                                        }
+                                    });
+                                }
                             }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector(".b3-menu__separator")) {
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-wholewindowtransparency")) {
+                                const wholeWindowTransparencyButton = document.createElement("button");
+                                wholeWindowTransparencyButton.className = "b3-menu__item";
+                                wholeWindowTransparencyButton.id = "asri-enhance-wholewindowtransparency";
+                                wholeWindowTransparencyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wholeWindowTransparency || "wholeWindowTransparency"}<svg class="b3-menu__icon ariaLabel asri-enhance-experimental" aria-label="${plugin.i18n?.experimentalFeature || "Experimental Feature"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg></span>`;
+                                detailAdjustmentSubmenu.appendChild(wholeWindowTransparencyButton);
+                            }
+                            const wholeWindowTransparencyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-wholewindowtransparency");
+                            if (wholeWindowTransparencyItem) {
+                                wholeWindowTransparencyItem.onclick = (event) => onWholeWindowTransparencyClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu) {
                                 const separator = document.createElement("button");
                                 separator.className = "b3-menu__separator";
                                 detailAdjustmentSubmenu.appendChild(separator);

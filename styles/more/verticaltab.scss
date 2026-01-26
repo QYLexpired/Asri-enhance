@@ -8,7 +8,7 @@
             }
         }
     }
-    & body.asri-tfp {
+    & body.asri-tfp:not(.body-asri--mobilem, .body--window) {
         & .asri-enhance-verticaltab  {
             & .protyle {
                 --asri-enhance-tfp-protyle-icons-fix: 42px;

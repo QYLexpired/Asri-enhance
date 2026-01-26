@@ -29,7 +29,9 @@
   "liquidGlass": "液态玻璃",
   "experimentalFeature": "实验性功能",
   "singleColumnSlashMenu": "单列斜杠菜单",
-  "disableWindowTransparency": "禁用窗体透明效果",
+  "windowTransparencyValue": "窗体透明度",
+  "windowTransparencyValueSubtitle": "调整窗体透明度",
+  "wholeWindowTransparency": "全窗体透明",
   "smoothCaret": "平滑光标",
   "followTime": "跟随时间",
   "mergedSideMemoEditTip": "这是多个行内备注合并显示的侧边备注卡片，需在每个源行内备注处分别修改"
