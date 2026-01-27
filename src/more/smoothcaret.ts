@@ -44,7 +44,7 @@ const initSmoothCaret = () => {
     const updateCaretPosition = () => {
         isAnimationFramePending = false;
         const sel = window.getSelection();
-        const editableElement = sel.focusNode?.parentElement?.closest('[contenteditable]');
+        const editableElement = sel.focusNode?.parentElement?.closest('[data-readonly="false"] [contenteditable]');
         if (sel.rangeCount && editableElement) {
             const range = sel.getRangeAt(0);
             let rect = range.getClientRects()[0];

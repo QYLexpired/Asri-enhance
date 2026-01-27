@@ -250,42 +250,30 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                         const detailAdjustmentItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-detail-adjustment");
                         if (detailAdjustmentItem) {
                             const detailAdjustmentSubmenu = detailAdjustmentItem.querySelector<HTMLElement>(".b3-menu__submenu .b3-menu__items");
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-sidebar-top-sticky")) {
-                                const sidebarTopStickyButton = document.createElement("button");
-                                sidebarTopStickyButton.className = "b3-menu__item";
-                                sidebarTopStickyButton.id = "asri-enhance-sidebar-top-sticky";
-                                sidebarTopStickyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidebarTopSticky || "sidebarTopSticky"}</span>`;
-                                detailAdjustmentSubmenu.appendChild(sidebarTopStickyButton);
-                            }
-                            const sidebarTopStickyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-sidebar-top-sticky");
-                            if (sidebarTopStickyItem) {
-                                sidebarTopStickyItem.onclick = (event) => onSidebarTopStickyClick(plugin, event);
-                            }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-singlecolumnslashmenu")) {
-                                const singleColumnSlashMenuButton = document.createElement("button");
-                                singleColumnSlashMenuButton.className = "b3-menu__item";
-                                singleColumnSlashMenuButton.id = "asri-enhance-singlecolumnslashmenu";
-                                singleColumnSlashMenuButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.singleColumnSlashMenu || "singleColumnSlashMenu"}</span>`;
-                                detailAdjustmentSubmenu.appendChild(singleColumnSlashMenuButton);
-                            }
-                            const singleColumnSlashMenuItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-singlecolumnslashmenu");
-                            if (singleColumnSlashMenuItem) {
-                                singleColumnSlashMenuItem.onclick = (event) => onSingleColumnSlashMenuClick(plugin, event);
-                            }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-windowtransparencyvalue")) {
-                                const separator = document.createElement("button");
-                                separator.className = "b3-menu__separator";
-                                detailAdjustmentSubmenu.appendChild(separator);
                                 const subtitle = document.createElement("div");
                                 subtitle.className = "menu-item__subtitle";
                                 subtitle.style.userSelect = "none";
-                                subtitle.style.padding = "0 12px";
+                                subtitle.style.padding = "0 14px";
                                 subtitle.textContent = plugin.i18n?.windowTransparencyValueSubtitle || "windowTransparencyValueSubtitle";
                                 detailAdjustmentSubmenu.appendChild(subtitle);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-wholewindowtransparency")) {
+                                const wholeWindowTransparencyButton = document.createElement("button");
+                                wholeWindowTransparencyButton.className = "b3-menu__item";
+                                wholeWindowTransparencyButton.id = "asri-enhance-wholewindowtransparency";
+                                wholeWindowTransparencyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wholeWindowTransparency || "wholeWindowTransparency"}<svg class="b3-menu__icon ariaLabel asri-enhance-experimental" aria-label="${plugin.i18n?.experimentalFeature || "Experimental Feature"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg></span>`;
+                                detailAdjustmentSubmenu.appendChild(wholeWindowTransparencyButton);
+                            }
+                            const wholeWindowTransparencyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-wholewindowtransparency");
+                            if (wholeWindowTransparencyItem) {
+                                wholeWindowTransparencyItem.onclick = (event) => onWholeWindowTransparencyClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-windowtransparencyvalue")) {
                                 const windowTransparencyValueButton = document.createElement("button");
                                 windowTransparencyValueButton.className = "b3-menu__item";
                                 windowTransparencyValueButton.id = "asri-enhance-windowtransparencyvalue";
-                                windowTransparencyValueButton.innerHTML = `<div aria-label="${plugin.i18n?.windowTransparencyValue || "windowTransparencyValue"}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.1" value="0.5"></div>`;
+                                windowTransparencyValueButton.innerHTML = `<div aria-label="${plugin.i18n?.windowTransparencyValue || "windowTransparencyValue"}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.05" value="0.5"></div>`;
                                 detailAdjustmentSubmenu.appendChild(windowTransparencyValueButton);
                             }
                             const windowTransparencyValueItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-windowtransparencyvalue");
@@ -315,16 +303,32 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                                     });
                                 }
                             }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-wholewindowtransparency")) {
-                                const wholeWindowTransparencyButton = document.createElement("button");
-                                wholeWindowTransparencyButton.className = "b3-menu__item";
-                                wholeWindowTransparencyButton.id = "asri-enhance-wholewindowtransparency";
-                                wholeWindowTransparencyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wholeWindowTransparency || "wholeWindowTransparency"}<svg class="b3-menu__icon ariaLabel asri-enhance-experimental" aria-label="${plugin.i18n?.experimentalFeature || "Experimental Feature"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg></span>`;
-                                detailAdjustmentSubmenu.appendChild(wholeWindowTransparencyButton);
+                            if (detailAdjustmentSubmenu) {
+                                const separator = document.createElement("button");
+                                separator.className = "b3-menu__separator";
+                                detailAdjustmentSubmenu.appendChild(separator);
                             }
-                            const wholeWindowTransparencyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-wholewindowtransparency");
-                            if (wholeWindowTransparencyItem) {
-                                wholeWindowTransparencyItem.onclick = (event) => onWholeWindowTransparencyClick(plugin, event);
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-sidebar-top-sticky")) {
+                                const sidebarTopStickyButton = document.createElement("button");
+                                sidebarTopStickyButton.className = "b3-menu__item";
+                                sidebarTopStickyButton.id = "asri-enhance-sidebar-top-sticky";
+                                sidebarTopStickyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidebarTopSticky || "sidebarTopSticky"}</span>`;
+                                detailAdjustmentSubmenu.appendChild(sidebarTopStickyButton);
+                            }
+                            const sidebarTopStickyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-sidebar-top-sticky");
+                            if (sidebarTopStickyItem) {
+                                sidebarTopStickyItem.onclick = (event) => onSidebarTopStickyClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-singlecolumnslashmenu")) {
+                                const singleColumnSlashMenuButton = document.createElement("button");
+                                singleColumnSlashMenuButton.className = "b3-menu__item";
+                                singleColumnSlashMenuButton.id = "asri-enhance-singlecolumnslashmenu";
+                                singleColumnSlashMenuButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.singleColumnSlashMenu || "singleColumnSlashMenu"}</span>`;
+                                detailAdjustmentSubmenu.appendChild(singleColumnSlashMenuButton);
+                            }
+                            const singleColumnSlashMenuItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-singlecolumnslashmenu");
+                            if (singleColumnSlashMenuItem) {
+                                singleColumnSlashMenuItem.onclick = (event) => onSingleColumnSlashMenuClick(plugin, event);
                             }
                             if (detailAdjustmentSubmenu) {
                                 const separator = document.createElement("button");

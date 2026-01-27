@@ -29,4 +29,37 @@ $primary-color-reverse-selectors: (
     #{$selector} {
       @content;
     }
+}
+:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+  // 搜索列表
+  #searchList, #searchUnRefList{
+    background-color: var(--b3-theme-background);
   }
+  .search__header {
+    border-color: var(--b3-border-color-trans);
+  }
+  .search__list {
+      border-color: var(--b3-border-color-trans);
+  }
+  .search__layout--row {
+      border-color: var(--b3-border-color-trans);
+  }
+  .search__drag {
+      &::after {
+        background-color: var(--b3-border-color-trans);
+      }
+      &:hover::after {
+        background-color: var(--b3-theme-primary-light);
+      }
+  }
+  .search__preview {
+      border-color: var(--b3-border-color-trans);
+  }
+  // 闪卡在页签打开
+  [data-type="wnd"] .card__main {
+    background-color: var(--b3-theme-background);
+    .card__empty {
+        background-color: var(--b3-theme-background);
+    }
+}
+}

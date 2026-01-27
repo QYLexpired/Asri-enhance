@@ -438,7 +438,8 @@ function populateSidememoContainer(
 	const items: ItemWithTop[] = [];
 	const inlineMemoElements = memoElements.filter(memoEl =>
 		memoEl.hasAttribute("data-type") &&
-		memoEl.getAttribute("data-type")?.split(/\s+/).includes("inline-memo")
+		memoEl.getAttribute("data-type")?.split(/\s+/).includes("inline-memo") &&
+		!memoEl.closest(".av__gallery-content")
 	);
 	const processedInlineMemos = new Set<HTMLElement>();
 	const mergedInlineMemos: Array<{elements: HTMLElement[], content: string}> = [];

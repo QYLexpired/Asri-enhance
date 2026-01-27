@@ -1,4 +1,4 @@
-[data-asri-enhance-wholewindowtransparency="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-wholewindowtransparency="true"]:not([data-asri-enhance-windowtransparencyvalue="0"]):is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
     #asri-enhance-wholewindowtransparency {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -16,7 +16,7 @@
             background-color: transparent;
             & ~ .layout-tab-container {
                 background-color: transparent;
-                & .protyle {
+                & .protyle:not(.fullscreen) {
                     background-color: transparent;
                     & .protyle-breadcrumb {
                         background-color: transparent;          
@@ -29,12 +29,111 @@
         }
         #dockLeft {
             background-color: transparent;
+            &:not(.dock-layout-expanded) {
+                border-right: none;
+                position: relative;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    right: 0;
+                    top: 48px;
+                    width: 1px;
+                    height: calc(100% - 48px);
+                    background-color: var(--b3-border-color-trans);
+                }
+            }
         }
         #dockRight {
             background-color: transparent;
         }
-        .layout__dockl + .layout__resize--lr::after, .layout__center + .layout__resize--lr::after {
+        // 左栏右侧分隔线
+        .layout__dockl + .layout__resize--lr::after {
             background-color: var(--b3-border-color-trans);
+        }
+        // 导出预览
+        .protyle-preview {
+            background-color: transparent;
+        }
+        .protyle .protyle-preview__action {
+            background-color: transparent;
+        }
+        // 数据库
+        .av .av__views .layout-tab-bar .item--focus:not([data-theme-mode=dark] .item--focus) {
+            background-color: #ffffff99 !important;
+        }
+        .av__row--header:not([style*=transform]), .av__row--footer, .av__colsticky {
+            background-color: transparent;
+        }
+        .av .av__title:has( + .av__counter:not(.fn__none)) {
+            opacity: 0;
+        }
+        .av__counter {
+            background-color: transparent;
+            color: var(--b3-theme-accent);
+        }
+        .av__row .av__cell:not(.av__cell--header):hover .block__icon {
+            background-color: oklch(from var(--b3-theme-surface) l c h / 0.3) !important;
+        }
+        .av__gallery-item::before,
+        .av__gallery-cover {
+            background-color: transparent;
+        }
+        .av__gallery-cover .av__gallery-content~::after, .av__gallery-cover:empty::after {
+            display: none;
+        }
+        // 状态栏
+        &:not(.asri-disable-backdrop-blur) #dockBottom.fn__none:not(.has-layout-dockb-float)~.status, 
+        &:not(.asri-disable-backdrop-blur).body-asri--mobile .status {
+            background-color: oklch(from var(--b3-theme-surface) l c h / 0.3);
+        }
+        // 闪卡在页签打开
+        [data-type="wnd"] .card__main {
+            background-color: transparent;
+            .card__empty {
+                background-color: transparent;
+            }
+        }
+        // 搜索在页签打开
+        [data-type="wnd"] {
+            .search__header {
+                background: transparent;
+            }
+            .search__list {
+                background-color: transparent !important;
+            }
+        }
+        // 垂直页签
+        &:not(.body-asri--mobilem, .body--window) {
+            & .asri-enhance-verticaltab {
+                & .layout-tab-container > .protyle > .protyle-breadcrumb {
+                    & .protyle-breadcrumb__bar {
+                        background-color: oklch(from var(--b3-theme-surface) l c h / 0.3);
+                    }
+                }
+            }
+        }
+        // 表格
+        .protyle-wysiwyg [data-node-id].table table thead tr th,
+        .protyle-wysiwyg [data-node-id].table table tbody tr:nth-child(2n) td {
+            background-color: oklch(from var(--b3-theme-surface) l c h/ 0.3);
+        }
+        // kbd元素
+        .protyle-wysiwyg kbd,
+        .protyle-wysiwyg span[data-type~=kbd] {
+            background-color: oklch(from var(--b3-theme-surface) l c h/ 0.7);
+        }
+        // 反链面板
+        .sy__backlink .block__icons+.fn__flex-1 li:not(.b3-list--empty) {
+            background-color: var(--b3-list-hover);
+            backdrop-filter: blur(6px);
+            &:hover {
+                background-color: oklch(from var(--b3-theme-primary) 0.5 calc(c * 0.9 * var(--asri-c-0, 1)) h/0.1) !important;
+            }
+            &:is([data-theme-mode="dark"] li) {
+                &:hover {
+                    background-color: oklch(from var(--b3-theme-primary) 0.9 calc(c * 0.9 * var(--asri-c-0, 1)) h/0.13) !important;
+                }
+            }
         }
     }
 }
