@@ -1,10 +1,12 @@
 ### Updates
-##### v1.9.10 ~ v1.9.13
+##### v1.9.14
 - Add detail adjustments: Adjust window transparency value, whole window transparency
 - Remove detail adjustments: Disable window transparency effect (now can be achieved by setting window transparency to 0)
 - Add preset color scheme: Nostalgia
 - Make vertical tabs and topbar fusion+ can be enabled simultaneously
 - Refactoring list bullet lines
+- Optimize side memo styles, database cards disable side memo
+- Disable smooth caret in read-only mode
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
@@ -24,7 +26,7 @@ Add a series of practical features and ensure the style completely matches the A
 - Slash menu keyboard arrow key navigation (automatically enabled)
 - List bullet lines
 - Vertical tabs (only affects the tab bar in the top left corner)
-- Side memo (displays inline notes or block notes on the right side of the editor)
+- Side memo (displays inline notes, block notes, and document notes on the right side of the editor)
     - Left-click the title area (first line) of the side memo card to open the note editing window
     - Right-click the title area (first line) of the side memo card to temporarily collapse the note
     - Long press the side memo card for 1s to drag and adjust the side memo width
@@ -36,7 +38,7 @@ Detailed adjustments made completely in accordance with the Asri theme style
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
 - Single column slash menu
 - Adjust window transparency value
-- whole window transparency<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
+- Whole window transparency<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
 - Cover image fade
 - Paper texture
 - Colored headings
