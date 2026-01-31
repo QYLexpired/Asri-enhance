@@ -19,6 +19,7 @@ import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/li
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
 import { applyLiquidGlassConfig } from "./detail/liquidglass";
+import { applyGlobalFrostedGlassConfig } from "./detail/globalfrostedglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { applyPaperTextureConfig } from "./detail/papertexture";
@@ -61,6 +62,7 @@ class AsriEnhancePlugin extends Plugin {
             applyVerticalTabConfig(this, config).catch(() => { }),
             applySidememoConfig(this, config).catch(() => { }),
             applyLiquidGlassConfig(this, config).catch(() => { }),
+            applyGlobalFrostedGlassConfig(this, config).catch(() => { }),
             applySidebarTopStickyConfig(this, config).catch(() => { }),
             applyCoverImageFadeConfig(this, config).catch(() => { }),
             applyHideTabBreadcrumbConfig(this, config).catch(() => { }),

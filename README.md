@@ -1,4 +1,8 @@
 ### Updates
+##### v1.9.15
+- Add detail adjustments: Global frosted glass effect
+    - When enabled, in addition to the original frosted glass effect of the Asri theme, it introduces a frosted glass effect for the global window
+- Refactor whole window transparency
 ##### v1.9.14
 - Add detail adjustments: Adjust window transparency value, whole window transparency
 - Remove detail adjustments: Disable window transparency effect (now can be achieved by setting window transparency to 0)
@@ -47,3 +51,4 @@ Detailed adjustments made completely in accordance with the Asri theme style
 - Hide tabs/breadcrumbs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
 - More animations
 - Liquid glass<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
+- Global frosted glass

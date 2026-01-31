@@ -1,0 +1,189 @@
+[data-asri-enhance-global-frosted-glass="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+    #asri-enhance-global-frosted-glass, #asri-enhance-detail-adjustment {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    &[data-theme-mode="light"] {
+        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.75);
+        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.75);
+        --asri-enhance-global-frosted-glass-backdrop-filter: blur(8px) saturate(1.5) brightness(1.1);
+        &[data-asri-palette="polar"] {
+            --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
+        }
+    }
+    &[data-theme-mode="dark"] {
+        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.8);
+        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.65);
+        --asri-enhance-global-frosted-glass-backdrop-filter: blur(8px) saturate(1.5) brightness(0.9);
+        &[data-asri-palette="polar"] {
+            --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
+        }
+    }
+    // 窗口
+    .b3-dialog {
+        .b3-dialog__scrim {
+            background-color: transparent;
+            backdrop-filter: blur(2px) brightness(0.975);
+            transition: none;
+        }
+        .b3-dialog__container {
+            background-color: transparent;
+            transition: none;
+            &::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                z-index: -1;
+                corner-shape: inherit;
+                border-radius: inherit;
+                background-color: var(--asri-enhance-global-frosted-glass-background);
+                backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
+            }
+            .config__tab-wrap {
+                background-color: transparent;
+                .config__tab-container {
+                    background-color: transparent;
+                }
+            }
+            .config__panel .b3-tab-bar {
+                background-color: var(--asri-enhance-global-frosted-glass-surface);
+            }
+            .search__header {
+                background: transparent;
+                .b3-text-field {
+                    background-color: transparent;
+                }
+            }
+            .search__list,
+            #searchList,
+            #searchUnRefList {
+                background-color: transparent;
+            }
+            .protyle:not(.fullscreen) {
+                background-color: transparent;
+                .protyle-breadcrumb {
+                    background-color: transparent;
+                }
+                // 修复部分窗口毛玻璃失效
+                .protyle-wysiwyg [data-node-id] {
+                    z-index: 1; 
+                }
+            }
+            .layout-tab-bar + .fn__flex-1 {
+                background-color: transparent;
+            }
+        }
+    }
+    // 集市
+    .config-bazaar__content .b3-card {
+        background-color: transparent;
+    }
+    #configBazaarReadme {
+        background-color: transparent;
+        backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
+        .item__side {
+            background-color: oklch(from var(--b3-theme-surface) l c h / 0.9);
+        }
+        .item__main  {
+            background-color: oklch(from var(--b3-theme-background) l c h / 0.9);
+        }
+    }
+    [data-name=bazaar] {
+        .config-bazaar__panel {
+            &::before {
+                display: none;
+            }
+            .config-bazaar__title {
+                background-color: transparent;
+                input,
+                select,
+                button {
+                    backdrop-filter: blur(10px);
+                }
+                button {
+                    padding: 2px 4px;
+                }
+                .b3-form__icon-icon {
+                    z-index: 1;
+                }
+            }
+        }
+    }
+    // 账户
+    .config-account {
+        background-color: transparent;
+        .config-account__center {
+            background-color: transparent;
+        }
+        .config-account__cover[style="background-image: url()"] {
+            background: radial-gradient(circle at bottom, oklch(from var(--b3-theme-primary) l calc(c * 1.05) h / 0.3) 30%, oklch(from var(--b3-theme-primary) l calc(c * 1.1) calc(h + 30) / 0.1) 85%) !important;
+        }
+    }
+    // 弹出窗口
+    .block__popover.block__popover--open {
+        background-color: transparent;
+        animation: none;
+        &::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            corner-shape: inherit;
+            border-radius: inherit;
+            background-color: var(--asri-enhance-global-frosted-glass-background);
+            backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
+        }
+        .block__icons {
+            background-color: transparent;
+        }
+        .block__content {
+            .protyle:not(.fullscreen) {
+                background-color: transparent;
+                .protyle-breadcrumb {
+                    background-color: transparent;
+                }
+                // 修复部分窗口毛玻璃失效
+                .protyle-wysiwyg [data-node-id] {
+                    z-index: 1; 
+                }
+            }
+        }
+    }
+    // 闪卡
+    [data-key="dialog-opencard"] {
+        .b3-dialog {
+            .b3-dialog__scrim {
+                background-color: transparent !important;
+                backdrop-filter: blur(12px) brightness(0.98);
+            }
+            .card__main {
+                background-color: transparent;
+                .card__empty {
+                    background-color: transparent;
+                }
+            }
+        }
+    }
+    // 最近的文档
+    [data-key="dialog-recentdocs"] {
+        .b3-dialog {
+            .b3-list--background:first-child {
+                background-color: transparent;
+            }
+        }
+    }
+    // 数据历史
+    [data-key="dialog-history"], [data-key="dialog-historycompare"] {
+        .b3-dialog {
+            .history__panel>.b3-list,
+            .history__panel>.history__diff,
+            .history__text {
+                background-color: transparent;
+            }
+        }
+    }
+}

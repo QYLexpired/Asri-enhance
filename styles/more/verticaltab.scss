@@ -176,6 +176,7 @@
             }
             & > .fn__flex:first-child {
                 background-color: var(--b3-theme-background);
+                mix-blend-mode: unset;
                 flex: 1;
                 flex-direction: column;
                 height: 100%;

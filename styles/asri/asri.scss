@@ -24,6 +24,19 @@ $primary-color-reverse-selectors: (
   ".b3-chip--primary",
   ".b3-chip--current"
 );
+$dockl-transparency-selectors: (
+  ":is(.layout__dockl, .layout__dockb):not(.layout--float) .layout-tab-container",
+  ".dock#dockLeft.dock-layout-expanded",
+  ".dock#dockBottom",
+  "#dockBottom.fn__none.has-layout-dockb-float ~ .status",
+  "#dockBottom:not(.fn__none) ~ .status"
+);
+$other-transparency-selectors: (
+  ".layout__dockr:not(.layout--float) .layout-tab-container",
+  ".dock#dockLeft:not(.dock-layout-expanded)",
+  ".dock#dockRight",
+  ".layout__center"
+);
 @mixin darkmode-counterpart($root: false) {
     $selector: if($root, "&[data-theme-mode=dark]", "[data-theme-mode=dark] &");
     #{$selector} {
@@ -51,6 +64,16 @@ $primary-color-reverse-selectors: (
       &:hover::after {
         background-color: var(--b3-theme-primary-light);
       }
+      &:is(.search__layout--row .search__drag) {
+        &::after {
+          width: 1px;
+        }
+      }
+      &:not(.search__layout--row .search__drag) {
+        &::after {
+          height: 1px;
+        }
+      }
   }
   .search__preview {
       border-color: var(--b3-border-color-trans);
@@ -61,5 +84,40 @@ $primary-color-reverse-selectors: (
     .card__empty {
         background-color: var(--b3-theme-background);
     }
-}
+  }
+  // 数据历史
+  .history__resize {
+    box-shadow: 1px 0 0 0 var(--b3-border-color-trans) inset;
+    &:hover {
+        box-shadow: 1px 0 0 0 var(--b3-theme-primary-light) inset;
+    }
+  }
+  // 图片查看器
+  .viewer-backdrop {
+    background-color: oklch(from var(--b3-theme-primary) l 0.1 h / 0.1);
+    .viewer-navbar {
+      background-color: oklch(from var(--b3-theme-primary) l 0.12 h / 0.12);
+      .viewer-list {
+        transition: 0.5s cubic-bezier(0.1, 0.9, 0.2, 1);
+      }
+    }
+    .viewer-tooltip {
+      background-color: transparent;
+      backdrop-filter: none;
+    }
+    .viewer-title {
+      background-color: transparent;
+      backdrop-filter: none;
+    }
+    .viewer-toolbar>ul {
+      background-color: transparent;
+      backdrop-filter: none;
+    }
+    &:is([data-theme-mode="dark"] .viewer-backdrop) {
+      background-color: oklch(from var(--b3-theme-primary) 0.3 0.05 h / 0.1);
+      .viewer-navbar {
+        background-color: oklch(from var(--b3-theme-primary) 0.55 0.05 h / 0.12);
+      }
+    }
+  }
 }

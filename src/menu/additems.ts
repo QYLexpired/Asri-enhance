@@ -18,6 +18,7 @@ import { onListBulletLineClick } from "../more/listbulletline";
 import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick } from "../more/sidememo";
 import { onLiquidGlassClick } from "../detail/liquidglass";
+import { onGlobalFrostedGlassClick } from "../detail/globalfrostedglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onCoverImageFadeClick } from "../detail/coverimagefade";
 import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
@@ -417,6 +418,17 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             const liquidGlassItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-liquid-glass");
                             if (liquidGlassItem) {
                                 liquidGlassItem.onclick = (event) => onLiquidGlassClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-global-frosted-glass")) {
+                                const globalFrostedGlassButton = document.createElement("button");
+                                globalFrostedGlassButton.className = "b3-menu__item";
+                                globalFrostedGlassButton.id = "asri-enhance-global-frosted-glass";
+                                globalFrostedGlassButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.globalFrostedGlass || "globalFrostedGlass"}</span>`;
+                                detailAdjustmentSubmenu.appendChild(globalFrostedGlassButton);
+                            }
+                            const globalFrostedGlassItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-global-frosted-glass");
+                            if (globalFrostedGlassItem) {
+                                globalFrostedGlassItem.onclick = (event) => onGlobalFrostedGlassClick(plugin, event);
                             }
                             if (detailAdjustmentSubmenu) {
                                 const separator = document.createElement("button");

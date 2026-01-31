@@ -1,3 +1,4 @@
+@use "../asri/asri" as *;
 [data-asri-enhance-windowtransparencyvalue]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
     #asri-enhance-windowtransparencyvalue {
         background-color: transparent !important;
@@ -71,7 +72,11 @@
     &[data-asri-enhance-windowtransparencyvalue="1"] {
         --asri-enhance-windowtransparency-value: 1;
     }
-    body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) :is(.layout__dockl,.layout__dockb):not(.layout--float) .layout-tab-container, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) .dock.dock-layout-expanded, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) .dock#dockBottom, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) #dockBottom.fn__none.has-layout-dockb-float~.status, body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) #dockBottom:not(.fn__none)~.status {
-        background-color: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
+    &:not([data-asri-enhance-wholewindowtransparency="true"]) {
+        body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen)  {
+            #{$dockl-transparency-selectors} {
+                background-color: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value))) !important;
+            }
+        }
     }
 }

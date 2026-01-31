@@ -1,4 +1,8 @@
 ### 更新
+##### v1.9.15
+- 新增细节调整：全局毛玻璃效果
+    - 启用后，在Asri主题原有毛玻璃效果基础上，额外为全局窗口引入毛玻璃效果
+- 重做全窗口透明效果
 ##### v1.9.14
 - 新增细节调整：调整窗体透明度、全窗体透明
 - 移除细节调整：禁用窗体透明效果（现在可通过将窗体透明度调整为0实现）
@@ -47,3 +51,4 @@
 - 隐藏页签/面包屑（仅在开启顶栏融合+时生效，建议搭配渐进模糊效果）
 - 更多动效
 - 液态玻璃<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
+- 全局毛玻璃
