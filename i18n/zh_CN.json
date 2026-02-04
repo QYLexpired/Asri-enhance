@@ -34,6 +34,7 @@
   "windowTransparencyValueSubtitle": "调整窗体透明效果",
   "wholeWindowTransparency": "全窗体透明",
   "smoothCaret": "平滑光标",
+  "islandLayout": "岛式布局",
   "followTime": "跟随时间",
   "mergedSideMemoEditTip": "这是多个行内备注合并显示的侧边备注卡片，需在每个源行内备注处分别修改"
 }

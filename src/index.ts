@@ -29,6 +29,7 @@ import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu
 import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyvalue";
 import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
 import { applySmoothCaretConfig } from "./more/smoothcaret";
+import { applyIslandLayoutConfig } from "./more/islandlayout";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { removeFollowTimeConfig } from "./followtime/followtime";
@@ -72,6 +73,7 @@ class AsriEnhancePlugin extends Plugin {
             applyWindowTransparencyValueConfig(this, config).catch(() => { }),
             applyWholeWindowTransparencyConfig(this, config).catch(() => { }),
             applySmoothCaretConfig(this, config).catch(() => { }),
+            applyIslandLayoutConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
         ]);
     }
