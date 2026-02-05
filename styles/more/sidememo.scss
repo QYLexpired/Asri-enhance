@@ -70,6 +70,7 @@
                     width: var(--asri-enhance-sidememo-container-width);
                     max-width: calc(var(--b3-width-protyle-content) - 2 * var(--asri-enhance-sidememo-re));
                     border-radius: 14px;
+                    corner-shape: superellipse(1.4);
                     box-shadow: 0 0 0 .5px inset var(--b3-border-color-trans);
                     font-size: 0.8125em;
                     color: var(--b3-theme-on-surface);

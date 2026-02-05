@@ -33,19 +33,23 @@ $islandlayout-dock-transparency-selectors: (
         .layout__center {
             border: 1px solid var(--b3-border-color-trans);
         }
+        .config__panel .b3-tab-bar {
+            border: 1px solid var(--b3-border-color-trans);
+        }
     }
+    --asri-enhance-islandlayout-width: 8px;
     body:not(.body-asri--mobile) {
         background-color: var(--b3-theme-surface);
         #layouts {
             .layout__center {
-                margin: 6px 0;
-                min-height: calc(100% - 12px);
+                margin: var(--asri-enhance-islandlayout-width) 0;
+                min-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
                 box-sizing: border-box;
                 corner-shape: superellipse(1.4);
                 border-radius: 16px;
                 &:is(#dockLeft.fn__none ~ #layouts .layout__center) {
-                    margin-left: 6px;
-                    margin-right: 6px;
+                    margin-left: var(--asri-enhance-islandlayout-width);
+                    margin-right: var(--asri-enhance-islandlayout-width);
                 }
                 &:is(.fn__flex.has-dockb #layouts .layout__center) {
                     margin-bottom: 0;
@@ -61,7 +65,7 @@ $islandlayout-dock-transparency-selectors: (
         }
         #toolbar {
             .toolbar__item {
-                transform: translateY(6px);
+                transform: translateY(var(--asri-enhance-islandlayout-width));
             }
             #AsriPluginsIconsDivider {
                 display: none;
@@ -69,6 +73,7 @@ $islandlayout-dock-transparency-selectors: (
             &:is(body:is(.body-asri--fullscreen.body-asri--mac, .body-asri--browser, :not(.body-asri--mac)) #toolbar) {
                 &:not([style*="--topbar-left-spacing: 0"], [style*="--topbar-left-spacing:0"], [style*="--topbar-left-spacing: 0px"], [style*="--topbar-left-spacing:0px"]) {
                     #barWorkspace {
+                        width: 26px;
                         max-width: 26px;
                         outline: none;
                         color: transparent;
@@ -80,7 +85,7 @@ $islandlayout-dock-transparency-selectors: (
                             width: 16px;
                             height: 16px;
                             position: absolute;
-                            left: 3px;
+                            left: 4px;
                             top: 50%;
                             transform: translateY(-50%);
                             background-image: url("data:image/svg+xml,%3Csvg t='1770179479984' class='icon' viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='1796' width='200' height='200'%3E%3Cpath d='M277.376 89.984c-7.072 7.008-12.672 13.344-12.48 14.016s-0.128 0.96-0.704 0.64c-1.504-0.928-12.704 10.784-11.584 12.032 0.512 0.576 0.352 0.704-0.416 0.256-1.44-0.8-7.808 5.536-7.808 7.776 0 0.736-0.416 1.056-0.928 0.736-1.184-0.736-4.064 2.368-3.072 3.328 0.416 0.416 0.064 0.736-0.736 0.736-1.92 0-7.488 5.568-7.488 7.488 0 0.8-0.32 1.152-0.736 0.768-0.768-0.768-10.752 8.448-24.096 22.144-22.4 23.04-41.152 41.312-41.728 40.768-0.384-0.384-0.672 0.288-0.672 1.472s-0.544 1.76-1.216 1.344c-1.12-0.672-1.76 0.928-1.344 3.36 0.064 0.512-0.544 0.768-1.376 0.608s-1.376 0.416-1.184 1.312c0.192 0.896-0.192 1.312-0.8 0.928s-4.096 2.4-7.68 6.176c-10.112 10.656-23.04 23.488-32.768 32.544-4.864 4.544-8.48 8.256-8.032 8.256s-0.96 1.504-3.2 3.36c-7.968 6.56-22.048 21.696-23.328 25.056-0.448 1.184-1.664 2.144-2.688 2.144s-1.888 0.864-1.888 1.888-0.448 1.632-0.96 1.312c-1.248-0.768-23.616 20.704-22.592 21.696 0.416 0.416 0.064 0.768-0.768 0.768s-4.288 2.88-7.648 6.4c-16.064 16.768-25.664 26.592-26.048 26.592-0.224 0-5.12 4.704-10.912 10.432L0 366.752v289.024c0 197.632 0.384 289.76 1.248 291.392 1.856 3.456 3.776 2.848 7.904-2.432 2.016-2.592 4.096-4.448 4.576-4.128s0.928-0.416 0.928-1.568 0.288-1.824 0.672-1.44c0.64 0.64 92.768-90.208 157.888-155.712 5.536-5.568 25.472-25.472 44.288-44.192s33.856-34.624 33.408-35.328c-0.416-0.704-0.256-0.928 0.384-0.544 1.664 1.024 8-5.088 6.976-6.72-0.48-0.768-0.256-0.992 0.512-0.512 1.376 0.864 6.368-3.648 6.368-5.792 0-0.64 0.288-0.896 0.672-0.544 2.272 2.304 27.616-26.656 26.944-30.816-0.384-2.368-0.704-133.92-0.704-292.352s-0.416-288.032-0.928-287.968-6.688 5.856-13.728 12.864z m433.504 2.656c-8.576 8.576-15.584 16.32-15.584 17.28s-0.352 1.344-0.736 0.928c-0.576-0.608-39.328 37.28-88.48 86.496l-48.864 49.024-43.968 44.128v292.8c0 161.056 0.288 292.8 0.672 292.8 1.344 0 6.496-5.856 5.792-6.592-0.416-0.416 0.032-0.736 0.992-0.768s5.312-3.968 9.664-8.8c4.352-4.8 11.456-12.064 15.744-16.16s15.584-15.296 25.056-24.96c9.472-9.664 20.704-20.928 24.96-25.056 21.728-21.12 36.896-36.224 36.448-36.224-0.288 0 4.512-5.12 10.656-11.392s11.584-11.2 12.096-10.912 0.928-0.48 0.928-1.632 0.352-1.76 0.736-1.344c0.928 0.928 4.128-2.144 4.128-4 0-0.736 0.416-1.152 0.928-0.864 0.864 0.512 7.36-5.44 6.72-6.144-0.16-0.192 0.096-0.448 0.608-0.576 1.696-0.448 3.712-2.816 3.168-3.744-0.32-0.512 0.352-0.928 1.44-0.928s1.632-0.544 1.216-1.216c-0.416-0.672-0.256-1.216 0.352-1.216s13.024-11.808 27.584-26.208l26.464-26.208V370.976c0-159.616-0.352-291.04-0.736-292.096-1.152-3.008-1.312-2.848-17.888 13.696z' fill='%23D23E31' p-id='1797'%3E%3C/path%3E%3Cpath d='M292.064 75.776c0 0.672 0.832 1.216 1.824 1.216s1.824-0.544 1.824-1.216c0-0.672-0.832-1.216-1.824-1.216s-1.824 0.544-1.824 1.216z m3.264 2.016c-0.448 0.448-0.8 132.288-0.768 292.992l0.064 292.16 52.032 51.328c43.52 42.912 109.12 107.712 135.136 133.44 3.52 3.488 11.104 11.296 16.8 17.344s11.072 11.04 11.904 11.072c1.216 0.064 1.536-59.232 1.536-292.64V290.784l-5.632-5.152a411.008 411.008 0 0 1-13.152-12.8c-6.528-6.624-24.256-24.416-49.824-49.952-3.936-3.936-14.88-15.04-24.288-24.608s-17.088-17.12-17.088-16.736-3.712-3.2-8.256-7.968a1937.92 1937.92 0 0 0-27.2-27.52c-20.928-20.832-25.6-25.536-51.104-51.328-17.184-17.376-18.56-18.528-20.192-16.896z m436.192 1.92c-0.416 1.504-0.736 133.248-0.736 292.768v290.016l143.584 143.488c113.824 113.728 144.224 143.488 146.656 143.488h3.04V366.496l-144.8-144.768C799.616 142.112 733.984 76.96 733.376 76.96s-1.408 1.248-1.824 2.752z' fill='%233B3E43' p-id='1798'%3E%3C/path%3E%3Cpath d='M729.504 76.672c-0.544 104.512-0.32 585.248 0.288 584.608 1.184-1.184 1.824-585.536 0.608-585.536a0.928 0.928 0 0 0-0.928 0.928zM292.16 366.304c0.064 159.104 0.544 290.688 1.088 292.352s1.152-128.512 1.408-289.312c0.352-233.28 0.128-292.352-1.088-292.352s-1.504 58.592-1.408 289.312z m220.448 217.184c0 161.312 0.16 227.104 0.32 146.24s0.192-212.832 0-293.28c-0.192-80.416-0.32-14.272-0.32 147.04zM692.832 697.44l-7.904 8.256 8.256-7.904c7.68-7.328 8.8-8.608 7.904-8.608-0.192 0-3.904 3.712-8.256 8.256zM131.648 234.624c-1.152 1.344-1.664 2.432-1.152 2.432s1.888-1.12 3.04-2.432c1.152-1.344 1.664-2.432 1.152-2.432s-1.888 1.12-3.04 2.432z m-49.12 48.8c-0.448 0.736-0.384 1.312 0.192 1.312s0.16 0.544-0.832 1.216c-1.28 0.832-1.344 1.184-0.256 1.216 0.864 0 1.888-0.832 2.272-1.888 0.864-2.272-0.192-3.712-1.344-1.856z m560.64 462.816c-6.176 6.272-10.816 11.584-10.4 11.84s5.856-4.704 12.064-10.944c6.208-6.24 10.88-11.584 10.4-11.84s-5.92 4.672-12.064 10.944z m-521.664 87.456l-3.584 3.968 3.968-3.584a30.816 30.816 0 0 0 3.968-3.968c0-0.928-0.992-0.128-4.352 3.584zM7.936 945.824c-1.216 1.344-1.92 2.432-1.6 2.432s1.888-1.12 3.424-2.432 2.272-2.432 1.6-2.432c-0.672 0-2.208 1.12-3.424 2.432z' p-id='1799'%3E%3C/path%3E%3C/svg%3E");
@@ -93,7 +98,8 @@ $islandlayout-dock-transparency-selectors: (
         }
         #dockLeft {
             background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
-            padding-top: var(--avoid-topbar) !important;
+            padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
+            padding-bottom: var(--asri-enhance-islandlayout-width);
             border-right: none !important;
             &:not(.dock-layout-expanded)::after {
                 display: none;
@@ -101,8 +107,12 @@ $islandlayout-dock-transparency-selectors: (
         }
         #dockRight {
             background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
-            padding-top: calc(var(--avoid-topbar) + 6px) !important;
+            padding-top: max(calc(var(--avoid-topbar) + var(--asri-enhance-islandlayout-width)), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
+            padding-bottom: var(--asri-enhance-islandlayout-width);
             border-left: none !important;
+            &.dock-layout-expanded {
+                padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
+            }
         }
         #dockBottom {
             background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
@@ -111,12 +121,17 @@ $islandlayout-dock-transparency-selectors: (
         .layout__dockl {
             & > .fn__flex:first-child {
                 .layout-tab-container {
-                    padding-top: var(--avoid-topbar) !important;
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
                 }
             }
             & > .fn__flex.fn__none ~ .fn__flex {
                 .layout-tab-container {
-                    padding-top: var(--avoid-topbar) !important;   
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;   
+                }
+            }
+            & > :nth-last-child(1 of .fn__flex:not(.fn__none)) {
+                .layout-tab-container {
+                    padding-bottom: var(--asri-enhance-islandlayout-width);
                 }
             }
             .layout-tab-container {
@@ -124,10 +139,58 @@ $islandlayout-dock-transparency-selectors: (
             }
         }
         .layout__dockr {
+            & > .fn__flex:first-child {
+                .layout-tab-container {
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
+                }
+            }
+            & > .fn__flex.fn__none ~ .fn__flex {
+                .layout-tab-container {
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;   
+                }
+            }
+            & > :nth-last-child(1 of .fn__flex:not(.fn__none)) {
+                .layout-tab-container {
+                    padding-bottom: var(--asri-enhance-islandlayout-width);
+                }
+            }
             .layout-tab-container {
                 background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
                 border-left: none !important;
             }
+        }
+    }
+    .config__panel .b3-tab-bar {
+        corner-shape: superellipse(1.4);
+        border-radius: 16.8px;
+        margin: var(--asri-enhance-islandlayout-width);
+        padding: var(--asri-enhance-islandlayout-width);
+        height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
+        max-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
+        box-sizing: border-box;
+    }
+    #configBazaarReadme {
+        .item__side {
+            corner-shape: superellipse(1.4);
+            border-radius: 16.8px;
+            margin: var(--asri-enhance-islandlayout-width);
+            padding: var(--asri-enhance-islandlayout-width);
+            height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
+            max-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
+            box-sizing: border-box;
+            width: calc(260px + 2 * var(--asri-enhance-islandlayout-width));
+        }
+        .item__preview {
+            corner-shape: superellipse(1.4);
+            border-radius: 16.8px;
+            margin: var(--asri-enhance-islandlayout-width) 0;
+            width: calc(100% - var(--asri-enhance-islandlayout-width));
+            box-sizing: border-box;
+        }
+        .item__main .b3-typography:not(.item__readme) {
+            corner-shape: superellipse(1.4);
+            border-radius: 16.8px;
+            width: calc(100% - 292px - var(--asri-enhance-islandlayout-width));
         }
     }
     // 窗体透明效果
