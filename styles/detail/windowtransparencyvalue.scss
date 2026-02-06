@@ -1,5 +1,5 @@
 @use "../asri/asri" as *;
-[data-asri-enhance-windowtransparencyvalue]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-windowtransparencyvalue]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-windowtransparencyvalue {
         background-color: transparent !important;
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {

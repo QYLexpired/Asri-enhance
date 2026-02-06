@@ -1,4 +1,4 @@
-[data-asri-enhance-listbulletline="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-listbulletline="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-list-bullet-line {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -7,16 +7,18 @@
             }
         }
     }
+    --asri-enhance-listbulletline-highlight-color: var(--b3-theme-primary);
     .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
         content: '';
         box-sizing: border-box;
-        border-left: 2px solid var(--b3-theme-accent);
-        border-bottom: 2px solid var(--b3-theme-accent);
-        border-bottom-left-radius: 12px;
+        border-left: 1.5px solid var(--asri-enhance-listbulletline-highlight-color);
+        border-bottom: 1.5px solid var(--asri-enhance-listbulletline-highlight-color);
+        border-bottom-left-radius: 16px;
         corner-shape: superellipse(1.4);
         position: absolute;
         left: -18px;
-        animation: listbulletlines 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
+        animation: listbulletlines 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
+        transform-origin: left top;
         --asri-enhance-bullet-line-fontsize-fix: calc((var(--b3-font-size-editor) - 16px) * 0.75);
         --asri-enhance-bullet-fix-u: 1.25px;
         --asri-enhance-bullet-fix-o: 10.25px;
@@ -24,19 +26,17 @@
     }
     @keyframes listbulletlines {
         0% {
-            filter: blur(1px);
-            opacity: 0;
+            transform: scaleX(0.5) scaleY(0.8);
         }
         100% {
-            filter: blur(0px);
-            opacity: 1;
+            transform: scaleX(1) scaleY(1);
         }
     }
     /* 参与连线的列表符号高亮 */
     .protyle-wysiwyg [data-node-id].li:is([data-subtype="o"], [data-subtype="u"], [data-subtype="t"]).asri-enhance-bullet-highlight > .protyle-action {
-        color: var(--b3-theme-accent);
+        color: var(--asri-enhance-listbulletline-highlight-color);
         &::after {
-            color: var(--b3-theme-accent);
+            color: var(--asri-enhance-listbulletline-highlight-color);
         }
     }
     /* 无序列表紧接无序列表 */

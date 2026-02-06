@@ -43,7 +43,7 @@ $other-transparency-selectors: (
       @content;
     }
 }
-:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
   // 搜索列表
   #searchList, #searchUnRefList{
     background-color: var(--b3-theme-background);

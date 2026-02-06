@@ -1,4 +1,4 @@
-[data-asri-enhance-coloredheading="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-coloredheading="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-colored-heading, #asri-enhance-detail-adjustment {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -83,6 +83,65 @@
         }
         .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text {
             color: oklch(from var(--b3-theme-primary) calc(l + 0.15) c calc(h + 300));
+        }
+    }
+    /* 极地配色 */
+    &[data-theme-mode="light"][data-asri-palette="polar"] {
+        :is(.b3-typography,.protyle-wysiwyg) {
+            h1 {
+                color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 50));
+            }
+            h2 {
+                color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 100));
+            }
+            h3 {
+                color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 150));
+            }
+            h4 {
+                color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 200));
+            }
+            h5 {
+                color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 250));
+            }
+            h6 {
+                color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 300));
+            }
+        }
+        :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h1 [spellcheck] {
+            color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 50));
+        }
+        :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h2 [spellcheck] {
+            color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 100));
+        }
+        :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h3 [spellcheck] {
+            color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 150));
+        }
+        :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h4 [spellcheck] {
+            color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 200));
+        }
+        :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h5 [spellcheck] {
+            color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 250));
+        }
+        :is(.b3-typography,.protyle-wysiwyg) [data-type=NodeHeading].h6 [spellcheck] {
+            color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 300));
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h1] .b3-list-item__text {
+            color: oklch(from var(--b3-theme-primary) 0.35 0.5 calc(h + 50));
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h2] .b3-list-item__text {
+            color: oklch(from var(--b3-theme-primary) 0.35 0.5 calc(h + 100));
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h3] .b3-list-item__text {
+            color: oklch(from var(--b3-theme-primary) 0.35 0.5 calc(h + 150));
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h4] .b3-list-item__text {
+            color: oklch(from var(--b3-theme-primary) 0.35 0.5 calc(h + 200));
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h5] .b3-list-item__text {
+            color: oklch(from var(--b3-theme-primary) 0.35 0.5 calc(h + 250));
+        }
+        .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h6] .b3-list-item__text {
+            color: oklch(from var(--b3-theme-primary) 0.35 0.5 calc(h + 300));
         }
     }
     /* 故障配色 */

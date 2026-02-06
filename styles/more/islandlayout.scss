@@ -7,7 +7,7 @@ $islandlayout-dock-transparency-selectors: (
     "#dockBottom.fn__none.has-layout-dockb-float ~ .status",
     "#dockBottom:not(.fn__none) ~ .status"
 );
-[data-asri-enhance-island-layout="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-island-layout="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-island-layout {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -35,6 +35,11 @@ $islandlayout-dock-transparency-selectors: (
         }
         .config__panel .b3-tab-bar {
             border: 1px solid var(--b3-border-color-trans);
+        }
+        #configBazaarReadme {
+            .item__side {
+                border: 1px solid var(--b3-border-color-trans);
+            }
         }
     }
     --asri-enhance-islandlayout-width: 8px;

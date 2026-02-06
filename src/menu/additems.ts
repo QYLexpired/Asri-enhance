@@ -17,7 +17,6 @@ import { onColoredTreeClick } from "../detail/coloredtree";
 import { onListBulletLineClick } from "../more/listbulletline";
 import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick } from "../more/sidememo";
-import { onLiquidGlassClick } from "../detail/liquidglass";
 import { onGlobalFrostedGlassClick } from "../detail/globalfrostedglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onCoverImageFadeClick } from "../detail/coverimagefade";
@@ -412,17 +411,6 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             const moreAnimationsItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-moreanimations");
                             if (moreAnimationsItem) {
                                 moreAnimationsItem.onclick = (event) => onMoreAnimationsClick(plugin, event);
-                            }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-liquid-glass")) {
-                                const liquidGlassButton = document.createElement("button");
-                                liquidGlassButton.className = "b3-menu__item";
-                                liquidGlassButton.id = "asri-enhance-liquid-glass";
-                                liquidGlassButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.liquidGlass || "liquidGlass"}<svg class="b3-menu__icon ariaLabel asri-enhance-experimental" aria-label="${plugin.i18n?.experimentalFeature || "Experimental Feature"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg></span>`;
-                                detailAdjustmentSubmenu.appendChild(liquidGlassButton);
-                            }
-                            const liquidGlassItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-liquid-glass");
-                            if (liquidGlassItem) {
-                                liquidGlassItem.onclick = (event) => onLiquidGlassClick(plugin, event);
                             }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-global-frosted-glass")) {
                                 const globalFrostedGlassButton = document.createElement("button");

@@ -1,14 +1,14 @@
 @use "public" as *;
 #{$primary-color-reverse-selectors,
   ".b3-button--outline"} {
-    [data-asri-palette="glitch"][data-theme-mode="light"][data-light-theme="Asri"] & {
+    [data-asri-palette="glitch"][data-theme-mode="light"][data-light-theme="Asri"]:root & {
       --b3-theme-on-primary: #080374;
     }
-    [data-asri-palette="glitch"][data-theme-mode="dark"][data-dark-theme="Asri"] & {
+    [data-asri-palette="glitch"][data-theme-mode="dark"][data-dark-theme="Asri"]:root & {
       --b3-theme-on-primary: #000000;
     }
   }
-[data-asri-palette="glitch"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-palette="glitch"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
   .asri-config:not(#topbarFusionPlus) {
     --b3-theme-accent: var(--b3-theme-on-background);
   }

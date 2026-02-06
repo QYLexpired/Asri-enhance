@@ -1,5 +1,5 @@
 @use "../asri/overflowfadein" as *;
-[data-asri-enhance-side-memo="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-side-memo="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-sidememo {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -119,7 +119,7 @@
     //markdown解析
     .asri-enhance-sidememo-container {
         & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content, .asri-enhance-sidememo-filememo-item-content) {
-            & > * {
+            & > :is(h1, h2, h3, h4, h5, h6, blockquote, code, a, table, hr, input[type="checkbox"], ul, ol, pre) {
                 margin: 0.25em 0;
                 &:first-child {
                     margin-top: 0;

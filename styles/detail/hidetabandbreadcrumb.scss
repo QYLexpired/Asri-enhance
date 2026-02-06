@@ -1,4 +1,4 @@
-[data-asri-enhance-hide-tab-breadcrumb="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-hide-tab-breadcrumb="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-hide-tab-breadcrumb, #asri-enhance-detail-adjustment {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -27,7 +27,7 @@
                     &:hover {
                         opacity: 1;
                         filter: blur(0px);
-                        & ~ .protyle-breadcrumb__space ~ * {
+                        & ~ .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
                             opacity: 0;
                             filter: blur(3px);
                         }
@@ -40,7 +40,7 @@
                             filter: blur(3px) !important;
                         }
                     }
-                    & ~ * {
+                    & ~ :is(.protyle-breadcrumb__icon, .block__icon) {
                         transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
                         opacity: 0;
                         filter: blur(3px);

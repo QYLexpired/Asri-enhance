@@ -1,4 +1,4 @@
-[data-asri-enhance-headinglevelhint="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-headinglevelhint="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-heading-level-hint,
     #asri-enhance-detail-adjustment {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
@@ -77,6 +77,29 @@
             }
             &.h6::before {
                 color: oklch(from var(--b3-theme-primary) l c calc(h + 300));
+            }
+        }
+        /* 极地配色 */
+        &[data-theme-mode="light"][data-asri-palette="polar"] {
+            .protyle-wysiwyg [data-type=NodeHeading]:not(.asri-selected-block) {
+                &.h1::before {
+                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 50));
+                }
+                &.h2::before {
+                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 100));
+                }
+                &.h3::before {
+                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 150));
+                }
+                &.h4::before {
+                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 200));
+                }
+                &.h5::before {
+                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 250));
+                }
+                &.h6::before {
+                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 300));
+                }
             }
         }
     }

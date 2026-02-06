@@ -7,6 +7,7 @@ const SELECTED_CLASS = "asri-enhance-bullet-highlight";
 const LINE_CLASS = "asri-enhance-bullet-line";
 const LINE_HEIGHT_VAR = "--asri-enhance-bullet-line-height";
 let selectionChangeHandler: (() => void) | null = null;
+let clickHandler: ((event: MouseEvent) => void) | null = null;
 let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 let lastMarkedItems: Set<HTMLElement> = new Set();
 const clearBulletLineMarks = () => {
@@ -29,10 +30,23 @@ const addMarkToItem = (item: HTMLElement, hasNext: boolean, nextItem?: HTMLEleme
         item.classList.add(LINE_CLASS);
     }
 };
-const runSelectionUpdate = () => {
+const runSelectionUpdate = (clickTarget?: HTMLElement | null) => {
     const selection = window.getSelection();
     const currentListItems: HTMLElement[] = [];
-    if (selection && selection.rangeCount) {
+    if (clickTarget) {
+        let node: Node | null = clickTarget;
+        while (node) {
+            const element = node as HTMLElement;
+            if (element.dataset?.type === "NodeListItem") {
+                currentListItems.push(element);
+            }
+            if (element.classList?.contains("protyle-wysiwyg")) {
+                break;
+            }
+            node = element.parentElement;
+        }
+    }
+    else if (selection && selection.rangeCount) {
         let node: Node | null = selection.getRangeAt(0).startContainer;
         while (node && node.nodeType !== Node.ELEMENT_NODE) {
             node = node.parentElement;
@@ -96,7 +110,20 @@ const bindSelectionChange = () => {
             debounceTimer = null;
         }, 50);
     };
+    clickHandler = (event: MouseEvent) => {
+        const target = event.composedPath()[0] as HTMLElement;
+        if (target.closest?.(".protyle-action")) {
+            if (debounceTimer) {
+                clearTimeout(debounceTimer);
+            }
+            debounceTimer = setTimeout(() => {
+                runSelectionUpdate(target);
+                debounceTimer = null;
+            }, 50);
+        }
+    };
     document.addEventListener("selectionchange", selectionChangeHandler);
+    document.addEventListener("click", clickHandler, { capture: true });
     runSelectionUpdate();
 };
 const unbindSelectionChange = () => {
@@ -109,6 +136,10 @@ const unbindSelectionChange = () => {
         debounceTimer = null;
     }
     document.removeEventListener("selectionchange", selectionChangeHandler);
+    if (clickHandler) {
+        document.removeEventListener("click", clickHandler, { capture: true });
+        clickHandler = null;
+    }
     selectionChangeHandler = null;
     clearBulletLineMarks();
 };

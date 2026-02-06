@@ -1,5 +1,5 @@
 @use "../asri/overflowfadein" as *;
-[data-asri-enhance-vertical-tab="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-vertical-tab="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-vertical-tab {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -103,7 +103,7 @@
                 & .protyle-breadcrumb__bar {
                     transform: translateY(38px);
                 }
-                & .protyle-breadcrumb__space ~ * {
+                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
                     transform: translateY(38px);
                 }
             }
@@ -118,7 +118,7 @@
         /* 右侧栏收起 */
         .layout__center.asri-enhance-dockr-fold .asri-enhance-verticaltab-toponly {
             & .protyle > .protyle-breadcrumb {
-                & .protyle-breadcrumb__space ~ * {
+                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
                     transform: translateY(38px);
                 }
             }
@@ -141,7 +141,7 @@
                 }
             }
             &.asri-enhance-verticaltab-dockr-expand-spacing {
-                & .protyle-breadcrumb__space ~ * {
+                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
                     transform: translateY(38px);
                 }
                 & .protyle-background__img .protyle-icons {
@@ -164,7 +164,7 @@
                     border-radius: 6px;
                     backdrop-filter: blur(8px) saturate(1.2) brightness(1);
                 }
-                & .protyle-breadcrumb__space ~ *:not([data-type="exit-focus"]:hover) {
+                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon):not([data-type="exit-focus"]:hover) {
                     filter: drop-shadow(0 0 3px var(--b3-theme-background));
                 }
             }
@@ -198,7 +198,7 @@
                                 & .protyle-breadcrumb__bar {
                                     transform: translateY(38px);
                                 }
-                                & .protyle-breadcrumb__space ~ * {
+                                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
                                     transform: translateY(38px);
                                 }
                             }

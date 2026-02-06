@@ -1,4 +1,4 @@
-[data-asri-enhance-global-frosted-glass="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]) {
+[data-asri-enhance-global-frosted-glass="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
     #asri-enhance-global-frosted-glass, #asri-enhance-detail-adjustment {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -83,13 +83,13 @@
         background-color: transparent;
     }
     #configBazaarReadme {
-        background-color: transparent;
+        background-color: oklch(from var(--b3-theme-background) l c h / 0.9);
         backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
         .item__side {
             background-color: oklch(from var(--b3-theme-surface) l c h / 0.9);
         }
         .item__main  {
-            background-color: oklch(from var(--b3-theme-background) l c h / 0.9);
+            background-color: transparent;
         }
     }
     [data-name=bazaar] {
