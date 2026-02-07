@@ -1,4 +1,4 @@
-[data-asri-enhance-follow-time="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
+[data-asri-enhance-follow-time="true"]:root {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }

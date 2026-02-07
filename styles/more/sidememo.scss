@@ -1,5 +1,5 @@
 @use "../asri/overflowfadein" as *;
-[data-asri-enhance-side-memo="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
+[data-asri-enhance-side-memo="true"]:root {
     #asri-enhance-sidememo {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);

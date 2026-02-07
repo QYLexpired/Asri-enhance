@@ -1,4 +1,4 @@
-[data-asri-enhance-headinglevelhint="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
+[data-asri-enhance-headinglevelhint="true"]:root {
     #asri-enhance-heading-level-hint,
     #asri-enhance-detail-adjustment {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
@@ -39,67 +39,28 @@
                 -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 95%);
             }
         }
-        &.h1::before {
-            content: "#1";
-        }
-        &.h2::before {
-            content: "#2";
-        }
-        &.h3::before {
-            content: "#3";
-        }
-        &.h4::before {
-            content: "#4";
-        }
-        &.h5::before {
-            content: "#5";
-        }
-        &.h6::before {
-            content: "#6";
+        @for $i from 1 through 6 {
+            &.h#{$i}::before {
+                content: "#{$i}";
+            }
         }
     }
     &[data-asri-enhance-coloredheading="true"] {
         .protyle-wysiwyg [data-type=NodeHeading]:not(.asri-selected-block) {
-            &.h1::before {
-                color: oklch(from var(--b3-theme-primary) l c calc(h + 50));
+        @for $i from 1 through 6 {
+            &.h#{$i}::before {
+                color: oklch(from var(--b3-theme-primary) l c calc(h + #{$i * 50}));
             }
-            &.h2::before {
-                color: oklch(from var(--b3-theme-primary) l c calc(h + 100));
-            }
-            &.h3::before {
-                color: oklch(from var(--b3-theme-primary) l c calc(h + 150));
-            }
-            &.h4::before {
-                color: oklch(from var(--b3-theme-primary) l c calc(h + 200));
-            }
-            &.h5::before {
-                color: oklch(from var(--b3-theme-primary) l c calc(h + 250));
-            }
-            &.h6::before {
-                color: oklch(from var(--b3-theme-primary) l c calc(h + 300));
-            }
+        }
         }
         /* 极地配色 */
         &[data-theme-mode="light"][data-asri-palette="polar"] {
             .protyle-wysiwyg [data-type=NodeHeading]:not(.asri-selected-block) {
-                &.h1::before {
-                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 50));
+                @for $i from 1 through 6 {
+                &.h#{$i}::before {
+                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + #{$i * 50}));
                 }
-                &.h2::before {
-                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 100));
-                }
-                &.h3::before {
-                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 150));
-                }
-                &.h4::before {
-                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 200));
-                }
-                &.h5::before {
-                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 250));
-                }
-                &.h6::before {
-                    color: oklch(from var(--b3-theme-primary) 0.45 0.5 calc(h + 300));
-                }
+            }
             }
         }
     }

@@ -7,7 +7,7 @@ $islandlayout-dock-transparency-selectors: (
     "#dockBottom.fn__none.has-layout-dockb-float ~ .status",
     "#dockBottom:not(.fn__none) ~ .status"
 );
-[data-asri-enhance-island-layout="true"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
+[data-asri-enhance-island-layout="true"]:root {
     #asri-enhance-island-layout {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);

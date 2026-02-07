@@ -21,7 +21,6 @@ import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSid
 import { applyGlobalFrostedGlassConfig } from "./detail/globalfrostedglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
-import { applyPaperTextureConfig } from "./detail/papertexture";
 import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
@@ -29,6 +28,18 @@ import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyv
 import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
 import { applySmoothCaretConfig } from "./more/smoothcaret";
 import { applyIslandLayoutConfig } from "./more/islandlayout";
+import { applyPaperConfig } from "./texture/paper";
+import { applyNoiseConfig } from "./texture/noise";
+import { applyAcrylicConfig } from "./texture/acrylic";
+import { applyCheckerboardConfig } from "./texture/checkerboard";
+import { applyGridConfig } from "./texture/grid";
+import { applyPolkaDotConfig } from "./texture/polkadot";
+import { applyCrossDotConfig } from "./texture/crossdot";
+import { applyHoneycombConfig } from "./texture/honeycomb";
+import { applyWoodConfig } from "./texture/wood";
+import { applyCamouflageConfig } from "./texture/camouflage";
+import { applyFiberConfig } from "./texture/fiber";
+import { applyFabricConfig } from "./texture/fabric";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { removeFollowTimeConfig } from "./followtime/followtime";
@@ -65,13 +76,24 @@ class AsriEnhancePlugin extends Plugin {
             applySidebarTopStickyConfig(this, config).catch(() => { }),
             applyCoverImageFadeConfig(this, config).catch(() => { }),
             applyHideTabBreadcrumbConfig(this, config).catch(() => { }),
-            applyPaperTextureConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
             applyWindowTransparencyValueConfig(this, config).catch(() => { }),
             applyWholeWindowTransparencyConfig(this, config).catch(() => { }),
             applySmoothCaretConfig(this, config).catch(() => { }),
             applyIslandLayoutConfig(this, config).catch(() => { }),
+            applyPaperConfig(this, config).catch(() => { }),
+            applyNoiseConfig(this, config).catch(() => { }),
+            applyAcrylicConfig(this, config).catch(() => { }),
+            applyCheckerboardConfig(this, config).catch(() => { }),
+            applyGridConfig(this, config).catch(() => { }),
+            applyPolkaDotConfig(this, config).catch(() => { }),
+            applyCrossDotConfig(this, config).catch(() => { }),
+            applyHoneycombConfig(this, config).catch(() => { }),
+            applyWoodConfig(this, config).catch(() => { }),
+            applyCamouflageConfig(this, config).catch(() => { }),
+            applyFiberConfig(this, config).catch(() => { }),
+            applyFabricConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
         ]);
     }

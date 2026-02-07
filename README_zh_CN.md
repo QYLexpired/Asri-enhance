@@ -1,9 +1,8 @@
 ### 更新
-##### v2.0.2
+##### v2.0.3
+- 新增功能：纹理
+    - 目前支持纹理：纸张、噪点、亚克力、棋盘、网格、波点、交叉波点、木质、迷彩、纤维、织物
 - 大幅优化插件性能
-- 修复任务列表子弹线缺陷
-- 修复极地配色无法使用彩色标题的问题
-- 出于性能考虑，移除液态玻璃功能
 ### 关于插件
 - [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
 - 仅适配Asri主题，使用其他主题时应关闭此插件以防止样式错误
@@ -30,6 +29,7 @@
     - 支持解析markdown（包括公式、代码语法高亮）
     - 支持解析html
 - 平滑光标<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
+- 纹理（支持超过十种背景纹理）
 - 岛式布局
 ### 主题细节调整
 完全按照Asri主题的风格进行细节调整
@@ -38,7 +38,6 @@
 - 调整窗体透明度
 - 全窗体透明<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
 - 题头图渐隐
-- 纸张纹理
 - 彩色标题
 - 标题层级提示
 - 彩色文档树

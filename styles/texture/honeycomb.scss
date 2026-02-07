@@ -1,0 +1,39 @@
+[data-asri-enhance-honeycomb="true"]:root {
+    #asri-enhance-texture, #asri-enhance-honeycomb {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    body:not(.body-asri--mobile) {
+        &::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-repeat: repeat;
+            mix-blend-mode: unset;
+            opacity: 0.025;
+            pointer-events: none;
+            z-index: 99;
+            background:
+            radial-gradient(circle farthest-side at 0% 50%,#ffffff 23.5%,#0000 0)33.6px 48px,
+            radial-gradient(circle farthest-side at 0% 50%,#000000 24%,#0000 0)30.4px 48px,
+            linear-gradient(#ffffff 14%,#0000 0, #0000 85%,#ffffff 0)0 0,
+            linear-gradient(150deg,#ffffff 24%,#000000 0,#000000 26%,#0000 0,#0000 74%,#000000 0,#000000 76%,#ffffff 0)0 0,
+            linear-gradient(30deg,#ffffff 24%,#000000 0,#000000 26%,#0000 0,#0000 74%,#000000 0,#000000 76%,#ffffff 0)0 0,
+            linear-gradient(90deg,#000000 2%,#ffffff 0,#ffffff 98%,#000000 0%)0 0 #ffffff;
+            background-size: 64px 96px;
+            background-color: #ffffff;
+        }
+    }
+    &[data-theme-mode="dark"] {
+        body:not(.body-asri--mobile) {
+            &::before {
+                opacity: 0.01;
+            }
+        }
+    }
+}

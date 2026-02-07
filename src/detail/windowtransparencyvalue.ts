@@ -20,7 +20,7 @@ export async function applyWindowTransparencyValueConfig(plugin: Plugin, config?
         htmlEl.setAttribute(DATA_ATTR, String(value));
     }
     else {
-        htmlEl.removeAttribute(DATA_ATTR);
+        htmlEl.setAttribute(DATA_ATTR, "0.5");
     }
 }
 export async function saveWindowTransparencyValue(plugin: Plugin, value: number): Promise<void> {

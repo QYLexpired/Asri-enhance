@@ -1,0 +1,11 @@
+[lang="zh_CN"] #asri-enhance-texture .b3-menu__submenu {
+    transform: translateX(-220%);
+}
+html:not([lang="zh_CN"]) #asri-enhance-texture .b3-menu__submenu {
+    transform: translateX(-235%);
+}
+@media (max-width: 600px) {
+    #asri-enhance-texture .b3-menu__submenu {
+        transform: translateX(0) !important;
+    }
+}

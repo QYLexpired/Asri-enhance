@@ -21,13 +21,24 @@ import { onGlobalFrostedGlassClick } from "../detail/globalfrostedglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onCoverImageFadeClick } from "../detail/coverimagefade";
 import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
-import { onPaperTextureClick } from "../detail/papertexture";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
 import { onSingleColumnSlashMenuClick } from "../detail/singlecolumnslashmenu";
 import { onWindowTransparencyValueClick, saveWindowTransparencyValue } from "../detail/windowtransparencyvalue";
 import { onWholeWindowTransparencyClick } from "../detail/wholewindowtransparency";
 import { onSmoothCaretClick } from "../more/smoothcaret";
 import { onIslandLayoutClick } from "../more/islandlayout";
+import { onPaperClick } from "../texture/paper";
+import { onNoiseClick } from "../texture/noise";
+import { onAcrylicClick } from "../texture/acrylic";
+import { onCheckerboardClick } from "../texture/checkerboard";
+import { onGridClick } from "../texture/grid";
+import { onPolkaDotClick } from "../texture/polkadot";
+import { onCrossDotClick } from "../texture/crossdot";
+import { onHoneycombClick } from "../texture/honeycomb";
+import { onWoodClick } from "../texture/wood";
+import { onCamouflageClick } from "../texture/camouflage";
+import { onFiberClick } from "../texture/fiber";
+import { onFabricClick } from "../texture/fabric";
 import { loadData } from "../utils/storage";
 import { onFollowTimeClick } from "../followtime/followtime";
 const PALETTE_ICON_SVG = '<svg class="b3-menu__icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 3h-4a2 2 0 0 0-2 2v12a4 4 0 0 0 8 0V5a2 2 0 0 0-2-2"></path><path d="m13 7.35l-2-2a2 2 0 0 0-2.828 0L5.344 8.178a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12m0-4v.01"></path></g></svg>';
@@ -224,7 +235,7 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             const button = document.createElement("button");
                             button.className = "b3-menu__item asri-enhance";
                             button.id = "asri-enhance-more";
-                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-smooth-caret">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}<svg class="b3-menu__icon ariaLabel asri-enhance-experimental" aria-label="${plugin.i18n?.experimentalFeature || "Experimental Feature"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg></span></button><button class="b3-menu__item" id="asri-enhance-island-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.islandLayout || "islandLayout"}</span></button></div></div>`;
+                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.texture || "texture"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-smooth-caret">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}</span></button><button class="b3-menu__item" id="asri-enhance-island-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.islandLayout || "islandLayout"}</span></button></div></div>`;
                             if (topbarFusionPlus.nextSibling) {
                                 parent.insertBefore(button, topbarFusionPlus.nextSibling);
                             }
@@ -267,7 +278,7 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                                 const wholeWindowTransparencyButton = document.createElement("button");
                                 wholeWindowTransparencyButton.className = "b3-menu__item";
                                 wholeWindowTransparencyButton.id = "asri-enhance-wholewindowtransparency";
-                                wholeWindowTransparencyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wholeWindowTransparency || "wholeWindowTransparency"}<svg class="b3-menu__icon ariaLabel asri-enhance-experimental" aria-label="${plugin.i18n?.experimentalFeature || "Experimental Feature"}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg></span>`;
+                                wholeWindowTransparencyButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wholeWindowTransparency || "wholeWindowTransparency"}</span>`;
                                 detailAdjustmentSubmenu.appendChild(wholeWindowTransparencyButton);
                             }
                             const wholeWindowTransparencyItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-wholewindowtransparency");
@@ -351,17 +362,6 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             if (coverImageFadeItem) {
                                 coverImageFadeItem.onclick = (event) => onCoverImageFadeClick(plugin, event);
                             }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-paper-texture")) {
-                                const paperTextureButton = document.createElement("button");
-                                paperTextureButton.className = "b3-menu__item";
-                                paperTextureButton.id = "asri-enhance-paper-texture";
-                                paperTextureButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.paperTexture || "paperTexture"}</span>`;
-                                detailAdjustmentSubmenu.appendChild(paperTextureButton);
-                            }
-                            const paperTextureItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-paper-texture");
-                            if (paperTextureItem) {
-                                paperTextureItem.onclick = (event) => onPaperTextureClick(plugin, event);
-                            }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-heading")) {
                                 const coloredHeadingButton = document.createElement("button");
                                 coloredHeadingButton.className = "b3-menu__item";
@@ -438,6 +438,142 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             const hideTabBreadcrumbItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab-breadcrumb");
                             if (hideTabBreadcrumbItem) {
                                 hideTabBreadcrumbItem.onclick = (event) => onHideTabBreadcrumbClick(plugin, event);
+                            }
+                        }
+                        const textureItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-texture");
+                        if (textureItem) {
+                            const textureSubmenu = textureItem.querySelector<HTMLElement>(".b3-menu__submenu .b3-menu__items");
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-paper")) {
+                                const paperButton = document.createElement("button");
+                                paperButton.className = "b3-menu__item";
+                                paperButton.id = "asri-enhance-paper";
+                                paperButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.paper || "paper"}</span>`;
+                                textureSubmenu.appendChild(paperButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-noise")) {
+                                const noiseButton = document.createElement("button");
+                                noiseButton.className = "b3-menu__item";
+                                noiseButton.id = "asri-enhance-noise";
+                                noiseButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.noise || "noise"}</span>`;
+                                textureSubmenu.appendChild(noiseButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-acrylic")) {
+                                const acrylicButton = document.createElement("button");
+                                acrylicButton.className = "b3-menu__item";
+                                acrylicButton.id = "asri-enhance-acrylic";
+                                acrylicButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.acrylic || "acrylic"}</span>`;
+                                textureSubmenu.appendChild(acrylicButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-checkerboard")) {
+                                const checkerboardButton = document.createElement("button");
+                                checkerboardButton.className = "b3-menu__item";
+                                checkerboardButton.id = "asri-enhance-checkerboard";
+                                checkerboardButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.checkerboard || "checkerboard"}</span>`;
+                                textureSubmenu.appendChild(checkerboardButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-grid")) {
+                                const gridButton = document.createElement("button");
+                                gridButton.className = "b3-menu__item";
+                                gridButton.id = "asri-enhance-grid";
+                                gridButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.grid || "grid"}</span>`;
+                                textureSubmenu.appendChild(gridButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-polkadot")) {
+                                const polkadotButton = document.createElement("button");
+                                polkadotButton.className = "b3-menu__item";
+                                polkadotButton.id = "asri-enhance-polkadot";
+                                polkadotButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.polkadot || "polkadot"}</span>`;
+                                textureSubmenu.appendChild(polkadotButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-crossdot")) {
+                                const crossdotButton = document.createElement("button");
+                                crossdotButton.className = "b3-menu__item";
+                                crossdotButton.id = "asri-enhance-crossdot";
+                                crossdotButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.crossdot || "crossdot"}</span>`;
+                                textureSubmenu.appendChild(crossdotButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-honeycomb")) {
+                                const honeycombButton = document.createElement("button");
+                                honeycombButton.className = "b3-menu__item";
+                                honeycombButton.id = "asri-enhance-honeycomb";
+                                honeycombButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.honeycomb || "honeycomb"}</span>`;
+                                textureSubmenu.appendChild(honeycombButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-wood")) {
+                                const woodButton = document.createElement("button");
+                                woodButton.className = "b3-menu__item";
+                                woodButton.id = "asri-enhance-wood";
+                                woodButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wood || "wood"}</span>`;
+                                textureSubmenu.appendChild(woodButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-camouflage")) {
+                                const camouflageButton = document.createElement("button");
+                                camouflageButton.className = "b3-menu__item";
+                                camouflageButton.id = "asri-enhance-camouflage";
+                                camouflageButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.camouflage || "camouflage"}</span>`;
+                                textureSubmenu.appendChild(camouflageButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-fiber")) {
+                                const fiberButton = document.createElement("button");
+                                fiberButton.className = "b3-menu__item";
+                                fiberButton.id = "asri-enhance-fiber";
+                                fiberButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.fiber || "fiber"}</span>`;
+                                textureSubmenu.appendChild(fiberButton);
+                            }
+                            if (textureSubmenu && !textureSubmenu.querySelector("#asri-enhance-fabric")) {
+                                const fabricButton = document.createElement("button");
+                                fabricButton.className = "b3-menu__item";
+                                fabricButton.id = "asri-enhance-fabric";
+                                fabricButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.fabric || "fabric"}</span>`;
+                                textureSubmenu.appendChild(fabricButton);
+                            }
+                            const paperItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-paper");
+                            if (paperItem) {
+                                paperItem.onclick = (event) => onPaperClick(plugin, event);
+                            }
+                            const noiseItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-noise");
+                            if (noiseItem) {
+                                noiseItem.onclick = (event) => onNoiseClick(plugin, event);
+                            }
+                            const acrylicItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-acrylic");
+                            if (acrylicItem) {
+                                acrylicItem.onclick = (event) => onAcrylicClick(plugin, event);
+                            }
+                            const checkerboardItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-checkerboard");
+                            if (checkerboardItem) {
+                                checkerboardItem.onclick = (event) => onCheckerboardClick(plugin, event);
+                            }
+                            const gridItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-grid");
+                            if (gridItem) {
+                                gridItem.onclick = (event) => onGridClick(plugin, event);
+                            }
+                            const polkadotItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-polkadot");
+                            if (polkadotItem) {
+                                polkadotItem.onclick = (event) => onPolkaDotClick(plugin, event);
+                            }
+                            const crossdotItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-crossdot");
+                            if (crossdotItem) {
+                                crossdotItem.onclick = (event) => onCrossDotClick(plugin, event);
+                            }
+                            const honeycombItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-honeycomb");
+                            if (honeycombItem) {
+                                honeycombItem.onclick = (event) => onHoneycombClick(plugin, event);
+                            }
+                            const woodItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-wood");
+                            if (woodItem) {
+                                woodItem.onclick = (event) => onWoodClick(plugin, event);
+                            }
+                            const camouflageItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-camouflage");
+                            if (camouflageItem) {
+                                camouflageItem.onclick = (event) => onCamouflageClick(plugin, event);
+                            }
+                            const fiberItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-fiber");
+                            if (fiberItem) {
+                                fiberItem.onclick = (event) => onFiberClick(plugin, event);
+                            }
+                            const fabricItem = textureSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-fabric");
+                            if (fabricItem) {
+                                fabricItem.onclick = (event) => onFabricClick(plugin, event);
                             }
                         }
                     }

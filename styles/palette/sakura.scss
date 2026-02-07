@@ -1,5 +1,5 @@
 @use "public" as *;
-[data-asri-palette="sakura"]:is([data-theme-mode="light"][data-light-theme="Asri"], [data-theme-mode="dark"][data-dark-theme="Asri"]):root {
+[data-asri-palette="sakura"]:root {
   .asri-config:not(#topbarFusionPlus) {
       --b3-theme-accent: var(--b3-theme-on-background);
   }
@@ -19,7 +19,7 @@
     pointer-events: none;
     opacity: 0.38;
   }
-  &[data-theme-mode="light"][data-light-theme="Asri"] {
+  &[data-theme-mode="light"] {
     --sakura-base-accent: #f89494;
     --asri-theme-accent-customized: var(--sakura-base-accent);
     --b3-theme-primary: var(--sakura-base-accent);
@@ -39,7 +39,7 @@
         background-color: #f1a38d40 !important;
     }
   }
-  &[data-theme-mode="dark"][data-dark-theme="Asri"] {
+  &[data-theme-mode="dark"] {
       --sakura-base-accent: #ed9292;
       --asri-theme-accent-customized: var(--sakura-base-accent);
       --b3-theme-primary: var(--sakura-base-accent);
@@ -59,18 +59,18 @@
   }
 }
 #{$primary-color-reverse-selectors} {
-  [data-asri-palette="sakura"][data-theme-mode="light"][data-light-theme="Asri"]:root & {
+  [data-asri-palette="sakura"][data-theme-mode="light"]:root & {
     --b3-theme-primary: #ffcaca;
     --b3-theme-on-primary: #9e4a4a;
   }
-  [data-asri-palette="sakura"][data-theme-mode="dark"][data-dark-theme="Asri"]:root & {
+  [data-asri-palette="sakura"][data-theme-mode="dark"]:root & {
     --b3-theme-primary: #e39f9f;
     --b3-theme-on-primary: #440000;
   }
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-  [data-asri-palette="sakura"][data-light-theme="Asri"]:root & {
+  [data-asri-palette="sakura"]:root & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }

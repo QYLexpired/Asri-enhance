@@ -1,5 +1,5 @@
 @forward "../asri/asri";
-[data-theme-mode="light"][data-light-theme="Asri"]:root {
+[data-theme-mode="light"]:root {
     &:is(
       [data-asri-palette="amber"],
       [data-asri-palette="sakura"],
@@ -20,7 +20,7 @@
         }
     }
 }
-[data-theme-mode="dark"][data-dark-theme="Asri"]:root {
+[data-theme-mode="dark"]:root {
     &:is(
       [data-asri-palette="amber"],
       [data-asri-palette="sakura"],

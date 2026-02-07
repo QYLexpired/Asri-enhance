@@ -1,10 +1,10 @@
 @use "public" as *;
-[data-theme-mode="light"][data-light-theme="Asri"]:root {
+[data-theme-mode="light"]:root {
     #asri-enhance-midnight {
         display: none;
     }
 }
-[data-asri-palette="midnight"][data-theme-mode="dark"][data-dark-theme="Asri"]:root {
+[data-asri-palette="midnight"][data-theme-mode="dark"]:root {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
@@ -53,7 +53,7 @@
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-    [data-asri-palette="midnight"][data-theme-mode="dark"][data-light-theme="Asri"]:root & {
+    [data-asri-palette="midnight"][data-theme-mode="dark"]:root & {
         --b3-theme-primary: var(--b3-theme-accent);
     }
 }

@@ -1,9 +1,8 @@
 ### Updates
-##### v2.0.2
+##### v2.0.3
+- New feature: Textures
+    - Currently supported textures: Paper, Noise, Acrylic, Checkerboard, Grid, Polka Dot, Cross Dot, Wood, Camouflage, Fiber, Fabric
 - Greatly optimized plugin performance
-- Fixed task list bullet line issues
-- Fixed issue where Polar theme couldn't use colored headings
-- Removed liquid glass feature for performance reasons
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
@@ -30,6 +29,7 @@ Add a series of practical features and ensure the style completely matches the A
     - Supports markdown parsing (including formulas, code syntax highlighting)
     - Supports HTML parsing
 - Smooth caret<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
+- Textures (supporting more than ten background textures)
 - Island Layout
 ### Theme Detail Adjustments
 Detailed adjustments made completely in accordance with the Asri theme style
@@ -38,7 +38,6 @@ Detailed adjustments made completely in accordance with the Asri theme style
 - Adjust window transparency value
 - Whole window transparency<svg style="vertical-align: -0.025em; height: 0.8em; width: 0.8em; opacity: 0.5;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23 23"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 2v6a2 2 0 0 0 .245.96l5.51 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.755-2.96l5.51-10.08A2 2 0 0 0 10 8V2M6.453 15h11.094M8.5 2h7"></path></svg>
 - Cover image fade
-- Paper texture
 - Colored headings
 - Heading level hints
 - Colored document tree
