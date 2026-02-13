@@ -23,6 +23,9 @@ const MOUSE_IDLE_TIMEOUT = 200;
 let isCursorVisible = false;
 const FADE_DURATION = 300;
 let isMouseDown = false;
+let currentHueOffset = 0;
+let targetHueOffset = 0;
+const HUE_SMOOTHING = 0.08;
 const CONFIG = {
     trailLength: 8,
     widthBase: 6,
@@ -38,23 +41,38 @@ const getCursorColor = () => {
     return color || '#f44336';
 };
 const randomCursorColor = () => {
+    const modeRand = Math.random();
     const baseColor = getCursorColor();
-    const rand = Math.random();
-    let randomHue: number;
-    if (isMouseDown) {
+    if (modeRand < 0.02) {
+        const rand = Math.random();
+        let randomHue: number;
         if (rand < 0.8) {
-            randomHue = Math.floor(Math.random() * 61) + 180;
+            randomHue = Math.floor(Math.random() * 31) - 15;
+        } else if (rand < 0.9) {
+            const sign = Math.random() < 0.5 ? -1 : 1;
+            randomHue = sign * (Math.floor(Math.random() * 31) + 30);
         } else {
-            randomHue = Math.floor(Math.random() * 31) + 240;
+            const sign = Math.random() < 0.5 ? -1 : 1;
+            randomHue = sign * (Math.floor(Math.random() * 91) + 90);
         }
+        const baseHue = isMouseDown ? 180 : 0;
+        cursorColor = `oklch(from ${baseColor} l c calc(h + ${baseHue} + ${randomHue}))`;
+        currentHueOffset = randomHue;
+        targetHueOffset = randomHue;
     } else {
-        if (rand < 0.8) {
-            randomHue = Math.floor(Math.random() * 61);
+        const rand = Math.random();
+        let randomHue: number;
+        if (rand < 0.6) {
+            randomHue = Math.floor(Math.random() * 31) - 15;
+        } else if (rand < 0.8) {
+            const sign = Math.random() < 0.5 ? -1 : 1;
+            randomHue = sign * (Math.floor(Math.random() * 31) + 30);
         } else {
-            randomHue = Math.floor(Math.random() * 31) + 60;
+            const sign = Math.random() < 0.5 ? -1 : 1;
+            randomHue = sign * (Math.floor(Math.random() * 91) + 90);
         }
+        targetHueOffset = randomHue;
     }
-    cursorColor = `oklch(from ${baseColor} l c calc(h + ${randomHue}))`;
 };
 const initFluidCursor = () => {
     const existingCanvas = document.getElementById(FLUID_CURSOR_CANVAS_ID);
@@ -129,7 +147,7 @@ const initFluidCursor = () => {
     };
     mouseUpHandler = () => {
         isMouseDown = false;
-        cursorColor = getCursorColor();
+        targetHueOffset = 0;
     };
     window.addEventListener('mousedown', mouseDownHandler, { passive: true });
     window.addEventListener('mouseup', mouseUpHandler, { passive: true });
@@ -143,6 +161,15 @@ const initFluidCursor = () => {
         const deltaTime = (currentTime - lastTime) / 1000;
         lastTime = currentTime;
         const timeFactor = deltaTime * 60;
+        const diff = targetHueOffset - currentHueOffset;
+        if (Math.abs(diff) > 0.5) {
+            currentHueOffset += diff * HUE_SMOOTHING * timeFactor;
+        } else {
+            currentHueOffset = targetHueOffset;
+        }
+        const baseColor = getCursorColor();
+        const baseHue = isMouseDown ? 180 : 0;
+        const displayColor = `oklch(from ${baseColor} l c calc(h + ${baseHue} + ${currentHueOffset}))`;
         ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
         if (isFirstMouseMove) {
             animationFrameId = window.requestAnimationFrame(animate);
@@ -156,7 +183,7 @@ const initFluidCursor = () => {
             points[i].x += (points[i - 1].x - points[i].x) * actualTailEase;
             points[i].y += (points[i - 1].y - points[i].y) * actualTailEase;
         }
-        ctx.strokeStyle = cursorColor;
+        ctx.strokeStyle = displayColor;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
         for (let i = 0; i < points.length - 1; i++) {
