@@ -202,9 +202,12 @@ function updateAllProtyleMemoClasses(): void {
 			if (isActive && hasInlineOrBlockMemo) {
 				el.classList.add("asri-enhance-sidememo");
 				el.classList.remove("asri-enhance-sidememo-none");
-			} else {
+			} else if (isActive && !hasInlineOrBlockMemo) {
 				el.classList.remove("asri-enhance-sidememo");
 				el.classList.add("asri-enhance-sidememo-none");
+			} else {
+				el.classList.remove("asri-enhance-sidememo");
+				el.classList.remove("asri-enhance-sidememo-none");
 			}
 		} catch (err) {}
 	});
@@ -1223,6 +1226,53 @@ export function removeAllSidememoArtifacts(): void {
 		remaining.forEach((el) => {
 			try {
 				el.classList.remove("asri-enhance-sidememo-container-resize");
+			} catch (e) {}
+		});
+		const titleElements = Array.from(
+			document.querySelectorAll<HTMLElement>(".protyle-title"),
+		);
+		titleElements.forEach((titleEl) => {
+			try {
+				titleEl.style.removeProperty("--asri-enhance-sidememo-title-height");
+			} catch (e) {}
+		});
+		const protyleTops = Array.from(
+			document.querySelectorAll<HTMLElement>(".protyle-top"),
+		);
+		protyleTops.forEach((topEl) => {
+			try {
+				topEl.classList.remove("asri-enhance-sidememo-protyle-title-none");
+			} catch (e) {}
+		});
+		const sidememoParents = Array.from(
+			document.querySelectorAll<HTMLElement>(".asri-enhance-sidememo"),
+		);
+		sidememoParents.forEach((parentEl) => {
+			try {
+				parentEl.style.removeProperty("--asri-enhance-sidememo-container-width");
+			} catch (e) {}
+		});
+		sidememoParents.forEach((parentEl) => {
+			try {
+				parentEl.classList.remove("asri-enhance-sidememo");
+			} catch (e) {}
+		});
+		const allMemos = Array.from(
+			document.querySelectorAll<HTMLElement>(
+				'[data-type*="inline-memo"][asri-enhance-sidememo-fold], [memo][asri-enhance-sidememo-fold]',
+			),
+		);
+		allMemos.forEach((memoEl) => {
+			try {
+				memoEl.removeAttribute("asri-enhance-sidememo-fold");
+			} catch (e) {}
+		});
+		const tooltips = Array.from(
+			document.querySelectorAll<HTMLElement>(".tooltip--memo#tooltip"),
+		);
+		tooltips.forEach((tooltip) => {
+			try {
+				tooltip.classList.remove("asri-enhance-sidememo-tooltip-memo-none");
 			} catch (e) {}
 		});
 	} catch (e) {}

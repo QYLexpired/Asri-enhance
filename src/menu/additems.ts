@@ -19,13 +19,14 @@ import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick } from "../more/sidememo";
 import { onGlobalFrostedGlassClick } from "../detail/globalfrostedglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
-import { onCoverImageFadeClick } from "../detail/coverimagefade";
 import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
 import { onSingleColumnSlashMenuClick } from "../detail/singlecolumnslashmenu";
+import { onCardSearchListClick } from "../detail/cardsearchlist";
 import { onWindowTransparencyValueClick, saveWindowTransparencyValue } from "../detail/windowtransparencyvalue";
 import { onWholeWindowTransparencyClick } from "../detail/wholewindowtransparency";
 import { onSmoothCaretClick } from "../more/smoothcaret";
+import { onFluidCursorClick } from "../more/fluidcursor";
 import { onIslandLayoutClick } from "../more/islandlayout";
 import { onPaperClick } from "../texture/paper";
 import { onNoiseClick } from "../texture/noise";
@@ -235,7 +236,7 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             const button = document.createElement("button");
                             button.className = "b3-menu__item asri-enhance";
                             button.id = "asri-enhance-more";
-                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.texture || "texture"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-smooth-caret">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}</span></button><button class="b3-menu__item" id="asri-enhance-island-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.islandLayout || "islandLayout"}</span></button></div></div>`;
+                            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.texture || "texture"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-smooth-caret">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}</span></button><button class="b3-menu__item" id="asri-enhance-fluid-cursor">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.fluidCursor || "fluidCursor"}</span></button><button class="b3-menu__item" id="asri-enhance-island-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.islandLayout || "islandLayout"}</span></button></div></div>`;
                             if (topbarFusionPlus.nextSibling) {
                                 parent.insertBefore(button, topbarFusionPlus.nextSibling);
                             }
@@ -258,6 +259,10 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                         const smoothCaretItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-smooth-caret");
                         if (smoothCaretItem) {
                             smoothCaretItem.onclick = (event) => onSmoothCaretClick(plugin, event);
+                        }
+                        const fluidCursorItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-fluid-cursor");
+                        if (fluidCursorItem) {
+                            fluidCursorItem.onclick = (event) => onFluidCursorClick(plugin, event);
                         }
                         const islandLayoutItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-island-layout");
                         if (islandLayoutItem) {
@@ -346,21 +351,21 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             if (singleColumnSlashMenuItem) {
                                 singleColumnSlashMenuItem.onclick = (event) => onSingleColumnSlashMenuClick(plugin, event);
                             }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-cardsearchlist")) {
+                                const cardSearchListButton = document.createElement("button");
+                                cardSearchListButton.className = "b3-menu__item";
+                                cardSearchListButton.id = "asri-enhance-cardsearchlist";
+                                cardSearchListButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.cardSearchList || "cardSearchList"}</span>`;
+                                detailAdjustmentSubmenu.appendChild(cardSearchListButton);
+                            }
+                            const cardSearchListItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-cardsearchlist");
+                            if (cardSearchListItem) {
+                                cardSearchListItem.onclick = (event) => onCardSearchListClick(plugin, event);
+                            }
                             if (detailAdjustmentSubmenu) {
                                 const separator = document.createElement("button");
                                 separator.className = "b3-menu__separator";
                                 detailAdjustmentSubmenu.appendChild(separator);
-                            }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-cover-image-fade")) {
-                                const coverImageFadeButton = document.createElement("button");
-                                coverImageFadeButton.className = "b3-menu__item";
-                                coverImageFadeButton.id = "asri-enhance-cover-image-fade";
-                                coverImageFadeButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.coverImageFade || "coverImageFade"}</span>`;
-                                detailAdjustmentSubmenu.appendChild(coverImageFadeButton);
-                            }
-                            const coverImageFadeItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-cover-image-fade");
-                            if (coverImageFadeItem) {
-                                coverImageFadeItem.onclick = (event) => onCoverImageFadeClick(plugin, event);
                             }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-heading")) {
                                 const coloredHeadingButton = document.createElement("button");

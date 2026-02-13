@@ -20,13 +20,14 @@ import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from 
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
 import { applyGlobalFrostedGlassConfig } from "./detail/globalfrostedglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
-import { applyCoverImageFadeConfig } from "./detail/coverimagefade";
 import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
+import { applyCardSearchListConfig } from "./detail/cardsearchlist";
 import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyvalue";
 import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
-import { applySmoothCaretConfig } from "./more/smoothcaret";
+import { applySmoothCaretConfig, destroySmoothCaret } from "./more/smoothcaret";
+import { applyFluidCursorConfig, destroyFluidCursor } from "./more/fluidcursor";
 import { applyIslandLayoutConfig } from "./more/islandlayout";
 import { applyPaperConfig } from "./texture/paper";
 import { applyNoiseConfig } from "./texture/noise";
@@ -74,13 +75,14 @@ class AsriEnhancePlugin extends Plugin {
             applySidememoConfig(this, config).catch(() => { }),
             applyGlobalFrostedGlassConfig(this, config).catch(() => { }),
             applySidebarTopStickyConfig(this, config).catch(() => { }),
-            applyCoverImageFadeConfig(this, config).catch(() => { }),
             applyHideTabBreadcrumbConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
+            applyCardSearchListConfig(this, config).catch(() => { }),
             applyWindowTransparencyValueConfig(this, config).catch(() => { }),
             applyWholeWindowTransparencyConfig(this, config).catch(() => { }),
             applySmoothCaretConfig(this, config).catch(() => { }),
+            applyFluidCursorConfig(this, config).catch(() => { }),
             applyIslandLayoutConfig(this, config).catch(() => { }),
             applyPaperConfig(this, config).catch(() => { }),
             applyNoiseConfig(this, config).catch(() => { }),
@@ -258,6 +260,17 @@ class AsriEnhancePlugin extends Plugin {
         stopVerticalTabObserver();
         removeAllSidememoArtifacts();
         stopSidememoObserver();
+        destroySmoothCaret();
+        destroyFluidCursor();
+        const htmlEl = document.documentElement;
+        if (htmlEl) {
+            const attrs = Array.from(htmlEl.attributes);
+            attrs.forEach(attr => {
+                if (attr.name.startsWith("data-asri-enhance-")) {
+                    htmlEl.removeAttribute(attr.name);
+                }
+            });
+        }
     }
     async uninstall() {
         this.onunload();

@@ -216,6 +216,9 @@ $islandlayout-dock-transparency-selectors: (
                 --asri-enhance-islandlayout-surface-transparency: transparent;
                 background-color: transparent !important;
             }
+            .dock#dockLeft:not(.dock-layout-expanded) {
+                background-color: transparent !important;
+            }
         }
         &[data-asri-enhance-windowtransparencyvalue="1"] {
             body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) {

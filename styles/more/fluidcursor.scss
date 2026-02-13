@@ -1,0 +1,10 @@
+[data-asri-enhance-fluidcursor="true"]:root {
+    #asri-enhance-fluid-cursor {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            & .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+}

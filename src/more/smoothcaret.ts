@@ -117,6 +117,7 @@ const destroySmoothCaret = () => {
         throttledCaretEventHandler = null;
     }
 };
+export { destroySmoothCaret };
 export async function onSmoothCaretClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
     if (event) {
         event.preventDefault();

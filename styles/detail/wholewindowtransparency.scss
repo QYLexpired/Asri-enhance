@@ -1,5 +1,5 @@
 @use "../asri/asri" as *;
-[data-asri-enhance-wholewindowtransparency="true"]:root {
+[data-asri-enhance-wholewindowtransparency="true"]:not([data-asri-enhance-windowtransparencyvalue="0"]):root {
     #asri-enhance-wholewindowtransparency {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
             color: var(--b3-theme-accent);
@@ -114,7 +114,8 @@
         // 状态栏
         &:not(.asri-disable-backdrop-blur) #dockBottom.fn__none:not(.has-layout-dockb-float)~.status, 
         &:not(.asri-disable-backdrop-blur).body-asri--mobile .status {
-            background-color: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / 0.3);
+            background-color: transparent;
+            backdrop-filter: blur(20px);
         }
         // 闪卡在页签打开
         [data-type="wnd"] .card__main {

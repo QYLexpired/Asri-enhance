@@ -57,6 +57,9 @@ $other-transparency-selectors: (
   .search__layout--row {
       border-color: var(--b3-border-color-trans);
   }
+  .search__layout:not(.search__layout--row) .search__list {
+    border-color: var(--b3-border-color-trans);
+  }
   .search__drag {
       &::after {
         background-color: var(--b3-border-color-trans);

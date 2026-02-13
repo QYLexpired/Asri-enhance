@@ -282,6 +282,7 @@ async function startObserver(): Promise<void> {
     }
 }
 export function stopObserver(): void {
+    cleanupEventListeners();
     if (fetchInterceptorDisconnect) {
         try {
             fetchInterceptorDisconnect();

@@ -1,0 +1,42 @@
+@use "../asri/overflowfadein" as *;
+[data-asri-enhance-cardsearchlist="true"] {
+    #asri-enhance-cardsearchlist, #asri-enhance-detail-adjustment {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    #searchList:not(:has( > .search__empty)),
+    #searchUnRefList:not(:has( > .search__empty)),
+    #searchAssetList:not(:has( > .search__empty)) {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        grid-auto-rows: max-content;
+        gap: 8px;
+        padding: 8px;
+        @include overflow-indicator-fadein-mask($fadeout-size-m, "top bottom");
+        & [data-type=search-item] {
+            margin: 0;
+            padding: 6px 4px 2px 4px;
+            outline: 1px solid var(--b3-border-color-trans);
+            & .b3-list-item__graphic {
+                align-self: flex-start;
+                transform: translateY(20%);
+            }
+            & .b3-list-item__text {
+                align-self: flex-start;
+                -webkit-line-clamp: 3;
+                flex-basis: calc(100% - 44px);
+            }
+            & .b3-list-item__meta--ellipsis {
+                align-self: flex-end;
+            }
+            & .ft__on-surface {
+                align-self: flex-start;
+                transform: translateY(-10%);
+            }
+        }
+    }
+}

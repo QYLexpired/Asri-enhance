@@ -32,7 +32,7 @@ function adjustMacTrafficLights(): void {
         try {
             const { BrowserWindow } = win.require('@electron/remote');
             if (win.process.platform === 'darwin') {
-                BrowserWindow.getFocusedWindow()?.setWindowButtonPosition({ x: 16, y: 22 });
+                BrowserWindow.getFocusedWindow()?.setWindowButtonPosition({ x: 16, y: 24 });
             }
         } catch (e) {
         }
