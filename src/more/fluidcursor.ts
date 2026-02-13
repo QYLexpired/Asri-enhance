@@ -6,6 +6,9 @@ const FLUID_CURSOR_CANVAS_ID = 'asri-enhance-fluid-cursor-canvas';
 let animationFrameId: number | null = null;
 let resizeHandler: (() => void) | null = null;
 let mouseMoveHandler: ((e: MouseEvent) => void) | null = null;
+let mouseDownHandler: ((e: MouseEvent) => void) | null = null;
+let mouseUpHandler: ((e: MouseEvent) => void) | null = null;
+let mouseLeaveHandler: (() => void) | null = null;
 let colorCheckInterval: number | null = null;
 let points: { x: number; y: number }[] = [];
 let mouse = { x: -100, y: -100 };
@@ -14,24 +17,44 @@ let canvas: HTMLCanvasElement | null = null;
 let ctx: CanvasRenderingContext2D | null = null;
 let isFirstMouseMove = true;
 let cursorColor = '#f44336';
+let lastMouseMoveTime = 0;
+let hideCursorTimeout: number | null = null;
+const MOUSE_IDLE_TIMEOUT = 200;
+let isCursorVisible = false;
+const FADE_DURATION = 300;
+let isMouseDown = false;
 const CONFIG = {
     trailLength: 8,
     widthBase: 6,
     widthFactor: 1.2,
     headEase: 0.9,
     tailStiffness: 0.4,
-    zIndex: '999999'
+    zIndex: '999999',
+    opacity: 1
 };
 const getCursorColor = () => {
     const computedStyle = getComputedStyle(document.documentElement);
     const color = computedStyle.getPropertyValue('--b3-theme-primary').trim();
     return color || '#f44336';
 };
-const updateCursorColorIfNeeded = () => {
-    const newColor = getCursorColor();
-    if (newColor !== cursorColor) {
-        cursorColor = newColor;
+const randomCursorColor = () => {
+    const baseColor = getCursorColor();
+    const rand = Math.random();
+    let randomHue: number;
+    if (isMouseDown) {
+        if (rand < 0.8) {
+            randomHue = Math.floor(Math.random() * 61) + 180;
+        } else {
+            randomHue = Math.floor(Math.random() * 31) + 240;
+        }
+    } else {
+        if (rand < 0.8) {
+            randomHue = Math.floor(Math.random() * 61);
+        } else {
+            randomHue = Math.floor(Math.random() * 31) + 60;
+        }
     }
+    cursorColor = `oklch(from ${baseColor} l c calc(h + ${randomHue}))`;
 };
 const initFluidCursor = () => {
     const existingCanvas = document.getElementById(FLUID_CURSOR_CANVAS_ID);
@@ -46,14 +69,16 @@ const initFluidCursor = () => {
         left: '0',
         pointerEvents: 'none',
         zIndex: CONFIG.zIndex,
-        display: 'block'
+        opacity: '0'
     });
     document.body.appendChild(canvas);
     ctx = canvas.getContext('2d');
-    cursorColor = getCursorColor();
+    isMouseDown = false;
+    randomCursorColor();
     mouse = { x: -100, y: -100 };
     points = [];
     isFirstMouseMove = true;
+    isCursorVisible = false;
     const resize = () => {
         if (!canvas) return;
         const dpr = window.devicePixelRatio || 1;
@@ -79,9 +104,40 @@ const initFluidCursor = () => {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         }
+        randomCursorColor();
+        lastMouseMoveTime = Date.now();
+        if (!isCursorVisible && canvas) {
+            isCursorVisible = true;
+            canvas.style.transition = 'none';
+            canvas.style.opacity = '1';
+        }
+        if (hideCursorTimeout !== null) {
+            clearTimeout(hideCursorTimeout);
+        }
+        hideCursorTimeout = window.setTimeout(() => {
+            isCursorVisible = false;
+            if (canvas) {
+                canvas.style.transition = `opacity ${FADE_DURATION}ms ease-out`;
+                canvas.style.opacity = '0';
+            }
+        }, MOUSE_IDLE_TIMEOUT);
     };
     window.addEventListener('resize', resizeHandler);
     window.addEventListener('mousemove', mouseMoveHandler, { passive: true });
+    mouseDownHandler = () => {
+        isMouseDown = true;
+    };
+    mouseUpHandler = () => {
+        isMouseDown = false;
+        cursorColor = getCursorColor();
+    };
+    window.addEventListener('mousedown', mouseDownHandler, { passive: true });
+    window.addEventListener('mouseup', mouseUpHandler, { passive: true });
+    mouseLeaveHandler = () => {
+        points = [];
+        isFirstMouseMove = true;
+    };
+    document.addEventListener('mouseleave', mouseLeaveHandler);
     const animate = (currentTime: number) => {
         if (!canvas || !ctx) return;
         const deltaTime = (currentTime - lastTime) / 1000;
@@ -115,7 +171,7 @@ const initFluidCursor = () => {
     };
     lastTime = performance.now();
     animationFrameId = window.requestAnimationFrame(animate);
-    colorCheckInterval = window.setInterval(updateCursorColorIfNeeded, 3000);
+    colorCheckInterval = window.setInterval(randomCursorColor, 3000);
 };
 const destroyFluidCursor = () => {
     const existingCanvas = document.getElementById(FLUID_CURSOR_CANVAS_ID);
@@ -130,6 +186,10 @@ const destroyFluidCursor = () => {
         window.clearInterval(colorCheckInterval);
         colorCheckInterval = null;
     }
+    if (hideCursorTimeout !== null) {
+        clearTimeout(hideCursorTimeout);
+        hideCursorTimeout = null;
+    }
     if (resizeHandler) {
         window.removeEventListener('resize', resizeHandler);
         resizeHandler = null;
@@ -137,6 +197,18 @@ const destroyFluidCursor = () => {
     if (mouseMoveHandler) {
         window.removeEventListener('mousemove', mouseMoveHandler);
         mouseMoveHandler = null;
+    }
+    if (mouseDownHandler) {
+        window.removeEventListener('mousedown', mouseDownHandler);
+        mouseDownHandler = null;
+    }
+    if (mouseUpHandler) {
+        window.removeEventListener('mouseup', mouseUpHandler);
+        mouseUpHandler = null;
+    }
+    if (mouseLeaveHandler) {
+        document.removeEventListener('mouseleave', mouseLeaveHandler);
+        mouseLeaveHandler = null;
     }
     points = [];
     mouse = { x: 0, y: 0 };

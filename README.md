@@ -1,5 +1,5 @@
 ### Updates
-##### v2.0.4
+##### v2.0.5
 - New feature: Fluid cursor
 - New detail adjustment: Card-style search list
 - Removed detail adjustment: Cover image fade

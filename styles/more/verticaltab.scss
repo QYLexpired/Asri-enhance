@@ -170,6 +170,9 @@
             }
             & .layout-tab-container > :not(.protyle) {
                 margin-top: 48px;
+                & .layout__empty {
+                    height: calc(100% - 48px);
+                }
             }
             & > .fn__flex.fn__none + .asri-enhance-verticaltab-resize {
                 display: none;
