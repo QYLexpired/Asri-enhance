@@ -1,8 +1,7 @@
 ### Updates
-##### v2.0.6
-- New feature: Fluid cursor
-- New detail adjustment: Card-style search list
-- Removed detail adjustment: Cover image fade
+##### v2.0.7
+- Split hide tabs/breadcrumbs into hide tabs and hide breadcrumbs
+- Fixed the issue where island layout might cause interface flickering
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
@@ -22,7 +21,6 @@ Add a series of practical features and ensure the style completely matches the A
 - Smooth caret
 - Fluid cursor
 - Island Layout
-    - Note: Due to electron's own defects on macOS, enabling this may cause interface flickering. Please disable it promptly if you encounter any abnormalities
 ### Theme Detail Adjustments
 Detailed adjustments made completely in accordance with the Asri theme style
 - Textures (supporting more than ten background textures)
@@ -33,7 +31,8 @@ Detailed adjustments made completely in accordance with the Asri theme style
 - Colored headings
 - Heading level hints
 - Colored document tree
-- Hide tabs/breadcrumbs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
+- Hide tabs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
+- Hide breadcrumbs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
 - More animations
 - Global frosted glass
 ### More Preset Color Schemes

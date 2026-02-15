@@ -20,7 +20,8 @@ import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from 
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
 import { applyGlobalFrostedGlassConfig } from "./detail/globalfrostedglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
-import { applyHideTabBreadcrumbConfig } from "./detail/hidetabandbreadcrumb";
+import { applyHideTabConfig } from "./detail/hidetab";
+import { applyHideBreadcrumbConfig } from "./detail/hidebreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
 import { applyCardSearchListConfig } from "./detail/cardsearchlist";
@@ -75,7 +76,8 @@ class AsriEnhancePlugin extends Plugin {
             applySidememoConfig(this, config).catch(() => { }),
             applyGlobalFrostedGlassConfig(this, config).catch(() => { }),
             applySidebarTopStickyConfig(this, config).catch(() => { }),
-            applyHideTabBreadcrumbConfig(this, config).catch(() => { }),
+            applyHideTabConfig(this, config).catch(() => { }),
+            applyHideBreadcrumbConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
             applyCardSearchListConfig(this, config).catch(() => { }),

@@ -22,7 +22,6 @@
             content: "";
             background: linear-gradient(-45deg, transparent 0%, rgba(255,255,255,0.3) 25%, rgba(255,255,255,1.0) 50%, rgba(255,255,255,0.3) 75%, transparent 100%);
             filter: blur(2px);
-            mix-blend-mode: overlay;
             height: 100%;
             width: var(--asri-enhance-button-shine-width);
             transform: skewX(-45deg);

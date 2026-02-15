@@ -1,0 +1,47 @@
+@mixin asri-tfp-progressive-hide-fix {
+    --pgbb: 0px !important;
+    & .protyle {
+        --pgbb: 0.25px !important;
+    }
+    & .protyle:not(#searchPreview,.card__block,.plugin-panel,.docs-flow__protyle) > .protyle-breadcrumb:not([slot])::before {
+        display: none;
+    }
+    & > .protyle[data-loading=finished]::before {
+        display: none;
+    }
+    & > .protyle[data-loading=finished]::after {
+        display: none;
+    }
+    & > .protyle[data-loading=finished] .protyle-breadcrumb + .protyle-content::before {
+        --mask-opacity-factor-light: 1.05;
+        --mask-opacity-factor-dark: 1.05;
+    }
+}
+[data-asri-enhance-hide-tab="true"]:root {
+    #asri-enhance-hide-tab, #asri-enhance-detail-adjustment {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    body:not(.asri-tfp) #asri-enhance-hide-tab {
+        opacity: 0.38;
+    }
+    &[data-asri-enhance-vertical-tab="true"] #asri-enhance-hide-tab {
+        opacity: 0.38;
+    }
+    &:not([data-asri-enhance-vertical-tab="true"]) {
+        body.asri-tfp:not(.body-asri--mobile) .fn__flex-column[data-type=wnd]>.fn__flex:first-child {
+            transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
+            opacity: 0;
+            filter: blur(3px);
+            &:hover {
+                opacity: 1;
+                filter: blur(0px);
+            }
+        }
+        @include asri-tfp-progressive-hide-fix;
+    }
+}

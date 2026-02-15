@@ -10,15 +10,15 @@
     &[data-theme-mode="light"] {
         --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.75);
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.75);
-        --asri-enhance-global-frosted-glass-backdrop-filter: blur(8px) saturate(1.5) brightness(1.1);
+        --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(1.1);
         &[data-asri-palette="polar"] {
             --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
         }
     }
     &[data-theme-mode="dark"] {
-        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.8);
-        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.65);
-        --asri-enhance-global-frosted-glass-backdrop-filter: blur(8px) saturate(1.5) brightness(0.9);
+        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.75);
+        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.75);
+        --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(0.9);
         &[data-asri-palette="polar"] {
             --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
         }
@@ -83,10 +83,10 @@
         background-color: transparent;
     }
     #configBazaarReadme {
-        background-color: oklch(from var(--b3-theme-background) l c h / 0.9);
+        background-color: var(--asri-enhance-global-frosted-glass-background);
         backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
         .item__side {
-            background-color: oklch(from var(--b3-theme-surface) l c h / 0.9);
+            background-color: var(--asri-enhance-global-frosted-glass-surface);
         }
         .item__main  {
             background-color: transparent;
@@ -102,7 +102,7 @@
                 input,
                 select,
                 button {
-                    backdrop-filter: blur(10px);
+                    backdrop-filter: blur(20px);
                 }
                 button {
                     padding: 2px 4px;

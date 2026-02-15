@@ -19,7 +19,8 @@ import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick } from "../more/sidememo";
 import { onGlobalFrostedGlassClick } from "../detail/globalfrostedglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
-import { onHideTabBreadcrumbClick } from "../detail/hidetabandbreadcrumb";
+import { onHideTabClick } from "../detail/hidetab";
+import { onHideBreadcrumbClick } from "../detail/hidebreadcrumb";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
 import { onSingleColumnSlashMenuClick } from "../detail/singlecolumnslashmenu";
 import { onCardSearchListClick } from "../detail/cardsearchlist";
@@ -433,16 +434,27 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                                 separator.className = "b3-menu__separator";
                                 detailAdjustmentSubmenu.appendChild(separator);
                             }
-                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-hide-tab-breadcrumb")) {
-                                const hideTabBreadcrumbButton = document.createElement("button");
-                                hideTabBreadcrumbButton.className = "b3-menu__item";
-                                hideTabBreadcrumbButton.id = "asri-enhance-hide-tab-breadcrumb";
-                                hideTabBreadcrumbButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.hideTabBreadcrumb || "hideTabBreadcrumb"}</span>`;
-                                detailAdjustmentSubmenu.appendChild(hideTabBreadcrumbButton);
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-hide-tab")) {
+                                const hideTabButton = document.createElement("button");
+                                hideTabButton.className = "b3-menu__item";
+                                hideTabButton.id = "asri-enhance-hide-tab";
+                                hideTabButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.hideTab || "hideTab"}</span>`;
+                                detailAdjustmentSubmenu.appendChild(hideTabButton);
                             }
-                            const hideTabBreadcrumbItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab-breadcrumb");
-                            if (hideTabBreadcrumbItem) {
-                                hideTabBreadcrumbItem.onclick = (event) => onHideTabBreadcrumbClick(plugin, event);
+                            const hideTabItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab");
+                            if (hideTabItem) {
+                                hideTabItem.onclick = (event) => onHideTabClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-hide-breadcrumb")) {
+                                const hideBreadcrumbButton = document.createElement("button");
+                                hideBreadcrumbButton.className = "b3-menu__item";
+                                hideBreadcrumbButton.id = "asri-enhance-hide-breadcrumb";
+                                hideBreadcrumbButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.hideBreadcrumb || "hideBreadcrumb"}</span>`;
+                                detailAdjustmentSubmenu.appendChild(hideBreadcrumbButton);
+                            }
+                            const hideBreadcrumbItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-hide-breadcrumb");
+                            if (hideBreadcrumbItem) {
+                                hideBreadcrumbItem.onclick = (event) => onHideBreadcrumbClick(plugin, event);
                             }
                         }
                         const textureItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-texture");

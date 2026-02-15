@@ -41,7 +41,7 @@
         }
         @for $i from 1 through 6 {
             &.h#{$i}::before {
-                content: "#{$i}";
+                content: "##{$i}";
             }
         }
     }
