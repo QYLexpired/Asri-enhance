@@ -36,8 +36,8 @@ function findLayoutCenter(maxRetries: number = 10, interval: number = 100): Prom
     });
 }
 function getCurrentWidth(): number {
-    const htmlEl = document.documentElement;
-    const widthStr = getComputedStyle(htmlEl).getPropertyValue("--asri-enhance-vertical-tab-width");
+    const target = currentTopLeftElement ?? document.documentElement;
+    const widthStr = getComputedStyle(target).getPropertyValue("--asri-enhance-vertical-tab-width").trim();
     if (widthStr) {
         const width = parseFloat(widthStr);
         return isNaN(width) ? DEFAULT_WIDTH : width;
@@ -45,8 +45,8 @@ function getCurrentWidth(): number {
     return DEFAULT_WIDTH;
 }
 function setWidth(width: number): void {
-    const htmlEl = document.documentElement;
-    htmlEl.style.setProperty("--asri-enhance-vertical-tab-width", `${width}px`);
+    const target = currentTopLeftElement ?? document.documentElement;
+    target.style.setProperty("--asri-enhance-vertical-tab-width", `${width}px`);
 }
 function resetWidth(): void {
     setWidth(DEFAULT_WIDTH);
@@ -68,6 +68,19 @@ function cleanupEventListeners(): void {
     isDragging = false;
 }
 function setupResizeElement(resizeElement: HTMLElement): void {
+    const getPrevFlex = () => resizeElement.previousElementSibling as HTMLElement | null;
+    const addResizingClass = () => {
+        const prevFlex = getPrevFlex();
+        if (prevFlex && prevFlex.classList.contains("fn__flex")) {
+            prevFlex.classList.add("asri-enhance-verticaltab-resizing");
+        }
+    };
+    const removeResizingClass = () => {
+        const prevFlex = getPrevFlex();
+        if (prevFlex && prevFlex.classList.contains("fn__flex")) {
+            prevFlex.classList.remove("asri-enhance-verticaltab-resizing");
+        }
+    };
     const mousedownHandler = (e: MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
@@ -76,6 +89,7 @@ function setupResizeElement(resizeElement: HTMLElement): void {
         dragStartWidth = getCurrentWidth();
         document.body.style.userSelect = "none";
         document.body.style.cursor = "col-resize";
+        addResizingClass();
         mouseMoveHandler = (moveEvent: MouseEvent) => {
             if (!isDragging)
                 return;
@@ -99,6 +113,7 @@ function setupResizeElement(resizeElement: HTMLElement): void {
                 isDragging = false;
                 document.body.style.userSelect = "";
                 document.body.style.cursor = "";
+                removeResizingClass();
                 if (rafId !== null) {
                     cancelAnimationFrame(rafId);
                     rafId = null;
@@ -251,8 +266,8 @@ async function startObserver(): Promise<void> {
     if (!center) {
         return;
     }
-    setWidth(DEFAULT_WIDTH);
     addClassToTopLeftWnd(center);
+    setWidth(DEFAULT_WIDTH);
     if (!fetchInterceptorDisconnect) {
         try {
             const interceptor = createFetchInterceptor("setUILayout", () => {

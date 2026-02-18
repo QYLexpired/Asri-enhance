@@ -34,7 +34,7 @@
         &:hover {
             transition: 0.4s var(--asri-enhance-ease-1);
             &::before {
-                transition: 0.6s var(--asri-enhance-ease-1);
+                transition: 0.8s var(--asri-enhance-ease-1);
                 left: calc(100% + var(--asri-enhance-button-shine-width));
             }
         }

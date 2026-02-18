@@ -27,6 +27,9 @@ export async function onIslandLayoutClick(plugin: Plugin, event?: MouseEvent): P
     });
 }
 function adjustMacTrafficLights(): void {
+    if (document.body?.classList.contains("body--window")) {
+        return;
+    }
     const win = window as any;
     if (typeof window !== 'undefined' && win.process && win.require) {
         try {
@@ -38,7 +41,7 @@ function adjustMacTrafficLights(): void {
         }
     }
 }
-function restoreMacTrafficLights(): void {
+export function restoreMacTrafficLights(): void {
     const win = window as any;
     if (typeof window !== 'undefined' && win.process && win.require) {
         try {

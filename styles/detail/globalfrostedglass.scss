@@ -8,20 +8,46 @@
         }
     }
     &[data-theme-mode="light"] {
-        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.75);
-        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.75);
+        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
+        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(1.1);
         &[data-asri-palette="polar"] {
             --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
         }
     }
     &[data-theme-mode="dark"] {
-        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.75);
-        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.75);
+        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
+        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(0.9);
         &[data-asri-palette="polar"] {
             --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
         }
+    }
+    // 修改Asri本体毛玻璃效果
+    body:not(.asri-disable-backdrop-blur) :is(.b3-menu,.b3-menu__submenu)::before {
+        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+    }
+    body:not(.asri-disable-backdrop-blur) #dockBottom.fn__none:not(.has-layout-dockb-float)~.status, body:not(.asri-disable-backdrop-blur).body-asri--mobile .status {
+        background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
+    }
+    body:not(.asri-disable-backdrop-blur) .protyle-hint>div:not(.emojis) {
+        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+    }
+    body:not(.asri-disable-backdrop-blur) .protyle-toolbar {
+        background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
+        backdrop-filter: blur(6px) saturate(1.5) brightness(1.1);
+        &:is([data-theme-mode="dark"] .protyle-toolbar) {
+            backdrop-filter: blur(6px) saturate(1.5) brightness(0.9);
+        }
+    }
+    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer #dialogContainer .dialog {
+        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+    }
+    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer #findbar:not(.fn__hidden), body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer .pdf__util {
+        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+    }
+    body:not(.asri-disable-backdrop-blur) #message.b3-snackbars .b3-snackbar__content {
+        background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
     }
     // 窗口
     .b3-dialog {

@@ -1,7 +1,6 @@
 ### Updates
-##### v2.0.7
-- Split hide tabs/breadcrumbs into hide tabs and hide breadcrumbs
-- Fixed the issue where island layout might cause interface flickering
+##### v2.0.8
+- Theme color following time changed to pure CSS implementation for better performance
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors

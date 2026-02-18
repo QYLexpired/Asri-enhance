@@ -191,6 +191,13 @@
                 padding-right: 0 !important;
                 transition: padding-top 0.2s;
                 padding-top: 0px;
+                &.asri-enhance-verticaltab-resizing {
+                    & > .layout-tab-bar:not(.layout-tab-bar--readonly) {
+                        & .item {
+                            transition: none;
+                        }
+                    }
+                }
                 &[style*="padding-top:"][style*="42px"] {
                     padding-top: 38px !important;
                     & + .asri-enhance-verticaltab-resize {

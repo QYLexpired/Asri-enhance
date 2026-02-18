@@ -1,4 +1,14 @@
+@property --asri-enhance-follow-time-vary {
+    syntax: '<integer>';
+    inherits: false;
+    initial-value: 0;
+}
+@keyframes asri-enhance-follow-time-vary {
+    0% { --asri-enhance-follow-time-vary: 0; }
+    100% { --asri-enhance-follow-time-vary: 360; }
+}
 [data-asri-enhance-follow-time="true"]:root {
+    animation: asri-enhance-follow-time-vary 180s linear infinite;
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }

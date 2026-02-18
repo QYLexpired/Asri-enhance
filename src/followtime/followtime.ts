@@ -4,26 +4,6 @@ import { PaletteConfig } from "../palette/manager";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-follow-time";
 const DATA_ATTR = "data-asri-enhance-follow-time";
-let followTimeInterval: number | null = null;
-let followTimeValue = 0;
-function startFollowTimeAnimation() {
-    if (followTimeInterval !== null) {
-        return;
-    }
-    followTimeValue = 0;
-    document.documentElement.style.setProperty('--asri-enhance-follow-time-vary', followTimeValue.toString());
-    followTimeInterval = window.setInterval(() => {
-        followTimeValue = (followTimeValue + 3) % 361;
-        document.documentElement.style.setProperty('--asri-enhance-follow-time-vary', followTimeValue.toString());
-    }, 2000);
-}
-function stopFollowTimeAnimation() {
-    if (followTimeInterval !== null) {
-        window.clearInterval(followTimeInterval);
-        followTimeInterval = null;
-    }
-    document.documentElement.style.removeProperty('--asri-enhance-follow-time-vary');
-}
 export async function onFollowTimeClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
     if (event) {
         event.preventDefault();
@@ -45,7 +25,6 @@ export async function onFollowTimeClick(plugin: Plugin, event?: MouseEvent): Pro
         htmlEl.removeAttribute("data-asri-palette");
         followTimeConfig[themeMode] = true;
         config[CONFIG_KEY] = followTimeConfig;
-        startFollowTimeAnimation();
     };
     if (document.startViewTransition) {
         const transition = document.startViewTransition(() => {
@@ -75,23 +54,19 @@ export async function applyFollowTimeConfig(plugin: Plugin, config?: Record<stri
         if (shouldApply) {
             htmlEl.setAttribute(DATA_ATTR, "true");
             htmlEl.removeAttribute("data-asri-palette");
-            startFollowTimeAnimation();
         }
         else {
             htmlEl.removeAttribute(DATA_ATTR);
-            stopFollowTimeAnimation();
         }
     }
     else {
         htmlEl.removeAttribute(DATA_ATTR);
-        stopFollowTimeAnimation();
     }
 }
 export async function removeFollowTimeConfig(plugin: Plugin, configFile: string = "config.json"): Promise<void> {
     const htmlEl = document.documentElement;
     if (htmlEl) {
         htmlEl.removeAttribute(DATA_ATTR);
-        stopFollowTimeAnimation();
     }
     const config = await loadData(plugin, configFile);
     if (!config) {

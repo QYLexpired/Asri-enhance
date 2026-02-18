@@ -29,7 +29,7 @@ import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyv
 import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
 import { applySmoothCaretConfig, destroySmoothCaret } from "./more/smoothcaret";
 import { applyFluidCursorConfig, destroyFluidCursor } from "./more/fluidcursor";
-import { applyIslandLayoutConfig } from "./more/islandlayout";
+import { applyIslandLayoutConfig, restoreMacTrafficLights } from "./more/islandlayout";
 import { applyPaperConfig } from "./texture/paper";
 import { applyNoiseConfig } from "./texture/noise";
 import { applyAcrylicConfig } from "./texture/acrylic";
@@ -264,6 +264,7 @@ class AsriEnhancePlugin extends Plugin {
         stopSidememoObserver();
         destroySmoothCaret();
         destroyFluidCursor();
+        restoreMacTrafficLights();
         const htmlEl = document.documentElement;
         if (htmlEl) {
             const attrs = Array.from(htmlEl.attributes);
