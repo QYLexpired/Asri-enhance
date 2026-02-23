@@ -1,3 +1,4 @@
+@use "../asri/overflowfadein" as *;
 body.asri-tfp {
     #topbarFusionPlus {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
@@ -44,6 +45,13 @@ $other-transparency-selectors: (
     }
 }
 :root {
+  // 线条颜色
+  .search__tip {
+    border-color: var(--b3-border-color-trans);
+  }
+  .b3-label {
+    border-color: var(--b3-border-color-trans);
+  }
   // 搜索列表
   #searchList, #searchUnRefList{
     background-color: var(--b3-theme-background);
@@ -81,6 +89,48 @@ $other-transparency-selectors: (
   .search__preview {
       border-color: var(--b3-border-color-trans);
   }
+  // 闪卡按钮
+  .card__action {
+    button.b3-button {
+      corner-shape: superellipse(1.4);
+      border-radius: 48px;
+      &:hover {
+        box-shadow: none !important;
+        animation: card__action-button-hover-light 0.3s ease-in-out;
+        scale: 1;
+        transform: scale(1.05);
+        transition: transform .7s var(--asri-ease-spring-4);
+        transform-origin: 50% 82.5%;
+      }
+      &:is([data-theme-mode="dark"] button.b3-button) {
+        &:hover {
+          animation: card__action-button-hover-dark 0.3s ease-in-out;
+        }
+      }
+    }
+  }
+  @keyframes card__action-button-hover-light {
+    0% {
+      filter: brightness(1) saturate(1);
+    }
+    50% {
+      filter: brightness(1.03) saturate(1.08);
+    }
+    100% {
+      filter: brightness(1) saturate(1);
+    }
+  }
+  @keyframes card__action-button-hover-dark {
+    0% {
+      filter: brightness(1) saturate(1);
+    }
+    50% {
+      filter: brightness(1.1) saturate(1.1);
+    }
+    100% {
+      filter: brightness(1) saturate(1);
+    }
+  }
   // 闪卡在页签打开
   [data-type="wnd"] .card__main {
     background-color: var(--b3-theme-background);
@@ -96,10 +146,21 @@ $other-transparency-selectors: (
     }
   }
   // 图片查看器
-  .viewer-backdrop {
-    background-color: oklch(from var(--b3-theme-primary) l 0.1 h / 0.1);
+  @keyframes viewer-backdrop-blur {
+    0% {
+      backdrop-filter: blur(0px);
+      background-color: transparent;
+    }
+    100% {
+      backdrop-filter: blur(20px);
+      background-color: oklch(from var(--b3-theme-background) l c h / 0.7);
+    }
+  }
+  .viewer-backdrop.viewer-container {
+    background-color: oklch(from var(--b3-theme-background) l c h / 0.7);
+    animation: viewer-backdrop-blur 0.5s forwards;
     .viewer-navbar {
-      background-color: oklch(from var(--b3-theme-primary) l 0.12 h / 0.12);
+      background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
       .viewer-list {
         transition: 0.5s cubic-bezier(0.1, 0.9, 0.2, 1);
       }
@@ -115,12 +176,6 @@ $other-transparency-selectors: (
     .viewer-toolbar>ul {
       background-color: transparent;
       backdrop-filter: none;
-    }
-    &:is([data-theme-mode="dark"] .viewer-backdrop) {
-      background-color: oklch(from var(--b3-theme-primary) 0.3 0.05 h / 0.1);
-      .viewer-navbar {
-        background-color: oklch(from var(--b3-theme-primary) 0.55 0.05 h / 0.12);
-      }
     }
   }
 }

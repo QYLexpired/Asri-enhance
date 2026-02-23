@@ -14,6 +14,7 @@ import { onNostalgiaClick } from "../palette/nostalgia";
 import { onColoredHeadingClick } from "../detail/coloredheading";
 import { onHeadingLevelHintClick } from "../detail/headinglevelhint";
 import { onColoredTreeClick } from "../detail/coloredtree";
+import { onColoredListClick } from "../detail/coloredlist";
 import { onListBulletLineClick } from "../more/listbulletline";
 import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick } from "../more/sidememo";
@@ -42,7 +43,7 @@ import { onCamouflageClick } from "../texture/camouflage";
 import { onFiberClick } from "../texture/fiber";
 import { onFabricClick } from "../texture/fabric";
 import { loadData } from "../utils/storage";
-import { onFollowTimeClick } from "../followtime/followtime";
+import { onFollowTimeClick, saveFollowTimeColor } from "../followtime/followtime";
 const PALETTE_ICON_SVG = '<svg class="b3-menu__icon" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M19 3h-4a2 2 0 0 0-2 2v12a4 4 0 0 0 8 0V5a2 2 0 0 0-2-2"></path><path d="m13 7.35l-2-2a2 2 0 0 0-2.828 0L5.344 8.178a2 2 0 0 0 0 2.828l9 9"></path><path d="M7.3 13H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h12m0-4v.01"></path></g></svg>';
 const MORE_ICON_SVG = '<svg class="b3-menu__icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em"><path d="M512 443.733333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 443.733333z m0-238.933333a68.266667 68.266667 0 1 1-0.034133 136.567467A68.266667 68.266667 0 0 1 512 204.8z m0 477.866667a68.266667 68.266667 0 1 1-0.034133 136.567466A68.266667 68.266667 0 0 1 512 682.666667z" fill="currentColor"></path></svg>';
 export type Unsubscribe = () => void;
@@ -143,16 +144,32 @@ export function listenBarModeClick(plugin: Plugin, callback: (event: MouseEvent)
                         }
                         const followCoverImgColor = document.querySelector<HTMLElement>('#commonMenu[data-name="barmode"] #followCoverImgColor');
                         if (followCoverImgColor && !parent.querySelector("#asri-enhance-follow-time")) {
+                            const savedColor = document.documentElement.style.getPropertyValue("--asri-enhance-follow-time-base-color") || "#3478f6";
                             const followTimeButton = document.createElement("button");
                             followTimeButton.className = "b3-menu__item asri-enhance";
                             followTimeButton.id = "asri-enhance-follow-time";
-                            followTimeButton.innerHTML = `<svg class="b3-menu__icon"></svg><span class="b3-menu__label">${plugin.i18n?.followTime || "Follow Time"}</span>`;
+                            followTimeButton.innerHTML = `<svg class="b3-menu__icon"></svg><input id="asri-enhance-followtime-colorpicker" type="color" value="${savedColor}"><span class="b3-menu__label">${plugin.i18n?.followTime || "Follow Time"}</span>`;
                             if (followCoverImgColor.nextSibling) {
                                 parent.insertBefore(followTimeButton, followCoverImgColor.nextSibling);
                             } else {
                                 parent.appendChild(followTimeButton);
                             }
-                            followTimeButton.onclick = (event) => onFollowTimeClick(plugin, event);
+                            const colorPicker = followTimeButton.querySelector<HTMLInputElement>("#asri-enhance-followtime-colorpicker");
+                            if (colorPicker) {
+                                followTimeButton.addEventListener("click", async (event) => {
+                                    event.preventDefault();
+                                    event.stopPropagation();
+                                    await onFollowTimeClick(plugin);
+                                    colorPicker.click();
+                                });
+                                colorPicker.addEventListener("click", (event) => {
+                                    event.stopPropagation();
+                                });
+                                colorPicker.addEventListener("input", async (event) => {
+                                    const target = event.target as HTMLInputElement;
+                                    await saveFollowTimeColor(plugin, target.value);
+                                });
+                            }
                         }
                     }
                     callback(event);
@@ -406,6 +423,27 @@ export function addMoreAfterTopbarFusionPlus(plugin: Plugin, delayMs: number = 2
                             const coloredTreeItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-colored-tree");
                             if (coloredTreeItem) {
                                 coloredTreeItem.onclick = (event) => onColoredTreeClick(plugin, event);
+                            }
+                            if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-list")) {
+                                const coloredListButton = document.createElement("button");
+                                coloredListButton.className = "b3-menu__item";
+                                coloredListButton.id = "asri-enhance-colored-list";
+                                coloredListButton.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.coloredList || "coloredList"}</span>`;
+                                if (detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree")) {
+                                    const coloredTreeButton = detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree");
+                                    if (coloredTreeButton && coloredTreeButton.nextSibling) {
+                                        detailAdjustmentSubmenu.insertBefore(coloredListButton, coloredTreeButton.nextSibling);
+                                    } else {
+                                        detailAdjustmentSubmenu.appendChild(coloredListButton);
+                                    }
+                                }
+                                else {
+                                    detailAdjustmentSubmenu.appendChild(coloredListButton);
+                                }
+                            }
+                            const coloredListItem = detailAdjustmentSubmenu?.querySelector<HTMLButtonElement>("#asri-enhance-colored-list");
+                            if (coloredListItem) {
+                                coloredListItem.onclick = (event) => onColoredListClick(plugin, event);
                             }
                             if (detailAdjustmentSubmenu && !detailAdjustmentSubmenu.querySelector("#asri-enhance-moreanimations")) {
                                 const moreAnimationsButton = document.createElement("button");

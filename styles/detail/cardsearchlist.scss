@@ -16,7 +16,7 @@
         grid-auto-rows: max-content;
         gap: 8px;
         padding: 8px;
-        @include overflow-indicator-fadein-mask($fadeout-size-m, "top bottom");
+        @include overflow-indicator-fadein-mask($fadeout-size-s, "top bottom");
         & [data-type=search-item] {
             margin: 0;
             padding: 6px 4px 2px 4px;

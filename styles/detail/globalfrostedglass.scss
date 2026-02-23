@@ -49,16 +49,28 @@
     body:not(.asri-disable-backdrop-blur) #message.b3-snackbars .b3-snackbar__content {
         background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
     }
+    body:not(.asri-disable-backdrop-blur) .protyle-util {
+        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+    }
     // 窗口
+    @keyframes b3-dialog__scrim-blur {
+        0% {
+            backdrop-filter: blur(0px);
+        }
+        100% {
+            backdrop-filter: blur(1px);
+        }
+    }
     .b3-dialog {
         .b3-dialog__scrim {
             background-color: transparent;
-            backdrop-filter: blur(2px) brightness(0.975);
             transition: none;
+            animation: b3-dialog__scrim-blur 0.3s ease-in-out forwards;
         }
         .b3-dialog__container {
             background-color: transparent;
             transition: none;
+            border: unset;
             &::before {
                 content: "";
                 position: absolute;
@@ -68,6 +80,11 @@
                 border-radius: inherit;
                 background-color: var(--asri-enhance-global-frosted-glass-background);
                 backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
+            }
+            &:is([data-theme-mode="dark"] .b3-dialog__container) {
+                &::before {
+                    border: 1px solid var(--b3-border-color-trans);
+                }
             }
             .config__tab-wrap {
                 background-color: transparent;
@@ -91,6 +108,17 @@
             }
             .protyle:not(.fullscreen) {
                 background-color: transparent;
+                .protyle-breadcrumb {
+                    background-color: transparent;
+                }
+                // 修复部分窗口毛玻璃失效
+                .protyle-wysiwyg [data-node-id] {
+                    z-index: 1; 
+                }
+            }
+            .fullscreen {
+                background-color: var(--asri-enhance-global-frosted-glass-background);
+                backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
                 .protyle-breadcrumb {
                     background-color: transparent;
                 }
@@ -153,6 +181,7 @@
     .block__popover.block__popover--open {
         background-color: transparent;
         animation: none;
+        border: unset;
         &::before {
             content: "";
             position: absolute;
@@ -162,6 +191,11 @@
             border-radius: inherit;
             background-color: var(--asri-enhance-global-frosted-glass-background);
             backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
+        }
+        &:is([data-theme-mode="dark"] .block__popover.block__popover--open) {
+            &::before {
+                border: 1px solid var(--b3-border-color-trans);
+            }
         }
         .block__icons {
             background-color: transparent;
@@ -180,17 +214,17 @@
         }
     }
     // 闪卡
-    [data-key="dialog-opencard"] {
+    [data-key="dialog-opencard"],
+    [data-key="dialog-viewcards"] {
         .b3-dialog {
             .b3-dialog__scrim {
                 background-color: transparent !important;
-                backdrop-filter: blur(12px) brightness(0.98);
             }
             .card__main {
                 background-color: transparent;
-                .card__empty {
-                    background-color: transparent;
-                }
+            }
+            .card__empty {
+                background-color: transparent;
             }
         }
     }

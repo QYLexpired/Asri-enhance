@@ -94,6 +94,14 @@
         box-shadow: none;
     }
     & body:not(.body-asri--mobilem, .body--window) {
+        & .protyle.fullscreen {
+            & .protyle-breadcrumb__bar {
+                transform: none !important;
+            }
+            & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
+                transform: none !important;
+            }
+        }
         /* 左侧栏收起 */
         .layout__resize.fn__none + .layout__center .asri-enhance-verticaltab {
             & > .fn__flex:first-child {

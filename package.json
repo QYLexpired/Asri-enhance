@@ -20,6 +20,7 @@
     "typescript": "^5.6.3"
   },
   "dependencies": {
-    "marked-katex-extension": "^5.1.6"
+    "marked-katex-extension": "^5.1.6",
+    "textarea-caret-ts": "^4.1.1"
   }
 }

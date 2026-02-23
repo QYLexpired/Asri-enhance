@@ -14,6 +14,7 @@ import { applyGlitchConfig } from "./palette/glitch";
 import { applyNostalgiaConfig } from "./palette/nostalgia";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
+import { applyColoredListConfig } from "./detail/coloredlist";
 import { applyHeadingLevelHintConfig } from "./detail/headinglevelhint";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
@@ -70,6 +71,7 @@ class AsriEnhancePlugin extends Plugin {
             applyNostalgiaConfig(this, config).catch(() => { }),
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
+            applyColoredListConfig(this, config).catch(() => { }),
             applyHeadingLevelHintConfig(this, config).catch(() => { }),
             applyListBulletLineConfig(this, config).catch(() => { }),
             applyVerticalTabConfig(this, config).catch(() => { }),

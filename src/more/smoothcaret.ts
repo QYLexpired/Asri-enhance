@@ -8,6 +8,8 @@ let throttledCaretEventHandler: (() => void) | null = null;
 let throttleTimers: number[] = [];
 let cachedZIndex = 0;
 let lastEditableElement: Element | null = null;
+let cachedScrollContainer: HTMLElement | null = null;
+let cachedFocusElement: Element | null = null;
 const initSmoothCaret = () => {
     document.getElementById(CARET_ITEM_ID)?.remove();
     const caretElement = document.createElement('div');
@@ -19,17 +21,12 @@ const initSmoothCaret = () => {
             return cachedZIndex;
         }
         let currentElement: Element | null = targetElement;
-        while (currentElement && currentElement !== document.documentElement) {
-            const computedStyle = window.getComputedStyle(currentElement);
-            const zIndexValue = computedStyle.zIndex;
-            const createsStackingContext =
-                (computedStyle.position !== 'static' && zIndexValue !== 'auto') ||
-                computedStyle.position === 'fixed' || computedStyle.position === 'sticky' ||
-                parseFloat(computedStyle.opacity) < 1 ||
-                computedStyle.transform !== 'none' ||
-                computedStyle.perspective !== 'none' ||
-                computedStyle.willChange !== 'auto';
-            if (createsStackingContext && zIndexValue !== 'auto') {
+        while (currentElement && currentElement !== document.body) {
+            if (currentElement.classList.contains('b3-dialog') ||
+                currentElement.classList.contains('block__popover--open') ||
+                currentElement.id === 'commonMenu') {
+                const computedStyle = window.getComputedStyle(currentElement);
+                const zIndexValue = computedStyle.zIndex;
                 const zIndex = parseInt(zIndexValue) || 0;
                 cachedZIndex = zIndex;
                 lastEditableElement = targetElement;
@@ -44,28 +41,77 @@ const initSmoothCaret = () => {
     const updateCaretPosition = () => {
         isAnimationFramePending = false;
         const sel = window.getSelection();
-        const editableElement = sel.focusNode?.parentElement?.closest('[contenteditable]');
-        const isInEditableWysiwyg = editableElement?.closest('.protyle-wysiwyg[data-readonly="false"]');
-        if (sel.rangeCount && editableElement && isInEditableWysiwyg) {
+        const focusElement = sel.focusNode?.parentElement;
+        if (focusElement?.classList?.contains('av__cursor')) {
+            caretElement.classList.add('asri-enhance-smooth-caret-item-none');
+            return;
+        }
+        const isSelfContentEditableFalse = focusElement?.getAttribute?.('contenteditable') === 'false';
+        if (isSelfContentEditableFalse) {
+            caretElement.classList.add('asri-enhance-smooth-caret-item-none');
+            return;
+        }
+        const editableElement = focusElement?.closest('[contenteditable="true"]');
+        if (sel.rangeCount && editableElement) {
             const range = sel.getRangeAt(0);
             let rect = range.getClientRects()[0];
             if (!rect || rect.height === 0) {
+                let textNode: Text | null = null;
                 try {
                     const cloneRange = range.cloneRange();
-                    const textNode = document.createTextNode('\u200B');
+                    textNode = document.createTextNode('\u200B');
                     cloneRange.insertNode(textNode);
                     cloneRange.selectNode(textNode);
                     rect = cloneRange.getBoundingClientRect();
-                    textNode.parentNode.removeChild(textNode);
                 } catch (e) {
+                } finally {
+                    if (textNode?.parentNode) {
+                        textNode.parentNode.removeChild(textNode);
+                    }
                 }
             }
             if (rect) {
+                if (focusElement !== cachedFocusElement) {
+                    cachedFocusElement = focusElement ?? null;
+                    cachedScrollContainer = focusElement?.closest('.protyle-content') as HTMLElement | null;
+                }
+                if (cachedScrollContainer) {
+                    const containerRect = cachedScrollContainer.getBoundingClientRect();
+                    const isInScrollContainer = 
+                        rect.left >= containerRect.left && 
+                        rect.top >= containerRect.top && 
+                        rect.right <= containerRect.right && 
+                        rect.bottom <= containerRect.bottom;
+                    if (!isInScrollContainer) {
+                        caretElement.classList.add('asri-enhance-smooth-caret-item-none');
+                        return;
+                    }
+                }
                 caretElement.classList.remove('asri-enhance-smooth-caret-item-none');
-                caretElement.style.transform = `translate3d(${rect.left - 1}px, ${rect.top + rect.height / 2 - rect.height * 0.6}px, 0)`;
-                caretElement.style.height = `${rect.height * 1.2}px`;
+                caretElement.style.transform = `translate3d(${rect.left - 0.75}px, ${rect.top - rect.height * 0.025}px, 0)`;
+                caretElement.style.height = `${rect.height * 1.05}px`;
                 const baseZIndex = calculateCaretZIndex(editableElement);
                 caretElement.style.zIndex = (baseZIndex + 1).toString();
+                let textColor: string | null = null;
+                const focusNode = sel.focusNode;
+                if (focusNode) {
+                    if (focusNode.nodeType === Node.TEXT_NODE) {
+                        const parentElement = focusNode.parentElement;
+                        if (parentElement) {
+                            textColor = window.getComputedStyle(parentElement).color;
+                        }
+                    } else if (focusNode.nodeType === Node.ELEMENT_NODE) {
+                        textColor = window.getComputedStyle(focusNode as Element).color;
+                    }
+                }
+                if (!textColor) {
+                    textColor = window.getComputedStyle(editableElement).color;
+                }
+                if (textColor && textColor !== 'transparent' && !/rgba?\([^)]*,\s*0\s*\)$/i.test(textColor)) {
+                    caretElement.style.setProperty('--asri-enhance-smooth-caret-color', textColor);
+                } else {
+                    caretElement.style.removeProperty('--asri-enhance-smooth-caret-color');
+                }
                 return;
             }
         }
@@ -106,6 +152,8 @@ const destroySmoothCaret = () => {
     throttleTimers = [];
     cachedZIndex = 0;
     lastEditableElement = null;
+    cachedScrollContainer = null;
+    cachedFocusElement = null;
     if (smoothCaretEventHandler) {
         document.removeEventListener('selectionchange', smoothCaretEventHandler);
         document.removeEventListener('scroll', smoothCaretEventHandler, { capture: true });

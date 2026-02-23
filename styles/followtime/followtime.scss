@@ -1,3 +1,4 @@
+@use "../asri/asri" as *;
 @property --asri-enhance-follow-time-vary {
     syntax: '<integer>';
     inherits: false;
@@ -6,6 +7,13 @@
 @keyframes asri-enhance-follow-time-vary {
     0% { --asri-enhance-follow-time-vary: 0; }
     100% { --asri-enhance-follow-time-vary: 360; }
+}
+#asri-enhance-followtime-colorpicker {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin-left: -2px;
 }
 [data-asri-enhance-follow-time="true"]:root {
     animation: asri-enhance-follow-time-vary 180s linear infinite;
@@ -37,11 +45,15 @@
     }
     --asri-c-0: unset;
     --asri-on-primary-reverse: unset;
-    --asri-base-color: oklch(from var(--asri-enhance-follow-time-base) l c calc(h + var(--asri-enhance-follow-time-vary, 0)));
     &[data-theme-mode="light"] {
-        --asri-enhance-follow-time-base: #3478f6;
+        --asri-enhance-follow-time-fallback: #3478f6;
     }
     &[data-theme-mode="dark"] {
-        --asri-enhance-follow-time-base: #118bff;
+        --asri-enhance-follow-time-fallback: #118bff;
+    }
+    --asri-base-color: oklch(from var(--asri-enhance-follow-time-base-color, var(--asri-enhance-follow-time-fallback)) l c calc(h + var(--asri-enhance-follow-time-vary, 0)));
+    #{$primary-color-reverse-selectors} {
+        --b3-theme-primary: var(--asri-base-color);
+        --b3-theme-on-primary: oklch(from var(--asri-base-color) clamp(0, calc((0.72 - l) * 10000), 1) 0 0);
     }
 }

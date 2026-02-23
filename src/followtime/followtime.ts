@@ -3,7 +3,9 @@ import { saveData, loadData } from "../utils/storage";
 import { PaletteConfig } from "../palette/manager";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-follow-time";
+const COLOR_CONFIG_KEY = "asri-enhance-follow-time-base-color";
 const DATA_ATTR = "data-asri-enhance-follow-time";
+const COLOR_DATA_ATTR = "data-asri-enhance-follow-time-base-color";
 export async function onFollowTimeClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
     if (event) {
         event.preventDefault();
@@ -62,6 +64,11 @@ export async function applyFollowTimeConfig(plugin: Plugin, config?: Record<stri
     else {
         htmlEl.removeAttribute(DATA_ATTR);
     }
+    if (configData && configData[COLOR_CONFIG_KEY]) {
+        const savedColor = configData[COLOR_CONFIG_KEY];
+        htmlEl.style.setProperty("--asri-enhance-follow-time-base-color", savedColor);
+        htmlEl.setAttribute(COLOR_DATA_ATTR, savedColor);
+    }
 }
 export async function removeFollowTimeConfig(plugin: Plugin, configFile: string = "config.json"): Promise<void> {
     const htmlEl = document.documentElement;
@@ -75,5 +82,21 @@ export async function removeFollowTimeConfig(plugin: Plugin, configFile: string 
     if (config[CONFIG_KEY] !== undefined) {
         delete config[CONFIG_KEY];
         await saveData(plugin, configFile, config);
+    }
+}
+export async function saveFollowTimeColor(plugin: Plugin, color: string): Promise<void> {
+    const config = (await loadData(plugin, CONFIG_FILE)) || {};
+    config[COLOR_CONFIG_KEY] = color;
+    await saveData(plugin, CONFIG_FILE, config);
+    const htmlEl = document.documentElement;
+    if (htmlEl) {
+        htmlEl.style.setProperty("--asri-enhance-follow-time-base-color", color);
+        htmlEl.setAttribute(COLOR_DATA_ATTR, color);
+        const isActive = htmlEl.hasAttribute(DATA_ATTR);
+        if (isActive) {
+            htmlEl.removeAttribute(DATA_ATTR);
+            void htmlEl.offsetWidth;
+            htmlEl.setAttribute(DATA_ATTR, "true");
+        }
     }
 }

@@ -7,18 +7,49 @@
             }
         }
     }
-    .sy__file > .fn__flex-1 > ul.b3-list.b3-list--background {
-        @for $i from 0 through 7 {
-            $hue-offset: #{$i * 45};
-            &:nth-of-type(8n + #{$i + 1}) {
-                --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + #{$hue-offset}) / 0.1);
-                & .b3-list-item--focus {
-                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + #{$hue-offset}) / 0.2) !important;
+    .layout__dockl {
+        --asri-enhance-colored-tree-ulmargin: 0 18px 0 12px;
+    }
+    .layout__dockr {
+        --asri-enhance-colored-tree-ulmargin: 0 0 0 12px;
+    }
+    .layout__dockb {
+        --asri-enhance-colored-tree-ulmargin: 0 12px;
+    }
+    .sy__file {
+        & .b3-list-item {
+            margin-inline-end: 0;
+        }
+        & > .fn__flex-1 {
+            --indent-offset: -6px;
+            & > ul {
+                margin: var(--asri-enhance-colored-tree-ulmargin);
+                border-radius: var(--b3-border-radius);
+                @for $i from 0 through 7 {
+                    $hue-offset: #{$i * 45};
+                    &:nth-of-type(8n + #{$i + 1}) {
+                        background-color: oklch(from var(--b3-theme-accent) l 0.15 calc(h + #{$hue-offset}) / 0.1);
+                        --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.15 calc(h + #{$hue-offset}) / 0.1);
+                        & .b3-list-item--focus {
+                            background-color: oklch(from var(--b3-theme-accent) l 0.2 calc(h + #{$hue-offset}) / 0.15) !important;
+                        }
+                    }
                 }
                 & [data-type="navigation-root"] {
-                    background-color: oklch(from var(--b3-theme-accent) l c calc(h + #{$hue-offset}) / 0.1);
-                    &:hover {
-                        background-color: oklch(from var(--b3-theme-accent) l c calc(h + #{$hue-offset}) / 0.2);
+                    margin-inline-start: 0;
+                    margin-inline-end: 0;
+                }
+                & ul {
+                    box-shadow: none !important;
+                    position: relative;
+                    &::before {
+                        content: "";
+                        position: absolute;
+                        left: -6px;
+                        top: 0;
+                        bottom: 0;
+                        width: 1px;
+                        background-color: var(--indent-color);
                     }
                 }
             }
