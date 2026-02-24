@@ -44,7 +44,7 @@
                     & [spellcheck] {
                         color: var(--asri-enhance-li-color);
                     }
-                    &:is([data-asri-enhance-headinglevelhint=true] .protyle-wysiwyg [data-type=NodeHeading]:not(.asri-selected-block).h5) {
+                    &:is([data-asri-enhance-headinglevelhint=true] .protyle-wysiwyg [data-type=NodeHeading]:not(.asri-selected-block)) {
                         &::before {
                             color: var(--asri-enhance-li-color);
                         }
