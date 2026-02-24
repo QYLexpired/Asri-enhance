@@ -17,20 +17,10 @@
         corner-shape: superellipse(1.4);
         position: absolute;
         left: -18px;
-        animation: listbulletlines 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
-        transform-origin: left top;
         --asri-enhance-bullet-line-fontsize-fix: calc((var(--b3-font-size-editor) - 16px) * 0.5);
         --asri-enhance-bullet-fix-u: 1.25px;
         --asri-enhance-bullet-fix-o: 10.25px;
         --asri-enhance-bullet-fix-t: 5.25px;
-    }
-    @keyframes listbulletlines {
-        0% {
-            transform: scaleX(0.5) scaleY(0.8);
-        }
-        100% {
-            transform: scaleX(1) scaleY(1);
-        }
     }
     /* 参与连线的列表符号高亮 */
     .protyle-wysiwyg [data-node-id].li:is([data-subtype="o"], [data-subtype="u"], [data-subtype="t"]).asri-enhance-bullet-highlight > .protyle-action {

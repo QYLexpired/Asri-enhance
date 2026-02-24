@@ -7,7 +7,7 @@ let smoothCaretEventHandler: (() => void) | null = null;
 let throttledCaretEventHandler: (() => void) | null = null;
 let throttleTimers: number[] = [];
 let cachedZIndex = 0;
-let lastEditableElement: Element | null = null;
+let lastTargetElement: Element | null = null;
 let cachedScrollContainer: HTMLElement | null = null;
 let cachedFocusElement: Element | null = null;
 const initSmoothCaret = () => {
@@ -17,7 +17,7 @@ const initSmoothCaret = () => {
     document.body.appendChild(caretElement);
     let isAnimationFramePending = false;
     const calculateCaretZIndex = (targetElement: Element): number => {
-        if (targetElement === lastEditableElement) {
+        if (targetElement === lastTargetElement) {
             return cachedZIndex;
         }
         let currentElement: Element | null = targetElement;
@@ -29,13 +29,13 @@ const initSmoothCaret = () => {
                 const zIndexValue = computedStyle.zIndex;
                 const zIndex = parseInt(zIndexValue) || 0;
                 cachedZIndex = zIndex;
-                lastEditableElement = targetElement;
+                lastTargetElement = targetElement;
                 return zIndex;
             }
             currentElement = currentElement.parentElement;
         }
         cachedZIndex = 0;
-        lastEditableElement = targetElement;
+        lastTargetElement = targetElement;
         return 0;
     };
     const updateCaretPosition = () => {
@@ -51,8 +51,9 @@ const initSmoothCaret = () => {
             caretElement.classList.add('asri-enhance-smooth-caret-item-none');
             return;
         }
-        const editableElement = focusElement?.closest('[contenteditable="true"]');
-        if (sel.rangeCount && editableElement) {
+        const targetElement = focusElement?.closest('[contenteditable="true"]') ||
+            (focusElement?.closest('.protyle-title') ? focusElement : null);
+        if (sel.rangeCount && targetElement) {
             const range = sel.getRangeAt(0);
             let rect = range.getClientRects()[0];
             if (!rect || rect.height === 0) {
@@ -90,7 +91,7 @@ const initSmoothCaret = () => {
                 caretElement.classList.remove('asri-enhance-smooth-caret-item-none');
                 caretElement.style.transform = `translate3d(${rect.left - 0.75}px, ${rect.top - rect.height * 0.025}px, 0)`;
                 caretElement.style.height = `${rect.height * 1.05}px`;
-                const baseZIndex = calculateCaretZIndex(editableElement);
+                const baseZIndex = calculateCaretZIndex(targetElement);
                 caretElement.style.zIndex = (baseZIndex + 1).toString();
                 let textColor: string | null = null;
                 const focusNode = sel.focusNode;
@@ -105,7 +106,7 @@ const initSmoothCaret = () => {
                     }
                 }
                 if (!textColor) {
-                    textColor = window.getComputedStyle(editableElement).color;
+                    textColor = window.getComputedStyle(targetElement).color;
                 }
                 if (textColor && textColor !== 'transparent' && !/rgba?\([^)]*,\s*0\s*\)$/i.test(textColor)) {
                     caretElement.style.setProperty('--asri-enhance-smooth-caret-color', textColor);
@@ -151,7 +152,7 @@ const destroySmoothCaret = () => {
     throttleTimers.forEach(timer => clearTimeout(timer));
     throttleTimers = [];
     cachedZIndex = 0;
-    lastEditableElement = null;
+    lastTargetElement = null;
     cachedScrollContainer = null;
     cachedFocusElement = null;
     if (smoothCaretEventHandler) {

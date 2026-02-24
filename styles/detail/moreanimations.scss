@@ -105,20 +105,15 @@
     }
     // 列表子弹线
     .asri-enhance-bullet-line:not(.protyle-wysiwyg--select,.protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
-        animation: asri-enhance-animation-list-bullet 0.3s var(--asri-enhance-ease-out-1);
+        animation: asri-enhance-bullet-line 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
         transform-origin: left top;
     }
-    @keyframes asri-enhance-animation-list-bullet {
+    @keyframes asri-enhance-bullet-line {
         0% {
-            max-width: 2px;
-            transform: scaleY(0);
-        }
-        60% {
-            max-width: 2px;
-            transform: scaleY(1);
+            transform: scaleX(0.5) scaleY(0.8);
         }
         100% {
-            max-width: 100%;
+            transform: scaleX(1) scaleY(1);
         }
     }
     // 慢快慢

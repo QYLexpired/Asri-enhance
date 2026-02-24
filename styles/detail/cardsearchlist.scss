@@ -21,6 +21,11 @@
             margin: 0;
             padding: 6px 4px 2px 4px;
             outline: 1px solid var(--b3-border-color-trans);
+            border-radius: 8px;
+            corner-shape: superellipse(1.4);
+            &.b3-list-item--focus {
+                outline-color: oklch(from var(--b3-theme-primary) 0.5 calc(c * 0.9 * var(--asri-c-0, 1)) h / 0.15);
+            }
             & .b3-list-item__graphic {
                 align-self: flex-start;
                 transform: translateY(20%);

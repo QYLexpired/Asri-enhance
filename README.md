@@ -1,5 +1,5 @@
 ### Updates
-##### v2.1.0
+##### v2.1.1
 - New detail adjustment option: Colored lists
 - Optimized global frosted glass effect
 - Redone colored document tree
@@ -38,6 +38,7 @@ Detailed adjustments made completely in accordance with the Asri theme style
 - Colored headings
 - Heading level hints
 - Colored document tree
+- Colored list
 - Hide tabs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
 - Hide breadcrumbs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
 - More animations

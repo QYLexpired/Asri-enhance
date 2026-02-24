@@ -24,7 +24,11 @@
             --indent-offset: -6px;
             & > ul {
                 margin: var(--asri-enhance-colored-tree-ulmargin);
-                border-radius: var(--b3-border-radius);
+                border-radius: 8px;
+                corner-shape: superellipse(1.4);
+                &:not(:last-child) {
+                    margin-bottom: 2px;
+                }
                 @for $i from 0 through 7 {
                     $hue-offset: #{$i * 45};
                     &:nth-of-type(8n + #{$i + 1}) {
@@ -35,7 +39,7 @@
                         }
                     }
                 }
-                & [data-type="navigation-root"] {
+                & > li:first-child {
                     margin-inline-start: 0;
                     margin-inline-end: 0;
                 }
