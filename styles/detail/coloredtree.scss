@@ -27,7 +27,7 @@
                 border-radius: 8px;
                 corner-shape: superellipse(1.4);
                 &:not(:last-child) {
-                    margin-bottom: 2px;
+                    margin-bottom: 3px;
                 }
                 @for $i from 0 through 7 {
                     $hue-offset: #{$i * 45};

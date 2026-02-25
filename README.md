@@ -1,4 +1,9 @@
 ### Updates
+##### v2.1.2
+- New feature: Immersive editing
+    - Can enable typewriter mode and focus mode, and set hotkeys for them
+- Fixed issue where window transparency set to 0 did not take effect
+- Fixed abnormal issue when switching document to fullscreen style under island layout
 ##### v2.1.1
 - New detail adjustment option: Colored lists
 - Optimized global frosted glass effect
@@ -28,6 +33,8 @@ Add a series of practical features and ensure the style completely matches the A
 - Smooth caret
 - Fluid cursor
 - Island Layout
+- Typewriter mode
+- Focus mode
 ### Theme Detail Adjustments
 Detailed adjustments made completely in accordance with the Asri theme style
 - Textures (supporting more than ten background textures)

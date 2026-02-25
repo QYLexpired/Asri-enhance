@@ -43,6 +43,8 @@ import { applyWoodConfig } from "./texture/wood";
 import { applyCamouflageConfig } from "./texture/camouflage";
 import { applyFiberConfig } from "./texture/fiber";
 import { applyFabricConfig } from "./texture/fabric";
+import { applyTypewriterModeConfig, destroyTypewriterMode, onTypewriterModeClick } from "./immersive/typewriter";
+import { applyFocusModeConfig, onFocusModeClick } from "./immersive/focus";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { removeFollowTimeConfig } from "./followtime/followtime";
@@ -100,6 +102,8 @@ class AsriEnhancePlugin extends Plugin {
             applyCamouflageConfig(this, config).catch(() => { }),
             applyFiberConfig(this, config).catch(() => { }),
             applyFabricConfig(this, config).catch(() => { }),
+            applyTypewriterModeConfig(this, config).catch(() => { }),
+            applyFocusModeConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
         ]);
     }
@@ -223,6 +227,22 @@ class AsriEnhancePlugin extends Plugin {
         }
         await this.applyAllConfigs(config);
         initSlashNavi();
+        (this as any).addCommand({
+            langKey: "asri-enhance-typewriter",
+            langText: this.i18n?.typewriter || "切换打字机模式",
+            hotkey: "",
+            callback: () => {
+                onTypewriterModeClick(this);
+            },
+        });
+        (this as any).addCommand({
+            langKey: "asri-enhance-focus",
+            langText: this.i18n?.focus || "切换聚焦模式",
+            hotkey: "",
+            callback: () => {
+                onFocusModeClick(this);
+            },
+        });
         setTimeout(() => {
             this.applyAllConfigs(config).catch(() => { });
         }, 100);
@@ -266,6 +286,7 @@ class AsriEnhancePlugin extends Plugin {
         stopSidememoObserver();
         destroySmoothCaret();
         destroyFluidCursor();
+        destroyTypewriterMode();
         restoreMacTrafficLights();
         const htmlEl = document.documentElement;
         if (htmlEl) {

@@ -53,13 +53,17 @@ $islandlayout-dock-transparency-selectors: (
     }
     --asri-enhance-islandlayout-width: 8px;
     body:not(.body-asri--mobile) {
+        --asri-enhance-islandlayout-clip-path: inset(0 round 16px);
         background-color: var(--b3-theme-surface);
+        &.asri-enhance-has-fullscreen {
+            --asri-enhance-islandlayout-clip-path: unset;
+        }
         #layouts {
             .layout__center {
                 margin: var(--asri-enhance-islandlayout-width) 0;
                 min-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
                 box-sizing: border-box;
-                clip-path: inset(0 round 16px);
+                clip-path: var(--asri-enhance-islandlayout-clip-path);
                 /* corner-shape: superellipse(1.4); */
                 /*导致界面闪烁 border-radius: 16px; */
                 &:is(#dockLeft.fn__none ~ #layouts .layout__center) {

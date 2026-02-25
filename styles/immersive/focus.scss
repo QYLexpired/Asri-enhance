@@ -1,0 +1,63 @@
+@property --asri-enhance-focus-mask-position {
+    syntax: '<percentage>';
+    inherits: false;
+    initial-value: 50%;
+}
+@property --asri-enhance-focus-mask-height {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: 0px;
+}
+@property --asri-enhance-focus-text-color-bg {
+    syntax: '<color>';
+    inherits: false;
+    initial-value: oklch(from var(--b3-theme-primary) l c h / 0.1);
+}
+[data-asri-enhance-focus="true"]:root {
+    #asri-enhance-focus, #asri-enhance-immersive {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    &:not([data-asri-enhance-typewriter="true"]) {
+        #asri-enhance-focus {
+            opacity: 0.38;
+        }
+    }
+    &[data-asri-enhance-typewriter="true"] {
+        .protyle .protyle-content {
+            $mask-height: var(--asri-enhance-focus-mask-height);
+            $mask-position: var(--asri-enhance-focus-mask-position);
+            --asri-enhance-focus-text-color-bg: oklch(from var(--asri-enhance-focus-text-color) l c h / 0.12);
+            $bg-clarity: 0.38;
+            $mask-fade: calc(calc(var(--b3-width-protyle) - var(--b3-width-protyle-wysiwyg)) / 2);
+            transition: --asri-enhance-focus-mask-position 0.5s var(--asri-ease-spring-3), --asri-enhance-focus-mask-height 0.5s var(--asri-ease-spring-3), --asri-enhance-focus-text-color 0.5s var(--asri-ease-spring-3);
+            mask-image: 
+                linear-gradient(
+                    to bottom,
+                    rgba(0, 0, 0, $bg-clarity) calc($mask-position - $mask-height),
+                    #000 calc($mask-position - $mask-height),
+                    #000 calc($mask-position + $mask-height),
+                    rgba(0, 0, 0, $bg-clarity) calc($mask-position + $mask-height)
+                ),
+                linear-gradient(
+                    to right,
+                    transparent 0%,
+                    #000 $mask-fade,
+                    #000 calc(100% - $mask-fade),
+                    transparent 100%
+                );
+            mask-composite: intersect;
+            background: linear-gradient(
+                to bottom,
+                transparent calc($mask-position - $mask-height),
+                var(--asri-enhance-focus-text-color-bg) calc($mask-position - $mask-height),
+                var(--asri-enhance-focus-text-color-bg) calc($mask-position + $mask-height),
+                transparent calc($mask-position + $mask-height)
+            );
+        }
+    }
+}

@@ -136,6 +136,7 @@
         }
         .asri-enhance-verticaltab {
             flex-direction: row;
+            --asri-enhance-vertical-tab-width: 150px;
             & .protyle-content {
                 padding-top: 46px;
                 & .protyle-top {

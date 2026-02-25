@@ -1,0 +1,17 @@
+[data-asri-enhance-typewriter="true"]:root {
+    #asri-enhance-typewriter, #asri-enhance-immersive {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    .protyle-content {
+        transform: translateZ(0);
+        backface-visibility: hidden;
+        perspective: 1000px;
+        will-change: scroll-position;
+        scroll-behavior: auto;
+    }
+}
