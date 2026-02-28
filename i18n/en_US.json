@@ -1,6 +1,9 @@
 {
   "AsriEnhance": "Asri Theme Enhancer",
   "morePresetColors": "More Presets",
+  "light": "Light",
+  "dark": "Dark",
+  "followSystem": "Follow the system",
   "amber": "Amber",
   "sakura": "Sakura",
   "wilderness": "Wilderness",

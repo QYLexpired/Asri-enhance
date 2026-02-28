@@ -1,10 +1,12 @@
 ### Updates
-##### v2.1.3 Important Update
+##### v2.2.0 Important Update
 - Mobile adaptation: Added settings button for mobile devices
     - This button allows adjusting Asri theme color schemes and this plugin's feature options on mobile
+- Adjusted some mobile styles
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
+- Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
 ### How to Use
 - All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. All features of this plugin are configured in the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> options
 ### Enhance Editing Experience

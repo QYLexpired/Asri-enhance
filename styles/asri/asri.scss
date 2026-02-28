@@ -9,44 +9,6 @@ body.asri-tfp {
         }
     }
 }
-#commonMenu.asri-enhance-mobilemenu {
-  &:is([data-theme-mode="light"] .asri-enhance-mobilemenu) {
-    &::before {
-      background-color: rgba(255, 255, 255, 0.7);
-    }
-  }
-  #followCoverImgColor,
-  #topbarFusionPlus,
-  #asri-enhance-vertical-tab,
-  #asri-enhance-sidememo,
-  #asri-enhance-island-layout,
-  #asri-enhance-wholewindowtransparency,
-  #asri-enhance-windowtransparencyvalue,
-  #asri-enhance-sidebar-top-sticky,
-  #asri-enhance-singlecolumnslashmenu,
-  #asri-enhance-hide-tab,
-  #asri-enhance-hide-breadcrumb,
-  .asri-enhance-windowtransparencyvalue-subtitle,
-  #asri-enhance-detail-adjustment .b3-menu__separator {
-    display: none;
-  }
-  .b3-menu__separator {
-    margin: 5px 12px;
-    &:is(.asri-enhance-placeholder + .b3-menu__separator) {
-      display: none;
-    }
-  }
-  .b3-menu__submenu {
-    &:is([data-theme-mode="light"] .b3-menu__submenu) {
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .075), 0px 13px 25px -2px rgba(0, 0, 0, .075), 0px 0px 10px 0px rgba(0, 0, 0, .075);
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .075), 0px 13px 25px -2px rgba(0, 0, 0, .075), 0px 0px 10px 0px rgba(0, 0, 0, .075), 3px 6px 6px -3px color(display-p3 1.5 1.5 1.5 / 0.12);
-    }
-    &:is([data-theme-mode="dark"] .b3-menu__submenu) {
-      box-shadow: 0 0 0 1px rgba(0, 0, 0, .075), 0px 13px 25px -2px rgba(0, 0, 0, .075), 0px 0px 10px 0px rgba(0, 0, 0, .075);
-      box-shadow: 0 0 0 .5px #000, 0px 13px 25px -2px rgba(0, 0, 0, .3), 0px 0px 10px 0px rgba(0, 0, 0, .15);
-    }
-  }
-}
 $primary-color-reverse-selectors: (
   // reverse on-primary colors when primary color is too bright
   "#barWorkspace",
@@ -90,12 +52,8 @@ $other-transparency-selectors: (
   .b3-label {
     border-color: var(--b3-border-color-trans);
   }
-  // 搜索列表
-  #searchList, #searchUnRefList{
-    background-color: var(--b3-theme-background);
-  }
   .search__header {
-    border-color: var(--b3-border-color-trans);
+    border-color: var(--b3-border-color-trans) !important;
   }
   .search__list {
       border-color: var(--b3-border-color-trans);
@@ -105,6 +63,13 @@ $other-transparency-selectors: (
   }
   .search__layout:not(.search__layout--row) .search__list {
     border-color: var(--b3-border-color-trans);
+  }
+  .search__preview {
+    border-color: var(--b3-border-color-trans);
+}
+  // 搜索列表
+  #searchList, #searchUnRefList{
+    background-color: var(--b3-theme-background);
   }
   .search__drag {
       &::after {
@@ -123,9 +88,6 @@ $other-transparency-selectors: (
           height: 1px;
         }
       }
-  }
-  .search__preview {
-      border-color: var(--b3-border-color-trans);
   }
   // 闪卡按钮
   .card__action {
