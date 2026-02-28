@@ -1,19 +1,7 @@
 ### Updates
-##### v2.1.2
-- New feature: Immersive editing
-    - Can enable typewriter mode and focus mode, and set hotkeys for them
-- Fixed issue where window transparency set to 0 did not take effect
-- Fixed abnormal issue when switching document to fullscreen style under island layout
-##### v2.1.1
-- New detail adjustment option: Colored lists
-- Optimized global frosted glass effect
-- Redone colored document tree
-- Redone theme color following time, can customize initial color
-- Optimized smooth caret
-    - Implemented adaptive color
-    - Implemented adaptive z-axis
-    - Fixed issue of incorrectly displaying smooth caret and wrong smooth caret position in some cases
-    - Hide smooth caret when text scrolls out of range
+##### v2.1.3 Important Update
+- Mobile adaptation: Added settings button for mobile devices
+    - This button allows adjusting Asri theme color schemes and this plugin's feature options on mobile
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors

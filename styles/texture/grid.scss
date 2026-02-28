@@ -7,7 +7,7 @@
             }
         }
     }
-    body:not(.body-asri--mobile) {
+    body {
         &::before {
             content: "";
             position: fixed;
@@ -24,7 +24,7 @@
         }
     }
     &[data-theme-mode="dark"] {
-        body:not(.body-asri--mobile) {
+        body {
             &::before {
                 opacity: 0.025;
             }

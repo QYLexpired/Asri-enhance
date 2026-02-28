@@ -13,4 +13,29 @@ declare module "siyuan" {
         saveData?(name: string, data: any): Promise<void>;
         removeData?(name: string): Promise<void>;
     }
+    export class Menu {
+        constructor(id: string, onClose?: () => void);
+        addItem(item: MenuItem): Menu;
+        open(position: { x: number; y: number; }): void;
+        close(): void;
+        destroy(): void;
+        element: HTMLElement;
+    }
+    export interface MenuItem {
+        icon?: string;
+        label?: string;
+        click?: () => void;
+        submenu?: MenuItem[];
+        type?: "separator" | "text" | "button";
+        accelerator?: string;
+        id?: string;
+        disabled?: boolean;
+        iconClass?: string;
+        iconHTML?: string;
+        current?: boolean;
+        action?: string;
+        bind?: (element: HTMLElement) => void;
+        element?: HTMLElement;
+    }
+    export function getFrontend(): string;
 }

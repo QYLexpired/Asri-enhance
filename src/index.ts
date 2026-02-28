@@ -1,5 +1,6 @@
 import { Plugin } from "siyuan";
-import { listenBarModeClick, addMoreAfterTopbarFusionPlus, type Unsubscribe } from "./menu/additems";
+import { listenBarModeClick, addAsriEnhanceItems, type Unsubscribe } from "./menu/additems";
+import { addMobileBarModeBtn } from "./menu/additems-mobile";
 import { applyAmberConfig } from "./palette/amber";
 import { applySakuraConfig } from "./palette/sakura";
 import { applyWildernessConfig } from "./palette/wilderness";
@@ -51,7 +52,6 @@ import { removeFollowTimeConfig } from "./followtime/followtime";
 import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
     private unsubscribeBarModeClick: Unsubscribe | null = null;
-    private unsubscribeTopbarFusionPlus: Unsubscribe | null = null;
     private asriConfigClickHandler: ((event: MouseEvent) => void) | null = null;
     private themeModeObserver: MutationObserver | null = null;
     private themeModeChangeTimers: number[] = [];
@@ -108,8 +108,8 @@ class AsriEnhancePlugin extends Plugin {
         ]);
     }
     async onload() {
-        this.unsubscribeBarModeClick = listenBarModeClick(this, () => { });
-        this.unsubscribeTopbarFusionPlus = addMoreAfterTopbarFusionPlus(this);
+        this.unsubscribeBarModeClick = listenBarModeClick(this, (event) => addAsriEnhanceItems(this, event));
+        addMobileBarModeBtn(this);
         this.asriConfigClickHandler = (event: MouseEvent) => {
             queueMicrotask(() => {
                 const target = event.target as HTMLElement;
@@ -254,10 +254,6 @@ class AsriEnhancePlugin extends Plugin {
         if (this.unsubscribeBarModeClick) {
             this.unsubscribeBarModeClick();
             this.unsubscribeBarModeClick = null;
-        }
-        if (this.unsubscribeTopbarFusionPlus) {
-            this.unsubscribeTopbarFusionPlus();
-            this.unsubscribeTopbarFusionPlus = null;
         }
         if (this.asriConfigClickHandler) {
             document.removeEventListener("click", this.asriConfigClickHandler, true);
