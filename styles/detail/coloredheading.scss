@@ -21,14 +21,14 @@
     }
     &[data-theme-mode="light"] {
         @for $i from 1 through 6 {
-            .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h#{$i}] .b3-list-item__text {
+            :is(.sy__outline, [data-type="sidebar-outline"]) .b3-list-item[data-type=NodeHeading][data-subtype=h#{$i}] :is(.b3-list-item__text, .b3-list-item__graphic) {
                 color: oklch(from var(--b3-theme-primary) calc(l - 0.15) c calc(h + #{$i * 50}));
             }
         }
     }
     &[data-theme-mode="dark"] {
         @for $i from 1 through 6 {
-            .sy__outline .b3-list-item[data-type=NodeHeading][data-subtype=h#{$i}] .b3-list-item__text {
+            :is(.sy__outline, [data-type="sidebar-outline"]) .b3-list-item[data-type=NodeHeading][data-subtype=h#{$i}] :is(.b3-list-item__text, .b3-list-item__graphic) {
                 color: oklch(from var(--b3-theme-primary) calc(l + 0.15) c calc(h + #{$i * 50}));
             }
         }

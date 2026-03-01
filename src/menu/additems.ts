@@ -23,7 +23,7 @@ import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onHideTabClick } from "../detail/hidetab";
 import { onHideBreadcrumbClick } from "../detail/hidebreadcrumb";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
-import { onSingleColumnSlashMenuClick } from "../detail/singlecolumnslashmenu";
+import { onMulticolSlashMenuClick } from "../detail/multicolslashmenu";
 import { onCardSearchListClick } from "../detail/cardsearchlist";
 import { onWindowTransparencyValueClick, saveWindowTransparencyValue } from "../detail/windowtransparencyvalue";
 import { onWholeWindowTransparencyClick } from "../detail/wholewindowtransparency";
@@ -323,16 +323,16 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
     if (sidebarTopStickyItem) {
         sidebarTopStickyItem.onclick = (e) => onSidebarTopStickyClick(plugin, e);
     }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-singlecolumnslashmenu")) {
+    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-multicolslashmenu")) {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
-        button.id = "asri-enhance-singlecolumnslashmenu";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.singleColumnSlashMenu || "singleColumnSlashMenu"}</span>`;
+        button.id = "asri-enhance-multicolslashmenu";
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.multicolSlashMenu || "multicolSlashMenu"}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
-    const singleColumnSlashMenuItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-singlecolumnslashmenu");
-    if (singleColumnSlashMenuItem) {
-        singleColumnSlashMenuItem.onclick = (e) => onSingleColumnSlashMenuClick(plugin, e);
+    const multicolSlashMenuItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-multicolslashmenu");
+    if (multicolSlashMenuItem) {
+        multicolSlashMenuItem.onclick = (e) => onMulticolSlashMenuClick(plugin, e);
     }
     if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-cardsearchlist")) {
         const button = document.createElement("button");

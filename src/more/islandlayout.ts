@@ -1,7 +1,10 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-island-layout";
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
 class ProtyleFullscreenDetector {
     private hasFullscreen = false;
     private timer: ReturnType<typeof setTimeout> | null = null;
@@ -41,6 +44,9 @@ class ProtyleFullscreenDetector {
 }
 let fullscreenDetector: ProtyleFullscreenDetector | null = null;
 export async function onIslandLayoutClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -105,6 +111,9 @@ export function restoreMacTrafficLights(): void {
     }
 }
 export async function applyIslandLayoutConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;

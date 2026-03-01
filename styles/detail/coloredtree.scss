@@ -16,7 +16,8 @@
     .layout__dockb {
         --asri-enhance-colored-tree-ulmargin: 0 12px;
     }
-    .sy__file {
+    .sy__file,
+    [data-type="sidebar-file"] {
         & .b3-list-item {
             margin-inline-end: 0;
         }
@@ -28,6 +29,10 @@
                 corner-shape: superellipse(1.4);
                 &:not(:last-child) {
                     margin-bottom: 3px;
+                }
+                &:is([data-type="sidebar-file"] ul) {
+                    margin-left: 6px;
+                    margin-right: 6px;
                 }
                 @for $i from 0 through 7 {
                     $hue-offset: #{$i * 45};
@@ -54,6 +59,9 @@
                         bottom: 0;
                         width: 1px;
                         background-color: var(--indent-color);
+                    }
+                    & .b3-list-item:is([data-type="sidebar-file"] .b3-list-item) {
+                        margin-left: 0;
                     }
                 }
             }

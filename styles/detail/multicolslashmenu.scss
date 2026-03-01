@@ -1,0 +1,30 @@
+[data-asri-enhance-multicolslashmenu="true"]:root {
+    #asri-enhance-multicolslashmenu, #asri-enhance-detail-adjustment {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    @mixin multicol-menu($min-width, $column-width) {
+        .protyle-hint.hint--menu {   
+            max-height: min(80vh, 550px);
+            max-width: unset;
+            & > div {
+                min-width: $min-width;
+                column-rule: 1px outset var(--b3-border-color-trans);
+                column-width: $column-width;
+                padding: 6px;
+                & > .b3-menu__separator { 
+                    display: none;
+                }
+                & > .b3-list-item { 
+                    margin: 0;
+                    width: 100% !important;;
+                }
+            }
+        }
+    }
+    @media screen and (min-width: 1000px) { @include multicol-menu(800px, 150px); }
+}

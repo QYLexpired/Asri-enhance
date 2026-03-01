@@ -1,9 +1,15 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-wholewindowtransparency";
 const DATA_ATTR = "data-asri-enhance-wholewindowtransparency";
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
 export async function onWholeWindowTransparencyClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -26,6 +32,9 @@ export async function onWholeWindowTransparencyClick(plugin: Plugin, event?: Mou
     });
 }
 export async function applyWholeWindowTransparencyConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;

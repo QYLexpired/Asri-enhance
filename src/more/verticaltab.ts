@@ -1,9 +1,12 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 import { createFetchInterceptor } from "../utils/fetchInterceptor";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-vertical-tab";
 const DEFAULT_WIDTH = 150;
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
 let currentPlugin: Plugin | null = null;
 let isUpdating = false;
 let isDragging = false;
@@ -338,6 +341,9 @@ export function stopObserver(): void {
     currentTopLeftElement = null;
 }
 export async function onVerticalTabClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -363,6 +369,9 @@ export async function onVerticalTabClick(plugin: Plugin, event?: MouseEvent): Pr
     });
 }
 export async function applyVerticalTabConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     currentPlugin = plugin;
     const htmlEl = document.documentElement;
     if (!htmlEl) {

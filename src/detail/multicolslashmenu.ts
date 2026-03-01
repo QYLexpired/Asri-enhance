@@ -1,9 +1,15 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
-const CONFIG_KEY = "asri-enhance-singlecolumnslashmenu";
-const DATA_ATTR = "data-asri-enhance-singlecolumnslashmenu";
-export async function onSingleColumnSlashMenuClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+const CONFIG_KEY = "asri-enhance-multicolslashmenu";
+const DATA_ATTR = "data-asri-enhance-multicolslashmenu";
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
+export async function onMulticolSlashMenuClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -25,7 +31,10 @@ export async function onSingleColumnSlashMenuClick(plugin: Plugin, event?: Mouse
     await saveData(plugin, CONFIG_FILE, config).catch(() => {
     });
 }
-export async function applySingleColumnSlashMenuConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+export async function applyMulticolSlashMenuConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;

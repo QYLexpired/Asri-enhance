@@ -1,8 +1,10 @@
 ### Updates
+##### v2.2.1
+- Changed single-column slash menu to multi-column slash menu
+- Colored tree and colored outline adapted for mobile
 ##### v2.2.0 Important Update
 - Mobile adaptation: Added settings button for mobile devices
     - This button allows adjusting Asri theme color schemes and this plugin's feature options on mobile
-- Adjusted some mobile styles
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
@@ -29,7 +31,7 @@ Add a series of practical features and ensure the style completely matches the A
 Detailed adjustments made completely in accordance with the Asri theme style
 - Textures (supporting more than ten background textures)
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
-- Single column slash menu
+- Multi column slash menu
 - Adjust window transparency value
 - Whole window transparency
 - Colored headings

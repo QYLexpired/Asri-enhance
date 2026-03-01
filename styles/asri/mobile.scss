@@ -16,7 +16,7 @@
         #asri-enhance-wholewindowtransparency,
         #asri-enhance-windowtransparencyvalue,
         #asri-enhance-sidebar-top-sticky,
-        #asri-enhance-singlecolumnslashmenu,
+        #asri-enhance-multicolslashmenu,
         #asri-enhance-hide-tab,
         #asri-enhance-hide-breadcrumb,
         .asri-enhance-windowtransparencyvalue-subtitle,
@@ -134,6 +134,24 @@
         }
         .config-assets__preview {
           background-color: transparent;
+        }
+      }
+    }
+    .keyboard {
+      border-color: var(--b3-border-color-trans);
+      background-color: var(--b3-theme-surface);
+      & .keyboard__bar {
+        border-color: var(--b3-border-color-trans);
+      }
+      & .keyboard__util {
+        background-color: transparent;
+        & .keyboard__slash-item {
+          background-color: transparent;
+          box-shadow: none;
+          outline: 1px solid var(--b3-border-color-trans);
+          border-radius: 12px;
+          corner-shape: superellipse(1.4);
+          color: var(--b3-theme-on-surface);
         }
       }
     }

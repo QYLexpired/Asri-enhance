@@ -1,15 +1,24 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-windowtransparencyvalue";
 const DATA_ATTR = "data-asri-enhance-windowtransparencyvalue";
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
 export async function onWindowTransparencyValueClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     if (event) {
         event.preventDefault();
         event.stopPropagation();
     }
 }
 export async function applyWindowTransparencyValueConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;

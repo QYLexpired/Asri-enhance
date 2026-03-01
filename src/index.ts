@@ -25,7 +25,7 @@ import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyHideTabConfig } from "./detail/hidetab";
 import { applyHideBreadcrumbConfig } from "./detail/hidebreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
-import { applySingleColumnSlashMenuConfig } from "./detail/singlecolumnslashmenu";
+import { applyMulticolSlashMenuConfig } from "./detail/multicolslashmenu";
 import { applyCardSearchListConfig } from "./detail/cardsearchlist";
 import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyvalue";
 import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
@@ -83,7 +83,7 @@ class AsriEnhancePlugin extends Plugin {
             applyHideTabConfig(this, config).catch(() => { }),
             applyHideBreadcrumbConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
-            applySingleColumnSlashMenuConfig(this, config).catch(() => { }),
+            applyMulticolSlashMenuConfig(this, config).catch(() => { }),
             applyCardSearchListConfig(this, config).catch(() => { }),
             applyWindowTransparencyValueConfig(this, config).catch(() => { }),
             applyWholeWindowTransparencyConfig(this, config).catch(() => { }),

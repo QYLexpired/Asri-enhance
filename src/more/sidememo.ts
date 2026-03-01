@@ -1,8 +1,11 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 import { createFetchInterceptor } from "../utils/fetchInterceptor";
 import { marked } from "../module/marked/marked.esm.js";
 import markedKatex from "../module/marked/marked-katex-extension.js";
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
 let globalPlugin: Plugin | null = null;
 try {
     if (marked && typeof marked.use === "function" && typeof markedKatex === "function") {
@@ -1315,6 +1318,9 @@ export async function onSideMemoClick(
 	plugin: Plugin,
 	event?: MouseEvent,
 ): Promise<void> {
+	if (isMobile()) {
+		return;
+	}
 	if (event) {
 		event.preventDefault();
 		event.stopPropagation();
@@ -1344,6 +1350,9 @@ export async function applySidememoConfig(
 	plugin: Plugin,
 	config?: Record<string, any> | null,
 ): Promise<void> {
+	if (isMobile()) {
+		return;
+	}
 	globalPlugin = plugin;
 	const htmlEl = document.documentElement;
 	if (!htmlEl) {
