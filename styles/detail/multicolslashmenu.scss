@@ -17,10 +17,11 @@
                 column-width: $column-width;
                 padding: 6px;
                 & > .b3-menu__separator { 
-                    display: none;
+                    margin: 5px 6px;
+                    width: calc(100% - 12px);
                 }
                 & > .b3-list-item { 
-                    margin: 0;
+                    margin: 1px auto;
                     width: 100% !important;;
                 }
             }

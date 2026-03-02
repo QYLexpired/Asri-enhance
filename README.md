@@ -1,4 +1,7 @@
 ### Updates
+##### v2.2.2
+- Slash menu arrow key navigation is no longer automatically enabled (requires multi-column slash menu to be enabled first)
+- Reverted island layout mechanism (to fix the issue of secondary menus being cropped)
 ##### v2.2.1
 - Changed single-column slash menu to multi-column slash menu
 - Colored tree and colored outline adapted for mobile
@@ -13,7 +16,6 @@
 - All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. All features of this plugin are configured in the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> options
 ### Enhance Editing Experience
 Add a series of practical features and ensure the style completely matches the Asri theme
-- Slash menu keyboard arrow key navigation (automatically enabled)
 - List bullet lines
 - Vertical tabs (only affects the tab bar in the top left corner)
 - Side memo (displays inline notes, block notes, and document notes on the right side of the editor)
@@ -31,7 +33,7 @@ Add a series of practical features and ensure the style completely matches the A
 Detailed adjustments made completely in accordance with the Asri theme style
 - Textures (supporting more than ten background textures)
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
-- Multi column slash menu
+- Multi-column slash menu (supports keyboard arrow key navigation)
 - Adjust window transparency value
 - Whole window transparency
 - Colored headings

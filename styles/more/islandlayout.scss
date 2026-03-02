@@ -63,9 +63,8 @@ $islandlayout-dock-transparency-selectors: (
                 margin: var(--asri-enhance-islandlayout-width) 0;
                 min-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
                 box-sizing: border-box;
-                clip-path: var(--asri-enhance-islandlayout-clip-path);
-                /* corner-shape: superellipse(1.4); */
-                /*导致界面闪烁 border-radius: 16px; */
+                border-radius: 12px;
+                // corner-shape: superellipse(1.4); 导致界面闪烁
                 &:is(#dockLeft.fn__none ~ #layouts .layout__center) {
                     margin-left: var(--asri-enhance-islandlayout-width);
                     margin-right: var(--asri-enhance-islandlayout-width);

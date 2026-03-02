@@ -49,7 +49,6 @@ import { applyFocusModeConfig, onFocusModeClick } from "./immersive/focus";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
 import { removeFollowTimeConfig } from "./followtime/followtime";
-import { initSlashNavi, destroySlashNavi } from "./module/slashnavi";
 class AsriEnhancePlugin extends Plugin {
     private unsubscribeBarModeClick: Unsubscribe | null = null;
     private asriConfigClickHandler: ((event: MouseEvent) => void) | null = null;
@@ -226,7 +225,6 @@ class AsriEnhancePlugin extends Plugin {
             });
         }
         await this.applyAllConfigs(config);
-        initSlashNavi();
         (this as any).addCommand({
             langKey: "asri-enhance-typewriter",
             langText: this.i18n?.typewriter || "切换打字机模式",
@@ -276,7 +274,6 @@ class AsriEnhancePlugin extends Plugin {
             this.paletteDisableDebounceTimer = null;
         }
         removeListBulletLineEffect();
-        destroySlashNavi();
         stopVerticalTabObserver();
         removeAllSidememoArtifacts();
         stopSidememoObserver();
