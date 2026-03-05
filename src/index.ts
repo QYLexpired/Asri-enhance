@@ -29,8 +29,9 @@ import { applyMulticolSlashMenuConfig } from "./detail/multicolslashmenu";
 import { applyCardSearchListConfig } from "./detail/cardsearchlist";
 import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyvalue";
 import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
-import { applySmoothCaretConfig, destroySmoothCaret } from "./more/smoothcaret";
-import { applyFluidCursorConfig, destroyFluidCursor } from "./more/fluidcursor";
+import { applySmoothCaretConfig, destroySmoothCaret } from "./immersive/smoothcaret";
+import { applyFluidCursorConfig, destroyFluidCursor } from "./immersive/fluidcursor";
+import { applyPinnedToolbarConfig, destroyPinnedToolbar } from "./immersive/pinnedtoolbar";
 import { applyIslandLayoutConfig, restoreMacTrafficLights } from "./more/islandlayout";
 import { applyPaperConfig } from "./texture/paper";
 import { applyNoiseConfig } from "./texture/noise";
@@ -88,6 +89,7 @@ class AsriEnhancePlugin extends Plugin {
             applyWholeWindowTransparencyConfig(this, config).catch(() => { }),
             applySmoothCaretConfig(this, config).catch(() => { }),
             applyFluidCursorConfig(this, config).catch(() => { }),
+            applyPinnedToolbarConfig(this, config).catch(() => { }),
             applyIslandLayoutConfig(this, config).catch(() => { }),
             applyPaperConfig(this, config).catch(() => { }),
             applyNoiseConfig(this, config).catch(() => { }),
@@ -279,6 +281,7 @@ class AsriEnhancePlugin extends Plugin {
         stopSidememoObserver();
         destroySmoothCaret();
         destroyFluidCursor();
+        destroyPinnedToolbar();
         destroyTypewriterMode();
         restoreMacTrafficLights();
         const htmlEl = document.documentElement;

@@ -53,6 +53,7 @@
   "wholeWindowTransparency": "Whole Window Transparency",
   "smoothCaret": "Smooth Caret",
   "fluidCursor": "Fluid Cursor",
+  "pinnedToolbar": "Pinned Toolbar",
   "islandLayout": "Island Layout",
   "followTime": "Follow Time",
   "mergedSideMemoEditTip": "This is a side memo card displaying multiple merged inline memos, which need to be edited separately at each source inline memo location"

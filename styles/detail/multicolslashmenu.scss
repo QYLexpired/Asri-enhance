@@ -15,7 +15,7 @@
                 min-width: $min-width;
                 column-rule: 1px outset var(--b3-border-color-trans);
                 column-width: $column-width;
-                padding: 6px;
+                padding: 5px;
                 & > .b3-menu__separator { 
                     margin: 5px 6px;
                     width: calc(100% - 12px);
@@ -23,6 +23,12 @@
                 & > .b3-list-item { 
                     margin: 1px auto;
                     width: 100% !important;;
+                    &:first-child {
+                        margin-top: 0;
+                    }
+                    &:last-child {
+                        margin-bottom: 0;
+                    }
                 }
             }
         }

@@ -27,8 +27,9 @@ import { onMulticolSlashMenuClick } from "../detail/multicolslashmenu";
 import { onCardSearchListClick } from "../detail/cardsearchlist";
 import { onWindowTransparencyValueClick, saveWindowTransparencyValue } from "../detail/windowtransparencyvalue";
 import { onWholeWindowTransparencyClick } from "../detail/wholewindowtransparency";
-import { onSmoothCaretClick } from "../more/smoothcaret";
-import { onFluidCursorClick } from "../more/fluidcursor";
+import { onSmoothCaretClick } from "../immersive/smoothcaret";
+import { onFluidCursorClick } from "../immersive/fluidcursor";
+import { onPinnedToolbarClick } from "../immersive/pinnedtoolbar";
 import { onIslandLayoutClick } from "../more/islandlayout";
 import { onPaperClick } from "../texture/paper";
 import { onNoiseClick } from "../texture/noise";
@@ -223,7 +224,7 @@ function injectMoreMenu(plugin: Plugin, topbarFusionPlus: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-more";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.texture || "texture"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.immersive || "immersiveEdit"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-smooth-caret">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}</span></button><button class="b3-menu__item" id="asri-enhance-fluid-cursor">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.fluidCursor || "fluidCursor"}</span></button><button class="b3-menu__item" id="asri-enhance-island-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.islandLayout || "islandLayout"}</span></button></div></div>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.texture || "texture"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.immersive || "immersiveEdit"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-island-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.islandLayout || "islandLayout"}</span></button></div></div>`;
         if (topbarFusionPlus.nextSibling) {
             parent.insertBefore(button, topbarFusionPlus.nextSibling);
         } else {
@@ -234,8 +235,6 @@ function injectMoreMenu(plugin: Plugin, topbarFusionPlus: HTMLElement): void {
         { id: "asri-enhance-list-bullet-line", handler: onListBulletLineClick },
         { id: "asri-enhance-vertical-tab", handler: onVerticalTabClick },
         { id: "asri-enhance-sidememo", handler: onSideMemoClick },
-        { id: "asri-enhance-smooth-caret", handler: onSmoothCaretClick },
-        { id: "asri-enhance-fluid-cursor", handler: onFluidCursorClick },
         { id: "asri-enhance-island-layout", handler: onIslandLayoutClick },
     ];
     mainMenuItems.forEach(({ id, handler }) => {
@@ -519,5 +518,55 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
     const focusModeItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-focus");
     if (focusModeItem) {
         focusModeItem.onclick = (e) => onFocusModeClick(plugin, e);
+    }
+    if (!immersiveSubmenu.querySelector("#asri-enhance-smooth-caret")) {
+        const button = document.createElement("button");
+        button.className = "b3-menu__item";
+        button.id = "asri-enhance-smooth-caret";
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}</span>`;
+        if (focusModeItem && focusModeItem.nextSibling) {
+            immersiveSubmenu.insertBefore(button, focusModeItem.nextSibling);
+        } else {
+            immersiveSubmenu.appendChild(button);
+        }
+    }
+    const smoothCaretItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-smooth-caret");
+    if (smoothCaretItem) {
+        smoothCaretItem.onclick = (e) => onSmoothCaretClick(plugin, e);
+    }
+    if (!immersiveSubmenu.querySelector("#asri-enhance-fluid-cursor")) {
+        const button = document.createElement("button");
+        button.className = "b3-menu__item";
+        button.id = "asri-enhance-fluid-cursor";
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.fluidCursor || "fluidCursor"}</span>`;
+        if (smoothCaretItem && smoothCaretItem.nextSibling) {
+            immersiveSubmenu.insertBefore(button, smoothCaretItem.nextSibling);
+        } else if (focusModeItem && focusModeItem.nextSibling) {
+            immersiveSubmenu.insertBefore(button, focusModeItem.nextSibling);
+        } else {
+            immersiveSubmenu.appendChild(button);
+        }
+    }
+    const fluidCursorItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-fluid-cursor");
+    if (fluidCursorItem) {
+        fluidCursorItem.onclick = (e) => onFluidCursorClick(plugin, e);
+    }
+    const existingPinnedToolbarItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-pinnedtoolbar");
+    if (existingPinnedToolbarItem && fluidCursorItem) {
+        immersiveSubmenu.insertBefore(existingPinnedToolbarItem, fluidCursorItem.nextSibling);
+    } else if (!existingPinnedToolbarItem) {
+        const button = document.createElement("button");
+        button.className = "b3-menu__item";
+        button.id = "asri-enhance-pinnedtoolbar";
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.pinnedToolbar || "pinnedToolbar"}</span>`;
+        if (fluidCursorItem && fluidCursorItem.nextSibling) {
+            immersiveSubmenu.insertBefore(button, fluidCursorItem.nextSibling);
+        } else {
+            immersiveSubmenu.appendChild(button);
+        }
+    }
+    const pinnedToolbarItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-pinnedtoolbar");
+    if (pinnedToolbarItem) {
+        pinnedToolbarItem.onclick = (e) => onPinnedToolbarClick(plugin, e);
     }
 }

@@ -1,13 +1,9 @@
 ### Updates
-##### v2.2.2
-- Slash menu arrow key navigation is no longer automatically enabled (requires multi-column slash menu to be enabled first)
-- Reverted island layout mechanism (to fix the issue of secondary menus being cropped)
-##### v2.2.1
-- Changed single-column slash menu to multi-column slash menu
-- Colored tree and colored outline adapted for mobile
-##### v2.2.0 Important Update
-- Mobile adaptation: Added settings button for mobile devices
-    - This button allows adjusting Asri theme color schemes and this plugin's feature options on mobile
+##### v2.2.3
+- New immersive editing option: Pinned Toolbar
+    - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
+    - The pinned toolbar has a liquid glass effect
+- Moved Smooth Caret and Fluid Cursor into the Immersive Editing menu
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
@@ -24,11 +20,15 @@ Add a series of practical features and ensure the style completely matches the A
     - Long press the side memo card for 1s to drag and adjust the side memo width
     - Supports markdown parsing (including formulas, code syntax highlighting)
     - Supports HTML parsing
-- Smooth caret
-- Fluid cursor
 - Island Layout
+### Immersive Editing
 - Typewriter mode
 - Focus mode
+- Smooth caret
+- Fluid cursor
+- Pinned Toolbar
+    - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
+    - The pinned toolbar has a liquid glass effect
 ### Theme Detail Adjustments
 Detailed adjustments made completely in accordance with the Asri theme style
 - Textures (supporting more than ten background textures)
