@@ -524,11 +524,7 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         button.className = "b3-menu__item";
         button.id = "asri-enhance-smooth-caret";
         button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}</span>`;
-        if (focusModeItem && focusModeItem.nextSibling) {
-            immersiveSubmenu.insertBefore(button, focusModeItem.nextSibling);
-        } else {
-            immersiveSubmenu.appendChild(button);
-        }
+        immersiveSubmenu.appendChild(button);
     }
     const smoothCaretItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-smooth-caret");
     if (smoothCaretItem) {
@@ -539,31 +535,18 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         button.className = "b3-menu__item";
         button.id = "asri-enhance-fluid-cursor";
         button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.fluidCursor || "fluidCursor"}</span>`;
-        if (smoothCaretItem && smoothCaretItem.nextSibling) {
-            immersiveSubmenu.insertBefore(button, smoothCaretItem.nextSibling);
-        } else if (focusModeItem && focusModeItem.nextSibling) {
-            immersiveSubmenu.insertBefore(button, focusModeItem.nextSibling);
-        } else {
-            immersiveSubmenu.appendChild(button);
-        }
+        immersiveSubmenu.appendChild(button);
     }
     const fluidCursorItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-fluid-cursor");
     if (fluidCursorItem) {
         fluidCursorItem.onclick = (e) => onFluidCursorClick(plugin, e);
     }
-    const existingPinnedToolbarItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-pinnedtoolbar");
-    if (existingPinnedToolbarItem && fluidCursorItem) {
-        immersiveSubmenu.insertBefore(existingPinnedToolbarItem, fluidCursorItem.nextSibling);
-    } else if (!existingPinnedToolbarItem) {
+    if (!immersiveSubmenu.querySelector("#asri-enhance-pinnedtoolbar")) {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-pinnedtoolbar";
         button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.pinnedToolbar || "pinnedToolbar"}</span>`;
-        if (fluidCursorItem && fluidCursorItem.nextSibling) {
-            immersiveSubmenu.insertBefore(button, fluidCursorItem.nextSibling);
-        } else {
-            immersiveSubmenu.appendChild(button);
-        }
+        immersiveSubmenu.appendChild(button);
     }
     const pinnedToolbarItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-pinnedtoolbar");
     if (pinnedToolbarItem) {

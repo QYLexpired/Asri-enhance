@@ -1,5 +1,5 @@
 ### Updates
-##### v2.2.3
+##### v2.2.4
 - New immersive editing option: Pinned Toolbar
     - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
     - The pinned toolbar has a liquid glass effect

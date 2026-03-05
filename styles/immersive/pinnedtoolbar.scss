@@ -64,10 +64,6 @@
             left: 50% !important;
             bottom: 42px !important;
             transform: translateX(-50%) !important;
-            & .protyle-toolbar__item {
-                &::after {
-                }
-            }
         }
         &.asri-enhance-pinnedtoolbar-right {
             flex-direction: column !important;

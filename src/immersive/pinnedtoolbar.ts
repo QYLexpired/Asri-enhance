@@ -1,7 +1,10 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-pinnedtoolbar";
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
 const POSITION_CLASSES = [
     "asri-enhance-pinnedtoolbar-left",
     "asri-enhance-pinnedtoolbar-bottom",
@@ -55,6 +58,9 @@ function removeLiquidGlassSVG(): void {
     }
 }
 export async function onPinnedToolbarClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -120,6 +126,9 @@ function removePositionClasses(): void {
     });
 }
 export async function applyPinnedToolbarConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;
