@@ -10,6 +10,7 @@
     .layout__center .protyle > .protyle-toolbar {
         display: flex !important;
         position: absolute !important;
+        z-index: 1;
         &:not(.asri-enhance-pinnedtoolbar-left, .asri-enhance-pinnedtoolbar-right) {
             backdrop-filter: url(#pinnedtoolbar-row) saturate(1.5) brightness(1.1) !important;
             background-color: oklch(from var(--b3-theme-surface) l c h / 0.7) !important;

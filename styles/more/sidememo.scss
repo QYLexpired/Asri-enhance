@@ -25,7 +25,7 @@
                     & span[data-type~=inline-memo] {
                         transition: all 0.25s;
                         transition-delay: 0s;
-                        &:is(:hover, .asri-enhance-sidememo-highlight) {
+                        &:is(:hover, [asri-enhance-sidememo-highlight]) {
                             --memo-bg: oklch(from var(--b3-theme-accent) 0.85 0.088 h);
                             background-color: var(--memo-bg);
                             box-shadow: 0 0 0 8px var(--memo-bg);
@@ -42,7 +42,7 @@
                     }
                     & [memo] {
                         transition: all 0.25s;
-                        &.asri-enhance-sidememo-highlight {
+                        &[asri-enhance-sidememo-highlight] {
                             background-color: oklch(from var(--b3-theme-accent) l c h / 0.12) !important;
                             box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25) !important;
                             color: var(--b3-theme-accent) !important;
@@ -76,11 +76,11 @@
                     color: var(--b3-theme-on-surface);
                     transition: all 0.25s, top 0s;
                     box-sizing: border-box;
-                    &:is(:hover, .asri-enhance-sidememo-highlight):not(.asri-enhance-sidememo-filememo-item) {
+                    &:is(:hover, [asri-enhance-sidememo-highlight]):not(.asri-enhance-sidememo-filememo-item) {
                         background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
                         box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
                     }
-                    &.asri-enhance-sidememo-item-fold {
+                    &[asri-enhance-sidememo-fold] {
                         padding: 0.5em;
                         opacity: 0.38;
                         & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title) {

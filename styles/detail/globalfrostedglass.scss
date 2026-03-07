@@ -115,6 +115,9 @@
                 .protyle-wysiwyg [data-node-id] {
                     z-index: 1; 
                 }
+                .protyle-background {
+                    z-index: 1;
+                }
             }
             .fullscreen {
                 background-color: var(--asri-enhance-global-frosted-glass-background);

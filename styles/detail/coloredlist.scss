@@ -52,10 +52,10 @@
                 }
             }
         }
-        & .asri-enhance-bullet-line::after {
+        & [asri-enhance-bullet-line]::after {
             --asri-enhance-listbulletline-highlight-color: var(--asri-enhance-li-color);
         }
-        & .asri-enhance-bullet-highlight > .protyle-action {
+        & [asri-enhance-bullet-highlight] > .protyle-action {
             --asri-enhance-listbulletline-highlight-color: var(--asri-enhance-li-color);
         }
     }

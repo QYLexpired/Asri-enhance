@@ -8,7 +8,7 @@
         }
     }
     --asri-enhance-listbulletline-highlight-color: var(--b3-theme-primary);
-    .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         content: '';
         box-sizing: border-box;
         border-left: calc(1.5px + 0.1 * var(--asri-enhance-bullet-line-fontsize-fix)) solid var(--asri-enhance-listbulletline-highlight-color);
@@ -23,14 +23,14 @@
         --asri-enhance-bullet-fix-t: 5.25px;
     }
     /* 参与连线的列表符号高亮 */
-    .protyle-wysiwyg [data-node-id].li:is([data-subtype="o"], [data-subtype="u"], [data-subtype="t"]).asri-enhance-bullet-highlight > .protyle-action {
+    .protyle-wysiwyg [data-node-id].li:is([data-subtype="o"], [data-subtype="u"], [data-subtype="t"])[asri-enhance-bullet-highlight] > .protyle-action {
         color: var(--asri-enhance-listbulletline-highlight-color);
         &::after {
             color: var(--asri-enhance-listbulletline-highlight-color);
         }
     }
     /* 无序列表紧接无序列表 */
-    [data-subtype="u"] > [data-subtype="u"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="u"] > [data-subtype="u"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-u) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-u) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix));
@@ -38,7 +38,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 无序列表紧接有序列表 */
-    [data-subtype="u"] > [data-subtype="o"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="u"] > [data-subtype="o"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-u) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-o) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix));
@@ -46,7 +46,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 无序列表紧接任务列表 */
-    [data-subtype="u"] > [data-subtype="t"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="u"] > [data-subtype="t"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-u) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-t) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix));
@@ -54,7 +54,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 有序列表紧接有序列表 */
-    [data-subtype="o"] > [data-subtype="o"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="o"] > [data-subtype="o"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-o) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-o) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix) + var(--asri-enhance-bullet-line-fontsize-fix));
@@ -62,7 +62,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 有序列表紧接无序列表 */
-    [data-subtype="o"] > [data-subtype="u"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="o"] > [data-subtype="u"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-o) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-u) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix) + var(--asri-enhance-bullet-line-fontsize-fix));
@@ -70,7 +70,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 有序列表紧接任务列表 */
-    [data-subtype="o"] > [data-subtype="t"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="o"] > [data-subtype="t"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-o) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-t) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix));
@@ -78,7 +78,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 任务列表紧接任务列表 */
-    [data-subtype="t"] > [data-subtype="t"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="t"] > [data-subtype="t"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-t) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-t) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix));
@@ -86,7 +86,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 任务列表紧接无序列表 */
-    [data-subtype="t"] > [data-subtype="u"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="t"] > [data-subtype="u"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-t) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-u) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix));
@@ -94,7 +94,7 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 任务列表紧接有序列表 */
-    [data-subtype="t"] > [data-subtype="o"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [data-subtype="t"] > [data-subtype="o"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         --asri-enhance-bullet-height-fix: calc(var(--asri-enhance-bullet-fix-t) + var(--asri-enhance-bullet-line-fontsize-fix));
         --asri-enhance-bullet-width-fix: calc(var(--asri-enhance-bullet-fix-o) + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-width-fix));
@@ -102,63 +102,63 @@
         top: calc(-1 * var(--asri-enhance-bullet-line-height) + calc((1.625em + 10px) / 2) + var(--asri-enhance-bullet-height-fix));
     }
     /* 无序空列表紧接无序列表 */
-    [data-subtype="u"] > .protyle-action + [data-subtype="u"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="u"] > .protyle-action + [data-subtype="u"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-u));
         width: calc(34px - var(--asri-enhance-bullet-fix-u) - var(--asri-enhance-bullet-width-fix));
         border-bottom-left-radius: 0px;
     }
     /* 无序空列表紧接有序列表 */
-    [data-subtype="u"] > .protyle-action + [data-subtype="o"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="u"] > .protyle-action + [data-subtype="o"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-u));
         width: calc(34px - var(--asri-enhance-bullet-fix-u) - var(--asri-enhance-bullet-width-fix));
         border-bottom-left-radius: 0px;
     }
     /* 无序空列表紧接任务列表 */
-    [data-subtype="u"] > .protyle-action + [data-subtype="t"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="u"] > .protyle-action + [data-subtype="t"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-u));
         width: calc(34px - var(--asri-enhance-bullet-fix-u) - var(--asri-enhance-bullet-width-fix));
         border-bottom-left-radius: 0px;
     }
     /* 有序空列表紧接有序列表 */
-    [data-subtype="o"] > .protyle-action + [data-subtype="o"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="o"] > .protyle-action + [data-subtype="o"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-o));
         width: calc(34px - var(--asri-enhance-bullet-fix-o) - var(--asri-enhance-bullet-width-fix));
         border-bottom-left-radius: 0px;
     }
     /* 有序空列表紧接无序列表 */
-    [data-subtype="o"] > .protyle-action + [data-subtype="u"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="o"] > .protyle-action + [data-subtype="u"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         width: calc(34px - var(--asri-enhance-bullet-fix-o) - var(--asri-enhance-bullet-width-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-o));
         border-bottom-left-radius: 0px;
     }
     /* 有序空列表紧接任务列表 */
-    [data-subtype="o"] > .protyle-action + [data-subtype="t"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="o"] > .protyle-action + [data-subtype="t"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-o));
         width: calc(34px - var(--asri-enhance-bullet-fix-o) - var(--asri-enhance-bullet-width-fix));
         border-bottom-left-radius: 0px;
     }
     /* 任务空列表紧接任务列表 */
-    [data-subtype="t"] > .protyle-action + [data-subtype="t"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="t"] > .protyle-action + [data-subtype="t"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-t));
         width: calc(34px - var(--asri-enhance-bullet-fix-t) - var(--asri-enhance-bullet-width-fix));
         border-bottom-left-radius: 0px;
     }
     /* 任务空列表紧接无序列表 */
-    [data-subtype="t"] > .protyle-action + [data-subtype="u"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="t"] > .protyle-action + [data-subtype="u"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-t));
         width: calc(34px - var(--asri-enhance-bullet-fix-t) - var(--asri-enhance-bullet-width-fix));
         border-bottom-left-radius: 0px;
     }
     /* 任务空列表紧接有序列表 */
-    [data-subtype="t"] > .protyle-action + [data-subtype="o"] > .asri-enhance-bullet-line:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line):first-child::after {
+    [data-subtype="t"] > .protyle-action + [data-subtype="o"] > [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select, .protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line]):first-child::after {
         top: calc(15.75px + var(--asri-enhance-bullet-line-fontsize-fix));
         left: calc(-18px + var(--asri-enhance-bullet-fix-t));
         width: calc(34px - var(--asri-enhance-bullet-fix-t) - var(--asri-enhance-bullet-width-fix));

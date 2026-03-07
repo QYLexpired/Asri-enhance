@@ -9,6 +9,9 @@
                 color: var(--b3-theme-accent);
             }
         }
+        .b3-tooltips {
+            flex-grow: 1;
+        }
     }
     @for $i from 0 through 20 {
         $value: $i * 0.05;

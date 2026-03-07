@@ -2,9 +2,9 @@ import { Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-listbulletline";
-const SELECTOR = ".asri-enhance-bullet-highlight,.asri-enhance-bullet-line";
-const SELECTED_CLASS = "asri-enhance-bullet-highlight";
-const LINE_CLASS = "asri-enhance-bullet-line";
+const SELECTOR = "[asri-enhance-bullet-highlight],[asri-enhance-bullet-line]";
+const SELECTED_ATTR = "asri-enhance-bullet-highlight";
+const LINE_ATTR = "asri-enhance-bullet-line";
 const LINE_HEIGHT_VAR = "--asri-enhance-bullet-line-height";
 let selectionChangeHandler: (() => void) | null = null;
 let clickHandler: ((event: MouseEvent) => void) | null = null;
@@ -12,22 +12,24 @@ let debounceTimer: ReturnType<typeof setTimeout> | null = null;
 let lastMarkedItems: Set<HTMLElement> = new Set();
 const clearBulletLineMarks = () => {
     document.querySelectorAll<HTMLElement>(SELECTOR).forEach((element) => {
-        element.classList.remove(SELECTED_CLASS, LINE_CLASS);
+        element.removeAttribute(SELECTED_ATTR);
+        element.removeAttribute(LINE_ATTR);
         element.style.removeProperty(LINE_HEIGHT_VAR);
     });
     lastMarkedItems.clear();
 };
 const removeMarkFromItem = (item: HTMLElement) => {
-    item.classList.remove(SELECTED_CLASS, LINE_CLASS);
+    item.removeAttribute(SELECTED_ATTR);
+    item.removeAttribute(LINE_ATTR);
     item.style.removeProperty(LINE_HEIGHT_VAR);
 };
 const addMarkToItem = (item: HTMLElement, hasNext: boolean, nextItem?: HTMLElement) => {
-    item.classList.add(SELECTED_CLASS);
+    item.setAttribute(SELECTED_ATTR, "");
     if (hasNext && nextItem) {
         const currentRect = item.getBoundingClientRect();
         const nextRect = nextItem.getBoundingClientRect();
         item.style.setProperty(LINE_HEIGHT_VAR, `${currentRect.top - nextRect.top}px`);
-        item.classList.add(LINE_CLASS);
+        item.setAttribute(LINE_ATTR, "");
     }
 };
 const runSelectionUpdate = (clickTarget?: HTMLElement | null) => {
@@ -83,13 +85,13 @@ const runSelectionUpdate = (clickTarget?: HTMLElement | null) => {
                 if (oldHeight !== newHeight) {
                     item.style.setProperty(LINE_HEIGHT_VAR, newHeight);
                 }
-                if (!item.classList.contains(LINE_CLASS)) {
-                    item.classList.add(LINE_CLASS);
+                if (!item.hasAttribute(LINE_ATTR)) {
+                    item.setAttribute(LINE_ATTR, "");
                 }
             }
             else {
-                if (item.classList.contains(LINE_CLASS)) {
-                    item.classList.remove(LINE_CLASS);
+                if (item.hasAttribute(LINE_ATTR)) {
+                    item.removeAttribute(LINE_ATTR);
                     item.style.removeProperty(LINE_HEIGHT_VAR);
                 }
             }

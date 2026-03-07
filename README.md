@@ -1,17 +1,15 @@
 ### Updates
-##### v2.2.4
-- New immersive editing option: Pinned Toolbar
-    - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
-    - The pinned toolbar has a liquid glass effect
-- Moved Smooth Caret and Fluid Cursor into the Immersive Editing menu
+##### v2.2.5
+- Fixed issues with global frosted glass effect in some scenarios
+- Improved stability of side memo feature
+- Improved stability of list bullet line feature
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
 - Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
 ### How to Use
 - All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. All features of this plugin are configured in the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> options
-### Enhance Editing Experience
-Add a series of practical features and ensure the style completely matches the Asri theme
+### Features
 - List bullet lines
 - Vertical tabs (only affects the tab bar in the top left corner)
 - Side memo (displays inline notes, block notes, and document notes on the right side of the editor)
@@ -29,8 +27,7 @@ Add a series of practical features and ensure the style completely matches the A
 - Pinned Toolbar
     - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
     - The pinned toolbar has a liquid glass effect
-### Theme Detail Adjustments
-Detailed adjustments made completely in accordance with the Asri theme style
+### Detail Adjustments
 - Textures (supporting more than ten background textures)
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
 - Multi-column slash menu (supports keyboard arrow key navigation)
@@ -45,6 +42,5 @@ Detailed adjustments made completely in accordance with the Asri theme style
 - More animations
 - Global frosted glass
 ### More Preset Color Schemes
-Based on the original color schemes of the Asri theme, additional preset color schemes are added
 - Theme color follows time
 - More than ten distinctive preset color schemes

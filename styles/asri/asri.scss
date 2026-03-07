@@ -96,40 +96,23 @@ $other-transparency-selectors: (
       border-radius: 48px;
       &:hover {
         box-shadow: none !important;
-        animation: card__action-button-hover-light 0.3s ease-in-out;
         scale: 1;
-        transform: scale(1.05);
+        transform: scale(1.05) !important;
         transition: transform .7s var(--asri-ease-spring-4);
         transform-origin: 50% 82.5%;
       }
-      &:is([data-theme-mode="dark"] button.b3-button) {
+      &[data-type="-1"] {
         &:hover {
-          animation: card__action-button-hover-dark 0.3s ease-in-out;
+          transform: scale(1.03) !important;
         }
       }
     }
   }
-  @keyframes card__action-button-hover-light {
-    0% {
-      filter: brightness(1) saturate(1);
-    }
-    50% {
-      filter: brightness(1.03) saturate(1.08);
-    }
-    100% {
-      filter: brightness(1) saturate(1);
-    }
+  .body-asri--mobile .card__action button {
+    height: 50px;
   }
-  @keyframes card__action-button-hover-dark {
-    0% {
-      filter: brightness(1) saturate(1);
-    }
-    50% {
-      filter: brightness(1.1) saturate(1.1);
-    }
-    100% {
-      filter: brightness(1) saturate(1);
-    }
+  .body-asri--mobile .card__action .card__icon {
+    display: none;
   }
   // 闪卡在页签打开
   [data-type="wnd"] .card__main {

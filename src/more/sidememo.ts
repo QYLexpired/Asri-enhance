@@ -58,6 +58,27 @@ function applySyntaxHighlighting(container: HTMLElement) {
 		});
 	} catch (err) {}
 }
+function getUidFromElement(el: HTMLElement): string | null {
+	try {
+		const attrs = el.getAttributeNames();
+		for (const attr of attrs) {
+			if (attr.startsWith("asri-enhance-sidememo-uid-")) {
+				return attr.replace("asri-enhance-sidememo-uid-", "");
+			}
+		}
+	} catch (e) {}
+	return null;
+}
+function setUidToElement(el: HTMLElement, uid: string): void {
+	try {
+		el.setAttribute("asri-enhance-sidememo-uid-" + uid, "");
+	} catch (e) {}
+}
+function removeUidFromElement(el: HTMLElement, uid: string): void {
+	try {
+		el.removeAttribute("asri-enhance-sidememo-uid-" + uid);
+	} catch (e) {}
+}
 async function showMergeMemoTip(): Promise<void> {
 	try {
 		await fetch('/api/notification/pushMsg', {
@@ -330,15 +351,17 @@ function ensureSidememoContainers(): void {
 					ev.stopPropagation();
 				} catch (e) {}
 				try {
-					const isFolded = itemEl.classList.toggle("asri-enhance-sidememo-item-fold");
+					const wasFolded = itemEl.hasAttribute("asri-enhance-sidememo-fold");
+					if (wasFolded) itemEl.removeAttribute("asri-enhance-sidememo-fold");
+					else itemEl.setAttribute("asri-enhance-sidememo-fold", "");
 					try {
-						const uid = itemEl.getAttribute("asri-enhance-sidememo-uid");
+						const uid = getUidFromElement(itemEl);
 						if (uid) {
-							const selector = `[data-type*="inline-memo"][asri-enhance-sidememo-uid="${uid}"], [memo][asri-enhance-sidememo-uid="${uid}"]`;
+							const selector = `[data-type*="inline-memo"][asri-enhance-sidememo-uid-${uid}], [memo][asri-enhance-sidememo-uid-${uid}]`;
 							const sources = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
 							sources.forEach(source => {
 								if (source && source.setAttribute) {
-									if (isFolded) source.setAttribute("asri-enhance-sidememo-fold", "true");
+									if (!wasFolded) source.setAttribute("asri-enhance-sidememo-fold", "");
 									else {
 										try {
 											source.removeAttribute("asri-enhance-sidememo-fold");
@@ -550,10 +573,18 @@ function populateSidememoContainer(
 				item.appendChild(title);
 				item.appendChild(contentDiv);
 				try {
-					if (elements.some(el => el.getAttribute && el.getAttribute("asri-enhance-sidememo-fold") === "true")) {
-						item.classList.add("asri-enhance-sidememo-item-fold");
+					if (elements.some(el => el.hasAttribute && el.hasAttribute("asri-enhance-sidememo-fold"))) {
+						item.setAttribute("asri-enhance-sidememo-fold", "");
 					}
 				} catch (e) {}
+				let uid = getUidFromElement(elements[0]);
+				if (!uid) {
+					uid = `${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
+					try {
+						elements.forEach(el => setUidToElement(el, uid!));
+					} catch (e) {}
+				}
+				item.setAttribute("asri-enhance-sidememo-uid-" + uid, "");
 				let top = 0;
 				try {
 					const firstMemoRect = elements[0].getBoundingClientRect();
@@ -564,15 +595,7 @@ function populateSidememoContainer(
 						const protyleRect = protyleContent.getBoundingClientRect();
 						top = Math.max(0, firstMemoRect.top - protyleRect.top);
 					}
-				} catch (e) {}
-				let uid = elements[0].getAttribute("asri-enhance-sidememo-uid");
-				if (!uid) {
-					uid = `asri-enhance-sidememo-${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
-					try {
-						elements.forEach(el => el.setAttribute("asri-enhance-sidememo-uid", uid));
-					} catch (e) {}
-				}
-				item.setAttribute("asri-enhance-sidememo-uid", uid);
+} catch (e) {}
 				item.style.top = `${top}px`;
 				items.push({ el: item, top, height: 0, uid, sourceEls: elements, index: groupIndex, type: 'inline' });
 			} else if (isBlockMemo) {
@@ -609,8 +632,8 @@ function populateSidememoContainer(
 				item.appendChild(title);
 				item.appendChild(content);
 				try {
-					if (memoEl.getAttribute && memoEl.getAttribute("asri-enhance-sidememo-fold") === "true") {
-						item.classList.add("asri-enhance-sidememo-item-fold");
+					if (memoEl.hasAttribute && memoEl.hasAttribute("asri-enhance-sidememo-fold")) {
+						item.setAttribute("asri-enhance-sidememo-fold", "");
 					}
 				} catch (e) {}
 				let top = 0;
@@ -626,14 +649,14 @@ function populateSidememoContainer(
 						top = Math.max(0, memoRect.top - protyleRect.top);
 					}
 				} catch (e) {}
-				let uid = memoEl.getAttribute("asri-enhance-sidememo-uid");
+				let uid = getUidFromElement(memoEl);
 				if (!uid) {
-					uid = `asri-enhance-sidememo-${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
+					uid = `${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
 					try {
-						memoEl.setAttribute("asri-enhance-sidememo-uid", uid);
+						setUidToElement(memoEl, uid);
 					} catch (e) {}
 				}
-				item.setAttribute("asri-enhance-sidememo-uid", uid);
+				item.setAttribute("asri-enhance-sidememo-uid-" + uid, "");
 				item.style.top = `${top}px`;
 				items.push({ el: item, top, height: 0, uid, sourceEl: memoEl, index: groupIndex, type: 'block' });
 			} else if (isFileMemo) {
@@ -682,19 +705,19 @@ function populateSidememoContainer(
 				item.appendChild(title);
 				item.appendChild(content);
 				try {
-					if (memoEl.getAttribute && memoEl.getAttribute("asri-enhance-sidememo-fold") === "true") {
-						item.classList.add("asri-enhance-sidememo-item-fold");
+					if (memoEl.hasAttribute && memoEl.hasAttribute("asri-enhance-sidememo-fold")) {
+						item.setAttribute("asri-enhance-sidememo-fold", "");
 					}
 				} catch (e) {}
 				let top = 20;
-				let uid = memoEl.getAttribute("asri-enhance-sidememo-uid");
+				let uid = getUidFromElement(memoEl);
 				if (!uid) {
-					uid = `asri-enhance-sidememo-${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
+					uid = `${Math.random().toString(36).slice(2, 10)}${Date.now().toString(36)}`;
 					try {
-						memoEl.setAttribute("asri-enhance-sidememo-uid", uid);
+						setUidToElement(memoEl, uid);
 					} catch (e) {}
 				}
-				item.setAttribute("asri-enhance-sidememo-uid", uid);
+				item.setAttribute("asri-enhance-sidememo-uid-" + uid, "");
 				item.style.top = `${top}px`;
 				items.push({ el: item, top, height: 0, uid, sourceEl: memoEl, index: groupIndex, type: 'file' });
 			}
@@ -726,7 +749,7 @@ function populateSidememoContainer(
 			if (!isInlineMemo && !isFileMemo) return;
 			if (add) {
 				try {
-					if (relatedEl.getAttribute && relatedEl.getAttribute("asri-enhance-sidememo-fold") === "true") {
+					if (relatedEl.hasAttribute && relatedEl.hasAttribute("asri-enhance-sidememo-fold")) {
 						return;
 					}
 				} catch (e) {}
@@ -751,19 +774,19 @@ function populateSidememoContainer(
 			const relatedEls = it.sourceEls || (it.sourceEl ? [it.sourceEl] : []);
 			if (relatedEls.length === 0) return;
 			const onItemEnter = () => {
-				relatedEls.forEach(el => el.classList.add("asri-enhance-sidememo-highlight"));
+				relatedEls.forEach(el => el.setAttribute("asri-enhance-sidememo-highlight", ""));
 			};
 			const onItemLeave = () => {
-				relatedEls.forEach(el => el.classList.remove("asri-enhance-sidememo-highlight"));
+				relatedEls.forEach(el => el.removeAttribute("asri-enhance-sidememo-highlight"));
 			};
 			const onMemoEnter = () => {
-				it.el.classList.add("asri-enhance-sidememo-highlight");
+				it.el.setAttribute("asri-enhance-sidememo-highlight", "");
 				try {
 					relatedEls.forEach(el => toggleTooltipMemoNoneFor(el, true));
 				} catch (e) {}
 			};
 			const onMemoLeave = () => {
-				it.el.classList.remove("asri-enhance-sidememo-highlight");
+				it.el.removeAttribute("asri-enhance-sidememo-highlight");
 				try {
 					relatedEls.forEach(el => toggleTooltipMemoNoneFor(el, false));
 				} catch (e) {}
@@ -1021,15 +1044,17 @@ function populateSidememoContainer(
 							ev.stopPropagation();
 						} catch (e) {}
 						try {
-							const isFolded = it.el.classList.toggle("asri-enhance-sidememo-item-fold");
+							const wasFolded = it.el.hasAttribute("asri-enhance-sidememo-fold");
+							if (wasFolded) it.el.removeAttribute("asri-enhance-sidememo-fold");
+							else it.el.setAttribute("asri-enhance-sidememo-fold", "");
 							try {
-								const uid = it.el.getAttribute("asri-enhance-sidememo-uid");
+								const uid = getUidFromElement(it.el);
 								if (uid) {
-									const selector = `[data-type*="inline-memo"][asri-enhance-sidememo-uid="${uid}"], [memo][asri-enhance-sidememo-uid="${uid}"]`;
+									const selector = `[data-type*="inline-memo"][asri-enhance-sidememo-uid-${uid}], [memo][asri-enhance-sidememo-uid-${uid}]`;
 									const sources = Array.from(document.querySelectorAll(selector)) as HTMLElement[];
 									sources.forEach(source => {
 										if (source && source.setAttribute) {
-											if (isFolded) source.setAttribute("asri-enhance-sidememo-fold", "true");
+											if (!wasFolded) source.setAttribute("asri-enhance-sidememo-fold", "");
 											else {
 												try {
 													source.removeAttribute("asri-enhance-sidememo-fold");
@@ -1210,12 +1235,13 @@ export function removeAllSidememoArtifacts(): void {
 							delete (m as any).__asriSidememoHandlers;
 						}
 						try {
-							m.removeAttribute("asri-enhance-sidememo-uid");
+							const uid = getUidFromElement(m);
+							if (uid) {
+								removeUidFromElement(m, uid);
+							}
 						} catch (e) {}
 						try {
-							m.classList.remove(
-								"asri-enhance-sidememo-highlight",
-							);
+							m.removeAttribute("asri-enhance-sidememo-highlight");
 						} catch (e) {}
 					} catch (e) {}
 				});

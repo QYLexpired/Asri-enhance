@@ -104,7 +104,7 @@
         }
     }
     // 列表子弹线
-    .asri-enhance-bullet-line:not(.protyle-wysiwyg--select,.protyle-wysiwyg--hl):not([custom-list-view] .asri-enhance-bullet-line)::after {
+    [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select,.protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         animation: asri-enhance-bullet-line 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
         transform-origin: left top;
     }
