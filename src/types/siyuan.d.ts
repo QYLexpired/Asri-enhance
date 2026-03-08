@@ -38,4 +38,18 @@ declare module "siyuan" {
         element?: HTMLElement;
     }
     export function getFrontend(): string;
+    export class Dialog {
+        constructor(options: DialogOptions);
+        element: HTMLElement;
+        destroy(): void;
+        close(): void;
+    }
+    export interface DialogOptions {
+        title?: string;
+        content?: string;
+        width?: string;
+        height?: string;
+        destroy?: boolean;
+        transparent?: boolean;
+    }
 }

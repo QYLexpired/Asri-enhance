@@ -45,6 +45,7 @@ import { applyWoodConfig } from "./texture/wood";
 import { applyCamouflageConfig } from "./texture/camouflage";
 import { applyFiberConfig } from "./texture/fiber";
 import { applyFabricConfig } from "./texture/fabric";
+import { applyCustomImageConfig, removeCustomImageConfig } from "./texture/customimage";
 import { applyTypewriterModeConfig, destroyTypewriterMode, onTypewriterModeClick } from "./immersive/typewriter";
 import { applyFocusModeConfig, onFocusModeClick } from "./immersive/focus";
 import { applyFollowTimeConfig } from "./followtime/followtime";
@@ -103,6 +104,7 @@ class AsriEnhancePlugin extends Plugin {
             applyCamouflageConfig(this, config).catch(() => { }),
             applyFiberConfig(this, config).catch(() => { }),
             applyFabricConfig(this, config).catch(() => { }),
+            applyCustomImageConfig(this, config).catch(() => { }),
             applyTypewriterModeConfig(this, config).catch(() => { }),
             applyFocusModeConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
@@ -283,6 +285,7 @@ class AsriEnhancePlugin extends Plugin {
         destroyFluidCursor();
         destroyPinnedToolbar();
         destroyTypewriterMode();
+        removeCustomImageConfig();
         restoreMacTrafficLights();
         const htmlEl = document.documentElement;
         if (htmlEl) {

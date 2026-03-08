@@ -51,6 +51,10 @@
                     }
                 }
             }
+            // 任务列表
+            & .protyle-task--done>.protyle-action--task::before {
+                background-color: var(--asri-enhance-li-color);
+            }
         }
         & [asri-enhance-bullet-line]::after {
             --asri-enhance-listbulletline-highlight-color: var(--asri-enhance-li-color);

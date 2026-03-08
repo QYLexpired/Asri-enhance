@@ -9,6 +9,17 @@ body.asri-tfp {
         }
     }
 }
+.asri-enhance-settings-icon {
+  height: 12px;
+  width: 12px;
+  line-height: 12px;
+  margin-left: 16px;
+  margin-right: unset;
+  opacity: 0.5;
+  &:hover {
+    opacity: 1;
+  }
+}
 $primary-color-reverse-selectors: (
   // reverse on-primary colors when primary color is too bright
   "#barWorkspace",

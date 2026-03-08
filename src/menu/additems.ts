@@ -43,6 +43,7 @@ import { onWoodClick } from "../texture/wood";
 import { onCamouflageClick } from "../texture/camouflage";
 import { onFiberClick } from "../texture/fiber";
 import { onFabricClick } from "../texture/fabric";
+import { onCustomImageClick, onCustomImageSettingsClick } from "../texture/customimage";
 import { onTypewriterModeClick } from "../immersive/typewriter";
 import { onFocusModeClick } from "../immersive/focus";
 import { loadData } from "../utils/storage";
@@ -465,6 +466,7 @@ function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
     const textureSubmenu = textureItem.querySelector<HTMLElement>(".b3-menu__submenu .b3-menu__items");
     if (!textureSubmenu) return;
     const textureItems = [
+        { id: "customimage", label: plugin.i18n?.customimage || "customimage", handler: onCustomImageClick },
         { id: "paper", label: plugin.i18n?.paper || "paper", handler: onPaperClick },
         { id: "noise", label: plugin.i18n?.noise || "noise", handler: onNoiseClick },
         { id: "acrylic", label: plugin.i18n?.acrylic || "acrylic", handler: onAcrylicClick },
@@ -483,12 +485,23 @@ function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
             const button = document.createElement("button");
             button.className = "b3-menu__item";
             button.id = `asri-enhance-${id}`;
-            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${label}</span>`;
+            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${label}</span>${id === "customimage" ? `<svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n?.customimageSettings || "Configure Custom Image"}"><use xlink:href="#iconSettings"></use></svg>` : ''}`;
             textureSubmenu.appendChild(button);
+            if (id === "customimage" && !textureSubmenu.querySelector(".b3-menu__separator-asri-customimage")) {
+                const separator = document.createElement("div");
+                separator.className = "b3-menu__separator b3-menu__separator-asri-customimage";
+                textureSubmenu.appendChild(separator);
+            }
         }
         const item = textureSubmenu.querySelector<HTMLButtonElement>(`#asri-enhance-${id}`);
         if (item) {
             item.onclick = (e) => handler(plugin, e);
+            if (id === "customimage") {
+                const settingsIcon = item.querySelector(".asri-enhance-settings-icon");
+                if (settingsIcon) {
+                    settingsIcon.addEventListener("click", (e: MouseEvent) => onCustomImageSettingsClick(plugin, e));
+                }
+            }
         }
     });
 }

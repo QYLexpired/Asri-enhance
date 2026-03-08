@@ -1,0 +1,50 @@
+[data-asri-enhance-customimage="true"]:root {
+    #asri-enhance-texture, #asri-enhance-customimage {
+        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+    [class*="config__item-asri-enhance"] {
+        border: none;
+    }
+    body {
+        &::before {
+            content: "";
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background-repeat: repeat;
+            background-size: cover;
+            background-position: center;
+            background-color: var(--b3-theme-background);
+            pointer-events: none;
+            z-index: 99;
+            background-image: var(--asri-enhance-customimage-url);
+            opacity: var(--asri-enhance-customimage-opacity-light);
+            filter: blur(var(--asri-enhance-customimage-blur));
+            mix-blend-mode: var(--asri-enhance-customimage-effect-light);
+            background-position: var(--asri-enhance-customimage-x) var(--asri-enhance-customimage-y);
+        }
+    }
+    &[data-theme-mode="light"] {
+        .config__item-asri-enhance-customimage-opacity-dark,
+        .config__item-asri-enhance-customimage-effect-dark {
+            display: none;
+        }
+    }
+    &[data-theme-mode="dark"] {
+        .config__item-asri-enhance-customimage-opacity-light,
+        .config__item-asri-enhance-customimage-effect-light {
+            display: none;
+        }
+        body {
+            &::before {
+                opacity: var(--asri-enhance-customimage-opacity-dark);
+                mix-blend-mode: var(--asri-enhance-customimage-effect-dark);
+            }
+        }
+    }
+}

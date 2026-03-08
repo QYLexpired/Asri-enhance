@@ -36,6 +36,13 @@
             &:is(.asri-enhance-verticaltab .protyle-toolbar) {
                 top: 42px !important;
             }
+            & .protyle-toolbar__item {
+                &::after {
+                    top: 100% !important;
+                    bottom: auto !important;
+                    margin-top: 5px !important;
+                }
+            }
         }
         &.asri-enhance-pinnedtoolbar-left {
             flex-direction: column !important;
@@ -85,7 +92,7 @@
                     bottom: auto !important;
                     transform: none !important;
                     margin: 0 !important;
-                    margin-left: 5px !important;
+                    margin-right: 5px !important;
                 }
             }
         }

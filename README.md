@@ -1,12 +1,11 @@
 ### Updates
-##### v2.2.5
-- Fixed issues with global frosted glass effect in some scenarios
-- Improved stability of side memo feature
-- Improved stability of list bullet line feature
+##### v2.2.6
+- Support for custom image background textures (configurable blur, visibility, blend mode)
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
 - Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
+- Does not write or modify any data in documents, only performs functional optimization and appearance improvements, no residual files after uninstalling the plugin
 ### How to Use
 - All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. All features of this plugin are configured in the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> options
 ### Features
@@ -28,7 +27,7 @@
     - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
     - The pinned toolbar has a liquid glass effect
 ### Detail Adjustments
-- Textures (supporting more than ten background textures)
+- Textures (supporting more than ten background textures) and custom image background
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
 - Multi-column slash menu (supports keyboard arrow key navigation)
 - Adjust window transparency value
