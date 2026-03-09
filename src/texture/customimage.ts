@@ -24,10 +24,8 @@ export function onCustomImageClick(plugin: Plugin, event: MouseEvent) {
             if (newValue) {
                 document.documentElement.setAttribute(DATA_ATTR, "true");
                 const savedUrl = config?.["asri-enhance-customimage-url"];
-                if (savedUrl) {
-                    const cssValue = savedUrl.startsWith("url(") ? savedUrl : `url(${savedUrl})`;
-                    document.documentElement.style.setProperty("--asri-enhance-customimage-url", cssValue);
-                }
+                const cssValue = savedUrl ? (savedUrl.startsWith("url(") ? savedUrl : `url(${savedUrl})`) : "unset";
+                document.documentElement.style.setProperty("--asri-enhance-customimage-url", cssValue);
                 const savedOpacity = config?.["asri-enhance-customimage-opacity-light"] || "0.15";
                 document.documentElement.style.setProperty("--asri-enhance-customimage-opacity-light", savedOpacity);
                 const savedOpacityDark = config?.["asri-enhance-customimage-opacity-dark"] || "0.15";
@@ -77,7 +75,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-opacity-tooltip-light" aria-label="0.15">   
-        <input class="b3-slider fn__size200" id="asri-enhance-customimage-opacity-light" max="1" min="0" step="0.05" type="range" value="0.15">
+        <input class="b3-slider fn__size200" id="asri-enhance-customimage-opacity-light" max="0.8" min="0" step="0.01" type="range" value="0.15">
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-effect-light">
     <div class="fn__flex-1">
@@ -101,7 +99,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-opacity-tooltip-dark" aria-label="0.15">   
-        <input class="b3-slider fn__size200" id="asri-enhance-customimage-opacity-dark" max="1" min="0" step="0.05" type="range" value="0.15">
+        <input class="b3-slider fn__size200" id="asri-enhance-customimage-opacity-dark" max="0.8" min="0" step="0.01" type="range" value="0.15">
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-effect-dark">
     <div class="fn__flex-1">
@@ -140,6 +138,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
 </div>`,
         width: "max(700px, 50vw)",
     });
+    dialog.element.setAttribute("data-key", "dialog-asri-enhance-customimage-settings");
     const inputElement = dialog.element.querySelector("#asri-enhance-customimage-path") as HTMLInputElement;
     const opacityElement = dialog.element.querySelector("#asri-enhance-customimage-opacity-light") as HTMLInputElement;
     const opacityTooltipElement = dialog.element.querySelector("#asri-enhance-customimage-opacity-tooltip-light") as HTMLElement;
@@ -289,10 +288,8 @@ export async function applyCustomImageConfig(plugin: Plugin, config?: Record<str
     if (enabled === true || enabled === "true") {
         if (!otherEnabled) {
             htmlEl.setAttribute(DATA_ATTR, "true");
-            if (imageUrl) {
-                const cssValue = imageUrl.startsWith("url(") ? imageUrl : `url(${imageUrl})`;
-                htmlEl.style.setProperty("--asri-enhance-customimage-url", cssValue);
-            }
+            const cssValue = imageUrl ? (imageUrl.startsWith("url(") ? imageUrl : `url(${imageUrl})`) : "unset";
+            htmlEl.style.setProperty("--asri-enhance-customimage-url", cssValue);
             const opacityValue = opacityLight || "0.15";
             htmlEl.style.setProperty("--asri-enhance-customimage-opacity-light", opacityValue);
             const opacityDarkValue = opacityDark || "0.15";

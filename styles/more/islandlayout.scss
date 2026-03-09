@@ -36,7 +36,7 @@ $islandlayout-dock-transparency-selectors: (
                 content: "";
                 position: absolute;
                 inset: 0;
-                border-radius: 16px;
+                border-radius: inherit;
                 box-shadow: inset 0 0 0 1px var(--b3-border-color-trans);
                 pointer-events: none;
                 z-index: 3;

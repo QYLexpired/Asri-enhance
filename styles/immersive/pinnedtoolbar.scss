@@ -27,14 +27,14 @@
         }
         &:not(.asri-enhance-pinnedtoolbar-left, .asri-enhance-pinnedtoolbar-bottom, .asri-enhance-pinnedtoolbar-right) {
             flex-direction: row !important;
-            top: 42px !important;
+            top: 48px !important;
             left: 50% !important;
             transform: translateX(-50%) !important;
             &:is(.asri-tfp .protyle-toolbar) {
-                top: 84px !important;
+                top: 90px !important;
             }
             &:is(.asri-enhance-verticaltab .protyle-toolbar) {
-                top: 42px !important;
+                top: 90px !important;
             }
             & .protyle-toolbar__item {
                 &::after {

@@ -62,7 +62,7 @@
   "cancel": "取消",
   "confirm": "确定",
   "customimagePath": "图片路径",
-  "customimagePathTip": "本插件不写入任何数据，因此只支持使用资源文件夹已有的图片，在此处填入相对路径，可在图片菜单中获取",
+  "customimagePathTip": "填入资源文件夹中图片的相对路径或网络图片地址",
   "customimageBlur": "图片模糊度",
   "customimageEffectLight": "效果（明亮模式）",
   "customimageEffectDark": "效果（暗黑模式）",

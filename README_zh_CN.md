@@ -1,5 +1,5 @@
 ### 更新
-##### v2.2.6
+##### v2.2.7
 - 支持自定义图片背景纹理（可配置模糊度、可见度、混合模式）
 ### 关于插件
 - [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
