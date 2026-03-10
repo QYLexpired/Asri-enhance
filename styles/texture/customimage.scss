@@ -1,18 +1,33 @@
 [data-theme-mode="light"] {
     .config__item-asri-enhance-customimage-opacity-dark,
-    .config__item-asri-enhance-customimage-effect-dark {
+    .config__item-asri-enhance-customimage-effect-dark,
+    .config__item-asri-enhance-customimage-brightness-dark,
+    .config__item-asri-enhance-customimage-saturation-dark,
+    .config__item-asri-enhance-customimage-contrast-dark,
+    .config__item-asri-enhance-customimage-grayscale-dark,
+    .config__item-asri-enhance-customimage-hue-rotate-dark {
         display: none;
     }
 }
 [data-theme-mode="dark"] {
     .config__item-asri-enhance-customimage-opacity-light,
-    .config__item-asri-enhance-customimage-effect-light {
+    .config__item-asri-enhance-customimage-effect-light,
+    .config__item-asri-enhance-customimage-brightness-light,
+    .config__item-asri-enhance-customimage-saturation-light,
+    .config__item-asri-enhance-customimage-contrast-light,
+    .config__item-asri-enhance-customimage-grayscale-light,
+    .config__item-asri-enhance-customimage-hue-rotate-light {
         display: none;
     }
 }
 [data-key="dialog-asri-enhance-customimage-settings"] {
     .config__item {
         border: none;
+    }
+    &:not(.asri-enhance-customimage-detail) {
+        .config__item-asri-enhance-customimage-effect-dark ~ .config__item {
+            display: none;
+        }
     }
 }
 [data-asri-enhance-customimage="true"]:root {
@@ -38,7 +53,7 @@
             z-index: 99;
             background-image: var(--asri-enhance-customimage-url);
             opacity: var(--asri-enhance-customimage-opacity-light);
-            filter: blur(var(--asri-enhance-customimage-blur));
+            filter: blur(var(--asri-enhance-customimage-blur)) brightness(var(--asri-enhance-customimage-brightness-light)) saturate(var(--asri-enhance-customimage-saturation-light)) contrast(var(--asri-enhance-customimage-contrast-light)) grayscale(var(--asri-enhance-customimage-grayscale-light)) hue-rotate(var(--asri-enhance-customimage-hue-rotate-light));
             mix-blend-mode: var(--asri-enhance-customimage-effect-light);
             background-position: var(--asri-enhance-customimage-x) var(--asri-enhance-customimage-y);
         }
@@ -47,6 +62,7 @@
         body {
             &::before {
                 opacity: var(--asri-enhance-customimage-opacity-dark);
+                filter: blur(var(--asri-enhance-customimage-blur)) brightness(var(--asri-enhance-customimage-brightness-dark)) saturate(var(--asri-enhance-customimage-saturation-dark)) contrast(var(--asri-enhance-customimage-contrast-dark)) grayscale(var(--asri-enhance-customimage-grayscale-dark)) hue-rotate(var(--asri-enhance-customimage-hue-rotate-dark));
                 mix-blend-mode: var(--asri-enhance-customimage-effect-dark);
             }
         }

@@ -1,6 +1,8 @@
 ### Updates
-##### v2.2.7
-- Support for custom image background textures (configurable blur, visibility, blend mode)
+##### v2.2.8
+- Optimized custom image background textures
+    - Support for saving presets
+    - Added brightness, contrast, saturation, grayscale, hue shift parameters
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
