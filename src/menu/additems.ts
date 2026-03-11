@@ -41,8 +41,6 @@ import { onCrossDotClick } from "../texture/crossdot";
 import { onHoneycombClick } from "../texture/honeycomb";
 import { onWoodClick } from "../texture/wood";
 import { onCamouflageClick } from "../texture/camouflage";
-import { onFiberClick } from "../texture/fiber";
-import { onFabricClick } from "../texture/fabric";
 import { onCustomImageClick, onCustomImageSettingsClick } from "../texture/customimage";
 import { onTypewriterModeClick } from "../immersive/typewriter";
 import { onFocusModeClick } from "../immersive/focus";
@@ -477,8 +475,6 @@ function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
         { id: "honeycomb", label: plugin.i18n?.honeycomb || "honeycomb", handler: onHoneycombClick },
         { id: "wood", label: plugin.i18n?.wood || "wood", handler: onWoodClick },
         { id: "camouflage", label: plugin.i18n?.camouflage || "camouflage", handler: onCamouflageClick },
-        { id: "fiber", label: plugin.i18n?.fiber || "fiber", handler: onFiberClick },
-        { id: "fabric", label: plugin.i18n?.fabric || "fabric", handler: onFabricClick },
     ];
     textureItems.forEach(({ id, label, handler }) => {
         if (!textureSubmenu.querySelector(`#asri-enhance-${id}`)) {

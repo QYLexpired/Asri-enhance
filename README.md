@@ -1,8 +1,9 @@
 ### Updates
-##### v2.2.8
+##### v2.2.9
 - Optimized custom image background textures
     - Support for saving presets
-    - Added brightness, contrast, saturation, grayscale, hue shift parameters
+    - Added frosted effect, brightness, contrast, saturation, grayscale, hue shift parameters
+- Removed fabric and fiber textures
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
@@ -29,7 +30,7 @@
     - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
     - The pinned toolbar has a liquid glass effect
 ### Detail Adjustments
-- Textures (supporting more than ten background textures) and custom image background
+- Preset textures and custom image background
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
 - Multi-column slash menu (supports keyboard arrow key navigation)
 - Adjust window transparency value

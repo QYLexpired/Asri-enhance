@@ -43,8 +43,6 @@ import { applyCrossDotConfig } from "./texture/crossdot";
 import { applyHoneycombConfig } from "./texture/honeycomb";
 import { applyWoodConfig } from "./texture/wood";
 import { applyCamouflageConfig } from "./texture/camouflage";
-import { applyFiberConfig } from "./texture/fiber";
-import { applyFabricConfig } from "./texture/fabric";
 import { applyCustomImageConfig, removeCustomImageConfig } from "./texture/customimage";
 import { applyTypewriterModeConfig, destroyTypewriterMode, onTypewriterModeClick } from "./immersive/typewriter";
 import { applyFocusModeConfig, onFocusModeClick } from "./immersive/focus";
@@ -102,8 +100,6 @@ class AsriEnhancePlugin extends Plugin {
             applyHoneycombConfig(this, config).catch(() => { }),
             applyWoodConfig(this, config).catch(() => { }),
             applyCamouflageConfig(this, config).catch(() => { }),
-            applyFiberConfig(this, config).catch(() => { }),
-            applyFabricConfig(this, config).catch(() => { }),
             applyCustomImageConfig(this, config).catch(() => { }),
             applyTypewriterModeConfig(this, config).catch(() => { }),
             applyFocusModeConfig(this, config).catch(() => { }),

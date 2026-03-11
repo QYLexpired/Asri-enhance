@@ -3,8 +3,8 @@ import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-customimage";
 const DATA_ATTR = "data-asri-enhance-customimage";
-const OTHER_CONFIG_KEYS = ["asri-enhance-paper", "asri-enhance-acrylic", "asri-enhance-checkerboard", "asri-enhance-grid", "asri-enhance-polkadot", "asri-enhance-crossdot", "asri-enhance-honeycomb", "asri-enhance-wood", "asri-enhance-camouflage", "asri-enhance-fiber", "asri-enhance-fabric", "asri-enhance-noise"];
-const OTHER_DATA_ATTRS = ["data-asri-enhance-paper", "data-asri-enhance-acrylic", "data-asri-enhance-checkerboard", "data-asri-enhance-grid", "data-asri-enhance-polkadot", "data-asri-enhance-crossdot", "data-asri-enhance-honeycomb", "data-asri-enhance-wood", "data-asri-enhance-camouflage", "data-asri-enhance-fiber", "data-asri-enhance-fabric", "data-asri-enhance-noise"];
+const OTHER_CONFIG_KEYS = ["asri-enhance-paper", "asri-enhance-acrylic", "asri-enhance-checkerboard", "asri-enhance-grid", "asri-enhance-polkadot", "asri-enhance-crossdot", "asri-enhance-honeycomb", "asri-enhance-wood", "asri-enhance-camouflage", "asri-enhance-noise"];
+const OTHER_DATA_ATTRS = ["data-asri-enhance-paper", "data-asri-enhance-acrylic", "data-asri-enhance-checkerboard", "data-asri-enhance-grid", "data-asri-enhance-polkadot", "data-asri-enhance-crossdot", "data-asri-enhance-honeycomb", "data-asri-enhance-wood", "data-asri-enhance-camouflage", "data-asri-enhance-noise"];
 const DEFAULT_PRESET_KEY = "asri-enhance-customimage-default";
 const CURRENT_PRESET_KEY = "asri-enhance-customimage-current";
 type CustomImageField = {
@@ -63,6 +63,17 @@ const CUSTOM_IMAGE_FIELDS: CustomImageField[] = [
         tooltipSelector: "#asri-enhance-customimage-blur-tooltip",
         event: "input",
         tooltipSuffix: "px",
+        valueFromConfig: (v: string) => v,
+        valueToConfig: (v: string) => v,
+    },
+    {
+        configKey: "asri-enhance-customimage-frosted",
+        cssVar: "--asri-enhance-customimage-frosted",
+        toCss: (raw: string | undefined) => raw === "true" ? "block" : "none",
+        inputSelector: "#asri-enhance-customimage-frosted",
+        tooltipSelector: undefined,
+        event: "change",
+        tooltipSuffix: "",
         valueFromConfig: (v: string) => v,
         valueToConfig: (v: string) => v,
     },
@@ -305,6 +316,13 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-blur-tooltip" aria-label="0px">   
         <input class="b3-slider fn__size200" id="asri-enhance-customimage-blur" max="50" min="0" step="1" type="range" value="0">
     </div>
+</div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-frosted">
+    <div class="fn__flex-1">
+        ${plugin.i18n?.customimageFrosted || "磨砂效果"}
+        <div class="b3-label__text">${plugin.i18n?.customimageFrostedTip || "使背景图具有磨砂质感"}</div>
+    </div>
+    <span class="fn__space"></span>
+    <input class="b3-switch fn__flex-center" id="asri-enhance-customimage-frosted" type="checkbox">
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-opacity-light">
     <div class="fn__flex-1">
         ${plugin.i18n?.customimageOpacityLight || "Image Opacity (Light Mode)"}
@@ -496,7 +514,12 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
         const preset: Record<string, any> = {};
         for (const { field, input } of fieldDom) {
             if (!input) continue;
-            const rawInput = (input as HTMLInputElement | HTMLSelectElement).value;
+            let rawInput: string;
+            if (input instanceof HTMLInputElement && input.type === "checkbox") {
+                rawInput = input.checked ? "true" : "false";
+            } else {
+                rawInput = (input as HTMLInputElement | HTMLSelectElement).value;
+            }
             const configRaw = field.valueToConfig ? field.valueToConfig(rawInput) : rawInput;
             preset[field.configKey] = configRaw;
         }
@@ -543,7 +566,11 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
             const raw = preset[field.configKey] as string | undefined;
             if (raw === undefined || raw === "") continue;
             const inputValue = field.valueFromConfig ? field.valueFromConfig(raw) : raw;
-            (input as HTMLInputElement | HTMLSelectElement).value = inputValue;
+            if (input instanceof HTMLInputElement && input.type === "checkbox") {
+                input.checked = inputValue === "true";
+            } else {
+                (input as HTMLInputElement | HTMLSelectElement).value = inputValue;
+            }
             if (tooltip && "tooltipSuffix" in field && field.tooltipSuffix !== undefined) {
                 tooltip.setAttribute("aria-label", inputValue + field.tooltipSuffix);
             }
@@ -553,7 +580,12 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     for (const { field, input, tooltip } of fieldDom) {
         if (!input || !field.event) continue;
         input.addEventListener(field.event, () => {
-            const rawInput = (input as HTMLInputElement | HTMLSelectElement).value;
+            let rawInput: string;
+            if (input instanceof HTMLInputElement && input.type === "checkbox") {
+                rawInput = input.checked ? "true" : "false";
+            } else {
+                rawInput = (input as HTMLInputElement | HTMLSelectElement).value;
+            }
             const configRaw = field.valueToConfig ? field.valueToConfig(rawInput) : rawInput;
             if (tooltip && "tooltipSuffix" in field && field.tooltipSuffix !== undefined) {
                 tooltip.setAttribute("aria-label", rawInput + field.tooltipSuffix);
@@ -587,10 +619,14 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
             if (field.configKey === "asri-enhance-customimage-url") continue;
             const defaultValue = field.toCss(undefined);
             let displayValue = defaultValue;
-            if (field.tooltipSuffix && defaultValue.endsWith(field.tooltipSuffix)) {
-                displayValue = defaultValue.slice(0, -field.tooltipSuffix.length);
+            if (input instanceof HTMLInputElement && input.type === "checkbox") {
+                input.checked = defaultValue === "block";
+            } else {
+                if (field.tooltipSuffix && defaultValue.endsWith(field.tooltipSuffix)) {
+                    displayValue = defaultValue.slice(0, -field.tooltipSuffix.length);
+                }
+                (input as HTMLInputElement | HTMLSelectElement).value = displayValue;
             }
-            (input as HTMLInputElement | HTMLSelectElement).value = displayValue;
             if (tooltip && "tooltipSuffix" in field && field.tooltipSuffix !== undefined) {
                 tooltip.setAttribute("aria-label", defaultValue);
             }
@@ -658,7 +694,11 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                     if (!input) continue;
                     const raw = defaultPreset[field.configKey] as string | undefined;
                     const inputValue = raw !== undefined && raw !== "" ? (field.valueFromConfig ? field.valueFromConfig(raw) : raw) : "";
-                    (input as HTMLInputElement | HTMLSelectElement).value = inputValue;
+                    if (input instanceof HTMLInputElement && input.type === "checkbox") {
+                        input.checked = inputValue === "true";
+                    } else {
+                        (input as HTMLInputElement | HTMLSelectElement).value = inputValue;
+                    }
                     if (tooltip && "tooltipSuffix" in field && field.tooltipSuffix !== undefined) {
                         const labelValue = inputValue || "";
                         tooltip.setAttribute("aria-label", labelValue + field.tooltipSuffix);
@@ -831,7 +871,11 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                 if (!input) continue;
                 const raw = selectedPreset[field.configKey] as string | undefined;
                 const inputValue = raw !== undefined && raw !== "" ? (field.valueFromConfig ? field.valueFromConfig(raw) : raw) : "";
-                (input as HTMLInputElement | HTMLSelectElement).value = inputValue;
+                if (input instanceof HTMLInputElement && input.type === "checkbox") {
+                    input.checked = inputValue === "true";
+                } else {
+                    (input as HTMLInputElement | HTMLSelectElement).value = inputValue;
+                }
                 if (tooltip && "tooltipSuffix" in field && field.tooltipSuffix !== undefined) {
                     const labelValue = inputValue || "";
                     tooltip.setAttribute("aria-label", labelValue + field.tooltipSuffix);
@@ -841,8 +885,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
         } catch {
         }
     });
-}
-export async function applyCustomImageConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+}export async function applyCustomImageConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;

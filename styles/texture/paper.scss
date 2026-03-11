@@ -19,7 +19,8 @@
             background-size: cover;
             background-color: var(--b3-theme-background);
             mix-blend-mode: multiply;
-            opacity: 0.28;
+            opacity: .3;
+            filter: brightness(1.15) contrast(1.05);
             pointer-events: none;
             z-index: 99;
         }
@@ -28,6 +29,7 @@
         body {
             &::before {
                 opacity: 0.075;
+                filter: none;
                 mix-blend-mode: color-dodge;
             }
         }
