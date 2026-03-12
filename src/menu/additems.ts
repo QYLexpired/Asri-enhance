@@ -29,7 +29,7 @@ import { onWindowTransparencyValueClick, saveWindowTransparencyValue } from "../
 import { onWholeWindowTransparencyClick } from "../detail/wholewindowtransparency";
 import { onSmoothCaretClick } from "../immersive/smoothcaret";
 import { onFluidCursorClick } from "../immersive/fluidcursor";
-import { onPinnedToolbarClick } from "../immersive/pinnedtoolbar";
+import { onPinnedToolbarClick, onPinnedToolbarSettingsClick } from "../immersive/pinnedtoolbar";
 import { onIslandLayoutClick } from "../more/islandlayout";
 import { onPaperClick } from "../texture/paper";
 import { onNoiseClick } from "../texture/noise";
@@ -554,11 +554,15 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-pinnedtoolbar";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.pinnedToolbar || "pinnedToolbar"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.pinnedToolbar || "pinnedToolbar"}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n?.pinnedToolbarSettings || "Pinned Toolbar Settings"}"><use xlink:href="#iconSettings"></use></svg>`;
         immersiveSubmenu.appendChild(button);
     }
     const pinnedToolbarItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-pinnedtoolbar");
     if (pinnedToolbarItem) {
         pinnedToolbarItem.onclick = (e) => onPinnedToolbarClick(plugin, e);
+        const settingsIcon = pinnedToolbarItem.querySelector(".asri-enhance-settings-icon");
+        if (settingsIcon) {
+            settingsIcon.addEventListener("click", (e: MouseEvent) => onPinnedToolbarSettingsClick(plugin, e));
+        }
     }
 }

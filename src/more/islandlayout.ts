@@ -24,7 +24,7 @@ class ProtyleFullscreenDetector {
         this.timer = setTimeout(loop, 200);
     }
     check() {
-        const exists = document.querySelector('.protyle.fullscreen:not(.fn__none)') !== null;
+        const exists = document.querySelector('.fullscreen:not(.fn__none)') !== null;
         if (exists !== this.hasFullscreen) {
             this.hasFullscreen = exists;
             document.body.classList.toggle('asri-enhance-has-fullscreen', exists);

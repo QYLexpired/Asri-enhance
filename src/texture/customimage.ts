@@ -482,11 +482,11 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
         <input class="b3-slider fn__size200" id="asri-enhance-customimage-hue-rotate-dark" max="360" min="0" step="1" type="range" value="0">
     </div>
 </div></div><div class="b3-dialog__action">
-    <button class="b3-button b3-button--remove" id="asri-enhance-customimage-delete-preset">${plugin.i18n?.customimageDeletePreset || "Delete this preset"}</button>
-    <div class="fn__space"></div>
     <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-toggle-detail">${plugin.i18n?.customimageShowDetail || "显示详细参数"}</button>
     <div class="fn__space"></div>
     <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-reset-preset">${plugin.i18n?.customimageResetPreset || "Reset to defaults"}</button>
+</div><div class="b3-dialog__action">
+    <button class="b3-button b3-button--remove" id="asri-enhance-customimage-delete-preset">${plugin.i18n?.customimageDeletePreset || "Delete this preset"}</button>
     <div class="fn__space"></div>
     <button class="b3-button b3-button--text" id="asri-enhance-customimage-update-preset">${plugin.i18n?.customimageUpdatePreset || "Update current preset"}</button>
     <div class="fn__space"></div>
@@ -802,7 +802,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                 }
                 return;
             }
-            if (name === "default" || name === "current") {
+            if (name === "current") {
                 try {
                     await fetch("/api/notification/pushMsg", {
                         method: "POST",
@@ -810,7 +810,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            msg: plugin.i18n?.customimagePresetNameReserved || "Preset name cannot be \"default\" or \"current\"",
+                            msg: plugin.i18n?.customimagePresetNameReserved || "Preset name cannot be \"current\"",
                             timeout: 3000,
                         }),
                     });
@@ -822,13 +822,16 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                 const config = await loadData(plugin, CONFIG_FILE);
                 const currentPresetFromUi = buildPresetFromDom();
                 const presetKey = `asri-enhance-customimage-${name}`;
+                const isExisting = config && config[presetKey] !== undefined;
                 const finalConfig = {
                     ...config,
                     [presetKey]: currentPresetFromUi,
                 };
                 await saveData(plugin, CONFIG_FILE, finalConfig);
                 try {
-                    const msgTemplate = plugin.i18n?.customimagePresetSaved || "Preset \"${name}\" has been saved";
+                    const msgTemplate = isExisting
+                        ? (plugin.i18n?.customimagePresetUpdated || "Preset \"${name}\" has been updated")
+                        : (plugin.i18n?.customimagePresetSaved || "Preset \"${name}\" has been saved");
                     const msg = msgTemplate.replace("${name}", name);
                     await fetch("/api/notification/pushMsg", {
                         method: "POST",

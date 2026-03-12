@@ -1,4 +1,7 @@
 ### Updates
+##### v2.2.10
+- Pinned toolbar supports configuring default position
+- Pinned toolbar no longer displayed in read-only mode
 ##### v2.2.9
 - Optimized custom image background textures
     - Support for saving presets

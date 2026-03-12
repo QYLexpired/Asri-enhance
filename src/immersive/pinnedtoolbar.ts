@@ -1,7 +1,9 @@
-import { getFrontend, Plugin } from "siyuan";
+import { getFrontend, Plugin, Dialog } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-pinnedtoolbar";
+const CONFIG_DIRECTION_KEY = "asri-enhance-pinnedtoolbar-direction";
+const CONFIG_LIQUID_GLASS_KEY = "asri-enhance-pinnedtoolbar-liquid-glass";
 const isMobile = () => {
     return getFrontend().endsWith("mobile");
 };
@@ -12,9 +14,18 @@ const POSITION_CLASSES = [
     "asri-enhance-pinnedtoolbar-top"
 ];
 const DEBOUNCE_DELAY = 200;
-const LIQUID_GLASS_SVG_ID = "asri-enhance-pinnedtoolbar-liquid-glass";
+const LIQUID_GLASS_SVG_ID = "asri-enhance-pinnedtoolbar-liquid-glass-svg";
+const LIQUID_GLASS_CLASS = "asri-enhance-pinnedtoolbar-liquid-glass";
+const READONLY_CLASS = "asri-enhance-pinnedtoolbar-notreadonly";
+type PinnedToolbarDirection = "top" | "bottom" | "left" | "right";
 let contextMenuHandler: ((e: MouseEvent) => void) | null = null;
 let lastContextMenuTime = 0;
+let readonlyDetectorTimer: ReturnType<typeof setTimeout> | null = null;
+let isReadonlyDetectorActive = false;
+let currentDirection: PinnedToolbarDirection = "top";
+function applyPinnedToolbarDirectionClass(direction: PinnedToolbarDirection): void {
+    currentDirection = direction || "top";
+}
 function injectLiquidGlassSVG(): void {
     if (document.getElementById(LIQUID_GLASS_SVG_ID)) return;
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
@@ -57,6 +68,70 @@ function removeLiquidGlassSVG(): void {
         svg.remove();
     }
 }
+function addLiquidGlassClass(): void {
+    document.body.classList.add(LIQUID_GLASS_CLASS);
+}
+function removeLiquidGlassClass(): void {
+    document.body.classList.remove(LIQUID_GLASS_CLASS);
+}
+function startReadonlyDetector(): void {
+    if (readonlyDetectorTimer) return;
+    isReadonlyDetectorActive = true;
+    ensureToolbarClasses();
+    document.addEventListener('visibilitychange', onVisibilityChange);
+    const loop = () => {
+        if (isReadonlyDetectorActive) {
+            ensureToolbarClasses();
+            const interval = document.visibilityState === 'visible' ? 200 : 1000;
+            readonlyDetectorTimer = setTimeout(loop, interval);
+        }
+    };
+    readonlyDetectorTimer = setTimeout(loop, 200);
+}
+function stopReadonlyDetector(): void {
+    isReadonlyDetectorActive = false;
+    if (readonlyDetectorTimer) {
+        clearTimeout(readonlyDetectorTimer);
+        readonlyDetectorTimer = null;
+    }
+    document.removeEventListener('visibilitychange', onVisibilityChange);
+    const toolbars = document.querySelectorAll(".protyle-toolbar");
+    toolbars.forEach(toolbar => {
+        toolbar.classList.remove(READONLY_CLASS);
+    });
+}
+function onVisibilityChange(): void {
+    if (document.visibilityState === 'visible' && isReadonlyDetectorActive) {
+        ensureToolbarClasses();
+    }
+}
+function getDefaultPositionClass(): string {
+    const directionIndex = POSITION_CLASSES.findIndex(cls => cls.includes(`-${currentDirection}`));
+    if (directionIndex !== -1) {
+        return POSITION_CLASSES[directionIndex];
+    }
+    return "asri-enhance-pinnedtoolbar-top";
+}
+function ensureToolbarClasses(): void {
+    const toolbars = document.querySelectorAll(".protyle-toolbar");
+    toolbars.forEach(toolbar => {
+        const hasPositionClass = POSITION_CLASSES.some(cls => toolbar.classList.contains(cls));
+        if (!hasPositionClass) {
+            toolbar.classList.add(getDefaultPositionClass());
+        }
+        const protyle = toolbar.closest(".protyle") as HTMLElement;
+        if (!protyle) {
+            toolbar.classList.remove(READONLY_CLASS);
+            return;
+        }
+        const wysiwyg = protyle.querySelector(".protyle-wysiwyg") as HTMLElement;
+        if (wysiwyg && wysiwyg.getAttribute("data-readonly") === "false") {
+            toolbar.classList.add(READONLY_CLASS);
+        } else {
+            toolbar.classList.remove(READONLY_CLASS);
+        }
+    });
+}
 export async function onPinnedToolbarClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
     if (isMobile()) {
         return;
@@ -71,18 +146,26 @@ export async function onPinnedToolbarClick(plugin: Plugin, event?: MouseEvent): 
     }
     const isActive = htmlEl.hasAttribute("data-asri-enhance-pinnedtoolbar");
     const config = await loadData(plugin, CONFIG_FILE) || {};
+    const isLiquidGlass = config[CONFIG_LIQUID_GLASS_KEY] === true;
     if (isActive) {
         htmlEl.removeAttribute("data-asri-enhance-pinnedtoolbar");
         config[CONFIG_KEY] = false;
         removeContextMenuListener();
         removePositionClasses();
         removeLiquidGlassSVG();
+        removeLiquidGlassClass();
+        stopReadonlyDetector();
     }
     else {
         htmlEl.setAttribute("data-asri-enhance-pinnedtoolbar", "true");
         config[CONFIG_KEY] = true;
         addContextMenuListener();
-        injectLiquidGlassSVG();
+        if (isLiquidGlass) {
+            injectLiquidGlassSVG();
+            addLiquidGlassClass();
+        }
+        applyPinnedToolbarDirectionClass(config[CONFIG_DIRECTION_KEY] as PinnedToolbarDirection || "top");
+        startReadonlyDetector();
     }
     await saveData(plugin, CONFIG_FILE, config).catch(() => {
     });
@@ -134,24 +217,105 @@ export async function applyPinnedToolbarConfig(plugin: Plugin, config?: Record<s
         return;
     }
     const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
+    const isLiquidGlass = configData?.[CONFIG_LIQUID_GLASS_KEY] === true;
     if (configData && configData[CONFIG_KEY] === true) {
         htmlEl.setAttribute("data-asri-enhance-pinnedtoolbar", "true");
         addContextMenuListener();
-        injectLiquidGlassSVG();
+        if (isLiquidGlass) {
+            injectLiquidGlassSVG();
+            addLiquidGlassClass();
+        }
+        applyPinnedToolbarDirectionClass(configData[CONFIG_DIRECTION_KEY]);
+        startReadonlyDetector();
     }
     else {
         htmlEl.removeAttribute("data-asri-enhance-pinnedtoolbar");
         removeContextMenuListener();
         removePositionClasses();
         removeLiquidGlassSVG();
+        removeLiquidGlassClass();
+        stopReadonlyDetector();
     }
 }
 export function destroyPinnedToolbar(): void {
     removeContextMenuListener();
     removePositionClasses();
     removeLiquidGlassSVG();
+    removeLiquidGlassClass();
+    stopReadonlyDetector();
     const htmlEl = document.documentElement;
     if (htmlEl) {
         htmlEl.removeAttribute("data-asri-enhance-pinnedtoolbar");
     }
+}
+export function onPinnedToolbarSettingsClick(plugin: Plugin, event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const dialog = new Dialog({
+        title: plugin.i18n?.pinnedToolbarSettings || "Configure Pinned Toolbar",
+        content: `<div class="b3-dialog__content">
+    <div class="fn__flex b3-label config__item">
+        <div class="fn__flex-1">
+            ${plugin.i18n?.pinnedToolbarDirection || "Default Direction"}
+            <div class="b3-label__text">${plugin.i18n?.pinnedToolbarDirectionTip || "Set the default pinned direction for the toolbar"}</div>
+        </div>
+        <span class="fn__space"></span>
+        <select class="b3-select fn__flex-center fn__size200" id="asri-enhance-pinnedtoolbar-direction">
+            <option value="top">${plugin.i18n?.pinnedToolbarTop || "Top"}</option>
+            <option value="bottom">${plugin.i18n?.pinnedToolbarBottom || "Bottom"}</option>
+            <option value="left">${plugin.i18n?.pinnedToolbarLeft || "Left"}</option>
+            <option value="right">${plugin.i18n?.pinnedToolbarRight || "Right"}</option>
+        </select>
+    </div>
+    <div class="fn__flex b3-label config__item">
+        <div class="fn__flex-1">
+            ${plugin.i18n?.pinnedToolbarLiquidGlass || "Liquid Glass"}
+            <div class="b3-label__text">${plugin.i18n?.pinnedToolbarLiquidGlassTip || "Give the pinned toolbar a liquid glass effect"}</div>
+        </div>
+        <span class="fn__space"></span>
+        <input class="b3-switch fn__flex-center" id="asri-enhance-pinnedtoolbar-liquid-glass" type="checkbox">
+    </div>
+</div>
+<div class="b3-dialog__action">
+    <button class="b3-button b3-button--cancel" id="asri-enhance-pinnedtoolbar-cancel">${plugin.i18n?.cancel || "Cancel"}</button>
+    <div class="fn__space"></div>
+    <button class="b3-button b3-button--text" id="asri-enhance-pinnedtoolbar-confirm">${plugin.i18n?.confirm || "Confirm"}</button>
+</div>`,
+        width: "620px",
+        height: "auto",
+    });
+    dialog.element.setAttribute("data-key", "dialog-asri-enhance-pinnedtoolbar-settings");
+    const directionSelect = dialog.element.querySelector<HTMLSelectElement>("#asri-enhance-pinnedtoolbar-direction");
+    const liquidGlassCheckbox = dialog.element.querySelector<HTMLInputElement>("#asri-enhance-pinnedtoolbar-liquid-glass");
+    void loadData(plugin, CONFIG_FILE).then((config) => {
+        const savedDirection = config?.[CONFIG_DIRECTION_KEY] || "top";
+        if (directionSelect) directionSelect.value = savedDirection;
+        if (liquidGlassCheckbox) liquidGlassCheckbox.checked = config?.[CONFIG_LIQUID_GLASS_KEY] === true;
+    }).catch(() => { });
+    dialog.element.querySelector("#asri-enhance-pinnedtoolbar-cancel")?.addEventListener("click", () => {
+        dialog.destroy();
+    });
+    dialog.element.querySelector("#asri-enhance-pinnedtoolbar-confirm")?.addEventListener("click", () => {
+        const selectedDirection = (directionSelect?.value || "top") as PinnedToolbarDirection;
+        const isLiquidGlass = liquidGlassCheckbox?.checked || false;
+        void (async () => {
+            const config = await loadData(plugin, CONFIG_FILE) || {};
+            config[CONFIG_DIRECTION_KEY] = selectedDirection;
+            config[CONFIG_LIQUID_GLASS_KEY] = isLiquidGlass;
+            await saveData(plugin, CONFIG_FILE, config).catch(() => { });
+            const htmlEl = document.documentElement;
+            const isActive = !!htmlEl?.hasAttribute("data-asri-enhance-pinnedtoolbar");
+            if (isActive) {
+                applyPinnedToolbarDirectionClass(selectedDirection);
+                if (isLiquidGlass) {
+                    injectLiquidGlassSVG();
+                    addLiquidGlassClass();
+                } else {
+                    removeLiquidGlassSVG();
+                    removeLiquidGlassClass();
+                }
+            }
+            dialog.destroy();
+        })();
+    });
 }

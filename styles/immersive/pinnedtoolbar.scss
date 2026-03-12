@@ -1,3 +1,8 @@
+[data-key="dialog-asri-enhance-pinnedtoolbar-settings"] {
+    .config__item {
+        border: none;
+    }
+}
 [data-asri-enhance-pinnedtoolbar="true"]:root {
     #asri-enhance-pinnedtoolbar, #asri-enhance-immersive {
         &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
@@ -7,25 +12,29 @@
             }
         }
     }
-    .layout__center .protyle > .protyle-toolbar {
+    body.asri-enhance-pinnedtoolbar-liquid-glass {
+        .layout__center .protyle > .protyle-toolbar.asri-enhance-pinnedtoolbar-notreadonly {
+            &:is(.asri-enhance-pinnedtoolbar-top, .asri-enhance-pinnedtoolbar-bottom) {
+                backdrop-filter: url(#pinnedtoolbar-row) saturate(1.5) brightness(1.1) !important;
+                background-color: oklch(from var(--b3-theme-surface) l c h / 0.7) !important;
+                &:is([data-theme-mode="dark"] .protyle-toolbar) {
+                    backdrop-filter: url(#pinnedtoolbar-row) saturate(1.5) brightness(0.9) !important;
+                }
+            }
+            &:is(.asri-enhance-pinnedtoolbar-left, .asri-enhance-pinnedtoolbar-right) {
+                backdrop-filter: url(#pinnedtoolbar-column) saturate(1.5) brightness(1.1) !important;
+                background-color: oklch(from var(--b3-theme-surface) l c h / 0.7) !important;
+                &:is([data-theme-mode="dark"] .protyle-toolbar) {
+                    backdrop-filter: url(#pinnedtoolbar-column) saturate(1.5) brightness(0.9) !important;
+                }
+            }
+        }
+    }
+    .layout__center .protyle > .protyle-toolbar.asri-enhance-pinnedtoolbar-notreadonly {
         display: flex !important;
         position: absolute !important;
         z-index: 1;
-        &:not(.asri-enhance-pinnedtoolbar-left, .asri-enhance-pinnedtoolbar-right) {
-            backdrop-filter: url(#pinnedtoolbar-row) saturate(1.5) brightness(1.1) !important;
-            background-color: oklch(from var(--b3-theme-surface) l c h / 0.7) !important;
-            &:is([data-theme-mode="dark"] .protyle-toolbar) {
-                backdrop-filter: url(#pinnedtoolbar-row) saturate(1.5) brightness(0.9) !important;
-            }
-        }
-        &:is(.asri-enhance-pinnedtoolbar-left, .asri-enhance-pinnedtoolbar-right) {
-            backdrop-filter: url(#pinnedtoolbar-column) saturate(1.5) brightness(1.1) !important;
-            background-color: oklch(from var(--b3-theme-surface) l c h / 0.7) !important;
-            &:is([data-theme-mode="dark"] .protyle-toolbar) {
-                backdrop-filter: url(#pinnedtoolbar-column) saturate(1.5) brightness(0.9) !important;
-            }
-        }
-        &:not(.asri-enhance-pinnedtoolbar-left, .asri-enhance-pinnedtoolbar-bottom, .asri-enhance-pinnedtoolbar-right) {
+        &.asri-enhance-pinnedtoolbar-top {
             flex-direction: row !important;
             top: 48px !important;
             left: 50% !important;
