@@ -1,20 +1,20 @@
 @use "public" as *;
-[data-theme-mode="light"]:root {
+.asri-mode-light:root {
     #asri-enhance-midnight {
         display: none;
     }
 }
-[data-asri-palette="midnight"][data-theme-mode="dark"]:root {
+.asri-palette-midnight.asri-mode-dark:root {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
-    #asri-enhance-midnight:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+    #asri-enhance-midnight:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
         color: var(--b3-theme-accent);
         & .b3-menu__icon {
           color: var(--b3-theme-accent);
         }
     }
-    & :is(#pickColor, #followSysAccent, #followCoverImgColor) {
+    #pickColor, #followSysAccent, #followCoverImgColor {
         & svg {
             background-color: transparent !important;
             outline: unset !important;
@@ -43,7 +43,7 @@
         --b3-theme-primary: var(--midnight-base-accent);
         --b3-theme-on-primary: #fff;
     }
-    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
     .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
       background-color: #ffffff3b;
     }
@@ -53,7 +53,7 @@
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-    [data-asri-palette="midnight"][data-theme-mode="dark"]:root & {
+    .asri-palette-midnight.asri-mode-dark:root & {
         --b3-theme-primary: var(--b3-theme-accent);
     }
 }

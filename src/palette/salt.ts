@@ -9,6 +9,8 @@ const SALT_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-amber",
         "asri-enhance-wilderness",
         "asri-enhance-midnight",
+        "asri-enhance-ocean",
+        "asri-enhance-sugar",
         "asri-enhance-rosepine",
         "asri-enhance-topaz",
         "asri-enhance-oxygen",

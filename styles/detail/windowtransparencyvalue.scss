@@ -3,7 +3,7 @@
     #asri-enhance-windowtransparencyvalue {
         background-color: transparent !important;
         background: unset !important;
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
@@ -20,7 +20,7 @@
         }
     }
     &:not([data-asri-enhance-wholewindowtransparency="true"]) {
-        body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen)  {
+        body.asri-vibrancy:not(.body-asri--browser):not(.body--fullscreen)  {
             #{$dockl-transparency-selectors} {
                 background-color: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value))) !important;
             }

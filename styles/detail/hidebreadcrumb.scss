@@ -1,7 +1,7 @@
 @use "./hidetab" as *;
 [data-asri-enhance-hide-breadcrumb="true"]:root {
     #asri-enhance-hide-breadcrumb, #asri-enhance-detail-adjustment {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
@@ -21,27 +21,33 @@
                     &:hover {
                         opacity: 1;
                         filter: blur(0px);
-                        & ~ .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
-                            opacity: 0;
-                            filter: blur(3px);
+                        & ~ .protyle-breadcrumb__space {
+                            & ~ .protyle-breadcrumb__icon,
+                            & ~ .block__icon {
+                                opacity: 0;
+                                filter: blur(3px);
+                            }
                         }
                     }
                 }
                 & .protyle-breadcrumb__space {
                     &:hover {
-                        & ~ :is(.protyle-breadcrumb__icon, .block__icon) {
+                        & ~ .protyle-breadcrumb__icon,
+                        & ~ .block__icon {
                             opacity: 0 !important;
                             filter: blur(3px) !important;
                         }
                     }
-                    & ~ :is(.protyle-breadcrumb__icon, .block__icon) {
+                    & ~ .protyle-breadcrumb__icon,
+                    & ~ .block__icon {
                         transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
                         opacity: 0;
                         filter: blur(3px);
                         &[data-type="exit-focus"]:not(.fn__none) {
                             opacity: 1 !important;
                             filter: blur(0px) !important;
-                            & ~ :is(.protyle-breadcrumb__icon, .block__icon) {
+                            & ~ .protyle-breadcrumb__icon,
+                            & ~ .block__icon {
                                 opacity: 1 !important;
                                 filter: blur(0px) !important;
                             }
@@ -49,7 +55,8 @@
                     }
                 }
                 &:hover {
-                    & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
+                    & .protyle-breadcrumb__space ~ .protyle-breadcrumb__icon,
+                    & .protyle-breadcrumb__space ~ .block__icon {
                         opacity: 1;
                         filter: blur(0px);
                     }

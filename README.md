@@ -1,12 +1,14 @@
 ### Updates
-##### v2.2.10
-- Pinned toolbar supports configuring default position
-- Pinned toolbar no longer displayed in read-only mode
-##### v2.2.9
-- Optimized custom image background textures
-    - Support for saving presets
-    - Added frosted effect, brightness, contrast, saturation, grayscale, hue shift parameters
-- Removed fabric and fiber textures
+##### v2.3.0
+###### Note: After this version, Asri theme must be updated to v3.6.9, otherwise the plugin will not work
+- Adapted to the latest changes in Asri theme
+- Optimized plugin performance
+- New preset color schemes: Sugar, Ocean (ported from Savor theme's Sugar and Ocean color schemes)
+- Fixed the issue with third-level submenu position offset
+- Optimized whole window transparency effect under island layout
+- Optimized island layout style for Polar color scheme
+- Optimized Topaz color scheme
+- Removed special colored heading styles from Auriflow and Glitch color schemes
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors

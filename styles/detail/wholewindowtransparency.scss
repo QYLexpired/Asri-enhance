@@ -1,7 +1,7 @@
 @use "../asri/asri" as *;
 [data-asri-enhance-wholewindowtransparency="true"]:root {
     #asri-enhance-wholewindowtransparency {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
@@ -9,29 +9,31 @@
         }
     }
     &[data-asri-enhance-windowtransparencyvalue="0"] {
-        body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) {
+        body.asri-vibrancy:not(.body-asri--browser):not(.body--fullscreen) {
             #{$dockl-transparency-selectors} {
                 background-color: var(--b3-theme-surface) !important;
             }
         }
     }
     &:not([data-asri-enhance-windowtransparencyvalue="0"]) {
-        &[data-theme-mode="light"] {
+        &.asri-mode-light {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-background);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1.1 - var(--asri-enhance-windowtransparency-value)));
         }
-        &[data-theme-mode="dark"] {
+        &.asri-mode-dark {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-background);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1.1 - var(--asri-enhance-windowtransparency-value)));
         }
-        &[data-asri-palette="polar"]:is([data-theme-mode="light"], [data-theme-mode="dark"]) {
+        &.asri-palette-polar.asri-mode-light,
+        &.asri-palette-polar.asri-mode-dark {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-background);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-background) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
         }
-        &[data-asri-enhance-windowtransparencyvalue="1"]:not([data-asri-palette="polar"]):is([data-theme-mode="light"], [data-theme-mode="dark"]) {
+        &[data-asri-enhance-windowtransparencyvalue="1"]:not(.asri-palette-polar).asri-mode-light,
+        &[data-asri-enhance-windowtransparencyvalue="1"]:not(.asri-palette-polar).asri-mode-dark {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-surface);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
@@ -39,7 +41,7 @@
                 background-color: var(--b3-border-color-trans);
             }
         }
-        body.asri-vibrancy:not(.body-asri--browser,.body-asri--fullscreen) {
+        body.asri-vibrancy:not(.body-asri--browser):not(.body--fullscreen) {
             #{$dockl-transparency-selectors} {
                 background-color: var(--asri-enhance-whole-window-transparency-dockl) !important;
             }
@@ -96,7 +98,7 @@
                 background-color: transparent;
             }
             // 数据库
-            .av .av__views .layout-tab-bar .item--focus:not([data-theme-mode=dark] .item--focus) {
+            .av .av__views .layout-tab-bar .item--focus:not(.asri-mode-dark .item--focus) {
                 background-color: #ffffff99 !important;
             }
             .av__row--header:not([style*=transform]), .av__row--footer, .av__colsticky {
@@ -142,7 +144,7 @@
                 }
             }
             // 垂直页签
-            &:not(.body-asri--mobilem, .body--window) {
+            &:not(.body-asri--mobilem):not(.body--window) {
                 & .asri-enhance-verticaltab {
                     & .layout-tab-container > .protyle > .protyle-breadcrumb {
                         & .protyle-breadcrumb__bar {
@@ -168,7 +170,7 @@
                 &:hover {
                     background-color: oklch(from var(--b3-theme-primary) 0.5 calc(c * 0.9 * var(--asri-c-0, 1)) h/0.1) !important;
                 }
-                &:is([data-theme-mode="dark"] li) {
+                &:is(.asri-mode-dark li) {
                     &:hover {
                         background-color: oklch(from var(--b3-theme-primary) 0.9 calc(c * 0.9 * var(--asri-c-0, 1)) h/0.13) !important;
                     }

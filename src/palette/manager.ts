@@ -16,14 +16,16 @@ export async function onPaletteClick(plugin: Plugin, paletteInfo: PaletteInfo, _
     if (!htmlEl)
         return;
     const themeMode = htmlEl.getAttribute("data-theme-mode") || "light";
-    const isActive = htmlEl.getAttribute("data-asri-palette") === paletteInfo.name;
+    const isActive = htmlEl.classList.contains(`asri-palette-${paletteInfo.name}`);
     if (isActive)
         return;
     const config = await loadData(plugin, CONFIG_FILE) || {};
     const paletteConfig = config[paletteInfo.configKey] || { light: false, dark: false };
     const updateDOM = () => {
-        htmlEl.removeAttribute("data-asri-palette");
-        htmlEl.setAttribute("data-asri-palette", paletteInfo.name);
+        Array.from(htmlEl.classList)
+            .filter(cls => cls.startsWith("asri-palette-"))
+            .forEach(cls => htmlEl.classList.remove(cls));
+        htmlEl.classList.add(`asri-palette-${paletteInfo.name}`);
         paletteConfig[themeMode] = true;
         for (const otherKey of paletteInfo.otherConfigKeys) {
             if (config[otherKey]) {
@@ -70,14 +72,14 @@ export async function applyPaletteConfig(plugin: Plugin, paletteInfo: PaletteInf
             ? paletteConfig
             : (paletteConfig[themeMode] === true);
         if (shouldApply) {
-            htmlEl.removeAttribute("data-asri-palette");
-            htmlEl.setAttribute("data-asri-palette", paletteInfo.name);
+            Array.from(htmlEl.classList)
+                .filter(cls => cls.startsWith("asri-palette-"))
+                .forEach(cls => htmlEl.classList.remove(cls));
+            htmlEl.classList.add(`asri-palette-${paletteInfo.name}`);
             htmlEl.removeAttribute("data-asri-enhance-follow-time");
         }
         else {
-            if (htmlEl.getAttribute("data-asri-palette") === paletteInfo.name) {
-                htmlEl.removeAttribute("data-asri-palette");
-            }
+            htmlEl.classList.remove(`asri-palette-${paletteInfo.name}`);
         }
     }
 }

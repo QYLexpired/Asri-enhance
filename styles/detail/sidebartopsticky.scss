@@ -1,6 +1,6 @@
 [data-asri-enhance-sidebar-top-sticky="true"]:root {
     #asri-enhance-sidebar-top-sticky, #asri-enhance-detail-adjustment {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
@@ -13,10 +13,14 @@
         &::before {
             display: none;
         }
-        & > :is(.block__logo, .fn__space, .block__icon, .counter) {
+        & > .block__logo,
+        & > .fn__space,
+        & > .block__icon,
+        & > .counter {
             transform: none;
             transition: 0.3s cubic-bezier(0.47, 0, 0.75, 0.72);
-            &:is(.block__logo, .counter) {
+            &.block__logo,
+            &.counter {
                 opacity: 1 !important;
             }
             &.block__icon {

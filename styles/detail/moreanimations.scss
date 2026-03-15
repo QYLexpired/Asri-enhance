@@ -1,6 +1,6 @@
 [data-asri-enhance-moreanimations="true"]:root {
 	#asri-enhance-moreanimations, #asri-enhance-detail-adjustment {
-		&:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+		&:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
 			color: var(--b3-theme-accent);
 			.b3-menu__icon {
 				color: var(--b3-theme-accent);
@@ -104,7 +104,7 @@
         }
     }
     // 列表子弹线
-    [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select,.protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
+    [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select):not(.protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {
         animation: asri-enhance-bullet-line 0.1s cubic-bezier(0.47, 0, 0.75, 0.72);
         transform-origin: left top;
     }

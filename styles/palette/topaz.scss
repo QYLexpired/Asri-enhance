@@ -1,15 +1,15 @@
 @use "public" as *;
-[data-asri-palette="topaz"]:root {
+.asri-palette-topaz:root {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
-    #asri-enhance-topaz:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+    #asri-enhance-topaz:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
         color: var(--b3-theme-accent);
         & .b3-menu__icon {
           color: var(--b3-theme-accent);
         }
     }
-    & :is(#pickColor, #followSysAccent, #followCoverImgColor) {
+    #pickColor, #followSysAccent, #followCoverImgColor {
       & svg {
           background-color: transparent !important;
           outline: unset !important;
@@ -19,27 +19,22 @@
       pointer-events: none;
       opacity: 0.38;
     }
-    &[data-theme-mode="light"] {
-        --topaz-base-accent: #5e7cc6;
-        --asri-theme-accent-customized: var(--topaz-base-accent);
-        --b3-theme-primary: var(--topaz-base-accent);
-        --b3-theme-accent: var(--topaz-base-accent);
-        --b3-theme-background: #dddbc7;
-        --b3-theme-surface: #d4d3b6;
-        --b3-theme-on-background: #043d41;
-        --b3-theme-on-surface: #697b7a;
-        --b3-border-color: oklch( from var(--b3-theme-background) 0.8 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
-        --b3-theme-surface-lighter: var(--b3-border-color);
-        --b3-menu-background: oklch(from var(--b3-theme-background) 0.88 c h);
-        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+    &.asri-mode-light {
+      --topaz-base-accent: #5e7cc6;
+      --asri-theme-accent-customized: var(--topaz-base-accent);
+      --b3-theme-primary: var(--topaz-base-accent);
+      --b3-theme-accent: var(--topaz-base-accent);
+      --b3-theme-background: #f9f7e4;
+      --b3-theme-surface: #f0efd0;
+      --b3-theme-on-background: #043d41;
+      --b3-theme-on-surface: #697b7a;
+      --b3-menu-background: oklch(from var(--b3-theme-background) 0.95 c h);
+        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
         .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
           background-color: #3c6da838;
         }
         [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
             background-color: #3c6da838 !important;
-        }
-        .b3-dialog .layout-tab-bar .item--focus {
-          background-color: #f3f3f3;
         }
         .protyle-wysiwyg [data-node-id].table table thead tr th, .b3-typography table thead tr th {
           background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
@@ -48,8 +43,8 @@
           background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
         }
     }
-    &[data-theme-mode="dark"] {
-        --topaz-base-accent: #827dff;
+    &.asri-mode-dark {
+        --topaz-base-accent: #8482b3;
         --asri-theme-accent-customized: var(--topaz-base-accent);
         --b3-theme-primary: var(--topaz-base-accent);
         --b3-theme-accent: var(--topaz-base-accent);
@@ -57,7 +52,7 @@
         --b3-theme-surface: #383433;
         --b3-theme-on-background: #f9e5cd;
         --b3-theme-on-surface: #d9c4a4;
-        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
         .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
           background-color: #cebbff4d;
         }
@@ -72,21 +67,21 @@
     }
 }
 #{$primary-color-reverse-selectors} {
-  [data-asri-palette="topaz"][data-theme-mode="light"]:root & {
-    --b3-theme-primary: #a1adc9;
+  .asri-palette-topaz.asri-mode-light:root & {
+    --b3-theme-primary: #b8d2e8;
     --b3-theme-on-primary: #001055;
   }
 }
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
-  [data-asri-palette="topaz"][data-theme-mode="dark"]:root & {
+  .asri-palette-topaz.asri-mode-dark:root & {
     --b3-theme-primary: var(--topaz-base-accent);
-    --b3-theme-on-primary: #FBF0D0;
+    --b3-theme-on-primary: #ffffff;
   }
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-  [data-asri-palette="topaz"]:root & {
+  .asri-palette-topaz:root & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }

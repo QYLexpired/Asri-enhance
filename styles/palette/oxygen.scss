@@ -1,15 +1,15 @@
 @use "public" as *;
-[data-asri-palette="oxygen"]:root {
+.asri-palette-oxygen:root {
   .asri-config:not(#topbarFusionPlus) {
     --b3-theme-accent: var(--b3-theme-on-background);
   }
-  #asri-enhance-oxygen:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+  #asri-enhance-oxygen:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
     color: var(--b3-theme-accent);
     & .b3-menu__icon {
       color: var(--b3-theme-accent);
     }
   }
-  & :is(#pickColor, #followSysAccent, #followCoverImgColor) {
+  #pickColor, #followSysAccent, #followCoverImgColor {
     & svg {
         background-color: transparent !important;
         outline: unset !important;
@@ -19,7 +19,7 @@
     pointer-events: none;
     opacity: 0.38;
   }
-  &[data-theme-mode="light"] {
+  &.asri-mode-light {
     --oxygen-base-accent: #f57d26;
     --asri-theme-accent-customized: var(--oxygen-base-accent);
     --b3-theme-primary: var(--oxygen-base-accent);
@@ -31,7 +31,7 @@
     --b3-border-color: oklch( from var(--b3-theme-background) 0.88 c h );
     --b3-theme-surface-lighter: var(--b3-border-color);
     --b3-menu-background: oklch(from var(--b3-theme-background) 0.96 0.02 h);
-    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly, .item--full.item--focus):hover,
+    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
     .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
       background-color: #2d853e26;
     }
@@ -39,7 +39,7 @@
       background-color: #2d853e26 !important;
     }
   }
-  &[data-theme-mode="dark"] {
+  &.asri-mode-dark {
     --oxygen-base-accent: #efa685;
     --asri-theme-accent-customized: var(--oxygen-base-accent);
     --b3-theme-primary: var(--oxygen-base-accent);
@@ -59,18 +59,18 @@
 }
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
-  [data-asri-palette="oxygen"][data-theme-mode="light"]:root & {
+  .asri-palette-oxygen.asri-mode-light:root & {
     --b3-theme-primary: var(--oxygen-base-accent);
     --b3-theme-on-primary: #ffffff;
   }
-  [data-asri-palette="oxygen"][data-theme-mode="dark"]:root & {
+  .asri-palette-oxygen.asri-mode-dark:root & {
     --b3-theme-primary: var(--oxygen-base-accent);
     --b3-theme-on-primary: #000000;
   }
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-  [data-asri-palette="oxygen"]:root & {
+  .asri-palette-oxygen:root & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }

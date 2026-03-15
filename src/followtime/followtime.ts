@@ -24,7 +24,9 @@ export async function onFollowTimeClick(plugin: Plugin, event?: MouseEvent): Pro
     const followTimeConfig = config[CONFIG_KEY] || { light: false, dark: false };
     const updateDOM = () => {
         htmlEl.setAttribute(DATA_ATTR, "true");
-        htmlEl.removeAttribute("data-asri-palette");
+        Array.from(htmlEl.classList)
+            .filter(cls => cls.startsWith("asri-palette-"))
+            .forEach(cls => htmlEl.classList.remove(cls));
         followTimeConfig[themeMode] = true;
         config[CONFIG_KEY] = followTimeConfig;
     };
@@ -55,7 +57,9 @@ export async function applyFollowTimeConfig(plugin: Plugin, config?: Record<stri
             : (followTimeConfig[themeMode] === true);
         if (shouldApply) {
             htmlEl.setAttribute(DATA_ATTR, "true");
-            htmlEl.removeAttribute("data-asri-palette");
+            Array.from(htmlEl.classList)
+                .filter(cls => cls.startsWith("asri-palette-"))
+                .forEach(cls => htmlEl.classList.remove(cls));
         }
         else {
             htmlEl.removeAttribute(DATA_ATTR);

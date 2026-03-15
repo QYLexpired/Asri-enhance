@@ -1,6 +1,6 @@
 [data-asri-enhance-honeycomb="true"]:root {
     #asri-enhance-texture, #asri-enhance-honeycomb {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
@@ -29,7 +29,7 @@
             background-color: #ffffff;
         }
     }
-    &[data-theme-mode="dark"] {
+    &.asri-mode-dark {
         body {
             &::before {
                 opacity: 0.01;

@@ -5,7 +5,9 @@ import { applyAmberConfig } from "./palette/amber";
 import { applySakuraConfig } from "./palette/sakura";
 import { applyWildernessConfig } from "./palette/wilderness";
 import { applyMidnightConfig } from "./palette/midnight";
+import { applyOceanConfig } from "./palette/ocean";
 import { applySaltConfig } from "./palette/salt";
+import { applySugarConfig } from "./palette/sugar";
 import { applyRosepineConfig } from "./palette/rosepine";
 import { applyTopazConfig } from "./palette/topaz";
 import { applyOxygenConfig } from "./palette/oxygen";
@@ -62,7 +64,9 @@ class AsriEnhancePlugin extends Plugin {
             applySakuraConfig(this, config).catch(() => { }),
             applyWildernessConfig(this, config).catch(() => { }),
             applyMidnightConfig(this, config).catch(() => { }),
+            applyOceanConfig(this, config).catch(() => { }),
             applySaltConfig(this, config).catch(() => { }),
+            applySugarConfig(this, config).catch(() => { }),
             applyRosepineConfig(this, config).catch(() => { }),
             applyTopazConfig(this, config).catch(() => { }),
             applyOxygenConfig(this, config).catch(() => { }),
@@ -118,7 +122,9 @@ class AsriEnhancePlugin extends Plugin {
                     target.closest("#asri-enhance-sakura") ||
                     target.closest("#asri-enhance-wilderness") ||
                     target.closest("#asri-enhance-midnight") ||
+                    target.closest("#asri-enhance-ocean") ||
                     target.closest("#asri-enhance-salt") ||
+                    target.closest("#asri-enhance-sugar") ||
                     target.closest("#asri-enhance-rosepine") ||
                     target.closest("#asri-enhance-topaz") ||
                     target.closest("#asri-enhance-oxygen") ||
@@ -172,9 +178,12 @@ class AsriEnhancePlugin extends Plugin {
                                 if (paletteName) {
                                     const htmlEl = document.documentElement;
                                     if (htmlEl) {
-                                        const currentPalette = htmlEl.getAttribute("data-asri-palette");
-                                        if (currentPalette !== paletteName) {
-                                            htmlEl.setAttribute("data-asri-palette", paletteName);
+                                        const currentPalette = Array.from(htmlEl.classList).find(cls => cls.startsWith("asri-palette-"));
+                                        if (currentPalette !== `asri-palette-${paletteName}`) {
+                                            Array.from(htmlEl.classList)
+                                                .filter(cls => cls.startsWith("asri-palette-"))
+                                                .forEach(cls => htmlEl.classList.remove(cls));
+                                            htmlEl.classList.add(`asri-palette-${paletteName}`);
                                         }
                                     }
                                 }

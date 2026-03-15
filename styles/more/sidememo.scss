@@ -1,7 +1,7 @@
 @use "../asri/overflowfadein" as *;
 [data-asri-enhance-side-memo="true"]:root {
     #asri-enhance-sidememo {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
@@ -25,7 +25,8 @@
                     & span[data-type~=inline-memo] {
                         transition: all 0.25s;
                         transition-delay: 0s;
-                        &:is(:hover, [asri-enhance-sidememo-highlight]) {
+                        &:hover,
+                        &[asri-enhance-sidememo-highlight] {
                             --memo-bg: oklch(from var(--b3-theme-accent) 0.85 0.088 h);
                             background-color: var(--memo-bg);
                             box-shadow: 0 0 0 8px var(--memo-bg);
@@ -34,7 +35,7 @@
                             border-radius: 1px;
                             z-index: 1;
                             position: relative;
-                            &:is([data-theme-mode="dark"] [data-type~=inline-memo]) {
+                            &:is(.asri-mode-dark [data-type~=inline-memo]) {
                                 --memo-bg: oklch(from var(--b3-theme-accent) 0.82 0.125 h);
                                 color: var(--b3-theme-background) !important;
                             }
@@ -62,11 +63,15 @@
                 transition: all 0.25s;
                 &.asri-enhance-sidememo-container-resize {
                     opacity: 0.38;
-                    & :is(.asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item, .asri-enhance-sidememo-filememo-item) {
+                    .asri-enhance-sidememo-inlinememo-item,
+                    .asri-enhance-sidememo-blockmemo-item,
+                    .asri-enhance-sidememo-filememo-item {
                         cursor: grab;
                     }
                 }
-                & :is(.asri-enhance-sidememo-inlinememo-item, .asri-enhance-sidememo-blockmemo-item, .asri-enhance-sidememo-filememo-item) {
+                .asri-enhance-sidememo-inlinememo-item,
+                .asri-enhance-sidememo-blockmemo-item,
+                .asri-enhance-sidememo-filememo-item {
                     width: var(--asri-enhance-sidememo-container-width);
                     max-width: calc(var(--b3-width-protyle-content) - 2 * var(--asri-enhance-sidememo-re));
                     border-radius: 14px;
@@ -76,21 +81,30 @@
                     color: var(--b3-theme-on-surface);
                     transition: all 0.25s, top 0s;
                     box-sizing: border-box;
-                    &:is(:hover, [asri-enhance-sidememo-highlight]):not(.asri-enhance-sidememo-filememo-item) {
-                        background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
-                        box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
+                    &:hover,
+                    &[asri-enhance-sidememo-highlight] {
+                        &:not(.asri-enhance-sidememo-filememo-item) {
+                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
+                            box-shadow: 0 0 0 1px oklch(from var(--b3-theme-accent) l c h / 0.25);
+                        }
                     }
                     &[asri-enhance-sidememo-fold] {
                         padding: 0.5em;
                         opacity: 0.38;
-                        & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title) {
+                        .asri-enhance-sidememo-inlinememo-item-title,
+                        .asri-enhance-sidememo-blockmemo-item-title,
+                        .asri-enhance-sidememo-filememo-item-title {
                             padding: 0;
                         }
-                        & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content, .asri-enhance-sidememo-filememo-item-content) {
+                        .asri-enhance-sidememo-inlinememo-item-content,
+                        .asri-enhance-sidememo-blockmemo-item-content,
+                        .asri-enhance-sidememo-filememo-item-content {
                             display: none;
                         }
                     }
-                    & :is(.asri-enhance-sidememo-inlinememo-item-title, .asri-enhance-sidememo-blockmemo-item-title, .asri-enhance-sidememo-filememo-item-title) {
+                    .asri-enhance-sidememo-inlinememo-item-title,
+                    .asri-enhance-sidememo-blockmemo-item-title,
+                    .asri-enhance-sidememo-filememo-item-title {
                         font-weight: 500;
                         display: -webkit-box;
                         overflow: hidden;
@@ -105,7 +119,9 @@
                             color: var(--b3-theme-accent);
                         }
                     }
-                    & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content, .asri-enhance-sidememo-filememo-item-content) {
+                    .asri-enhance-sidememo-inlinememo-item-content,
+                    .asri-enhance-sidememo-blockmemo-item-content,
+                    .asri-enhance-sidememo-filememo-item-content {
                         word-wrap: break-word;
                         max-height: 500px;
                         overflow: scroll;
@@ -118,8 +134,24 @@
     }
     //markdown解析
     .asri-enhance-sidememo-container {
-        & :is(.asri-enhance-sidememo-inlinememo-item-content, .asri-enhance-sidememo-blockmemo-item-content, .asri-enhance-sidememo-filememo-item-content) {
-            & > :is(h1, h2, h3, h4, h5, h6, blockquote, code, a, table, hr, input[type="checkbox"], ul, ol, pre) {
+        .asri-enhance-sidememo-inlinememo-item-content,
+        .asri-enhance-sidememo-blockmemo-item-content,
+        .asri-enhance-sidememo-filememo-item-content {
+            & > h1,
+            & > h2,
+            & > h3,
+            & > h4,
+            & > h5,
+            & > h6,
+            & > blockquote,
+            & > code,
+            & > a,
+            & > table,
+            & > hr,
+            & > input[type="checkbox"],
+            & > ul,
+            & > ol,
+            & > pre {
                 margin: 0.25em 0;
                 &:first-child {
                     margin-top: 0;
@@ -225,7 +257,7 @@
                 overflow: auto;
                 border-spacing: 0;
                 width: max-content;
-                & :is(td, th) {
+                td, th {
                     border: 1px solid var(--b3-border-color-trans);
                     background-color: rgba(0,0,0,0);
                     padding: 4px 8px;
@@ -235,7 +267,7 @@
                 }
                 & thead tr th {
                     background-color: rgba(127,127,127,.05);
-                    &:is([data-theme-mode=dark] th) {
+                    &:is(.asri-mode-dark th) {
                         background-color: rgba(127,127,127,.15)
                     }
                 }
@@ -250,7 +282,7 @@
                 }
                 & tbody tr:nth-child(2n) td {
                     background-color: rgba(127,127,127,.05);
-                    &:is([data-theme-mode=dark] td) {
+                    &:is(.asri-mode-dark td) {
                         background-color: rgba(127,127,127,.15);
                     }
                 }
@@ -266,13 +298,13 @@
                 & thead tr th {
                     background-color: oklch(from var(--b3-theme-surface) 0.95 c h/0.8);
                     border-top: none;
-                    &:is([data-theme-mode=dark] th) {
+                    &:is(.asri-mode-dark th) {
                         background-color: oklch(from var(--b3-theme-surface) 0.32 c h/0.7)
                     }
                 }
                 & tbody tr:nth-child(2n) td {
                     background-color: oklch(from var(--b3-theme-surface) 0.95 c h/0.8);
-                    &:is([data-theme-mode=dark] td) {
+                    &:is(.asri-mode-dark td) {
                         background-color: oklch(from var(--b3-theme-surface) 0.32 c h/0.7);
                     }
                 }

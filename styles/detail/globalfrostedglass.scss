@@ -1,33 +1,47 @@
 [data-asri-enhance-global-frosted-glass="true"]:root {
     #asri-enhance-global-frosted-glass, #asri-enhance-detail-adjustment {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
             }
         }
     }
-    &[data-theme-mode="light"] {
+    &.asri-mode-light {
         --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(1.1);
-        &[data-asri-palette="polar"] {
-            --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
+        &.asri-palette-polar {
+            &:not([data-asri-enhance-island-layout="true"]) {
+                --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
+                .config__panel .b3-tab-bar,
+                .config__panel .item__side {
+                    background-color: transparent !important;
+                }
+            }
         }
     }
-    &[data-theme-mode="dark"] {
+    &.asri-mode-dark {
         --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(0.9);
-        &[data-asri-palette="polar"] {
-            --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
+        &.asri-palette-polar {
+            &:not([data-asri-enhance-island-layout="true"]) {
+                --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
+                .config__panel .b3-tab-bar,
+                .config__panel .item__side {
+                    background-color: transparent !important;
+                }
+            }
         }
     }
     // 修改Asri本体毛玻璃效果
-    body:not(.asri-disable-backdrop-blur) :is(.b3-menu,.b3-menu__submenu)::before {
+    body:not(.asri-disable-backdrop-blur) .b3-menu::before,
+    body:not(.asri-disable-backdrop-blur) .b3-menu__submenu::before {
         background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
     }
-    body:not(.asri-disable-backdrop-blur) #dockBottom.fn__none:not(.has-layout-dockb-float)~.status, body:not(.asri-disable-backdrop-blur).body-asri--mobile .status {
+    body:not(.asri-disable-backdrop-blur) #dockBottom.fn__none:not(.has-layout-dockb-float)~.status,
+    body:not(.asri-disable-backdrop-blur).body-asri--mobile .status {
         background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
     }
     body:not(.asri-disable-backdrop-blur) .protyle-hint>div:not(.emojis) {
@@ -36,14 +50,15 @@
     body:not(.asri-disable-backdrop-blur) .protyle-toolbar {
         background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
         backdrop-filter: blur(6px) saturate(1.5) brightness(1.1);
-        &:is([data-theme-mode="dark"] .protyle-toolbar) {
+        &:is(.asri-mode-dark .protyle-toolbar) {
             backdrop-filter: blur(6px) saturate(1.5) brightness(0.9);
         }
     }
     body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer #dialogContainer .dialog {
         background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
     }
-    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer #findbar:not(.fn__hidden), body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer .pdf__util {
+    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer #findbar:not(.fn__hidden),
+    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer .pdf__util {
         background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
     }
     body:not(.asri-disable-backdrop-blur) #message.b3-snackbars .b3-snackbar__content {
@@ -81,7 +96,7 @@
                 background-color: var(--asri-enhance-global-frosted-glass-background);
                 backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
             }
-            &:is([data-theme-mode="dark"] .b3-dialog__container) {
+            &:is(.asri-mode-dark .b3-dialog__container) {
                 &::before {
                     border: 1px solid var(--b3-border-color-trans);
                 }
@@ -195,7 +210,7 @@
             background-color: var(--asri-enhance-global-frosted-glass-background);
             backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
         }
-        &:is([data-theme-mode="dark"] .block__popover.block__popover--open) {
+        &:is(.asri-mode-dark .block__popover.block__popover--open) {
             &::before {
                 border: 1px solid var(--b3-border-color-trans);
             }

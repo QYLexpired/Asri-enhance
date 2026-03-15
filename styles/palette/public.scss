@@ -1,18 +1,17 @@
 @forward "../asri/asri";
-[data-theme-mode="light"]:root {
-    &:is(
-      [data-asri-palette="amber"],
-      [data-asri-palette="sakura"],
-      [data-asri-palette="wilderness"],
-      [data-asri-palette="salt"],
-      [data-asri-palette="topaz"],
-      [data-asri-palette="rosepine"],
-      [data-asri-palette="oxygen"],
-      [data-asri-palette="shade"],
-      [data-asri-palette="glitch"],
-      [data-asri-palette="nostalgia"]
-    ) {
-        #asri-enhance-palette:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+.asri-mode-light:root {
+      &.asri-palette-amber,
+      &.asri-palette-sakura,
+      &.asri-palette-wilderness,
+      &.asri-palette-salt,
+      &.asri-palette-sugar,
+      &.asri-palette-topaz,
+      &.asri-palette-rosepine,
+      &.asri-palette-oxygen,
+      &.asri-palette-shade,
+      &.asri-palette-glitch,
+      &.asri-palette-nostalgia {
+        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
           color: var(--b3-theme-accent);
           & .b3-menu__icon {
             color: var(--b3-theme-accent);
@@ -20,20 +19,19 @@
         }
     }
 }
-[data-theme-mode="dark"]:root {
-    &:is(
-      [data-asri-palette="amber"],
-      [data-asri-palette="sakura"],
-      [data-asri-palette="wilderness"],
-      [data-asri-palette="midnight"],
-      [data-asri-palette="topaz"],
-      [data-asri-palette="rosepine"],
-      [data-asri-palette="oxygen"],
-      [data-asri-palette="shade"],
-      [data-asri-palette="glitch"],
-      [data-asri-palette="nostalgia"]
-    ) {
-        #asri-enhance-palette:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+.asri-mode-dark:root {
+      &.asri-palette-amber,
+      &.asri-palette-sakura,
+      &.asri-palette-wilderness,
+      &.asri-palette-midnight,
+      &.asri-palette-ocean,
+      &.asri-palette-topaz,
+      &.asri-palette-rosepine,
+      &.asri-palette-oxygen,
+      &.asri-palette-shade,
+      &.asri-palette-glitch,
+      &.asri-palette-nostalgia {
+        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
           color: var(--b3-theme-accent);
           & .b3-menu__icon {
             color: var(--b3-theme-accent);

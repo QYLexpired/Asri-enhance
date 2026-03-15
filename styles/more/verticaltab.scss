@@ -1,14 +1,14 @@
 @use "../asri/overflowfadein" as *;
 [data-asri-enhance-vertical-tab="true"]:root {
     #asri-enhance-vertical-tab {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
                 color: var(--b3-theme-accent);
             }
         }
     }
-    & body.asri-tfp:not(.body-asri--mobilem, .body--window) {
+    & body.asri-tfp:not(.body-asri--mobilem):not(.body--window) {
         & .asri-enhance-verticaltab  {
             & .protyle {
                 --asri-enhance-tfp-protyle-icons-fix: 42px;
@@ -47,7 +47,7 @@
                         background-color: transparent !important;
                         backdrop-filter: none !important;
                     }
-                    &:is([data-theme-mode="dark"] .protyle-breadcrumb) {
+                    &:is(.asri-mode-dark .protyle-breadcrumb) {
                         &::before {
                             box-shadow: 0 .5px 0 0 hsla(0,0%,100%,.1333333333),0 -8px 5px -5px rgb(from var(--b3-theme-background) r g b/0.25) inset;
                         }
@@ -90,16 +90,19 @@
             }
         }
     }
-    &[data-asri-palette=polar] .protyle .protyle-breadcrumb {
+    &.asri-palette-polar .protyle .protyle-breadcrumb {
         box-shadow: none;
     }
-    & body:not(.body-asri--mobilem, .body--window) {
+    & body:not(.body-asri--mobilem):not(.body--window) {
         & .protyle.fullscreen {
             & .protyle-breadcrumb__bar {
                 transform: none !important;
             }
-            & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
-                transform: none !important;
+            & .protyle-breadcrumb__space {
+                & ~ .protyle-breadcrumb__icon,
+                & ~ .block__icon {
+                    transform: none !important;
+                }
             }
         }
         /* 左侧栏收起 */
@@ -111,8 +114,11 @@
                 & .protyle-breadcrumb__bar {
                     transform: translateY(38px);
                 }
-                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
-                    transform: translateY(38px);
+                & .protyle-breadcrumb__space {
+                    & ~ .protyle-breadcrumb__icon,
+                    & ~ .block__icon {
+                        transform: translateY(38px);
+                    }
                 }
             }
             & .asri-enhance-verticaltab-resize {
@@ -126,7 +132,11 @@
         /* 右侧栏收起 */
         .layout__center.asri-enhance-dockr-fold .asri-enhance-verticaltab-toponly {
             & .protyle > .protyle-breadcrumb {
-                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
+                & .protyle-breadcrumb__space {
+                    & ~ .protyle-breadcrumb__icon,
+                    & ~ .block__icon {
+                        transform: translateY(38px);
+                    }
                     transform: translateY(38px);
                 }
             }
@@ -150,7 +160,11 @@
                 }
             }
             &.asri-enhance-verticaltab-dockr-expand-spacing {
-                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
+                & .protyle-breadcrumb__space {
+                    & ~ .protyle-breadcrumb__icon,
+                    & ~ .block__icon {
+                        transform: translateY(38px);
+                    }
                     transform: translateY(38px);
                 }
                 & .protyle-background__img .protyle-icons {
@@ -173,8 +187,13 @@
                     border-radius: 6px;
                     backdrop-filter: blur(8px) saturate(1.2) brightness(1);
                 }
-                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon):not([data-type="exit-focus"]:hover) {
-                    filter: drop-shadow(0 0 3px var(--b3-theme-background));
+                & .protyle-breadcrumb__space {
+                    & ~ .protyle-breadcrumb__icon,
+                    & ~ .block__icon {
+                        &:not([data-type="exit-focus"]:hover) {
+                            filter: drop-shadow(0 0 3px var(--b3-theme-background));
+                        }
+                    }
                 }
             }
             & .layout-tab-container > :not(.protyle) {
@@ -217,8 +236,11 @@
                                 & .protyle-breadcrumb__bar {
                                     transform: translateY(38px);
                                 }
-                                & .protyle-breadcrumb__space ~ :is(.protyle-breadcrumb__icon, .block__icon) {
-                                    transform: translateY(38px);
+                                & .protyle-breadcrumb__space {
+                                    & ~ .protyle-breadcrumb__icon,
+                                    & ~ .block__icon {
+                                        transform: translateY(38px);
+                                    }
                                 }
                             }
                             & .protyle-background__img .protyle-icons {
@@ -247,7 +269,7 @@
                             & .item__text {
                                 display: flex !important;
                             }
-                            & +.item:not(.item--pin,.item--readonly) {
+                            & +.item:not(.item--pin):not(.item--readonly) {
                                 margin-top: 16px;
                                 &::before {
                                     height: 2px;
@@ -257,7 +279,7 @@
                                 }
                             }
                         }
-                        & :is(.item__icon,.item__graphic, .item__text) {
+                        .item__icon, .item__graphic, .item__text {
                             transform: none;
                         }
                         & .item__text {

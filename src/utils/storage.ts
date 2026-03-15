@@ -5,7 +5,9 @@ export const PALETTE_NAMES = [
     "sakura",
     "wilderness",
     "midnight",
+    "ocean",
     "salt",
+    "sugar",
     "rosepine",
     "topaz",
     "oxygen",
@@ -43,8 +45,8 @@ export async function removePaletteConfig(plugin: Plugin, palette: PaletteName, 
     if (!htmlEl)
         return;
     const themeMode = htmlEl.getAttribute("data-theme-mode") || "light";
-    if (htmlEl.getAttribute("data-asri-palette") === palette) {
-        htmlEl.removeAttribute("data-asri-palette");
+    if (htmlEl.classList.contains(`asri-palette-${palette}`)) {
+        htmlEl.classList.remove(`asri-palette-${palette}`);
     }
     const config = await loadData(plugin, configFile);
     if (!config)
@@ -111,7 +113,9 @@ export const removeAmberConfig = (plugin: Plugin, configFile: string = "config.j
 export const removeSakuraConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "sakura", configFile);
 export const removeWildernessConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "wilderness", configFile);
 export const removeMidnightConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "midnight", configFile);
+export const removeOceanConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "ocean", configFile);
 export const removeSaltConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "salt", configFile);
+export const removeSugarConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "sugar", configFile);
 export const removeRosepineConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "rosepine", configFile);
 export const removeTopazConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "topaz", configFile);
 export const removeOxygenConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "oxygen", configFile);

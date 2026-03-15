@@ -1,24 +1,24 @@
 @use "public" as *;
 #{$primary-color-reverse-selectors,
   ".b3-button--outline"} {
-    [data-asri-palette="glitch"][data-theme-mode="light"]:root & {
+    .asri-palette-glitch.asri-mode-light:root & {
       --b3-theme-on-primary: #080374;
     }
-    [data-asri-palette="glitch"][data-theme-mode="dark"]:root & {
+    .asri-palette-glitch.asri-mode-dark:root & {
       --b3-theme-on-primary: #000000;
     }
   }
-[data-asri-palette="glitch"]:root {
+.asri-palette-glitch:root {
   .asri-config:not(#topbarFusionPlus) {
     --b3-theme-accent: var(--b3-theme-on-background);
   }
-  #asri-enhance-glitch:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+  #asri-enhance-glitch:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
     color: var(--b3-theme-accent);
     & .b3-menu__icon {
       color: var(--b3-theme-accent);
     }
   }
-  & :is(#pickColor, #followSysAccent, #followCoverImgColor) {
+  #pickColor, #followSysAccent, #followCoverImgColor {
     & svg {
         background-color: transparent !important;
         outline: unset !important;
@@ -46,7 +46,7 @@
       border-radius: $border-radius;
     }
   }
-  &[data-asri-palette="glitch"] {
+  &.asri-palette-glitch {
     --glitch-c1: #75ffe6;
     --glitch-c2: #d3b5ff;
     --glitch-s1: 1500px;
@@ -55,7 +55,7 @@
     --texture-glitch: #{$texture-glitch};
     $texture-glicth: $texture-glitch;
     --texture-glitch-blend-mode: multiply, normal, hard-light, normal;
-    &[data-theme-mode="light"] {
+    &.asri-mode-light {
       --asri-base-color: #7eb0ff;
       --glitch-base-accent: var(--asri-base-color);
       --asri-theme-accent-customized: var(--glitch-base-accent);
@@ -75,9 +75,9 @@
     .b3-switch:checked,
     .b3-button--outline:hover,
     #configBazaarReadme .b3-button:hover,
-    .b3-menu .b3-menu__items .b3-menu__item:hover:not(.b3-menu__item--readonly):not(.b3-menu__item--custom, .b3-menu__item--disabled):not([disabled]):not([data-type="nobg"]),
-    .b3-menu .b3-menu__items .b3-menu__item--current:not(.b3-menu__item--readonly, .b3-menu__item--disabled):not([disabled]):not([data-type="nobg"]),
-    .b3-menu__submenu .b3-menu__items .b3-menu__item:hover:not(.b3-menu__item--readonly):not(.b3-menu__item--custom, .b3-menu__item--disabled):not([disabled]):not([data-type="nobg"]),
+    .b3-menu .b3-menu__items .b3-menu__item:hover:not(.b3-menu__item--readonly):not(.b3-menu__item--custom):not(.b3-menu__item--disabled):not([disabled]):not([data-type="nobg"]),
+    .b3-menu .b3-menu__items .b3-menu__item--current:not(.b3-menu__item--readonly):not(.b3-menu__item--disabled):not([disabled]):not([data-type="nobg"]),
+    .b3-menu__submenu .b3-menu__items .b3-menu__item:hover:not(.b3-menu__item--readonly):not(.b3-menu__item--custom):not(.b3-menu__item--disabled):not([disabled]):not([data-type="nobg"]),
     .b3-menu__submenu .b3-menu__items .b3-menu__item--current:not(.b3-menu__item--readonly, .b3-menu__item--disabled):not([disabled]):not([data-type="nobg"]),
     .protyle-wysiwyg .li.protyle-task--done > .protyle-action--task::before,
     .protyle-wysiwyg .li[data-subtype="t"] .protyle-action--task::before,
@@ -99,7 +99,8 @@
       --glitch-s2: 1000px;
       background: $texture-glicth;
     }
-    :is(.protyle, .b3-typography),
+    .protyle,
+    .b3-typography,
     .b3-dialog__header {
       --glitch-c1: #52d7bd;
       --glitch-c2: #6e6cc1;
@@ -114,7 +115,7 @@
       background: $texture-glicth;
     }
     .protyle-title__input,
-    :is(h1, h2, h3, h4, h5, h6),
+    h1, h2, h3, h4, h5, h6,
     [data-type="NodeHeading"]:not([style*="background-color"]),
     .b3-dialog__header {
       @include glitch-background;
@@ -166,7 +167,7 @@
     .config-bazaar__title .b3-button--outline:hover {
       background: none;
     }
-    &[data-theme-mode="dark"] {
+    &.asri-mode-dark {
       --asri-base-color: #7eb0ff;
       --glitch-base-accent: var(--asri-base-color);
       --asri-theme-accent-customized: var(--glitch-base-accent);
@@ -196,7 +197,7 @@
         background: $texture-glicth;
       }
       .protyle-title__input,
-      :is(h1, h2, h3, h4, h5, h6),
+      h1, h2, h3, h4, h5, h6,
       [data-type="NodeHeading"]:not([style*="background-color"]),
       .b3-dialog__header {
         @include glitch-background;

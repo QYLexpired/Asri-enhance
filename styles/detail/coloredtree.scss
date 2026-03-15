@@ -1,6 +1,6 @@
 [data-asri-enhance-colored-tree="true"]:root {
     #asri-enhance-colored-tree, #asri-enhance-detail-adjustment {
-        &:not(:hover, .b3-menu__item--show, .b3-menu__item--current) {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             & .b3-menu__icon {
                 color: var(--b3-theme-accent);
@@ -37,10 +37,10 @@
                 @for $i from 0 through 7 {
                     $hue-offset: #{$i * 45};
                     &:nth-of-type(8n + #{$i + 1}) {
-                        background-color: oklch(from var(--b3-theme-accent) l 0.15 calc(h + #{$hue-offset}) / 0.1);
-                        --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.15 calc(h + #{$hue-offset}) / 0.1);
+                        background-color: oklch(from var(--b3-theme-accent) l 0.12 calc(h + #{$hue-offset}) / 0.1);
+                        --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + #{$hue-offset}) / 0.1);
                         & .b3-list-item--focus {
-                            background-color: oklch(from var(--b3-theme-accent) l 0.2 calc(h + #{$hue-offset}) / 0.15) !important;
+                            background-color: oklch(from var(--b3-theme-accent) l 0.15 calc(h + #{$hue-offset}) / 0.12) !important;
                         }
                     }
                 }
