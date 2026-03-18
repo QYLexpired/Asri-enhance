@@ -65,7 +65,7 @@
   "pinnedToolbarRight": "右侧",
   "pinnedToolbarLiquidGlass": "液态玻璃",
   "pinnedToolbarLiquidGlassTip": "使钉住的工具栏具有液态玻璃效果",
-  "islandLayout": "岛式布局",
+  "cardLayout": "卡片布局",
   "followTime": "跟随时间",
   "mergedSideMemoEditTip": "这是多个行内备注合并显示的侧边备注卡片，需在每个源行内备注处分别修改",
   "customimagePath": "路径",

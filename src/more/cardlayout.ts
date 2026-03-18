@@ -1,7 +1,7 @@
 import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
-const CONFIG_KEY = "asri-enhance-island-layout";
+const CONFIG_KEY = "asri-enhance-card-layout";
 const isMobile = () => {
     return getFrontend().endsWith("mobile");
 };
@@ -43,7 +43,7 @@ class ProtyleFullscreenDetector {
     }
 }
 let fullscreenDetector: ProtyleFullscreenDetector | null = null;
-export async function onIslandLayoutClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+export async function onCardLayoutClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
     if (isMobile()) {
         return;
     }
@@ -55,17 +55,17 @@ export async function onIslandLayoutClick(plugin: Plugin, event?: MouseEvent): P
     if (!htmlEl) {
         return;
     }
-    const isActive = htmlEl.hasAttribute("data-asri-enhance-island-layout");
+    const isActive = htmlEl.hasAttribute("data-asri-enhance-card-layout");
     const config = await loadData(plugin, CONFIG_FILE) || {};
     if (isActive) {
-        htmlEl.removeAttribute("data-asri-enhance-island-layout");
+        htmlEl.removeAttribute("data-asri-enhance-card-layout");
         config[CONFIG_KEY] = false;
         restoreMacTrafficLights();
         fullscreenDetector?.stop();
         fullscreenDetector = null;
     }
     else {
-        htmlEl.setAttribute("data-asri-enhance-island-layout", "true");
+        htmlEl.setAttribute("data-asri-enhance-card-layout", "true");
         config[CONFIG_KEY] = true;
         adjustMacTrafficLights();
         fullscreenDetector = new ProtyleFullscreenDetector();
@@ -110,7 +110,7 @@ export function restoreMacTrafficLights(): void {
         }
     }
 }
-export async function applyIslandLayoutConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+export async function applyCardLayoutConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
     if (isMobile()) {
         return;
     }
@@ -120,7 +120,7 @@ export async function applyIslandLayoutConfig(plugin: Plugin, config?: Record<st
     }
     const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
     if (configData && configData[CONFIG_KEY] === true) {
-        htmlEl.setAttribute("data-asri-enhance-island-layout", "true");
+        htmlEl.setAttribute("data-asri-enhance-card-layout", "true");
         adjustMacTrafficLights();
         fullscreenDetector = new ProtyleFullscreenDetector();
         fullscreenDetector.start((isFullscreen) => {
@@ -135,6 +135,6 @@ export async function applyIslandLayoutConfig(plugin: Plugin, config?: Record<st
         });
     }
     else {
-        htmlEl.removeAttribute("data-asri-enhance-island-layout");
+        htmlEl.removeAttribute("data-asri-enhance-card-layout");
     }
 }

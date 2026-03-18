@@ -1,4 +1,4 @@
-$islandlayout-dock-transparency-selectors: (
+$cardlayout-dock-transparency-selectors: (
     ".layout__dockl:not(.layout--float) .layout-tab-container",
     ".layout__dockr:not(.layout--float) .layout-tab-container",
     ".layout__dockb:not(.layout--float) .layout-tab-container",
@@ -9,8 +9,8 @@ $islandlayout-dock-transparency-selectors: (
     "#dockBottom.fn__none.has-layout-dockb-float ~ .status",
     "#dockBottom:not(.fn__none) ~ .status"
 );
-[data-asri-enhance-island-layout="true"]:root {
-    #asri-enhance-island-layout {
+[data-asri-enhance-card-layout="true"]:root {
+    #asri-enhance-card-layout {
         &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);
             .b3-menu__icon {
@@ -27,7 +27,7 @@ $islandlayout-dock-transparency-selectors: (
         .layout__dockl + .layout__resize--lr::after {
             background-color: transparent;
         }
-        .layout__center {
+        .layout__center [data-type="wnd"] {
             position: relative;
             &::before {
                 content: "";
@@ -47,23 +47,54 @@ $islandlayout-dock-transparency-selectors: (
                 border: none;
             }
         }
+        body:not(.asri-tfp) .protyle .protyle-breadcrumb {
+            box-shadow: none;
+        }
     }
-    --asri-enhance-islandlayout-width: 8px;
+    --asri-enhance-cardlayout-width: 8px;
     body:not(.body-asri--mobile) {
         background-color: var(--b3-theme-surface);
         #layouts {
             .layout__center {
-                margin: var(--asri-enhance-islandlayout-width) 0;
-                min-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
+                margin: var(--asri-enhance-cardlayout-width) 0;
+                min-height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
                 box-sizing: border-box;
-                border-radius: 12px;
-                // corner-shape: superellipse(1.4); 导致界面闪烁
                 &:is(#dockLeft.fn__none ~ #layouts .layout__center) {
-                    margin-left: var(--asri-enhance-islandlayout-width);
-                    margin-right: var(--asri-enhance-islandlayout-width);
+                    margin-left: var(--asri-enhance-cardlayout-width);
+                    margin-right: var(--asri-enhance-cardlayout-width);
                 }
                 &:is(.fn__flex.has-dockb #layouts .layout__center) {
                     margin-bottom: 0;
+                }
+                [data-type="wnd"] {
+                    border-radius: 12px;
+                    background-color: var(--b3-theme-background);
+                    // corner-shape: superellipse(1.4); // 导致界面闪烁
+                }
+                .layout__resize:not(.layout__resize--lr) {
+                    margin: 1px 0;
+                    height: 6px;
+                    &::after {
+                        top: 2.5px;
+                        transform: none;
+                    }
+                    &:not(:hover) {
+                        &::after {
+                            background-color: transparent;
+                        }
+                    }
+                }
+                .layout__resize.layout__resize--lr:not(.asri-enhance-verticaltab-resize) {
+                    margin: 0 1px;
+                    width: 6px;
+                    &::after {
+                        left: 2.5px;
+                    }
+                    &:not(:hover) {
+                        &::after {
+                            background-color: transparent;
+                        }
+                    }
                 }
             }
             & > .fn__flex:first-child {
@@ -76,7 +107,7 @@ $islandlayout-dock-transparency-selectors: (
         }
         #toolbar {
             .toolbar__item {
-                transform: translateY(var(--asri-enhance-islandlayout-width));
+                transform: translateY(var(--asri-enhance-cardlayout-width));
             }
             #AsriPluginsIconsDivider {
                 display: none;
@@ -116,65 +147,65 @@ $islandlayout-dock-transparency-selectors: (
             }
         }
         #dockLeft {
-            background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
-            padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
-            padding-bottom: var(--asri-enhance-islandlayout-width);
+            background-color: var(--asri-enhance-cardlayout-surface-transparency, var(--b3-theme-surface)) !important;
+            padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
+            padding-bottom: var(--asri-enhance-cardlayout-width);
             border-right: none !important;
             &:not(.dock-layout-expanded)::after {
                 display: none;
             }
         }
         #dockRight {
-            background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
-            padding-top: max(calc(var(--avoid-topbar) + var(--asri-enhance-islandlayout-width)), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
-            padding-bottom: var(--asri-enhance-islandlayout-width);
+            background-color: var(--asri-enhance-cardlayout-surface-transparency, var(--b3-theme-surface)) !important;
+            padding-top: max(calc(var(--avoid-topbar) + var(--asri-enhance-cardlayout-width)), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
+            padding-bottom: var(--asri-enhance-cardlayout-width);
             border-left: none !important;
             &.dock-layout-expanded {
-                padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
+                padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
             }
         }
         #dockBottom {
-            background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
+            background-color: var(--asri-enhance-cardlayout-surface-transparency, var(--b3-theme-surface)) !important;
             border-top: none !important;
         }
         .layout__dockl {
             & > .fn__flex:first-child {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
                 }
             }
             & > .fn__flex.fn__none ~ .fn__flex {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;   
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;   
                 }
             }
             & > :nth-last-child(1 of .fn__flex:not(.fn__none)) {
                 .layout-tab-container {
-                    padding-bottom: var(--asri-enhance-islandlayout-width);
+                    padding-bottom: var(--asri-enhance-cardlayout-width);
                 }
             }
             .layout-tab-container {
-                background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
+                background-color: var(--asri-enhance-cardlayout-surface-transparency, var(--b3-theme-surface)) !important;
             }
         }
         .layout__dockr {
             & > .fn__flex:first-child {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
                 }
             }
             & > .fn__flex.fn__none ~ .fn__flex {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-islandlayout-width) + 4px)) !important;   
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;   
                 }
             }
             & > :nth-last-child(1 of .fn__flex:not(.fn__none)) {
                 .layout-tab-container {
-                    padding-bottom: var(--asri-enhance-islandlayout-width);
+                    padding-bottom: var(--asri-enhance-cardlayout-width);
                 }
             }
             .layout-tab-container {
-                background-color: var(--asri-enhance-islandlayout-surface-transparency, var(--b3-theme-surface)) !important;
+                background-color: var(--asri-enhance-cardlayout-surface-transparency, var(--b3-theme-surface)) !important;
                 border-left: none !important;
             }
         }
@@ -182,10 +213,10 @@ $islandlayout-dock-transparency-selectors: (
     .config__panel .b3-tab-bar {
         corner-shape: superellipse(1.4);
         border-radius: 16.8px;
-        margin: var(--asri-enhance-islandlayout-width);
-        padding: var(--asri-enhance-islandlayout-width);
-        height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
-        max-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
+        margin: var(--asri-enhance-cardlayout-width);
+        padding: var(--asri-enhance-cardlayout-width);
+        height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
+        max-height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
         box-sizing: border-box;
     }
     #configBazaarReadme {
@@ -193,24 +224,24 @@ $islandlayout-dock-transparency-selectors: (
             --b3-theme-surface: unset;
             corner-shape: superellipse(1.4);
             border-radius: 16.8px;
-            margin: var(--asri-enhance-islandlayout-width);
-            padding: var(--asri-enhance-islandlayout-width);
-            height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
-            max-height: calc(100% - 2 * var(--asri-enhance-islandlayout-width));
+            margin: var(--asri-enhance-cardlayout-width);
+            padding: var(--asri-enhance-cardlayout-width);
+            height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
+            max-height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
             box-sizing: border-box;
-            width: calc(260px + 2 * var(--asri-enhance-islandlayout-width));
+            width: calc(260px + 2 * var(--asri-enhance-cardlayout-width));
         }
         .item__preview {
             corner-shape: superellipse(1.4);
             border-radius: 16.8px;
-            margin: var(--asri-enhance-islandlayout-width) 0;
-            width: calc(100% - var(--asri-enhance-islandlayout-width));
+            margin: var(--asri-enhance-cardlayout-width) 0;
+            width: calc(100% - var(--asri-enhance-cardlayout-width));
             box-sizing: border-box;
         }
         .item__main .b3-typography:not(.item__readme) {
             corner-shape: superellipse(1.4);
             border-radius: 16.8px;
-            width: calc(100% - 292px - var(--asri-enhance-islandlayout-width));
+            width: calc(100% - 292px - var(--asri-enhance-cardlayout-width));
         }
     }
     .layout__dockl.layout--float::before {
@@ -220,8 +251,8 @@ $islandlayout-dock-transparency-selectors: (
     &:not([data-asri-enhance-wholewindowtransparency="true"]) {
         body.asri-vibrancy:not(.body-asri--browser):not(.body--fullscreen) {
             background-color: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value))) !important;
-            #{$islandlayout-dock-transparency-selectors} {
-                --asri-enhance-islandlayout-surface-transparency: transparent;
+            #{$cardlayout-dock-transparency-selectors} {
+                --asri-enhance-cardlayout-surface-transparency: transparent;
                 background-color: transparent !important;
             }
         }
@@ -236,8 +267,8 @@ $islandlayout-dock-transparency-selectors: (
         &:not([data-asri-enhance-windowtransparencyvalue="0"]) {
             body.asri-vibrancy:not(.body-asri--browser,.body--fullscreen) {
                 background-color: var(--asri-enhance-whole-window-transparency-dockl) !important;
-                #{$islandlayout-dock-transparency-selectors} {
-                    --asri-enhance-islandlayout-surface-transparency: transparent;
+                #{$cardlayout-dock-transparency-selectors} {
+                    --asri-enhance-cardlayout-surface-transparency: transparent;
                     background-color: transparent !important;
                 }
                 .dock#dockLeft:not(.dock-layout-expanded) {
@@ -250,7 +281,7 @@ $islandlayout-dock-transparency-selectors: (
                 .layout__dockl+.layout__resize--lr::after {
                     background-color: transparent !important;
                 }
-                .layout__center {
+                .layout__center [data-type="wnd"] {
                     position: relative;
                     &::before {
                         content: "";

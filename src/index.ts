@@ -34,7 +34,7 @@ import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtranspar
 import { applySmoothCaretConfig, destroySmoothCaret } from "./immersive/smoothcaret";
 import { applyFluidCursorConfig, destroyFluidCursor } from "./immersive/fluidcursor";
 import { applyPinnedToolbarConfig, destroyPinnedToolbar } from "./immersive/pinnedtoolbar";
-import { applyIslandLayoutConfig, restoreMacTrafficLights } from "./more/islandlayout";
+import { applyCardLayoutConfig, restoreMacTrafficLights } from "./more/cardlayout";
 import { applyPaperConfig } from "./texture/paper";
 import { applyNoiseConfig } from "./texture/noise";
 import { applyAcrylicConfig } from "./texture/acrylic";
@@ -93,7 +93,7 @@ class AsriEnhancePlugin extends Plugin {
             applySmoothCaretConfig(this, config).catch(() => { }),
             applyFluidCursorConfig(this, config).catch(() => { }),
             applyPinnedToolbarConfig(this, config).catch(() => { }),
-            applyIslandLayoutConfig(this, config).catch(() => { }),
+            applyCardLayoutConfig(this, config).catch(() => { }),
             applyPaperConfig(this, config).catch(() => { }),
             applyNoiseConfig(this, config).catch(() => { }),
             applyAcrylicConfig(this, config).catch(() => { }),

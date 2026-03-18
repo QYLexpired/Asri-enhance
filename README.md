@@ -5,8 +5,8 @@
 - Optimized plugin performance
 - New preset color schemes: Sugar, Ocean (ported from Savor theme's Sugar and Ocean color schemes)
 - Fixed the issue with third-level submenu position offset
-- Optimized whole window transparency effect under island layout
-- Optimized island layout style for Polar color scheme
+- Optimized whole window transparency effect under card layout
+- Optimized card layout style for Polar color scheme
 - Optimized Topaz color scheme
 - Removed special colored heading styles from Auriflow and Glitch color schemes
 ### About the Plugin
@@ -25,7 +25,7 @@
     - Long press the side memo card for 1s to drag and adjust the side memo width
     - Supports markdown parsing (including formulas, code syntax highlighting)
     - Supports HTML parsing
-- Island Layout
+- Card Layout
 ### Immersive Editing
 - Typewriter mode
 - Focus mode

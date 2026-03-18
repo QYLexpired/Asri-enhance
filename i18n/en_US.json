@@ -65,7 +65,7 @@
   "pinnedToolbarRight": "Right",
   "pinnedToolbarLiquidGlass": "Liquid Glass",
   "pinnedToolbarLiquidGlassTip": "Give the pinned toolbar a liquid glass effect",
-  "islandLayout": "Island Layout",
+  "cardLayout": "Card Layout",
   "followTime": "Follow Time",
   "mergedSideMemoEditTip": "This is a side memo card displaying multiple merged inline memos, which need to be edited separately at each source inline memo location",
   "customimagePath": "Path",

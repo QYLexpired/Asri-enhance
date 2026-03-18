@@ -12,7 +12,7 @@
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(1.1);
         &.asri-palette-polar {
-            &:not([data-asri-enhance-island-layout="true"]) {
+            &:not([data-asri-enhance-card-layout="true"]) {
                 --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
                 .config__panel .b3-tab-bar,
                 .config__panel .item__side {
@@ -26,7 +26,7 @@
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(0.9);
         &.asri-palette-polar {
-            &:not([data-asri-enhance-island-layout="true"]) {
+            &:not([data-asri-enhance-card-layout="true"]) {
                 --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
                 .config__panel .b3-tab-bar,
                 .config__panel .item__side {

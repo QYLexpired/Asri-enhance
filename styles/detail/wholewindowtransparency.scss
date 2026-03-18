@@ -127,6 +127,10 @@
                 background-color: transparent;
                 backdrop-filter: blur(20px);
             }
+            // 窗口
+            [data-type="wnd"] {
+                background-color: transparent;
+            }
             // 闪卡在页签打开
             [data-type="wnd"] .card__main {
                 background-color: transparent;

@@ -49,7 +49,7 @@ $other-transparency-selectors: (
   ".layout__dockr:not(.layout--float) .layout-tab-container",
   ".dock#dockLeft:not(.dock-layout-expanded)",
   ".dock#dockRight",
-  ".layout__center"
+  ".layout__center [data-type="wnd"]"
 );
 @mixin darkmode-counterpart($root: false) {
     $selector: if($root, "&.asri-mode-dark", ".asri-mode-dark &");
