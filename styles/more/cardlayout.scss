@@ -72,10 +72,10 @@ $cardlayout-dock-transparency-selectors: (
                     // corner-shape: superellipse(1.4); // 导致界面闪烁
                 }
                 .layout__resize:not(.layout__resize--lr) {
-                    margin: 1px 0;
-                    height: 6px;
+                    margin: 0;
+                    height: var(--asri-enhance-cardlayout-width);
                     &::after {
-                        top: 2.5px;
+                        top: calc(var(--asri-enhance-cardlayout-width) / 2 - 0.5px);
                         transform: none;
                     }
                     &:not(:hover) {
@@ -85,10 +85,11 @@ $cardlayout-dock-transparency-selectors: (
                     }
                 }
                 .layout__resize.layout__resize--lr:not(.asri-enhance-verticaltab-resize) {
-                    margin: 0 1px;
-                    width: 6px;
+                    margin: 0;
+                    width: var(--asri-enhance-cardlayout-width);
                     &::after {
-                        left: 2.5px;
+                        left: calc(var(--asri-enhance-cardlayout-width) / 2 - 0.5px);
+                        transform: none;
                     }
                     &:not(:hover) {
                         &::after {

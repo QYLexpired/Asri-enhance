@@ -80,6 +80,9 @@ $other-transparency-selectors: (
   .search__preview {
     border-color: var(--b3-border-color-trans);
 }
+.layout__center [data-type=wnd]>.fn__flex:first-child {
+  transition: padding-top 0.2s;
+}
   // 搜索列表
   #searchList, #searchUnRefList{
     background-color: var(--b3-theme-background);
@@ -154,11 +157,11 @@ $other-transparency-selectors: (
   }
   .viewer-backdrop.viewer-container {
     background-color: oklch(from var(--b3-theme-background) l c h / 0.7);
-    animation: viewer-backdrop-blur 0.5s forwards;
+    animation: viewer-backdrop-blur 0.2s forwards;
     .viewer-navbar {
       background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
       .viewer-list {
-        transition: 0.5s cubic-bezier(0.1, 0.9, 0.2, 1);
+        transition: 0.5s;
       }
     }
     .viewer-tooltip {

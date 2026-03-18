@@ -80,7 +80,10 @@
         .b3-dialog__scrim {
             background-color: transparent;
             transition: none;
-            animation: b3-dialog__scrim-blur 0.3s ease-in-out forwards;
+            animation: b3-dialog__scrim-blur 0.2s forwards;
+        }
+        .b3-dialog__content {
+            background-color: transparent !important;
         }
         .b3-dialog__container {
             background-color: transparent;
