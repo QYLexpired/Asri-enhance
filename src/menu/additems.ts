@@ -14,7 +14,6 @@ import { onGruvboxClick } from "../palette/gruvbox";
 import { onGlitchClick } from "../palette/glitch";
 import { onNostalgiaClick } from "../palette/nostalgia";
 import { onColoredHeadingClick } from "../detail/coloredheading";
-import { onHeadingLevelHintClick } from "../detail/headinglevelhint";
 import { onColoredTreeClick } from "../detail/coloredtree";
 import { onColoredListClick } from "../detail/coloredlist";
 import { onListBulletLineClick } from "../more/listbulletline";
@@ -363,22 +362,6 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
     const coloredHeadingItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-colored-heading");
     if (coloredHeadingItem) {
         coloredHeadingItem.onclick = (e) => onColoredHeadingClick(plugin, e);
-    }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-heading-level-hint")) {
-        const button = document.createElement("button");
-        button.className = "b3-menu__item";
-        button.id = "asri-enhance-heading-level-hint";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.headingLevelHint || "headingLevelHint"}</span>`;
-        if (detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree")) {
-            const coloredTreeButton = detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree");
-            detailAdjustmentSubmenu.insertBefore(button, coloredTreeButton);
-        } else {
-            detailAdjustmentSubmenu.appendChild(button);
-        }
-    }
-    const headingLevelHintItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-heading-level-hint");
-    if (headingLevelHintItem) {
-        headingLevelHintItem.onclick = (e) => onHeadingLevelHintClick(plugin, e);
     }
     if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree")) {
         const button = document.createElement("button");

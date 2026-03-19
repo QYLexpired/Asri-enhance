@@ -1,4 +1,8 @@
 ### Updates
+##### v2.3.2
+- Removed heading level hints from Detail Adjustments
+##### v2.3.1
+- Refactored island layout to card layout: multiple panes are now displayed as cards
 ##### v2.3.0
 ###### Note: After this version, Asri theme must be updated to v3.6.9, otherwise the plugin will not work
 - Adapted to the latest changes in Asri theme
@@ -38,6 +42,7 @@
 - Preset textures and custom image background
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
 - Multi-column slash menu (supports keyboard arrow key navigation)
+- Card search list
 - Adjust window transparency value
 - Whole window transparency
 - Colored headings

@@ -18,7 +18,6 @@ import { applyNostalgiaConfig } from "./palette/nostalgia";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyColoredListConfig } from "./detail/coloredlist";
-import { applyHeadingLevelHintConfig } from "./detail/headinglevelhint";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
 import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
@@ -77,7 +76,6 @@ class AsriEnhancePlugin extends Plugin {
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyColoredListConfig(this, config).catch(() => { }),
-            applyHeadingLevelHintConfig(this, config).catch(() => { }),
             applyListBulletLineConfig(this, config).catch(() => { }),
             applyVerticalTabConfig(this, config).catch(() => { }),
             applySidememoConfig(this, config).catch(() => { }),
