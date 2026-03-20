@@ -1,5 +1,5 @@
 @use "../asri/overflowfadein" as *;
-[data-asri-enhance-vertical-tab="true"]:root {
+[data-asri-enhance-vertical-tab="true"].asri-enhance-enable {
     #asri-enhance-vertical-tab {
         &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);

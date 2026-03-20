@@ -1,5 +1,5 @@
 @use "public" as *;
-.asri-palette-topaz:root {
+.asri-palette-topaz.asri-enhance-enable {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
@@ -67,21 +67,21 @@
     }
 }
 #{$primary-color-reverse-selectors} {
-  .asri-palette-topaz.asri-mode-light:root & {
+  .asri-palette-topaz.asri-mode-light.asri-enhance-enable & {
     --b3-theme-primary: #b8d2e8;
     --b3-theme-on-primary: #001055;
   }
 }
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
-  .asri-palette-topaz.asri-mode-dark:root & {
+  .asri-palette-topaz.asri-mode-dark.asri-enhance-enable & {
     --b3-theme-primary: var(--topaz-base-accent);
     --b3-theme-on-primary: #ffffff;
   }
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-  .asri-palette-topaz:root & {
+  .asri-palette-topaz.asri-enhance-enable & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }

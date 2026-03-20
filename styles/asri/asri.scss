@@ -1,26 +1,4 @@
 @use "../asri/overflowfadein" as *;
-body.asri-tfp {
-    #topbarFusionPlus {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
-}
-.asri-enhance-settings-icon {
-  height: 12px;
-  width: 12px;
-  line-height: 12px;
-  margin-left: 16px;
-  margin-right: unset;
-  opacity: 0.5;
-  transition: opacity 0.2s ease-in-out;
-  &:hover {
-    opacity: 1;
-  }
-}
 $primary-color-reverse-selectors: (
   // reverse on-primary colors when primary color is too bright
   "#barWorkspace",
@@ -57,32 +35,54 @@ $other-transparency-selectors: (
       @content;
     }
 }
-:root {
-  // 线条颜色
-  .search__tip {
-    border-color: var(--b3-border-color-trans);
+.asri-enhance-enable {
+  body.asri-tfp {
+    #topbarFusionPlus {
+        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+}
+  .asri-enhance-settings-icon {
+    height: 12px;
+    width: 12px;
+    line-height: 12px;
+    margin-left: 16px;
+    margin-right: unset;
+    opacity: 0.5;
+    transition: opacity 0.2s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
   }
-  .b3-label {
-    border-color: var(--b3-border-color-trans);
-  }
-  .search__header {
-    border-color: var(--b3-border-color-trans) !important;
-  }
-  .search__list {
+    // 线条颜色
+    .search__tip {
+      border-color: var(--b3-border-color-trans);
+    }
+    .b3-label {
+      border-color: var(--b3-border-color-trans);
+    }
+    .search__header {
+      border-color: var(--b3-border-color-trans) !important;
+    }
+    .search__list {
+        border-color: var(--b3-border-color-trans);
+    }
+    .search__layout--row {
+        border-color: var(--b3-border-color-trans);
+    }
+    .search__layout:not(.search__layout--row) .search__list {
+      border-color: var(--b3-border-color-trans);
+    }
+    .search__preview {
       border-color: var(--b3-border-color-trans);
   }
-  .search__layout--row {
-      border-color: var(--b3-border-color-trans);
+  .layout__center [data-type=wnd]>.fn__flex:first-child {
+    transition: padding-top 0.2s;
   }
-  .search__layout:not(.search__layout--row) .search__list {
-    border-color: var(--b3-border-color-trans);
-  }
-  .search__preview {
-    border-color: var(--b3-border-color-trans);
-}
-.layout__center [data-type=wnd]>.fn__flex:first-child {
-  transition: padding-top 0.2s;
-}
   // 搜索列表
   #searchList, #searchUnRefList{
     background-color: var(--b3-theme-background);

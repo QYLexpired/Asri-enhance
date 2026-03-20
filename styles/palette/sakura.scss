@@ -1,5 +1,5 @@
 @use "public" as *;
-.asri-palette-sakura:root {
+.asri-palette-sakura.asri-enhance-enable {
   .asri-config:not(#topbarFusionPlus) {
       --b3-theme-accent: var(--b3-theme-on-background);
   }
@@ -59,18 +59,18 @@
   }
 }
 #{$primary-color-reverse-selectors} {
-  .asri-palette-sakura.asri-mode-light:root & {
+  .asri-palette-sakura.asri-mode-light.asri-enhance-enable & {
     --b3-theme-primary: #ffcaca;
     --b3-theme-on-primary: #9e4a4a;
   }
-  .asri-palette-sakura.asri-mode-dark:root & {
+  .asri-palette-sakura.asri-mode-dark.asri-enhance-enable & {
     --b3-theme-primary: #e39f9f;
     --b3-theme-on-primary: #440000;
   }
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-  .asri-palette-sakura:root & {
+  .asri-palette-sakura.asri-enhance-enable & {
     --b3-theme-primary: var(--b3-theme-accent);
   }
 }

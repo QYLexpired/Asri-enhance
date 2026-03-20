@@ -1,5 +1,5 @@
 @use "./hidetab" as *;
-[data-asri-enhance-hide-breadcrumb="true"]:root {
+[data-asri-enhance-hide-breadcrumb="true"].asri-enhance-enable {
     #asri-enhance-hide-breadcrumb, #asri-enhance-detail-adjustment {
         &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);

@@ -17,7 +17,7 @@
         --mask-opacity-factor-dark: 1.05;
     }
 }
-[data-asri-enhance-hide-tab="true"]:root {
+[data-asri-enhance-hide-tab="true"].asri-enhance-enable {
     #asri-enhance-hide-tab, #asri-enhance-detail-adjustment {
         &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);

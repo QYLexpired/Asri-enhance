@@ -1,5 +1,5 @@
 @forward "../asri/asri";
-.asri-mode-light:root {
+.asri-mode-light.asri-enhance-enable {
       &.asri-palette-amber,
       &.asri-palette-sakura,
       &.asri-palette-wilderness,
@@ -19,7 +19,7 @@
         }
     }
 }
-.asri-mode-dark:root {
+.asri-mode-dark.asri-enhance-enable {
       &.asri-palette-amber,
       &.asri-palette-sakura,
       &.asri-palette-wilderness,

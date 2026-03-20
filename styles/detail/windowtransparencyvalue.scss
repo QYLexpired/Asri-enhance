@@ -1,5 +1,5 @@
 @use "../asri/asri" as *;
-[data-asri-enhance-windowtransparencyvalue]:root {
+[data-asri-enhance-windowtransparencyvalue].asri-enhance-enable {
     #asri-enhance-windowtransparencyvalue {
         background-color: transparent !important;
         background: unset !important;

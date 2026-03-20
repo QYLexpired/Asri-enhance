@@ -1,4 +1,5 @@
 import { Plugin } from "siyuan";
+import { checkAsriThemeGuard, ThemeChangeObserver, removeAsriEnhanceEnable } from "./utils/guard";
 import { listenBarModeClick, addAsriEnhanceItems, type Unsubscribe } from "./menu/additems";
 import { addMobileBarModeBtn } from "./menu/additems-mobile";
 import { applyAmberConfig } from "./palette/amber";
@@ -54,6 +55,7 @@ class AsriEnhancePlugin extends Plugin {
     private unsubscribeBarModeClick: Unsubscribe | null = null;
     private asriConfigClickHandler: ((event: MouseEvent) => void) | null = null;
     private themeModeObserver: MutationObserver | null = null;
+    private asriThemeObserver: MutationObserver | null = null;
     private themeModeChangeTimers: number[] = [];
     private paletteDisableMouseUpHandler: ((event: MouseEvent) => void) | null = null;
     private paletteDisableDebounceTimer: number | null = null;
@@ -109,6 +111,11 @@ class AsriEnhancePlugin extends Plugin {
         ]);
     }
     async onload() {
+        const guardResult = await checkAsriThemeGuard();
+        if (!guardResult.enabled) {
+            return;
+        }
+        this.asriThemeObserver = ThemeChangeObserver();
         this.unsubscribeBarModeClick = listenBarModeClick(this, (event) => addAsriEnhanceItems(this, event));
         addMobileBarModeBtn(this);
         this.asriConfigClickHandler = (event: MouseEvent) => {
@@ -268,6 +275,10 @@ class AsriEnhancePlugin extends Plugin {
             this.themeModeObserver.disconnect();
             this.themeModeObserver = null;
         }
+        if (this.asriThemeObserver) {
+            this.asriThemeObserver.disconnect();
+            this.asriThemeObserver = null;
+        }
         this.themeModeChangeTimers.forEach((timer) => {
             clearTimeout(timer);
         });
@@ -298,6 +309,7 @@ class AsriEnhancePlugin extends Plugin {
                     htmlEl.removeAttribute(attr.name);
                 }
             });
+            removeAsriEnhanceEnable();
         }
     }
     async uninstall() {

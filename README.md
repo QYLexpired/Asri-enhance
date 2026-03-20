@@ -1,4 +1,6 @@
 ### Updates
+##### v2.3.3
+- Automatically disables the plugin when the current theme is not Asri
 ##### v2.3.2
 - Removed heading level hints from Detail Adjustments
 ##### v2.3.1
@@ -15,9 +17,8 @@
 - Removed special colored heading styles from Auriflow and Glitch color schemes
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
-- This plugin is only compatible with the Asri theme. When using other themes, this plugin should be disabled to prevent style errors
 - Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
-- Does not write or modify any data in documents, only performs functional optimization and appearance improvements, no residual files after uninstalling the plugin
+- This plugin does not write or modify any data in documents, only performs functional optimization and appearance improvements, no residual files after uninstalling the plugin
 ### How to Use
 - All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. All features of this plugin are configured in the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> options
 ### Features
@@ -37,7 +38,6 @@
 - Fluid cursor
 - Pinned Toolbar
     - Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
-    - The pinned toolbar has a liquid glass effect
 ### Detail Adjustments
 - Preset textures and custom image background
 - Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
@@ -46,7 +46,6 @@
 - Adjust window transparency value
 - Whole window transparency
 - Colored headings
-- Heading level hints
 - Colored document tree
 - Colored list
 - Hide tabs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)

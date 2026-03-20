@@ -1,10 +1,10 @@
 @use "public" as *;
-.asri-mode-light:root {
+.asri-mode-light.asri-enhance-enable {
     #asri-enhance-ocean {
         display: none;
     }
 }
-.asri-palette-ocean.asri-mode-dark:root {
+.asri-palette-ocean.asri-mode-dark.asri-enhance-enable {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
@@ -63,7 +63,7 @@
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-    .asri-palette-ocean.asri-mode-dark:root & {
+    .asri-palette-ocean.asri-mode-dark.asri-enhance-enable & {
         --b3-theme-primary: var(--b3-theme-accent);
     }
 }

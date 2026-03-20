@@ -1,5 +1,5 @@
 @use "public" as *;
-.asri-palette-rosepine:root {
+.asri-palette-rosepine.asri-enhance-enable {
 	.asri-config:not(#topbarFusionPlus) {
 		--b3-theme-accent: var(--b3-theme-on-background);
 	}
@@ -60,18 +60,18 @@
 }
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
-	.asri-palette-rosepine.asri-mode-light:root & {
+	.asri-palette-rosepine.asri-mode-light.asri-enhance-enable & {
 		--b3-theme-primary: var(--rosepine-base-accent);
 		--b3-theme-on-primary: #faf4ed;
 	}
-	.asri-palette-rosepine.asri-mode-dark:root & {
+	.asri-palette-rosepine.asri-mode-dark.asri-enhance-enable & {
 		--b3-theme-primary: var(--rosepine-base-accent);
 		--b3-theme-on-primary: #000000;
 	}
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-	.asri-palette-rosepine:root & {
+	.asri-palette-rosepine.asri-enhance-enable & {
 		--b3-theme-primary: var(--b3-theme-accent);
 	}
 }

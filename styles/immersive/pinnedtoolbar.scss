@@ -1,9 +1,11 @@
-[data-key="dialog-asri-enhance-pinnedtoolbar-settings"] {
-    .config__item {
-        border: none;
+.asri-enhance-enable {
+    [data-key="dialog-asri-enhance-pinnedtoolbar-settings"] {
+        .config__item {
+            border: none;
+        }
     }
 }
-[data-asri-enhance-pinnedtoolbar="true"]:root {
+[data-asri-enhance-pinnedtoolbar="true"].asri-enhance-enable {
     #asri-enhance-pinnedtoolbar, #asri-enhance-immersive {
         &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);

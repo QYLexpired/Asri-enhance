@@ -1,4 +1,4 @@
-.asri-mode-light {
+.asri-mode-light.asri-enhance-enable {
     .config__item-asri-enhance-customimage-opacity-dark,
     .config__item-asri-enhance-customimage-effect-dark,
     .config__item-asri-enhance-customimage-brightness-dark,
@@ -9,7 +9,7 @@
         display: none;
     }
 }
-.asri-mode-dark {
+.asri-mode-dark.asri-enhance-enable {
     .config__item-asri-enhance-customimage-opacity-light,
     .config__item-asri-enhance-customimage-effect-light,
     .config__item-asri-enhance-customimage-brightness-light,
@@ -20,17 +20,19 @@
         display: none;
     }
 }
-[data-key="dialog-asri-enhance-customimage-settings"] {
-    .config__item {
-        border: none;
-    }
-    &:not(.asri-enhance-customimage-detail) {
-        .config__item-asri-enhance-customimage-effect-dark ~ .config__item {
-            display: none;
+.asri-enhance-enable {
+    [data-key="dialog-asri-enhance-customimage-settings"] {
+        .config__item {
+            border: none;
+        }
+        &:not(.asri-enhance-customimage-detail) {
+            .config__item-asri-enhance-customimage-effect-dark ~ .config__item {
+                display: none;
+            }
         }
     }
 }
-[data-asri-enhance-customimage="true"]:root {
+[data-asri-enhance-customimage="true"].asri-enhance-enable {
     #asri-enhance-texture, #asri-enhance-customimage {
         &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
             color: var(--b3-theme-accent);

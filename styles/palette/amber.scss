@@ -1,5 +1,5 @@
 @use "public" as *;
-.asri-palette-amber:root {
+.asri-palette-amber.asri-enhance-enable {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
