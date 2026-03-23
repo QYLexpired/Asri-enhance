@@ -1,26 +1,12 @@
 ### Updates
-##### v2.3.3
-- Automatically disables the plugin when the current theme is not Asri
-##### v2.3.2
-- Removed heading level hints from Detail Adjustments
-##### v2.3.1
-- Refactored island layout to card layout: multiple panes are now displayed as cards
-##### v2.3.0
-###### Note: After this version, Asri theme must be updated to v3.6.9, otherwise the plugin will not work
-- Adapted to the latest changes in Asri theme
-- Optimized plugin performance
-- New preset color schemes: Sugar, Ocean (ported from Savor theme's Sugar and Ocean color schemes)
-- Fixed the issue with third-level submenu position offset
-- Optimized whole window transparency effect under card layout
-- Optimized card layout style for Polar color scheme
-- Optimized Topaz color scheme
-- Removed special colored heading styles from Auriflow and Glitch color schemes
+##### v2.3.4
+- Fixed an issue where the plugin would not take effect when switching to the Asri theme if it was not initially set as the Asri theme
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 - Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
 - This plugin does not write or modify any data in documents, only performs functional optimization and appearance improvements, no residual files after uninstalling the plugin
-### How to Use
-- All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. All features of this plugin are configured in the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> options
+- Asri theme version must be v3.6.9 or higher, otherwise the plugin will not work properly
+- All features are disabled by default. Click the <span data-type="kbd">Appearance Mode</span> button in the top bar to display the Asri theme settings menu. Configure this plugin's features in the <span data-type="kbd">More Presets</span> and <span data-type="kbd">More</span> options
 ### Features
 - List bullet lines
 - Vertical tabs (only affects the tab bar in the top left corner)
