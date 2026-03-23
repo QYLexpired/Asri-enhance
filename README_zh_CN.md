@@ -1,5 +1,6 @@
 ### 更新
 ##### v2.3.4
+- 重做彩色文档树样式
 - 修复初始不是Asri主题的情况下切换至Asri主题时插件无法生效的问题
 ### 关于插件
 - [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题

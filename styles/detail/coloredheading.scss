@@ -16,7 +16,7 @@
             h#{$i},
             [data-type=NodeHeading].h#{$i},
             [data-type=NodeHeading][data-subtype=h#{$i}] [spellcheck] {
-                color: oklch(from var(--b3-theme-primary) $l $c $h);
+                color: oklch(from var(--b3-theme-accent) $l $c $h);
             }
         }
     }
@@ -27,38 +27,7 @@
             .b3-list-item[data-type=NodeHeading][data-subtype=h#{$i}] {
                 .b3-list-item__text,
                 .b3-list-item__graphic {
-                    color: oklch(from var(--b3-theme-primary) $l $c $h);
-                }
-            }
-        }
-    }
-    /* 极地配色 */
-    &.asri-palette-polar.asri-mode-light {
-        $l: 0.55;
-        $c: 0.3;
-        .protyle-title__input {
-            color: var(--b3-theme-accent);
-        }
-        .b3-typography,
-        .protyle-wysiwyg {
-            @for $i from 1 through 6 {
-                $h: calc(h + #{$i * 50});
-                h#{$i},
-                [data-type=NodeHeading].h#{$i},
-                [data-type=NodeHeading][data-subtype=h#{$i}] [spellcheck] {
-                    color: oklch(from var(--b3-theme-primary) $l $c $h);
-                }
-            }
-        }
-        .sy__outline,
-        [data-type="sidebar-outline"] {
-            @for $i from 1 through 6 {
-                $h: calc(h + #{$i * 50});
-                .b3-list-item[data-type=NodeHeading][data-subtype=h#{$i}] {
-                    .b3-list-item__text,
-                    .b3-list-item__graphic {
-                        color: oklch(from var(--b3-theme-primary) $l $c $h);
-                    }
+                    color: oklch(from var(--b3-theme-accent) $l $c $h);
                 }
             }
         }

@@ -7,26 +7,37 @@
             }
         }
     }
+    --asri-enhance-colored-tree-border-width: 3px;
     .layout__dockl {
-        --asri-enhance-colored-tree-ulmargin: 0 18px 0 12px;
+        --asri-enhance-colored-tree-ulmargin: 0 12px 0 calc(var(--asri-enhance-colored-tree-border-width) + 12px);
     }
     .layout__dockr {
-        --asri-enhance-colored-tree-ulmargin: 0 0 0 12px;
+        --asri-enhance-colored-tree-ulmargin: 0 0 0 calc(var(--asri-enhance-colored-tree-border-width) + 12px);
     }
     .layout__dockb {
-        --asri-enhance-colored-tree-ulmargin: 0 12px;
+        --asri-enhance-colored-tree-ulmargin: 0 12px 0 calc(var(--asri-enhance-colored-tree-border-width) + 12px);
     }
     .sy__file,
     [data-type="sidebar-file"] {
         & .b3-list-item {
             margin-inline-end: 0;
+            border-radius: 0;
         }
         & > .fn__flex-1 {
             --indent-offset: -6px;
             & > ul {
                 margin: var(--asri-enhance-colored-tree-ulmargin);
-                border-radius: 8px;
-                corner-shape: superellipse(1.4);
+                position: relative;
+                &::before {
+                    content: "";
+                    position: absolute;
+                    left: calc(-1 * var(--asri-enhance-colored-tree-border-width));
+                    top: 0;
+                    bottom: 0;
+                    width: var(--asri-enhance-colored-tree-border-width);
+                    z-index: 3;
+                    pointer-events: none;
+                }
                 &:not(:last-child) {
                     margin-bottom: 3px;
                 }
@@ -40,7 +51,10 @@
                         background-color: oklch(from var(--b3-theme-accent) l 0.12 calc(h + #{$hue-offset}) / 0.1);
                         --b3-list-hover: oklch(from var(--b3-theme-accent) l 0.12 calc(h + #{$hue-offset}) / 0.1);
                         & .b3-list-item--focus {
-                            background-color: oklch(from var(--b3-theme-accent) l 0.15 calc(h + #{$hue-offset}) / 0.12) !important;
+                            background-color: oklch(from var(--b3-theme-accent) l 0.12 calc(h + #{$hue-offset}) / 0.15) !important;
+                        }
+                        &::before {
+                            background-color: oklch(from var(--b3-theme-accent) l 0.15 calc(h + #{$hue-offset}) / 0.5);
                         }
                     }
                 }

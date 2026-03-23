@@ -38,6 +38,9 @@ $cardlayout-dock-transparency-selectors: (
                 pointer-events: none;
                 z-index: 3;
             }
+            &:is(.asri-mode-dark [data-type="wnd"])::before {
+                box-shadow: inset 0 0 0 1px hsla(0,0%,100%,0.2);
+            }
         }
         .config__panel .b3-tab-bar {
             border: none;

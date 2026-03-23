@@ -1,5 +1,6 @@
 ### Updates
 ##### v2.3.4
+- Redesigned colored tree style
 - Fixed an issue where the plugin would not take effect when switching to the Asri theme if it was not initially set as the Asri theme
 ### About the Plugin
 - [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
