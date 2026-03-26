@@ -12,7 +12,7 @@
             @for $i from 0 through 7 {
                 $hue-offset: #{$i * 45};
                 &:nth-child(8n + #{$i + 1}) {
-                    --asri-enhance-li-color: oklch(from var(--b3-theme-accent) l 0.12 calc(h + #{$hue-offset}));
+                    --asri-enhance-li-color: oklch(from var(--b3-theme-accent) l 0.075 calc(h + #{$hue-offset}));
                 }
             }
             &[fold="1"] {

@@ -91,7 +91,7 @@
         }
     }
     &.asri-palette-polar .protyle .protyle-breadcrumb {
-        box-shadow: none;
+        box-shadow: none !important;
     }
     & body:not(.body-asri--mobilem):not(.body--window) {
         & .protyle.fullscreen {

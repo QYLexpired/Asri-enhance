@@ -39,7 +39,6 @@ import { onCheckerboardClick } from "../texture/checkerboard";
 import { onGridClick } from "../texture/grid";
 import { onPolkaDotClick } from "../texture/polkadot";
 import { onCrossDotClick } from "../texture/crossdot";
-import { onHoneycombClick } from "../texture/honeycomb";
 import { onWoodClick } from "../texture/wood";
 import { onCamouflageClick } from "../texture/camouflage";
 import { onCustomImageClick, onCustomImageSettingsClick } from "../texture/customimage";
@@ -459,7 +458,6 @@ function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
         { id: "grid", label: plugin.i18n?.grid || "grid", handler: onGridClick },
         { id: "polkadot", label: plugin.i18n?.polkadot || "polkadot", handler: onPolkaDotClick },
         { id: "crossdot", label: plugin.i18n?.crossdot || "crossdot", handler: onCrossDotClick },
-        { id: "honeycomb", label: plugin.i18n?.honeycomb || "honeycomb", handler: onHoneycombClick },
         { id: "wood", label: plugin.i18n?.wood || "wood", handler: onWoodClick },
         { id: "camouflage", label: plugin.i18n?.camouflage || "camouflage", handler: onCamouflageClick },
     ];

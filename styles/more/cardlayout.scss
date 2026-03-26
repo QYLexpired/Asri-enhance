@@ -70,7 +70,7 @@ $cardlayout-dock-transparency-selectors: (
                     margin-bottom: 0;
                 }
                 [data-type="wnd"] {
-                    border-radius: 12px;
+                    border-radius: 10px;
                     background-color: var(--b3-theme-background);
                     // corner-shape: superellipse(1.4); // 导致界面闪烁
                 }

@@ -42,7 +42,6 @@ import { applyCheckerboardConfig } from "./texture/checkerboard";
 import { applyGridConfig } from "./texture/grid";
 import { applyPolkaDotConfig } from "./texture/polkadot";
 import { applyCrossDotConfig } from "./texture/crossdot";
-import { applyHoneycombConfig } from "./texture/honeycomb";
 import { applyWoodConfig } from "./texture/wood";
 import { applyCamouflageConfig } from "./texture/camouflage";
 import { applyCustomImageConfig, removeCustomImageConfig } from "./texture/customimage";
@@ -101,7 +100,6 @@ class AsriEnhancePlugin extends Plugin {
             applyGridConfig(this, config).catch(() => { }),
             applyPolkaDotConfig(this, config).catch(() => { }),
             applyCrossDotConfig(this, config).catch(() => { }),
-            applyHoneycombConfig(this, config).catch(() => { }),
             applyWoodConfig(this, config).catch(() => { }),
             applyCamouflageConfig(this, config).catch(() => { }),
             applyCustomImageConfig(this, config).catch(() => { }),

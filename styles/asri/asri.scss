@@ -144,6 +144,12 @@ $other-transparency-selectors: (
         box-shadow: 1px 0 0 0 var(--b3-theme-primary-light) inset;
     }
   }
+  // 主界面
+  .layout__resize--lr.layout__resize {
+    &::after {
+      transform: none;
+    }
+  }
   // 图片查看器
   @keyframes viewer-backdrop-blur {
     0% {
