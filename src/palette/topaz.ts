@@ -12,6 +12,8 @@ const TOPAZ_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-ocean",
         "asri-enhance-salt",
         "asri-enhance-sugar",
+        "asri-enhance-dusk",
+        "asri-enhance-twilight",
         "asri-enhance-rosepine",
         "asri-enhance-oxygen",
         "asri-enhance-shade",

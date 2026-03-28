@@ -1,4 +1,6 @@
 ### Updates
+- Added light mode preset color scheme: Dusk
+- Added dark mode preset color scheme: Twilight
 - Side memo now supports keyboard shortcuts
 - Fixes the issue of dialog window animation being lost after enabling the global frosted glass effect
 ### About the Plugin

@@ -8,6 +8,8 @@ export const PALETTE_NAMES = [
     "ocean",
     "salt",
     "sugar",
+    "dusk",
+    "twilight",
     "rosepine",
     "topaz",
     "oxygen",
@@ -116,6 +118,8 @@ export const removeMidnightConfig = (plugin: Plugin, configFile: string = "confi
 export const removeOceanConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "ocean", configFile);
 export const removeSaltConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "salt", configFile);
 export const removeSugarConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "sugar", configFile);
+export const removeDuskConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "dusk", configFile);
+export const removeTwilightConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "twilight", configFile);
 export const removeRosepineConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "rosepine", configFile);
 export const removeTopazConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "topaz", configFile);
 export const removeOxygenConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "oxygen", configFile);

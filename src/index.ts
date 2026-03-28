@@ -9,6 +9,8 @@ import { applyMidnightConfig } from "./palette/midnight";
 import { applyOceanConfig } from "./palette/ocean";
 import { applySaltConfig } from "./palette/salt";
 import { applySugarConfig } from "./palette/sugar";
+import { applyDuskConfig } from "./palette/dusk";
+import { applyTwilightConfig } from "./palette/twilight";
 import { applyRosepineConfig } from "./palette/rosepine";
 import { applyTopazConfig } from "./palette/topaz";
 import { applyOxygenConfig } from "./palette/oxygen";
@@ -67,6 +69,8 @@ class AsriEnhancePlugin extends Plugin {
             applyOceanConfig(this, config).catch(() => { }),
             applySaltConfig(this, config).catch(() => { }),
             applySugarConfig(this, config).catch(() => { }),
+            applyDuskConfig(this, config).catch(() => { }),
+            applyTwilightConfig(this, config).catch(() => { }),
             applyRosepineConfig(this, config).catch(() => { }),
             applyTopazConfig(this, config).catch(() => { }),
             applyOxygenConfig(this, config).catch(() => { }),
@@ -124,6 +128,8 @@ class AsriEnhancePlugin extends Plugin {
                     target.closest("#asri-enhance-ocean") ||
                     target.closest("#asri-enhance-salt") ||
                     target.closest("#asri-enhance-sugar") ||
+                    target.closest("#asri-enhance-dusk") ||
+                    target.closest("#asri-enhance-twilight") ||
                     target.closest("#asri-enhance-rosepine") ||
                     target.closest("#asri-enhance-topaz") ||
                     target.closest("#asri-enhance-oxygen") ||

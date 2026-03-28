@@ -1,9 +1,9 @@
 import { Plugin } from "siyuan";
-import { removeSugarConfig } from "../utils/storage";
+import { removeTwilightConfig } from "../utils/storage";
 import { onPaletteClick, applyPaletteConfig, type PaletteInfo } from "./manager";
-const SUGAR_PALETTE_INFO: PaletteInfo = {
-    name: "sugar",
-    configKey: "asri-enhance-sugar",
+const TWILIGHT_PALETTE_INFO: PaletteInfo = {
+    name: "twilight",
+    configKey: "asri-enhance-twilight",
     otherConfigKeys: [
         "asri-enhance-sakura",
         "asri-enhance-amber",
@@ -11,8 +11,8 @@ const SUGAR_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-midnight",
         "asri-enhance-ocean",
         "asri-enhance-salt",
+        "asri-enhance-sugar",
         "asri-enhance-dusk",
-        "asri-enhance-twilight",
         "asri-enhance-rosepine",
         "asri-enhance-topaz",
         "asri-enhance-oxygen",
@@ -22,10 +22,10 @@ const SUGAR_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-nostalgia",
     ],
 };
-export async function onSugarClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
-    return onPaletteClick(plugin, SUGAR_PALETTE_INFO, event);
+export async function onTwilightClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    return onPaletteClick(plugin, TWILIGHT_PALETTE_INFO, event);
 }
-export async function applySugarConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
-    return applyPaletteConfig(plugin, SUGAR_PALETTE_INFO, config);
+export async function applyTwilightConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    return applyPaletteConfig(plugin, TWILIGHT_PALETTE_INFO, config);
 }
-export { removeSugarConfig };
+export { removeTwilightConfig };
