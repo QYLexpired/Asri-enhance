@@ -486,6 +486,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     <div class="fn__space"></div>
     <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-reset-preset">${plugin.i18n?.customimageResetPreset || "Reset to defaults"}</button>
 </div><div class="b3-dialog__action">
+    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-cancel">${plugin.i18n?.cancel || "Cancel"}</button>
+    <div class="fn__space"></div>
     <button class="b3-button b3-button--remove" id="asri-enhance-customimage-delete-preset">${plugin.i18n?.customimageDeletePreset || "Delete this preset"}</button>
     <div class="fn__space"></div>
     <button class="b3-button b3-button--text" id="asri-enhance-customimage-update-preset">${plugin.i18n?.customimageUpdatePreset || "Update current preset"}</button>
@@ -594,6 +596,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
         });
     }
     const deletePresetButton = dialog.element.querySelector("#asri-enhance-customimage-delete-preset") as HTMLButtonElement | null;
+    const cancelButton = dialog.element.querySelector("#asri-enhance-customimage-cancel") as HTMLButtonElement | null;
     const toggleDetailButton = dialog.element.querySelector("#asri-enhance-customimage-toggle-detail") as HTMLButtonElement | null;
     const resetPresetButton = dialog.element.querySelector("#asri-enhance-customimage-reset-preset") as HTMLButtonElement | null;
     const updatePresetButton = dialog.element.querySelector("#asri-enhance-customimage-update-preset") as HTMLButtonElement | null;
@@ -632,6 +635,9 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
             }
             style.setProperty(field.cssVar, defaultValue);
         }
+    });
+    cancelButton?.addEventListener("click", () => {
+        dialog.destroy();
     });
     deletePresetButton?.addEventListener("click", (ev) => {
         ev.preventDefault();

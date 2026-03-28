@@ -1,5 +1,6 @@
 ### Updates
 - Side memo now supports keyboard shortcuts
+- Fixes the issue of dialog window animation being lost after enabling the global frosted glass effect
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 * Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
@@ -36,7 +37,7 @@
 * Hide tabs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
 * Hide breadcrumbs (only takes effect when topbar fusion+ is enabled, recommended to pair with progressive blur effect)
 * More animations
-* Global frosted glass
+* Global frosted glass effect
 ### More Preset Color Schemes
 * Theme color follows time
 * More than ten distinctive preset color schemes

@@ -87,7 +87,7 @@
         }
         .b3-dialog__container {
             background-color: transparent;
-            transition: none;
+            transition-property: transform;
             border: unset;
             &::before {
                 content: "";
@@ -118,6 +118,9 @@
                 .b3-text-field {
                     background-color: transparent;
                 }
+            }
+            .search__preview:not(.fullscreen) {
+                background-color: transparent;
             }
             .search__list,
             #searchList,
