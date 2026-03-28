@@ -58,27 +58,27 @@ $other-transparency-selectors: (
       opacity: 1;
     }
   }
-    // 线条颜色
-    .search__tip {
+  // 线条颜色
+  .search__tip {
+    border-color: var(--b3-border-color-trans);
+  }
+  .b3-label {
+    border-color: var(--b3-border-color-trans);
+  }
+  .search__header {
+    border-color: var(--b3-border-color-trans) !important;
+  }
+  .search__list {
       border-color: var(--b3-border-color-trans);
-    }
-    .b3-label {
+  }
+  .search__layout--row {
       border-color: var(--b3-border-color-trans);
-    }
-    .search__header {
-      border-color: var(--b3-border-color-trans) !important;
-    }
-    .search__list {
-        border-color: var(--b3-border-color-trans);
-    }
-    .search__layout--row {
-        border-color: var(--b3-border-color-trans);
-    }
-    .search__layout:not(.search__layout--row) .search__list {
-      border-color: var(--b3-border-color-trans);
-    }
-    .search__preview {
-      border-color: var(--b3-border-color-trans);
+  }
+  .search__layout:not(.search__layout--row) .search__list {
+    border-color: var(--b3-border-color-trans);
+  }
+  .search__preview {
+    border-color: var(--b3-border-color-trans);
   }
   .layout__center [data-type=wnd]>.fn__flex:first-child {
     transition: padding-top 0.2s;
@@ -122,6 +122,9 @@ $other-transparency-selectors: (
           transform: scale(1.03) !important;
         }
       }
+      &[data-type="-3"] {
+        background-color: transparent;
+      }
     }
   }
   .body-asri--mobile .card__action button {
@@ -148,6 +151,16 @@ $other-transparency-selectors: (
   .layout__resize--lr.layout__resize {
     &::after {
       transform: none;
+    }
+  }
+  .asri-tfp .layout__center {
+    background-color: unset;
+  }
+  // 编辑器
+  .protyle-scroll__down, .protyle-scroll__up {
+    color: var(--b3-border-color-trans);
+    &:hover {
+      color: var(--b3-theme-primary);
     }
   }
   // 图片查看器

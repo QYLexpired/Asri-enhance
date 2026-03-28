@@ -54,17 +54,17 @@ $cardlayout-dock-transparency-selectors: (
             box-shadow: none;
         }
     }
-    --asri-enhance-cardlayout-width: 8px;
+    --asri-enhance-cardlayout-gap: 8px;
     body:not(.body-asri--mobile) {
         background-color: var(--b3-theme-surface);
         #layouts {
             .layout__center {
-                margin: var(--asri-enhance-cardlayout-width) 0;
-                min-height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
+                margin: var(--asri-enhance-cardlayout-gap) 0;
+                min-height: calc(100% - 2 * var(--asri-enhance-cardlayout-gap));
                 box-sizing: border-box;
                 &:is(#dockLeft.fn__none ~ #layouts .layout__center) {
-                    margin-left: var(--asri-enhance-cardlayout-width);
-                    margin-right: var(--asri-enhance-cardlayout-width);
+                    margin-left: var(--asri-enhance-cardlayout-gap);
+                    margin-right: var(--asri-enhance-cardlayout-gap);
                 }
                 &:is(.fn__flex.has-dockb #layouts .layout__center) {
                     margin-bottom: 0;
@@ -76,9 +76,9 @@ $cardlayout-dock-transparency-selectors: (
                 }
                 .layout__resize:not(.layout__resize--lr) {
                     margin: 0;
-                    height: var(--asri-enhance-cardlayout-width);
+                    height: var(--asri-enhance-cardlayout-gap);
                     &::after {
-                        top: calc(var(--asri-enhance-cardlayout-width) / 2 - 0.5px);
+                        top: calc(var(--asri-enhance-cardlayout-gap) / 2 - 0.5px);
                         transform: none;
                     }
                     &:not(:hover) {
@@ -89,9 +89,9 @@ $cardlayout-dock-transparency-selectors: (
                 }
                 .layout__resize.layout__resize--lr:not(.asri-enhance-verticaltab-resize) {
                     margin: 0;
-                    width: var(--asri-enhance-cardlayout-width);
+                    width: var(--asri-enhance-cardlayout-gap);
                     &::after {
-                        left: calc(var(--asri-enhance-cardlayout-width) / 2 - 0.5px);
+                        left: calc(var(--asri-enhance-cardlayout-gap) / 2 - 0.5px);
                         transform: none;
                     }
                     &:not(:hover) {
@@ -111,7 +111,7 @@ $cardlayout-dock-transparency-selectors: (
         }
         #toolbar {
             .toolbar__item {
-                transform: translateY(var(--asri-enhance-cardlayout-width));
+                transform: translateY(var(--asri-enhance-cardlayout-gap));
             }
             #AsriPluginsIconsDivider {
                 display: none;
@@ -152,8 +152,8 @@ $cardlayout-dock-transparency-selectors: (
         }
         #dockLeft {
             background-color: var(--asri-enhance-cardlayout-surface-transparency, var(--b3-theme-surface)) !important;
-            padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
-            padding-bottom: var(--asri-enhance-cardlayout-width);
+            padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;
+            padding-bottom: var(--asri-enhance-cardlayout-gap);
             border-right: none !important;
             &:not(.dock-layout-expanded)::after {
                 display: none;
@@ -161,11 +161,11 @@ $cardlayout-dock-transparency-selectors: (
         }
         #dockRight {
             background-color: var(--asri-enhance-cardlayout-surface-transparency, var(--b3-theme-surface)) !important;
-            padding-top: max(calc(var(--avoid-topbar) + var(--asri-enhance-cardlayout-width)), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
-            padding-bottom: var(--asri-enhance-cardlayout-width);
+            padding-top: max(calc(var(--avoid-topbar) + var(--asri-enhance-cardlayout-gap)), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;
+            padding-bottom: var(--asri-enhance-cardlayout-gap);
             border-left: none !important;
             &.dock-layout-expanded {
-                padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
+                padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;
             }
         }
         #dockBottom {
@@ -175,17 +175,17 @@ $cardlayout-dock-transparency-selectors: (
         .layout__dockl {
             & > .fn__flex:first-child {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;
                 }
             }
             & > .fn__flex.fn__none ~ .fn__flex {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;   
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;   
                 }
             }
             & > :nth-last-child(1 of .fn__flex:not(.fn__none)) {
                 .layout-tab-container {
-                    padding-bottom: var(--asri-enhance-cardlayout-width);
+                    padding-bottom: var(--asri-enhance-cardlayout-gap);
                 }
             }
             .layout-tab-container {
@@ -195,17 +195,17 @@ $cardlayout-dock-transparency-selectors: (
         .layout__dockr {
             & > .fn__flex:first-child {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;
                 }
             }
             & > .fn__flex.fn__none ~ .fn__flex {
                 .layout-tab-container {
-                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-width) + 4px)) !important;   
+                    padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;   
                 }
             }
             & > :nth-last-child(1 of .fn__flex:not(.fn__none)) {
                 .layout-tab-container {
-                    padding-bottom: var(--asri-enhance-cardlayout-width);
+                    padding-bottom: var(--asri-enhance-cardlayout-gap);
                 }
             }
             .layout-tab-container {
@@ -217,10 +217,10 @@ $cardlayout-dock-transparency-selectors: (
     .config__panel .b3-tab-bar {
         corner-shape: superellipse(1.4);
         border-radius: 16.8px;
-        margin: var(--asri-enhance-cardlayout-width);
-        padding: var(--asri-enhance-cardlayout-width);
-        height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
-        max-height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
+        margin: var(--asri-enhance-cardlayout-gap);
+        padding: var(--asri-enhance-cardlayout-gap);
+        height: calc(100% - 2 * var(--asri-enhance-cardlayout-gap));
+        max-height: calc(100% - 2 * var(--asri-enhance-cardlayout-gap));
         box-sizing: border-box;
     }
     #configBazaarReadme {
@@ -228,24 +228,24 @@ $cardlayout-dock-transparency-selectors: (
             --b3-theme-surface: unset;
             corner-shape: superellipse(1.4);
             border-radius: 16.8px;
-            margin: var(--asri-enhance-cardlayout-width);
-            padding: var(--asri-enhance-cardlayout-width);
-            height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
-            max-height: calc(100% - 2 * var(--asri-enhance-cardlayout-width));
+            margin: var(--asri-enhance-cardlayout-gap);
+            padding: var(--asri-enhance-cardlayout-gap);
+            height: calc(100% - 2 * var(--asri-enhance-cardlayout-gap));
+            max-height: calc(100% - 2 * var(--asri-enhance-cardlayout-gap));
             box-sizing: border-box;
-            width: calc(260px + 2 * var(--asri-enhance-cardlayout-width));
+            width: calc(260px + 2 * var(--asri-enhance-cardlayout-gap));
         }
         .item__preview {
             corner-shape: superellipse(1.4);
             border-radius: 16.8px;
-            margin: var(--asri-enhance-cardlayout-width) 0;
-            width: calc(100% - var(--asri-enhance-cardlayout-width));
+            margin: var(--asri-enhance-cardlayout-gap) 0;
+            width: calc(100% - var(--asri-enhance-cardlayout-gap));
             box-sizing: border-box;
         }
         .item__main .b3-typography:not(.item__readme) {
             corner-shape: superellipse(1.4);
             border-radius: 16.8px;
-            width: calc(100% - 292px - var(--asri-enhance-cardlayout-width));
+            width: calc(100% - 292px - var(--asri-enhance-cardlayout-gap));
         }
     }
     .layout__dockl.layout--float::before {
