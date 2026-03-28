@@ -21,7 +21,7 @@ import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyColoredListConfig } from "./detail/coloredlist";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
 import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
-import { applySidememoConfig, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
+import { applySidememoConfig, onSideMemoClick, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
 import { applyGlobalFrostedGlassConfig } from "./detail/globalfrostedglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
 import { applyHideTabConfig } from "./detail/hidetab";
@@ -235,7 +235,7 @@ class AsriEnhancePlugin extends Plugin {
         await this.applyAllConfigs(config);
         (this as any).addCommand({
             langKey: "asri-enhance-typewriter",
-            langText: this.i18n?.typewriter || "切换打字机模式",
+            langText: this.i18n?.typewriter || "打字机模式",
             hotkey: "",
             callback: () => {
                 onTypewriterModeClick(this);
@@ -243,10 +243,18 @@ class AsriEnhancePlugin extends Plugin {
         });
         (this as any).addCommand({
             langKey: "asri-enhance-focus",
-            langText: this.i18n?.focus || "切换聚焦模式",
+            langText: this.i18n?.focus || "聚焦模式",
             hotkey: "",
             callback: () => {
                 onFocusModeClick(this);
+            },
+        });
+        (this as any).addCommand({
+            langKey: "asri-enhance-sidememo",
+            langText: this.i18n?.sidememo || "侧边备注",
+            hotkey: "",
+            callback: () => {
+                onSideMemoClick(this);
             },
         });
         setTimeout(() => {

@@ -1,3 +1,5 @@
+### Updates
+- Side memo now supports keyboard shortcuts
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 * Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
