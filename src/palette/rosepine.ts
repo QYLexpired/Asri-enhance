@@ -10,16 +10,12 @@ const ROSEPINE_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-wilderness",
         "asri-enhance-midnight",
         "asri-enhance-ocean",
-        "asri-enhance-salt",
-        "asri-enhance-sugar",
         "asri-enhance-dusk",
         "asri-enhance-twilight",
         "asri-enhance-topaz",
         "asri-enhance-oxygen",
-        "asri-enhance-shade",
         "asri-enhance-gruvbox",
         "asri-enhance-glitch",
-        "asri-enhance-nostalgia",
     ],
 };
 export async function onRosepineClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

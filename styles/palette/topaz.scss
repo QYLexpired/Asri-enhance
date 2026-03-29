@@ -1,5 +1,10 @@
 @use "public" as *;
-.asri-palette-topaz.asri-enhance-enable {
+.asri-mode-dark.asri-enhance-enable {
+    #asri-enhance-topaz {
+        display: none;
+    }
+}
+.asri-palette-topaz.asri-mode-light.asri-enhance-enable {
     .asri-config:not(#topbarFusionPlus) {
         --b3-theme-accent: var(--b3-theme-on-background);
     }
@@ -19,46 +24,27 @@
       pointer-events: none;
       opacity: 0.38;
     }
-    &.asri-mode-light {
-      --topaz-base-accent: #5e7cc6;
-      --asri-theme-accent-customized: var(--topaz-base-accent);
-      --b3-theme-primary: var(--topaz-base-accent);
-      --b3-theme-accent: var(--topaz-base-accent);
-      --b3-theme-background: #f9f7e4;
-      --b3-theme-surface: #f0efd0;
-      --b3-theme-on-background: #043d41;
-      --b3-theme-on-surface: #697b7a;
-      --b3-menu-background: oklch(from var(--b3-theme-background) 0.95 c h);
-        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
-        .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-          background-color: #3c6da838;
-        }
-        [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-            background-color: #3c6da838 !important;
-        }
-        .protyle-wysiwyg [data-node-id].table table thead tr th, .b3-typography table thead tr th {
-          background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
-        }
-        .protyle-wysiwyg [data-node-id].table table tbody tr:nth-child(2n) td, .b3-typography table tbody tr:nth-child(2n) td {
-          background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
-        }
+    --topaz-base-accent: #5e7cc6;
+    --asri-theme-accent-customized: var(--topaz-base-accent);
+    --b3-theme-primary: var(--topaz-base-accent);
+    --b3-theme-accent: var(--topaz-base-accent);
+    --b3-theme-background: #f9f7e4;
+    --b3-theme-surface: #f0efd0;
+    --b3-theme-on-background: #043d41;
+    --b3-theme-on-surface: #697b7a;
+    --b3-menu-background: oklch(from var(--b3-theme-background) 0.95 c h);
+    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
+    .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
+      background-color: #3c6da838;
     }
-    &.asri-mode-dark {
-        --topaz-base-accent: #8482b3;
-        --asri-theme-accent-customized: var(--topaz-base-accent);
-        --b3-theme-primary: var(--topaz-base-accent);
-        --b3-theme-accent: var(--topaz-base-accent);
-        --b3-theme-background: #201d1c;
-        --b3-theme-surface: #383433;
-        --b3-theme-on-background: #f9e5cd;
-        --b3-theme-on-surface: #d9c4a4;
-        .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
-        .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-          background-color: #cebbff4d;
-        }
-        [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-            background-color: #cebbff4d !important;
-        }
+    [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+        background-color: #3c6da838 !important;
+    }
+    .protyle-wysiwyg [data-node-id].table table thead tr th, .b3-typography table thead tr th {
+      background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
+    }
+    .protyle-wysiwyg [data-node-id].table table tbody tr:nth-child(2n) td, .b3-typography table tbody tr:nth-child(2n) td {
+      background-color: oklch(from var(--b3-theme-surface) 0.85 c h/0.8);
     }
     .protyle-title__input,
     [data-type="NodeHeading"],
@@ -70,13 +56,6 @@
   .asri-palette-topaz.asri-mode-light.asri-enhance-enable & {
     --b3-theme-primary: #b8d2e8;
     --b3-theme-on-primary: #001055;
-  }
-}
-#{$primary-color-reverse-selectors,
-".b3-button--outline"} {
-  .asri-palette-topaz.asri-mode-dark.asri-enhance-enable & {
-    --b3-theme-primary: var(--topaz-base-accent);
-    --b3-theme-on-primary: #ffffff;
   }
 }
 .b3-button--outline,

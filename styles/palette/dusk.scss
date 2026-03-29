@@ -24,14 +24,15 @@
         pointer-events: none;
         opacity: 0.38;
     }
-    --dusk-base-accent: #d6817d;
+    --dusk-base-accent: #d6957d;
     --asri-theme-accent-customized: var(--dusk-base-accent);
     --b3-theme-primary: var(--dusk-base-accent);
     --b3-theme-accent: var(--dusk-base-accent);
-    --b3-theme-background: #eee5dd;
-    --b3-theme-surface: #e6dbd1;
+    --b3-theme-background: #f7eadb;
+    --b3-theme-surface: #e9dbcf;
     --b3-theme-on-background: #575279;
     --b3-theme-on-surface: #807c99;
+    --b3-menu-background: oklch(from var(--b3-theme-background) 0.92 0.018 h);
     .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
     .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
       background-color: #aa868633;

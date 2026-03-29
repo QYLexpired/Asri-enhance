@@ -7,17 +7,13 @@ import { applySakuraConfig } from "./palette/sakura";
 import { applyWildernessConfig } from "./palette/wilderness";
 import { applyMidnightConfig } from "./palette/midnight";
 import { applyOceanConfig } from "./palette/ocean";
-import { applySaltConfig } from "./palette/salt";
-import { applySugarConfig } from "./palette/sugar";
 import { applyDuskConfig } from "./palette/dusk";
 import { applyTwilightConfig } from "./palette/twilight";
 import { applyRosepineConfig } from "./palette/rosepine";
 import { applyTopazConfig } from "./palette/topaz";
 import { applyOxygenConfig } from "./palette/oxygen";
-import { applyShadeConfig } from "./palette/shade";
 import { applyGruvboxConfig } from "./palette/gruvbox";
 import { applyGlitchConfig } from "./palette/glitch";
-import { applyNostalgiaConfig } from "./palette/nostalgia";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyColoredListConfig } from "./detail/coloredlist";
@@ -67,17 +63,13 @@ class AsriEnhancePlugin extends Plugin {
             applyWildernessConfig(this, config).catch(() => { }),
             applyMidnightConfig(this, config).catch(() => { }),
             applyOceanConfig(this, config).catch(() => { }),
-            applySaltConfig(this, config).catch(() => { }),
-            applySugarConfig(this, config).catch(() => { }),
             applyDuskConfig(this, config).catch(() => { }),
             applyTwilightConfig(this, config).catch(() => { }),
             applyRosepineConfig(this, config).catch(() => { }),
             applyTopazConfig(this, config).catch(() => { }),
             applyOxygenConfig(this, config).catch(() => { }),
-            applyShadeConfig(this, config).catch(() => { }),
             applyGruvboxConfig(this, config).catch(() => { }),
             applyGlitchConfig(this, config).catch(() => { }),
-            applyNostalgiaConfig(this, config).catch(() => { }),
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyColoredListConfig(this, config).catch(() => { }),
@@ -126,17 +118,13 @@ class AsriEnhancePlugin extends Plugin {
                     target.closest("#asri-enhance-wilderness") ||
                     target.closest("#asri-enhance-midnight") ||
                     target.closest("#asri-enhance-ocean") ||
-                    target.closest("#asri-enhance-salt") ||
-                    target.closest("#asri-enhance-sugar") ||
                     target.closest("#asri-enhance-dusk") ||
                     target.closest("#asri-enhance-twilight") ||
                     target.closest("#asri-enhance-rosepine") ||
                     target.closest("#asri-enhance-topaz") ||
                     target.closest("#asri-enhance-oxygen") ||
-                    target.closest("#asri-enhance-shade") ||
                     target.closest("#asri-enhance-gruvbox") ||
-                    target.closest("#asri-enhance-glitch") ||
-                    target.closest("#asri-enhance-nostalgia")) {
+                    target.closest("#asri-enhance-glitch")) {
                     return;
                 }
                 const asriConfig = target.closest(".asri-config");

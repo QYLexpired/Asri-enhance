@@ -6,17 +6,13 @@ export const PALETTE_NAMES = [
     "wilderness",
     "midnight",
     "ocean",
-    "salt",
-    "sugar",
     "dusk",
     "twilight",
     "rosepine",
     "topaz",
     "oxygen",
-    "shade",
     "gruvbox",
     "glitch",
-    "nostalgia",
 ] as const;
 export type PaletteName = typeof PALETTE_NAMES[number];
 export async function saveData(plugin: Plugin, fileName: string, data: Record<string, any>): Promise<void> {
@@ -116,14 +112,10 @@ export const removeSakuraConfig = (plugin: Plugin, configFile: string = "config.
 export const removeWildernessConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "wilderness", configFile);
 export const removeMidnightConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "midnight", configFile);
 export const removeOceanConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "ocean", configFile);
-export const removeSaltConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "salt", configFile);
-export const removeSugarConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "sugar", configFile);
 export const removeDuskConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "dusk", configFile);
 export const removeTwilightConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "twilight", configFile);
 export const removeRosepineConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "rosepine", configFile);
 export const removeTopazConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "topaz", configFile);
 export const removeOxygenConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "oxygen", configFile);
-export const removeShadeConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "shade", configFile);
 export const removeGruvboxConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "gruvbox", configFile);
 export const removeGlitchConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "glitch", configFile);
-export const removeNostalgiaConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "nostalgia", configFile);

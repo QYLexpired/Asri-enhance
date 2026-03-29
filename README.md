@@ -1,8 +1,7 @@
 ### Updates
-- Added light mode preset color scheme: Dusk
-- Added dark mode preset color scheme: Twilight
-- Side memo now supports keyboard shortcuts
-- Fixes the issue of dialog window animation being lost after enabling the global frosted glass effect
+- Adjusted color scheme: Dusk
+- Redone color schemes: Wilderness, Amber
+- Removed color schemes: Nostalgia, Salt, Shade, Sugar, Sakura (dark mode), Gruvbox (dark mode), Oxygen (light mode), Topaz (dark mode)
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 * Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices
@@ -41,5 +40,5 @@
 * More animations
 * Global frosted glass effect
 ### More Preset Color Schemes
-* Theme color follows time
-* More than ten distinctive preset color schemes
+* Theme color changes with time
+* Distinctive extra preset color schemes
