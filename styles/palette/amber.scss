@@ -35,12 +35,8 @@
         [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
             background-color: #8e742a33 !important;
         }
-        .b3-switch {
-            --b3-theme-primary: #d8c680 !important;
-        }
-        .b3-button--outline {
-            --b3-theme-primary: #a89a62 !important;
-            --b3-theme-on-primary: #ffffff !important;
+        .b3-button--outline:not(:hover) {
+            --b3-theme-primary: #b79d7b !important;
         }
     }
     &.asri-mode-dark {
