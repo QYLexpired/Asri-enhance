@@ -12,9 +12,9 @@ const OCEAN_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-dusk",
         "asri-enhance-twilight",
         "asri-enhance-rosepine",
-        "asri-enhance-topaz",
+        "asri-enhance-opalite",
         "asri-enhance-oxygen",
-        "asri-enhance-gruvbox",
+        "asri-enhance-gingko",
         "asri-enhance-glitch",
     ],
 };

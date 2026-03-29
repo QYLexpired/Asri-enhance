@@ -1,7 +1,9 @@
 ### Updates
 - Adjusted color scheme: Dusk
 - Redone color schemes: Wilderness, Amber
-- Removed color schemes: Nostalgia, Salt, Shade, Sugar, Sakura (dark mode), Gruvbox (dark mode), Oxygen (light mode), Topaz (dark mode)
+- Removed color schemes: Nostalgia, Salt, Shade, Sugar, Sakura (dark mode), Ginkgo (dark mode), Oxygen (light mode), Opalite (dark mode)
+- Topaz color scheme renamed to Opalite
+- Gruvbox color scheme renamed to Ginkgo
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 * Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices

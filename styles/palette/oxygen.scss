@@ -39,6 +39,13 @@
   :where(h1, h2, h3, h4, h5, h6) {
     color: var(--b3-theme-primary);
   }
+  .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
+  .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
+    background-color: #d3e6a44d;
+  }
+  [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+      background-color: #d3e6a44d !important;
+  }
 }
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {

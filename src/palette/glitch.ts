@@ -13,9 +13,9 @@ const GLITCH_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-dusk",
         "asri-enhance-twilight",
         "asri-enhance-rosepine",
-        "asri-enhance-topaz",
+        "asri-enhance-opalite",
         "asri-enhance-oxygen",
-        "asri-enhance-gruvbox",
+        "asri-enhance-gingko",
     ],
 };
 export async function onGlitchClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

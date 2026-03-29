@@ -13,8 +13,8 @@ const OXYGEN_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-dusk",
         "asri-enhance-twilight",
         "asri-enhance-rosepine",
-        "asri-enhance-topaz",
-        "asri-enhance-gruvbox",
+        "asri-enhance-opalite",
+        "asri-enhance-gingko",
         "asri-enhance-glitch",
     ],
 };

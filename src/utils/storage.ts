@@ -9,9 +9,9 @@ export const PALETTE_NAMES = [
     "dusk",
     "twilight",
     "rosepine",
-    "topaz",
+    "opalite",
     "oxygen",
-    "gruvbox",
+    "gingko",
     "glitch",
 ] as const;
 export type PaletteName = typeof PALETTE_NAMES[number];
@@ -115,7 +115,7 @@ export const removeOceanConfig = (plugin: Plugin, configFile: string = "config.j
 export const removeDuskConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "dusk", configFile);
 export const removeTwilightConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "twilight", configFile);
 export const removeRosepineConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "rosepine", configFile);
-export const removeTopazConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "topaz", configFile);
+export const removeOpaliteConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "opalite", configFile);
 export const removeOxygenConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "oxygen", configFile);
-export const removeGruvboxConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "gruvbox", configFile);
+export const removeGingkoConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "gingko", configFile);
 export const removeGlitchConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "glitch", configFile);

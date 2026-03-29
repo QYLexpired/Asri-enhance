@@ -10,9 +10,9 @@ import { applyOceanConfig } from "./palette/ocean";
 import { applyDuskConfig } from "./palette/dusk";
 import { applyTwilightConfig } from "./palette/twilight";
 import { applyRosepineConfig } from "./palette/rosepine";
-import { applyTopazConfig } from "./palette/topaz";
+import { applyOpaliteConfig } from "./palette/opalite";
 import { applyOxygenConfig } from "./palette/oxygen";
-import { applyGruvboxConfig } from "./palette/gruvbox";
+import { applyGingkoConfig } from "./palette/gingko";
 import { applyGlitchConfig } from "./palette/glitch";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
@@ -66,9 +66,9 @@ class AsriEnhancePlugin extends Plugin {
             applyDuskConfig(this, config).catch(() => { }),
             applyTwilightConfig(this, config).catch(() => { }),
             applyRosepineConfig(this, config).catch(() => { }),
-            applyTopazConfig(this, config).catch(() => { }),
+            applyOpaliteConfig(this, config).catch(() => { }),
             applyOxygenConfig(this, config).catch(() => { }),
-            applyGruvboxConfig(this, config).catch(() => { }),
+            applyGingkoConfig(this, config).catch(() => { }),
             applyGlitchConfig(this, config).catch(() => { }),
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
@@ -121,9 +121,9 @@ class AsriEnhancePlugin extends Plugin {
                     target.closest("#asri-enhance-dusk") ||
                     target.closest("#asri-enhance-twilight") ||
                     target.closest("#asri-enhance-rosepine") ||
-                    target.closest("#asri-enhance-topaz") ||
+                    target.closest("#asri-enhance-opalite") ||
                     target.closest("#asri-enhance-oxygen") ||
-                    target.closest("#asri-enhance-gruvbox") ||
+                    target.closest("#asri-enhance-gingko") ||
                     target.closest("#asri-enhance-glitch")) {
                     return;
                 }
