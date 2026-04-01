@@ -1,9 +1,9 @@
 @use "public" as *;
-.asri-palette-rosepine.asri-enhance-enable {
+.asri-palette-lavender.asri-enhance-enable {
 	.asri-config:not(#topbarFusionPlus) {
 		--b3-theme-accent: var(--b3-theme-on-background);
 	}
-	#asri-enhance-rosepine:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
+	#asri-enhance-lavender:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
 		color: var(--b3-theme-accent);
 		& .b3-menu__icon {
 			color: var(--b3-theme-accent);
@@ -20,10 +20,10 @@
 		opacity: 0.38;
 	  }
 	&.asri-mode-light {
-		--rosepine-base-accent: #d88aa0;
-		--asri-theme-accent-customized: var(--rosepine-base-accent);
-		--b3-theme-primary: var(--rosepine-base-accent);
-		--b3-theme-accent: var(--rosepine-base-accent);
+		--lavender-base-accent: #a095bd;
+		--asri-theme-accent-customized: var(--lavender-base-accent);
+		--b3-theme-primary: var(--lavender-base-accent);
+		--b3-theme-accent: #c88aa7;
 		--b3-theme-background: #faf4ed;
 		--b3-theme-surface: #f2e9e1;
 		--b3-theme-on-background: #575279;
@@ -39,10 +39,10 @@
 		}
 	}
 	&.asri-mode-dark {
-		--rosepine-base-accent: #ebc3bc;
-		--asri-theme-accent-customized: var(--rosepine-base-accent);
-		--b3-theme-primary: var(--rosepine-base-accent);
-		--b3-theme-accent: var(--rosepine-base-accent);
+		--lavender-base-accent: #ebc3bc;
+		--asri-theme-accent-customized: var(--lavender-base-accent);
+		--b3-theme-primary: var(--lavender-base-accent);
+		--b3-theme-accent: var(--lavender-base-accent);
 		--b3-theme-background: #151320;
 		--b3-theme-surface: #1f1d2e;
 		--b3-theme-on-background: #e0def4;
@@ -63,18 +63,18 @@
 }
 #{$primary-color-reverse-selectors,
 ".b3-button--outline"} {
-	.asri-palette-rosepine.asri-mode-light.asri-enhance-enable & {
-		--b3-theme-primary: var(--rosepine-base-accent);
+	.asri-palette-lavender.asri-mode-light.asri-enhance-enable & {
+		--b3-theme-primary: var(--lavender-base-accent);
 		--b3-theme-on-primary: #faf4ed;
 	}
-	.asri-palette-rosepine.asri-mode-dark.asri-enhance-enable & {
-		--b3-theme-primary: var(--rosepine-base-accent);
+	.asri-palette-lavender.asri-mode-dark.asri-enhance-enable & {
+		--b3-theme-primary: var(--lavender-base-accent);
 		--b3-theme-on-primary: #000000;
 	}
 }
 .b3-button--outline,
 .protyle-breadcrumb__icon {
-	.asri-palette-rosepine.asri-enhance-enable & {
+	.asri-palette-lavender.asri-enhance-enable & {
 		--b3-theme-primary: var(--b3-theme-accent);
 	}
 }

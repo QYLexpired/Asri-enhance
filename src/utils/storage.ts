@@ -8,11 +8,10 @@ export const PALETTE_NAMES = [
     "ocean",
     "dusk",
     "twilight",
-    "rosepine",
+    "lavender",
     "opalite",
     "oxygen",
     "gingko",
-    "glitch",
 ] as const;
 export type PaletteName = typeof PALETTE_NAMES[number];
 export async function saveData(plugin: Plugin, fileName: string, data: Record<string, any>): Promise<void> {
@@ -114,8 +113,7 @@ export const removeMidnightConfig = (plugin: Plugin, configFile: string = "confi
 export const removeOceanConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "ocean", configFile);
 export const removeDuskConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "dusk", configFile);
 export const removeTwilightConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "twilight", configFile);
-export const removeRosepineConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "rosepine", configFile);
+export const removeLavenderConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "lavender", configFile);
 export const removeOpaliteConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "opalite", configFile);
 export const removeOxygenConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "oxygen", configFile);
 export const removeGingkoConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "gingko", configFile);
-export const removeGlitchConfig = (plugin: Plugin, configFile: string = "config.json") => removePaletteConfig(plugin, "glitch", configFile);

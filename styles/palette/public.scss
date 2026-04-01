@@ -3,11 +3,10 @@
       &.asri-palette-sakura,
       &.asri-palette-amber,
       &.asri-palette-wilderness,
-      &.asri-palette-rosepine,
+      &.asri-palette-lavender,
       &.asri-palette-opalite,
       &.asri-palette-dusk,
-      &.asri-palette-gingko,
-      &.asri-palette-glitch {
+      &.asri-palette-gingko {
         #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
           color: var(--b3-theme-accent);
           & .b3-menu__icon {
@@ -22,9 +21,8 @@
       &.asri-palette-midnight,
       &.asri-palette-ocean,
       &.asri-palette-twilight,
-      &.asri-palette-rosepine,
-      &.asri-palette-oxygen,
-      &.asri-palette-glitch {
+      &.asri-palette-lavender,
+      &.asri-palette-oxygen {
         #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
           color: var(--b3-theme-accent);
           & .b3-menu__icon {

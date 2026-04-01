@@ -153,6 +153,9 @@ $other-transparency-selectors: (
       transform: none;
     }
   }
+  #status {
+    mix-blend-mode: unset !important;
+  }
   .asri-tfp .layout__center {
     background-color: unset;
   }

@@ -6,11 +6,10 @@ import { onMidnightClick } from "../palette/midnight";
 import { onOceanClick } from "../palette/ocean";
 import { onDuskClick } from "../palette/dusk";
 import { onTwilightClick } from "../palette/twilight";
-import { onRosepineClick } from "../palette/rosepine";
+import { onLavenderClick } from "../palette/lavender";
 import { onOpaliteClick } from "../palette/opalite";
 import { onOxygenClick } from "../palette/oxygen";
 import { onGingkoClick } from "../palette/gingko";
-import { onGlitchClick } from "../palette/glitch";
 import { onColoredHeadingClick } from "../detail/coloredheading";
 import { onColoredTreeClick } from "../detail/coloredtree";
 import { onColoredListClick } from "../detail/coloredlist";
@@ -35,7 +34,6 @@ import { onNoiseClick } from "../texture/noise";
 import { onAcrylicClick } from "../texture/acrylic";
 import { onCheckerboardClick } from "../texture/checkerboard";
 import { onGridClick } from "../texture/grid";
-import { onPolkaDotClick } from "../texture/polkadot";
 import { onCrossDotClick } from "../texture/crossdot";
 import { onWoodClick } from "../texture/wood";
 import { onCamouflageClick } from "../texture/camouflage";
@@ -152,7 +150,7 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-palette";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.morePresetColors || "morePresetColors"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sakura || "Sakura"}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.amber || "amber"}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wilderness || "wilderness"}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.midnight || "midnight"}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.ocean || "ocean"}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.twilight || "twilight"}</span></button><button class="b3-menu__item" id="asri-enhance-rosepine">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.rosePine || "Rosé Pine"}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.opalite || "Opalite"}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.oxygen || "Oxygen"}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.dusk || "dusk"}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.gingko || "Ginkgo"}</span></button><button class="b3-menu__item" id="asri-enhance-glitch">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.glitch || "glitch"}</span></button></div></div>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.morePresetColors || "morePresetColors"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sakura || "Sakura"}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.amber || "amber"}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wilderness || "wilderness"}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.midnight || "midnight"}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.ocean || "ocean"}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.twilight || "twilight"}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.lavender || "Lavender"}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.opalite || "Opalite"}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.oxygen || "Oxygen"}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.dusk || "dusk"}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.gingko || "Ginkgo"}</span></button></div></div>`;
         let insertBeforeElement = pickColor;
         let previousElement = pickColor.previousElementSibling;
         while (previousElement) {
@@ -171,12 +169,11 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
         { id: "asri-enhance-midnight", handler: onMidnightClick },
         { id: "asri-enhance-ocean", handler: onOceanClick },
         { id: "asri-enhance-twilight", handler: onTwilightClick },
-        { id: "asri-enhance-rosepine", handler: onRosepineClick },
+        { id: "asri-enhance-lavender", handler: onLavenderClick },
         { id: "asri-enhance-opalite", handler: onOpaliteClick },
         { id: "asri-enhance-oxygen", handler: onOxygenClick },
         { id: "asri-enhance-dusk", handler: onDuskClick },
         { id: "asri-enhance-gingko", handler: onGingkoClick },
-        { id: "asri-enhance-glitch", handler: onGlitchClick },
     ];
     paletteItems.forEach(({ id, handler }) => {
         const item = parent.querySelector<HTMLButtonElement>(`#${id}`);
@@ -452,7 +449,6 @@ function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
         { id: "acrylic", label: plugin.i18n?.acrylic || "acrylic", handler: onAcrylicClick },
         { id: "checkerboard", label: plugin.i18n?.checkerboard || "checkerboard", handler: onCheckerboardClick },
         { id: "grid", label: plugin.i18n?.grid || "grid", handler: onGridClick },
-        { id: "polkadot", label: plugin.i18n?.polkadot || "polkadot", handler: onPolkaDotClick },
         { id: "crossdot", label: plugin.i18n?.crossdot || "crossdot", handler: onCrossDotClick },
         { id: "wood", label: plugin.i18n?.wood || "wood", handler: onWoodClick },
         { id: "camouflage", label: plugin.i18n?.camouflage || "camouflage", handler: onCamouflageClick },

@@ -12,10 +12,9 @@ const OPALITE_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-ocean",
         "asri-enhance-dusk",
         "asri-enhance-twilight",
-        "asri-enhance-rosepine",
+        "asri-enhance-lavender",
         "asri-enhance-oxygen",
         "asri-enhance-gingko",
-        "asri-enhance-glitch",
     ],
 };
 export async function onOpaliteClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

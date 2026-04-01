@@ -9,11 +9,10 @@ import { applyMidnightConfig } from "./palette/midnight";
 import { applyOceanConfig } from "./palette/ocean";
 import { applyDuskConfig } from "./palette/dusk";
 import { applyTwilightConfig } from "./palette/twilight";
-import { applyRosepineConfig } from "./palette/rosepine";
+import { applyLavenderConfig } from "./palette/lavender";
 import { applyOpaliteConfig } from "./palette/opalite";
 import { applyOxygenConfig } from "./palette/oxygen";
 import { applyGingkoConfig } from "./palette/gingko";
-import { applyGlitchConfig } from "./palette/glitch";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyColoredListConfig } from "./detail/coloredlist";
@@ -38,7 +37,6 @@ import { applyNoiseConfig } from "./texture/noise";
 import { applyAcrylicConfig } from "./texture/acrylic";
 import { applyCheckerboardConfig } from "./texture/checkerboard";
 import { applyGridConfig } from "./texture/grid";
-import { applyPolkaDotConfig } from "./texture/polkadot";
 import { applyCrossDotConfig } from "./texture/crossdot";
 import { applyWoodConfig } from "./texture/wood";
 import { applyCamouflageConfig } from "./texture/camouflage";
@@ -65,11 +63,10 @@ class AsriEnhancePlugin extends Plugin {
             applyOceanConfig(this, config).catch(() => { }),
             applyDuskConfig(this, config).catch(() => { }),
             applyTwilightConfig(this, config).catch(() => { }),
-            applyRosepineConfig(this, config).catch(() => { }),
+            applyLavenderConfig(this, config).catch(() => { }),
             applyOpaliteConfig(this, config).catch(() => { }),
             applyOxygenConfig(this, config).catch(() => { }),
             applyGingkoConfig(this, config).catch(() => { }),
-            applyGlitchConfig(this, config).catch(() => { }),
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyColoredListConfig(this, config).catch(() => { }),
@@ -94,7 +91,6 @@ class AsriEnhancePlugin extends Plugin {
             applyAcrylicConfig(this, config).catch(() => { }),
             applyCheckerboardConfig(this, config).catch(() => { }),
             applyGridConfig(this, config).catch(() => { }),
-            applyPolkaDotConfig(this, config).catch(() => { }),
             applyCrossDotConfig(this, config).catch(() => { }),
             applyWoodConfig(this, config).catch(() => { }),
             applyCamouflageConfig(this, config).catch(() => { }),
@@ -120,11 +116,10 @@ class AsriEnhancePlugin extends Plugin {
                     target.closest("#asri-enhance-ocean") ||
                     target.closest("#asri-enhance-dusk") ||
                     target.closest("#asri-enhance-twilight") ||
-                    target.closest("#asri-enhance-rosepine") ||
+                    target.closest("#asri-enhance-lavender") ||
                     target.closest("#asri-enhance-opalite") ||
                     target.closest("#asri-enhance-oxygen") ||
-                    target.closest("#asri-enhance-gingko") ||
-                    target.closest("#asri-enhance-glitch")) {
+                    target.closest("#asri-enhance-gingko")) {
                     return;
                 }
                 const asriConfig = target.closest(".asri-config");

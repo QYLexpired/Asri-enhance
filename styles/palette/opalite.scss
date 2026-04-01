@@ -30,9 +30,8 @@
     --b3-theme-accent: var(--opalite-base-accent);
     --b3-theme-background: #f9f7e4;
     --b3-theme-surface: #f0efd0;
-    --b3-theme-on-background: #043d41;
-    --b3-theme-on-surface: #697b7a;
-    --b3-menu-background: oklch(from var(--b3-theme-background) 0.95 c h);
+    --b3-theme-on-background: #336260;
+    --b3-theme-on-surface: #6c8687;
     .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
     .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
       background-color: #3c6da838;

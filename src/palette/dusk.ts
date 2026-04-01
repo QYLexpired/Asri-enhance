@@ -10,11 +10,10 @@ const DUSK_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-wilderness",
         "asri-enhance-midnight",
         "asri-enhance-ocean",
-        "asri-enhance-rosepine",
+        "asri-enhance-lavender",
         "asri-enhance-opalite",
         "asri-enhance-oxygen",
         "asri-enhance-gingko",
-        "asri-enhance-glitch",
     ],
 };
 export async function onDuskClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

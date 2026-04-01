@@ -11,11 +11,10 @@ const TWILIGHT_PALETTE_INFO: PaletteInfo = {
         "asri-enhance-midnight",
         "asri-enhance-ocean",
         "asri-enhance-dusk",
-        "asri-enhance-rosepine",
+        "asri-enhance-lavender",
         "asri-enhance-opalite",
         "asri-enhance-oxygen",
         "asri-enhance-gingko",
-        "asri-enhance-glitch",
     ],
 };
 export async function onTwilightClick(plugin: Plugin, event?: MouseEvent): Promise<void> {

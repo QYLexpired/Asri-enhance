@@ -3,8 +3,8 @@ import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-customimage";
 const DATA_ATTR = "data-asri-enhance-customimage";
-const OTHER_CONFIG_KEYS = ["asri-enhance-paper", "asri-enhance-acrylic", "asri-enhance-checkerboard", "asri-enhance-grid", "asri-enhance-polkadot", "asri-enhance-crossdot", "asri-enhance-wood", "asri-enhance-camouflage", "asri-enhance-noise"];
-const OTHER_DATA_ATTRS = ["data-asri-enhance-paper", "data-asri-enhance-acrylic", "data-asri-enhance-checkerboard", "data-asri-enhance-grid", "data-asri-enhance-polkadot", "data-asri-enhance-crossdot", "data-asri-enhance-wood", "data-asri-enhance-camouflage", "data-asri-enhance-noise"];
+const OTHER_CONFIG_KEYS = ["asri-enhance-paper", "asri-enhance-acrylic", "asri-enhance-checkerboard", "asri-enhance-grid", "asri-enhance-crossdot", "asri-enhance-wood", "asri-enhance-camouflage", "asri-enhance-noise"];
+const OTHER_DATA_ATTRS = ["data-asri-enhance-paper", "data-asri-enhance-acrylic", "data-asri-enhance-checkerboard", "data-asri-enhance-grid", "data-asri-enhance-crossdot", "data-asri-enhance-wood", "data-asri-enhance-camouflage", "data-asri-enhance-noise"];
 const DEFAULT_PRESET_KEY = "asri-enhance-customimage-default";
 const CURRENT_PRESET_KEY = "asri-enhance-customimage-current";
 type CustomImageField = {
@@ -481,7 +481,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-hue-rotate-tooltip-dark" aria-label="0deg">   
         <input class="b3-slider fn__size200" id="asri-enhance-customimage-hue-rotate-dark" max="360" min="0" step="1" type="range" value="0">
     </div>
-</div></div><div class="b3-dialog__action">
+</div></div><div class="b3-dialog__action" style="padding-bottom: 6px;">
     <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-toggle-detail">${plugin.i18n?.customimageShowDetail || "显示详细参数"}</button>
     <div class="fn__space"></div>
     <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-reset-preset">${plugin.i18n?.customimageResetPreset || "Reset to defaults"}</button>

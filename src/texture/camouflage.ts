@@ -3,8 +3,8 @@ import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-camouflage";
 const DATA_ATTR = "data-asri-enhance-camouflage";
-const OTHER_CONFIG_KEYS = ["asri-enhance-paper", "asri-enhance-noise", "asri-enhance-acrylic", "asri-enhance-checkerboard", "asri-enhance-grid", "asri-enhance-polkadot", "asri-enhance-crossdot", "asri-enhance-wood", "asri-enhance-customimage"];
-const OTHER_DATA_ATTRS = ["data-asri-enhance-paper", "data-asri-enhance-noise", "data-asri-enhance-acrylic", "data-asri-enhance-checkerboard", "data-asri-enhance-grid", "data-asri-enhance-polkadot", "data-asri-enhance-crossdot", "data-asri-enhance-wood", "data-asri-enhance-customimage"];
+const OTHER_CONFIG_KEYS = ["asri-enhance-paper", "asri-enhance-noise", "asri-enhance-acrylic", "asri-enhance-checkerboard", "asri-enhance-grid", "asri-enhance-crossdot", "asri-enhance-wood", "asri-enhance-customimage"];
+const OTHER_DATA_ATTRS = ["data-asri-enhance-paper", "data-asri-enhance-noise", "data-asri-enhance-acrylic", "data-asri-enhance-checkerboard", "data-asri-enhance-grid", "data-asri-enhance-crossdot", "data-asri-enhance-wood", "data-asri-enhance-customimage"];
 export function onCamouflageClick(plugin: Plugin, event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
