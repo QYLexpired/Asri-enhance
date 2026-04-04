@@ -15,15 +15,7 @@ export const PALETTE_NAMES = [
 ] as const;
 export type PaletteName = typeof PALETTE_NAMES[number];
 export async function saveData(plugin: Plugin, fileName: string, data: Record<string, any>): Promise<void> {
-    if (!plugin.saveData) {
-        throw new Error("Plugin saveData method is not available");
-    }
-    try {
-        await plugin.saveData(fileName, data);
-    }
-    catch (err) {
-        throw err;
-    }
+    await plugin.saveData(fileName, data);
 }
 export async function loadData(plugin: Plugin, fileName: string): Promise<Record<string, any> | null> {
     if (!plugin.loadData) {

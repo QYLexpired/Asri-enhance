@@ -194,6 +194,9 @@
         .config-account__cover[style="background-image: url()"] {
             background: radial-gradient(circle at bottom, oklch(from var(--b3-theme-primary) l calc(c * 1.05) h / 0.3) 30%, oklch(from var(--b3-theme-primary) l calc(c * 1.1) calc(h + 30) / 0.1) 85%) !important;
         }
+        .config-account__info {
+            background-color: transparent;
+        }
     }
     // 弹出窗口
     .block__popover.block__popover--open {
