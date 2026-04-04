@@ -1,3 +1,4 @@
+@use "../asri/asri-enhance" as *;
 $cardlayout-dock-transparency-selectors: (
     ".layout__dockl:not(.layout--float) .layout-tab-container",
     ".layout__dockr:not(.layout--float) .layout-tab-container",
@@ -10,14 +11,7 @@ $cardlayout-dock-transparency-selectors: (
     "#dockBottom:not(.fn__none) ~ .status"
 );
 [data-asri-enhance-card-layout="true"].asri-enhance-enable {
-    #asri-enhance-card-layout {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-card-layout");
     &.asri-palette-polar {
         .layout__dockl,
         .dock,

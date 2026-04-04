@@ -1,12 +1,6 @@
+@use "../asri/asri-enhance" as *;
 [data-asri-enhance-acrylic="true"].asri-enhance-enable {
-    #asri-enhance-texture, #asri-enhance-acrylic {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-texture", "#asri-enhance-acrylic");
     --asri-enhance-acrylic-texture: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><filter id='noise'><feTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='3' /></filter><rect width='100%' height='100%' filter='url(%23noise)' /></svg>");
     body {
         &::before {

@@ -1,12 +1,6 @@
+@use "../asri/asri-enhance" as *;
 [data-asri-enhance-global-frosted-glass="true"].asri-enhance-enable {
-    #asri-enhance-global-frosted-glass, #asri-enhance-detail-adjustment {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-global-frosted-glass", "#asri-enhance-detail-adjustment");
     &.asri-mode-light {
         --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);

@@ -1,4 +1,36 @@
 @forward "../asri/asri";
+.asri-mode-light.asri-enhance-enable {
+    &.asri-palette-sakura,
+    &.asri-palette-amber,
+    &.asri-palette-wilderness,
+    &.asri-palette-lavender,
+    &.asri-palette-opalite,
+    &.asri-palette-dusk,
+    &.asri-palette-gingko {
+        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            & .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+}
+.asri-mode-dark.asri-enhance-enable {
+    &.asri-palette-amber,
+    &.asri-palette-wilderness,
+    &.asri-palette-midnight,
+    &.asri-palette-ocean,
+    &.asri-palette-twilight,
+    &.asri-palette-lavender,
+    &.asri-palette-oxygen {
+        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            & .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+}
 @mixin layout-tab-bar-item-focus($color) {
     .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
     .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
@@ -58,38 +90,6 @@
     }
     @else if $mode == "all" {
         // light和dark都支持时不隐藏配色按钮
-    }
-}
-.asri-mode-light.asri-enhance-enable {
-    &.asri-palette-sakura,
-    &.asri-palette-amber,
-    &.asri-palette-wilderness,
-    &.asri-palette-lavender,
-    &.asri-palette-opalite,
-    &.asri-palette-dusk,
-    &.asri-palette-gingko {
-        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            & .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
-}
-.asri-mode-dark.asri-enhance-enable {
-    &.asri-palette-amber,
-    &.asri-palette-wilderness,
-    &.asri-palette-midnight,
-    &.asri-palette-ocean,
-    &.asri-palette-twilight,
-    &.asri-palette-lavender,
-    &.asri-palette-oxygen {
-        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            & .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
     }
 }
 $layout-tab-bar-item-focus-selectors: (

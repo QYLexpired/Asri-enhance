@@ -1,12 +1,6 @@
+@use "../asri/asri-enhance" as *;
 [data-asri-enhance-multicolslashmenu="true"].asri-enhance-enable {
-    #asri-enhance-multicolslashmenu, #asri-enhance-detail-adjustment {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-multicolslashmenu", "#asri-enhance-detail-adjustment");
     @mixin multicol-menu($min-width, $column-width) {
         .protyle-hint.hint--menu {   
             max-height: min(80vh, 550px);

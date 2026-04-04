@@ -1,12 +1,6 @@
+@use "../asri/asri-enhance" as *;
 [data-asri-enhance-colored-tree="true"].asri-enhance-enable {
-    #asri-enhance-colored-tree, #asri-enhance-detail-adjustment {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            & .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-colored-tree", "#asri-enhance-detail-adjustment");
     --asri-enhance-colored-tree-border-width: 3px;
     .layout__dockl {
         --asri-enhance-colored-tree-ulmargin: 0 12px 0 calc(var(--asri-enhance-colored-tree-border-width) + 12px);

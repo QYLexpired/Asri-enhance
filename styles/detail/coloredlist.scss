@@ -1,12 +1,6 @@
+@use "../asri/asri-enhance" as *;
 [data-asri-enhance-colored-list="true"].asri-enhance-enable {
-    #asri-enhance-colored-list, #asri-enhance-detail-adjustment {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            & .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-colored-list", "#asri-enhance-detail-adjustment");
     .protyle-wysiwyg [data-node-id].list:not(.list .list) {
         & > [data-node-id].li {
             @for $i from 0 through 7 {

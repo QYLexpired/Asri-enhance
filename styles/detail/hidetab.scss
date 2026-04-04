@@ -1,3 +1,4 @@
+@use "../asri/asri-enhance" as *;
 @mixin asri-tfp-progressive-hide-fix {
     --pgbb: 0px !important;
     & .protyle {
@@ -18,14 +19,7 @@
     }
 }
 [data-asri-enhance-hide-tab="true"].asri-enhance-enable {
-    #asri-enhance-hide-tab, #asri-enhance-detail-adjustment {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-hide-tab", "#asri-enhance-detail-adjustment");
     body:not(.asri-tfp) #asri-enhance-hide-tab {
         opacity: 0.38;
     }

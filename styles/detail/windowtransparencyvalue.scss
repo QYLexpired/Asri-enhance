@@ -1,14 +1,10 @@
 @use "../asri/asri" as *;
+@use "../asri/asri-enhance" as *;
 [data-asri-enhance-windowtransparencyvalue].asri-enhance-enable {
+    @include asri-enhance-item-highlight("#asri-enhance-windowtransparencyvalue");
     #asri-enhance-windowtransparencyvalue {
         background-color: transparent !important;
         background: unset !important;
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
         .b3-tooltips {
             flex-grow: 1;
         }

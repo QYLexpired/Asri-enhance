@@ -1,12 +1,6 @@
+@use "../asri/asri-enhance" as *;
 [data-asri-enhance-checkerboard="true"].asri-enhance-enable {
-    #asri-enhance-texture, #asri-enhance-checkerboard {
-        &:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-            color: var(--b3-theme-accent);
-            .b3-menu__icon {
-                color: var(--b3-theme-accent);
-            }
-        }
-    }
+    @include asri-enhance-item-highlight("#asri-enhance-texture", "#asri-enhance-checkerboard");
     body {
         &::before {
             content: "";
