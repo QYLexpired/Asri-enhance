@@ -1,29 +1,9 @@
-@use "public" as *;
-.asri-mode-dark.asri-enhance-enable {
-    #asri-enhance-dusk {
-        display: none;
-    }
-}
+@use "manager" as *;
+@include palette-mode(dusk, "light");
 .asri-palette-dusk.asri-mode-light.asri-enhance-enable {
-    .asri-config:not(#topbarFusionPlus) {
-        --b3-theme-accent: var(--b3-theme-on-background);
-    }
-    #asri-enhance-dusk:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-        color: var(--b3-theme-accent);
-        & .b3-menu__icon {
-          color: var(--b3-theme-accent);
-        }
-    }
-    #pickColor, #followSysAccent, #followCoverImgColor {
-        & svg {
-            background-color: transparent !important;
-            outline: unset !important;
-        }
-    }
-    #asriChroma {
-        pointer-events: none;
-        opacity: 0.38;
-    }
+    @include palette-common(dusk);
+    @include palette-heading-color(var(--b3-theme-primary));
+    @include palette-primary-color-scope(var(--b3-theme-accent));
     --dusk-base-accent: #d6957d;
     --asri-theme-accent-customized: var(--dusk-base-accent);
     --b3-theme-primary: var(--dusk-base-accent);
@@ -33,21 +13,11 @@
     --b3-theme-on-background: #575279;
     --b3-theme-on-surface: #807c99;
     --b3-menu-background: oklch(from var(--b3-theme-background) 0.92 0.018 h);
-    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
-    .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-      background-color: #aa868633;
-    }
-    [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+    #{$layout-tab-bar-item-focus-selectors} {
         background-color: #aa868633 !important;
     }
     #{$primary-color-reverse-selectors} {
         --b3-theme-primary: var(--dusk-base-accent);
         --b3-theme-on-primary: #ffffffcc;
-    }
-}
-.b3-button--outline,
-.protyle-breadcrumb__icon {
-    .asri-palette-dusk.asri-mode-light.asri-enhance-enable & {
-        --b3-theme-primary: var(--b3-theme-accent);
     }
 }

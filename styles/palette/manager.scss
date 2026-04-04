@@ -1,0 +1,99 @@
+@forward "../asri/asri";
+@mixin layout-tab-bar-item-focus($color) {
+    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
+    .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
+        background-color: #{$color}33;
+    }
+    [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
+        background-color: #{$color}33 !important;
+    }
+}
+@mixin palette-heading-color($color) {
+    .protyle-title__input,
+    [data-type="NodeHeading"],
+    h1, h2, h3, h4, h5, h6 {
+        color: #{$color};
+    }
+}
+@mixin palette-primary-color-scope($color) {
+    .b3-button--outline,
+    .protyle-breadcrumb__icon {
+        --b3-theme-primary: #{$color};
+    }
+}
+@mixin palette-common($palette-name) {
+    .asri-config:not(#topbarFusionPlus) {
+        --b3-theme-accent: var(--b3-theme-on-background);
+    }
+    #asri-enhance-#{"" + $palette-name}:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
+        color: var(--b3-theme-accent);
+        & .b3-menu__icon {
+        color: var(--b3-theme-accent);
+        }
+    }
+    #pickColor, #followSysAccent, #followCoverImgColor {
+        & svg {
+        background-color: transparent !important;
+        outline: unset !important;
+        }
+    }
+    #asriChroma {
+        pointer-events: none;
+        opacity: 0.38;
+    }
+}
+@mixin palette-mode($palette-name, $mode) {
+    @if $mode == "light" {
+        .asri-mode-dark.asri-enhance-enable {
+            #asri-enhance-#{"" + $palette-name} {
+                display: none;
+            }
+        }
+    } @else if $mode == "dark" {
+        .asri-mode-light.asri-enhance-enable {
+            #asri-enhance-#{"" + $palette-name} {
+                display: none;
+            }
+        }
+    }
+    @else if $mode == "all" {
+        // light和dark都支持时不隐藏配色按钮
+    }
+}
+.asri-mode-light.asri-enhance-enable {
+    &.asri-palette-sakura,
+    &.asri-palette-amber,
+    &.asri-palette-wilderness,
+    &.asri-palette-lavender,
+    &.asri-palette-opalite,
+    &.asri-palette-dusk,
+    &.asri-palette-gingko {
+        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            & .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+}
+.asri-mode-dark.asri-enhance-enable {
+    &.asri-palette-amber,
+    &.asri-palette-wilderness,
+    &.asri-palette-midnight,
+    &.asri-palette-ocean,
+    &.asri-palette-twilight,
+    &.asri-palette-lavender,
+    &.asri-palette-oxygen {
+        #asri-enhance-palette:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
+            color: var(--b3-theme-accent);
+            & .b3-menu__icon {
+                color: var(--b3-theme-accent);
+            }
+        }
+    }
+}
+$layout-tab-bar-item-focus-selectors: (
+    ".layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover",
+    ".layout__center :not(.av__views) > .layout-tab-bar .item--focus",
+    "[data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus"
+);

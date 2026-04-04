@@ -1,29 +1,9 @@
-@use "public" as *;
-.asri-mode-light.asri-enhance-enable {
-    #asri-enhance-twilight {
-        display: none;
-    }
-}
+@use "manager" as *;
+@include palette-mode(twilight, "dark");
 .asri-palette-twilight.asri-mode-dark.asri-enhance-enable {
-    .asri-config:not(#topbarFusionPlus) {
-        --b3-theme-accent: var(--b3-theme-on-background);
-    }
-    #asri-enhance-twilight:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-        color: var(--b3-theme-accent);
-        & .b3-menu__icon {
-          color: var(--b3-theme-accent);
-        }
-    }
-    #pickColor, #followSysAccent, #followCoverImgColor {
-        & svg {
-            background-color: transparent !important;
-            outline: unset !important;
-        }
-    }
-    #asriChroma {
-        pointer-events: none;
-        opacity: 0.38;
-      }
+    @include palette-common(twilight);
+    @include palette-heading-color(var(--b3-theme-primary));
+    @include palette-primary-color-scope(var(--b3-theme-accent));
     --twilight-base-accent: #b7c9ff;
     --asri-theme-accent-customized: var(--twilight-base-accent);
     --b3-theme-primary: var(--twilight-base-accent);
@@ -32,19 +12,8 @@
     --b3-theme-surface: #24273a;
     --b3-theme-on-background: rgb(197, 207, 245);
     --b3-theme-on-surface: rgb(143, 151, 183);
-    .protyle-title__input,
-    [data-type="NodeHeading"],
-    :where(h1, h2, h3, h4, h5, h6) {
-        color: var(--b3-theme-primary);
-    }
     #{$primary-color-reverse-selectors} {
         --b3-theme-primary: var(--twilight-base-accent);
         --b3-theme-on-primary: #000000;
-    }
-}
-.b3-button--outline,
-.protyle-breadcrumb__icon {
-    .asri-palette-twilight.asri-mode-dark.asri-enhance-enable & {
-        --b3-theme-primary: var(--b3-theme-accent);
     }
 }

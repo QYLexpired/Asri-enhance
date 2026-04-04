@@ -1,29 +1,9 @@
-@use "public" as *;
-.asri-mode-light.asri-enhance-enable {
-    #asri-enhance-ocean {
-        display: none;
-    }
-}
+@use "manager" as *;
+@include palette-mode(ocean, "dark");
 .asri-palette-ocean.asri-mode-dark.asri-enhance-enable {
-    .asri-config:not(#topbarFusionPlus) {
-        --b3-theme-accent: var(--b3-theme-on-background);
-    }
-    #asri-enhance-ocean:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-        color: var(--b3-theme-accent);
-        & .b3-menu__icon {
-          color: var(--b3-theme-accent);
-        }
-    }
-    #pickColor, #followSysAccent, #followCoverImgColor {
-        & svg {
-            background-color: transparent !important;
-            outline: unset !important;
-        }
-    }
-    #asriChroma {
-        pointer-events: none;
-        opacity: 0.38;
-      }
+    @include palette-common(ocean);
+    @include palette-heading-color(var(--b3-theme-primary));
+    @include palette-primary-color-scope(var(--b3-theme-accent));
     --ocean-base-accent: #b8e53f;
     --asri-theme-accent-customized: var(--ocean-base-accent);
     --b3-theme-primary: var(--ocean-base-accent);
@@ -32,31 +12,11 @@
     --b3-theme-surface: #141825;
     --b3-theme-on-background: #ebebeb;
     --b3-theme-on-surface: #e7e7e7;
-    .protyle-title__input,
-    [data-type="NodeHeading"],
-    :where(h1, h2, h3, h4, h5, h6) {
-        color: var(--b3-theme-primary);
+    #{$layout-tab-bar-item-focus-selectors} {
+        background-color: #7a93cf59 !important;
     }
     #{$primary-color-reverse-selectors} {
         --b3-theme-primary: var(--ocean-base-accent);
-        --b3-theme-on-primary: #fff;
-    }
-    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
-    .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-      background-color: #7a93cf59;
-    }
-    [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-        background-color: #7a93cf59 !important;
-    }
-    #{$primary-color-reverse-selectors,
-        ".b3-button--outline"} {
-            --b3-theme-primary: var(--ocean-base-accent);
-            --b3-theme-on-primary: #000000;
-        }
-}
-.b3-button--outline,
-.protyle-breadcrumb__icon {
-    .asri-palette-ocean.asri-mode-dark.asri-enhance-enable & {
-        --b3-theme-primary: var(--b3-theme-accent);
+        --b3-theme-on-primary: #000000;
     }
 }

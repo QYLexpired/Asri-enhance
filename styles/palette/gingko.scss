@@ -1,29 +1,9 @@
-@use "public" as *;
-.asri-mode-dark.asri-enhance-enable {
-    #asri-enhance-gingko {
-        display: none;
-    }
-}
+@use "manager" as *;
+@include palette-mode(gingko, "light");
 .asri-palette-gingko.asri-mode-light.asri-enhance-enable {
-    .asri-config:not(#topbarFusionPlus) {
-        --b3-theme-accent: var(--b3-theme-on-background);
-    }
-    #asri-enhance-gingko:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-        color: var(--b3-theme-accent);
-        & .b3-menu__icon {
-          color: var(--b3-theme-accent);
-        }
-    }
-    #pickColor, #followSysAccent, #followCoverImgColor {
-      & svg {
-          background-color: transparent !important;
-          outline: unset !important;
-      }
-  }
-    #asriChroma {
-      pointer-events: none;
-      opacity: 0.38;
-    }
+    @include palette-common(gingko);
+    @include palette-heading-color(var(--b3-theme-primary));
+    @include palette-primary-color-scope(var(--b3-theme-accent));
     --gingko-base-accent: #d55a5a;
     --asri-theme-accent-customized: var(--gingko-base-accent);
     --b3-theme-primary: var(--gingko-base-accent);
@@ -35,28 +15,11 @@
     --b3-border-color: oklch( from var(--b3-theme-background) 0.88 c h );
     --b3-theme-surface-lighter: var(--b3-border-color);
     --b3-menu-background: oklch(from var(--b3-theme-background) 0.945 0.035 h);
-    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
-    .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-      background-color: #af900033;
+    #{$layout-tab-bar-item-focus-selectors} {
+      background-color: #af900033 !important;
     }
-    [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-        background-color: #af900033 !important;
-    }
-    .protyle-title__input,
-    [data-type="NodeHeading"],
-    :where(h1, h2, h3, h4, h5, h6) {
-        color: var(--b3-theme-primary);
-    }
-}
-#{$primary-color-reverse-selectors} {
-    .asri-palette-gingko.asri-mode-light.asri-enhance-enable & {
+    #{$primary-color-reverse-selectors} {
       --b3-theme-primary: #e1d671;
       --b3-theme-on-primary: #534300;
-    }
-}
-.b3-button--outline,
-.protyle-breadcrumb__icon {
-    .asri-palette-gingko.asri-enhance-enable & {
-      --b3-theme-primary: var(--b3-theme-accent);
     }
 }

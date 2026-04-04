@@ -1,64 +1,27 @@
-@use "public" as *;
-.asri-mode-dark.asri-enhance-enable {
-    #asri-enhance-sakura {
-        display: none;
-    }
-}
+@use "manager" as *;
+@include palette-mode(sakura, "light");
 .asri-palette-sakura.asri-mode-light.asri-enhance-enable {
-  .asri-config:not(#topbarFusionPlus) {
-      --b3-theme-accent: var(--b3-theme-on-background);
-  }
-  #asri-enhance-sakura:not(:hover):not(.b3-menu__item--show):not(.b3-menu__item--current) {
-      color: var(--b3-theme-accent);
-      & .b3-menu__icon {
-        color: var(--b3-theme-accent);
-      }
-  }
-  #pickColor, #followSysAccent, #followCoverImgColor {
-    & svg {
-        background-color: transparent !important;
-        outline: unset !important;
+    @include palette-common(sakura);
+    @include palette-heading-color(var(--b3-theme-primary));
+    @include palette-primary-color-scope(var(--b3-theme-accent));
+    &.asri-mode-light {
+        --sakura-base-accent: #e68e94;
+        --asri-theme-accent-customized: var(--sakura-base-accent);
+        --b3-theme-primary: var(--sakura-base-accent);
+        --b3-theme-accent: var(--sakura-base-accent);
+        --b3-theme-background: #fffaf4;
+        --b3-theme-surface: #ffede7;
+        --b3-theme-on-background: #56487c;
+        --b3-theme-on-surface: #7c758d;
+        --b3-border-color: oklch( from var(--b3-theme-background) 0.9 c h );
+        --b3-theme-surface-lighter: var(--b3-border-color);
+        --b3-menu-background: oklch(from var(--b3-theme-background) 0.97 0.018 h);
+        #{$layout-tab-bar-item-focus-selectors} {
+            background-color: #ff888840 !important;
+        }
+        #{$primary-color-reverse-selectors} {
+            --b3-theme-primary: #ffcaca;
+            --b3-theme-on-primary: #9e4a4a;
+        }
     }
-}
-  #asriChroma {
-    pointer-events: none;
-    opacity: 0.38;
-  }
-  &.asri-mode-light {
-    --sakura-base-accent: #e68e94;
-    --asri-theme-accent-customized: var(--sakura-base-accent);
-    --b3-theme-primary: var(--sakura-base-accent);
-    --b3-theme-accent: var(--sakura-base-accent);
-    --b3-theme-background: #fffaf4;
-    --b3-theme-surface: #ffede7;
-    --b3-theme-on-background: #56487c;
-    --b3-theme-on-surface: #7c758d;
-    --b3-border-color: oklch( from var(--b3-theme-background) 0.9 c h );
-    --b3-theme-surface-lighter: var(--b3-border-color);
-    --b3-menu-background: oklch(from var(--b3-theme-background) 0.97 0.018 h);
-    .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
-    .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-      background-color: #ff888840;
-    }
-    [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-        background-color: #ff888840 !important;
-    }
-  }
-  .protyle-title__input,
-  [data-type="NodeHeading"],
-  :where(h1, h2, h3, h4, h5, h6) {
-    color: var(--b3-theme-primary);
-  }
-}
-#{$primary-color-reverse-selectors} {
-  .asri-palette-sakura.asri-mode-light.asri-enhance-enable & {
-    --b3-theme-primary: #ffcaca;
-    --b3-theme-on-primary: #9e4a4a;
-  }
-}
-.b3-button--outline,
-.protyle-breadcrumb__icon {
-  .asri-palette-sakura.asri-enhance-enable & {
-    --b3-theme-primary: var(--b3-theme-accent);
-  }
 }
