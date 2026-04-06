@@ -1,10 +1,11 @@
 import { Plugin, Dialog } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
-const CONFIG_FILE = "config.json";
-const CONFIG_KEY = "asri-enhance-customimage";
-const DATA_ATTR = "data-asri-enhance-customimage";
-const OTHER_CONFIG_KEYS = ["asri-enhance-paper", "asri-enhance-acrylic", "asri-enhance-checkerboard", "asri-enhance-grid", "asri-enhance-crossdot", "asri-enhance-wood", "asri-enhance-camouflage", "asri-enhance-noise"];
-const OTHER_DATA_ATTRS = ["data-asri-enhance-paper", "data-asri-enhance-acrylic", "data-asri-enhance-checkerboard", "data-asri-enhance-grid", "data-asri-enhance-crossdot", "data-asri-enhance-wood", "data-asri-enhance-camouflage", "data-asri-enhance-noise"];
+import { createTextureInfo, CONFIG_FILE } from "./manager";
+const CUSTOMIMAGE_INFO = createTextureInfo("customimage");
+const CONFIG_KEY = CUSTOMIMAGE_INFO.configKey;
+const DATA_ATTR = CUSTOMIMAGE_INFO.dataAttr;
+const OTHER_CONFIG_KEYS = CUSTOMIMAGE_INFO.otherConfigKeys;
+const OTHER_DATA_ATTRS = CUSTOMIMAGE_INFO.otherDataAttrs;
 const DEFAULT_PRESET_KEY = "asri-enhance-customimage-default";
 const CURRENT_PRESET_KEY = "asri-enhance-customimage-current";
 type CustomImageField = {
@@ -894,7 +895,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
         } catch {
         }
     });
-}export async function applyCustomImageConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+}
+export async function applyCustomImageConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;
