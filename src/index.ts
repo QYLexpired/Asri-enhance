@@ -44,7 +44,8 @@ import { applyCustomImageConfig, removeCustomImageConfig } from "./texture/custo
 import { applyTypewriterModeConfig, destroyTypewriterMode, onTypewriterModeClick } from "./immersive/typewriter";
 import { applyFocusModeConfig, onFocusModeClick } from "./immersive/focus";
 import { applyFollowTimeConfig } from "./followtime/followtime";
-import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, loadData, disableAllPalettesForCurrentTheme } from "./utils/storage";
+import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, disableAllPalettesForCurrentTheme } from "./palette/manager";
+import { loadData } from "./utils/storage";
 import { removeFollowTimeConfig } from "./followtime/followtime";
 class AsriEnhancePlugin extends Plugin {
     private unsubscribeBarModeClick: Unsubscribe | null = null;

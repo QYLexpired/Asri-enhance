@@ -1,26 +1,10 @@
 import { Plugin } from "siyuan";
-import { removeOceanConfig } from "../utils/storage";
-import { onPaletteClick, applyPaletteConfig, type PaletteInfo } from "./manager";
-const OCEAN_PALETTE_INFO: PaletteInfo = {
-    name: "ocean",
-    configKey: "asri-enhance-ocean",
-    otherConfigKeys: [
-        "asri-enhance-sakura",
-        "asri-enhance-amber",
-        "asri-enhance-wilderness",
-        "asri-enhance-midnight",
-        "asri-enhance-dusk",
-        "asri-enhance-twilight",
-        "asri-enhance-lavender",
-        "asri-enhance-opalite",
-        "asri-enhance-oxygen",
-        "asri-enhance-gingko",
-    ],
-};
+import { createPaletteInfo } from "./manager";
+import { onPaletteClick, applyPaletteConfig } from "./manager";
+const OCEAN_PALETTE_INFO = createPaletteInfo("ocean");
 export async function onOceanClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
     return onPaletteClick(plugin, OCEAN_PALETTE_INFO, event);
 }
 export async function applyOceanConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
     return applyPaletteConfig(plugin, OCEAN_PALETTE_INFO, config);
 }
-export { removeOceanConfig };

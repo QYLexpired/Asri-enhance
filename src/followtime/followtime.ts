@@ -1,6 +1,6 @@
 import { Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
-import { PaletteConfig } from "../palette/manager";
+import type { PaletteConfig } from "../palette/manager";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-follow-time";
 const COLOR_CONFIG_KEY = "asri-enhance-follow-time-base-color";
