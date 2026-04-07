@@ -110,17 +110,7 @@ class AsriEnhancePlugin extends Plugin {
                 const target = event.target as HTMLElement;
                 if (!target)
                     return;
-                if (target.closest("#asri-enhance-amber") ||
-                    target.closest("#asri-enhance-sakura") ||
-                    target.closest("#asri-enhance-wilderness") ||
-                    target.closest("#asri-enhance-midnight") ||
-                    target.closest("#asri-enhance-ocean") ||
-                    target.closest("#asri-enhance-dusk") ||
-                    target.closest("#asri-enhance-twilight") ||
-                    target.closest("#asri-enhance-lavender") ||
-                    target.closest("#asri-enhance-opalite") ||
-                    target.closest("#asri-enhance-oxygen") ||
-                    target.closest("#asri-enhance-gingko")) {
+                if (PALETTE_NAMES.some(palette => target.closest(`#asri-enhance-${palette}`))) {
                     return;
                 }
                 const asriConfig = target.closest(".asri-config");
@@ -225,7 +215,7 @@ class AsriEnhancePlugin extends Plugin {
         await this.applyAllConfigs(config);
         (this as any).addCommand({
             langKey: "asri-enhance-typewriter",
-            langText: this.i18n?.typewriter || "打字机模式",
+            langText: this.i18n.typewriter,
             hotkey: "",
             callback: () => {
                 onTypewriterModeClick(this);
@@ -233,7 +223,7 @@ class AsriEnhancePlugin extends Plugin {
         });
         (this as any).addCommand({
             langKey: "asri-enhance-focus",
-            langText: this.i18n?.focus || "聚焦模式",
+            langText: this.i18n.focus,
             hotkey: "",
             callback: () => {
                 onFocusModeClick(this);
@@ -241,7 +231,7 @@ class AsriEnhancePlugin extends Plugin {
         });
         (this as any).addCommand({
             langKey: "asri-enhance-sidememo",
-            langText: this.i18n?.sidememo || "侧边备注",
+            langText: this.i18n.sidememo,
             hotkey: "",
             callback: () => {
                 onSideMemoClick(this);

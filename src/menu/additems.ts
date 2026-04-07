@@ -150,7 +150,7 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-palette";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.morePresetColors || "morePresetColors"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sakura || "Sakura"}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.amber || "amber"}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wilderness || "wilderness"}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.midnight || "midnight"}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.ocean || "ocean"}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.twilight || "twilight"}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.lavender || "Lavender"}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.opalite || "Opalite"}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.oxygen || "Oxygen"}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.dusk || "dusk"}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.gingko || "Ginkgo"}</span></button></div></div>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.morePresetColors}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sakura}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.amber}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wilderness}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.midnight}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.ocean}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.twilight}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.lavender}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.opalite}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.oxygen}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.dusk}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.gingko}</span></button></div></div>`;
         let insertBeforeElement = pickColor;
         let previousElement = pickColor.previousElementSibling;
         while (previousElement) {
@@ -187,7 +187,7 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
         const followTimeButton = document.createElement("button");
         followTimeButton.className = "b3-menu__item asri-enhance";
         followTimeButton.id = "asri-enhance-follow-time";
-        followTimeButton.innerHTML = `<svg class="b3-menu__icon"></svg><input id="asri-enhance-followtime-colorpicker" type="color" value="${savedColor}"><span class="b3-menu__label">${plugin.i18n?.followTime || "Follow Time"}</span>`;
+        followTimeButton.innerHTML = `<svg class="b3-menu__icon"></svg><input id="asri-enhance-followtime-colorpicker" type="color" value="${savedColor}"><span class="b3-menu__label">${plugin.i18n.followTime}</span>`;
         if (followCoverImgColor.nextSibling) {
             parent.insertBefore(followTimeButton, followCoverImgColor.nextSibling);
         } else {
@@ -218,7 +218,7 @@ function injectMoreMenu(plugin: Plugin, topbarFusionPlus: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-more";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.more || "more"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.detailAdjustment || "detailAdjustment"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.texture || "texture"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.immersive || "immersiveEdit"}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.listBulletLine || "listBulletLine"}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.verticalTab || "verticalTab"}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidememo || "sidememo"}</span></button><button class="b3-menu__item" id="asri-enhance-card-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.cardLayout || "cardLayout"}</span></button></div></div>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.verticalTab}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span></button><button class="b3-menu__item" id="asri-enhance-card-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.cardLayout}</span></button></div></div>`;
         if (topbarFusionPlus.nextSibling) {
             parent.insertBefore(button, topbarFusionPlus.nextSibling);
         } else {
@@ -251,14 +251,14 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         subtitle.className = "menu-item__subtitle asri-enhance-windowtransparencyvalue-subtitle";
         subtitle.style.userSelect = "none";
         subtitle.style.padding = "0 14px";
-        subtitle.textContent = plugin.i18n?.windowTransparencyValueSubtitle || "windowTransparencyValueSubtitle";
+        subtitle.textContent = plugin.i18n.windowTransparencyValueSubtitle;
         detailAdjustmentSubmenu.appendChild(subtitle);
     }
     if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-wholewindowtransparency")) {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-wholewindowtransparency";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.wholeWindowTransparency || "wholeWindowTransparency"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wholeWindowTransparency}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const wholeWindowItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-wholewindowtransparency");
@@ -269,7 +269,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-windowtransparencyvalue";
-        button.innerHTML = `<div aria-label="${plugin.i18n?.windowTransparencyValue || "windowTransparencyValue"}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.05" value="0.5"></div>`;
+        button.innerHTML = `<div aria-label="${plugin.i18n.windowTransparencyValue}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.05" value="0.5"></div>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const windowTransparencyItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-windowtransparencyvalue");
@@ -309,7 +309,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-sidebar-top-sticky";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.sidebarTopSticky || "sidebarTopSticky"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidebarTopSticky}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const sidebarTopStickyItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-sidebar-top-sticky");
@@ -320,7 +320,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-multicolslashmenu";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.multicolSlashMenu || "multicolSlashMenu"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.multicolSlashMenu}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const multicolSlashMenuItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-multicolslashmenu");
@@ -331,7 +331,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-cardsearchlist";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.cardSearchList || "cardSearchList"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.cardSearchList}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const cardSearchListItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-cardsearchlist");
@@ -348,7 +348,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-colored-heading";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.coloredHeading || "coloredHeading"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.coloredHeading}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const coloredHeadingItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-colored-heading");
@@ -359,7 +359,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-colored-tree";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.coloredTree || "coloredTree"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.coloredTree}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const coloredTreeItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-colored-tree");
@@ -370,7 +370,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-colored-list";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.coloredList || "coloredList"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.coloredList}</span>`;
         if (detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree")) {
             const coloredTreeButton = detailAdjustmentSubmenu.querySelector("#asri-enhance-colored-tree");
             if (coloredTreeButton && coloredTreeButton.nextSibling) {
@@ -390,7 +390,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-moreanimations";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.moreAnimations || "moreAnimations"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.moreAnimations}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const moreAnimationsItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-moreanimations");
@@ -401,7 +401,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-global-frosted-glass";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.globalFrostedGlass || "globalFrostedGlass"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.globalFrostedGlass}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const globalFrostedGlassItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-global-frosted-glass");
@@ -418,7 +418,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-hide-tab";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.hideTab || "hideTab"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.hideTab}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const hideTabItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab");
@@ -429,7 +429,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-hide-breadcrumb";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.hideBreadcrumb || "hideBreadcrumb"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.hideBreadcrumb}</span>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const hideBreadcrumbItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-hide-breadcrumb");
@@ -443,22 +443,22 @@ function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
     const textureSubmenu = textureItem.querySelector<HTMLElement>(".b3-menu__submenu .b3-menu__items");
     if (!textureSubmenu) return;
     const textureItems = [
-        { id: "customimage", label: plugin.i18n?.customimage || "customimage", handler: onCustomImageClick },
-        { id: "paper", label: plugin.i18n?.paper || "paper", handler: onPaperClick },
-        { id: "noise", label: plugin.i18n?.noise || "noise", handler: onNoiseClick },
-        { id: "acrylic", label: plugin.i18n?.acrylic || "acrylic", handler: onAcrylicClick },
-        { id: "checkerboard", label: plugin.i18n?.checkerboard || "checkerboard", handler: onCheckerboardClick },
-        { id: "grid", label: plugin.i18n?.grid || "grid", handler: onGridClick },
-        { id: "crossdot", label: plugin.i18n?.crossdot || "crossdot", handler: onCrossDotClick },
-        { id: "wood", label: plugin.i18n?.wood || "wood", handler: onWoodClick },
-        { id: "camouflage", label: plugin.i18n?.camouflage || "camouflage", handler: onCamouflageClick },
+        { id: "customimage", label: plugin.i18n.customimage, handler: onCustomImageClick },
+        { id: "paper", label: plugin.i18n.paper, handler: onPaperClick },
+        { id: "noise", label: plugin.i18n.noise, handler: onNoiseClick },
+        { id: "acrylic", label: plugin.i18n.acrylic, handler: onAcrylicClick },
+        { id: "checkerboard", label: plugin.i18n.checkerboard, handler: onCheckerboardClick },
+        { id: "grid", label: plugin.i18n.grid, handler: onGridClick },
+        { id: "crossdot", label: plugin.i18n.crossdot, handler: onCrossDotClick },
+        { id: "wood", label: plugin.i18n.wood, handler: onWoodClick },
+        { id: "camouflage", label: plugin.i18n.camouflage, handler: onCamouflageClick },
     ];
     textureItems.forEach(({ id, label, handler }) => {
         if (!textureSubmenu.querySelector(`#asri-enhance-${id}`)) {
             const button = document.createElement("button");
             button.className = "b3-menu__item";
             button.id = `asri-enhance-${id}`;
-            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${label}</span>${id === "customimage" ? `<svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n?.customimageSettings || "Configure Custom Image"}"><use xlink:href="#iconSettings"></use></svg>` : ''}`;
+            button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${label}</span>${id === "customimage" ? `<svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.customimageSettings}"><use xlink:href="#iconSettings"></use></svg>` : ''}`;
             textureSubmenu.appendChild(button);
             if (id === "customimage" && !textureSubmenu.querySelector(".b3-menu__separator-asri-customimage")) {
                 const separator = document.createElement("div");
@@ -487,7 +487,7 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-typewriter";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.typewriter || "typewriterMode"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.typewriter}</span>`;
         immersiveSubmenu.appendChild(button);
     }
     const typewriterItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-typewriter");
@@ -498,7 +498,7 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-focus";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.focus || "focusMode"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.focus}</span>`;
         immersiveSubmenu.appendChild(button);
     }
     const focusModeItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-focus");
@@ -509,7 +509,7 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-smooth-caret";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.smoothCaret || "smoothCaret"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.smoothCaret}</span>`;
         immersiveSubmenu.appendChild(button);
     }
     const smoothCaretItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-smooth-caret");
@@ -520,7 +520,7 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-fluid-cursor";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.fluidCursor || "fluidCursor"}</span>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.fluidCursor}</span>`;
         immersiveSubmenu.appendChild(button);
     }
     const fluidCursorItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-fluid-cursor");
@@ -531,7 +531,7 @@ function injectImmersiveMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-pinnedtoolbar";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n?.pinnedToolbar || "pinnedToolbar"}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n?.pinnedToolbarSettings || "Pinned Toolbar Settings"}"><use xlink:href="#iconSettings"></use></svg>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.pinnedToolbar}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.pinnedToolbarSettings}"><use xlink:href="#iconSettings"></use></svg>`;
         immersiveSubmenu.appendChild(button);
     }
     const pinnedToolbarItem = immersiveSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-pinnedtoolbar");

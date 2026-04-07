@@ -90,21 +90,21 @@ export function addMobileBarModeBtn(plugin: Plugin): void {
         menu.element.classList.add("asri-enhance-mobilemenu");
         menu.addItem({
             icon: "iconLight",
-            label: plugin.i18n?.light || "Light",
+            label: plugin.i18n.light,
             click: () => {
                 setThemeMode(0);
             },
         });
         menu.addItem({
             icon: "iconDark",
-            label: plugin.i18n?.dark || "Dark",
+            label: plugin.i18n.dark,
             click: () => {
                 setThemeMode(1);
             },
         });
         menu.addItem({
             icon: "iconMode",
-            label: plugin.i18n?.followSystem || "Follow System",
+            label: plugin.i18n.followSystem,
             click: () => {
                 setThemeMode(2);
             },

@@ -287,15 +287,15 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     event.preventDefault();
     event.stopPropagation();
     const dialog = new Dialog({
-        title: plugin.i18n?.customimageSettings || "Custom Image Settings",
+        title: plugin.i18n.customimageSettings,
         content: `<div class="b3-dialog__content"><div class="fn__flex b3-label config__item">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimagePresetTip || "After modifying parameters, you need to update this preset or save as a new preset. Exiting the window directly will not save changes"}
+        ${plugin.i18n.customimagePresetTip}
     </div>
 </div><div class="fn__flex b3-label config__item">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimagePresetSelect || "Preset"}
-        <div class="b3-label__text">${plugin.i18n?.customimagePresetSelectTip || "Choose a saved preset"}</div>
+        ${plugin.i18n.customimagePresetSelect}
+        <div class="b3-label__text">${plugin.i18n.customimagePresetSelectTip}</div>
     </div>
     <span class="fn__space"></span>
     <select class="b3-select fn__flex-center fn__size200" id="asri-enhance-customimage-preset-select">
@@ -303,15 +303,15 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </select>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-path">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimagePath || "Image Path"}
-        <div class="b3-label__text">${plugin.i18n?.customimagePathTip || "This plugin does not write any data, so only images already in the assets folder are supported. Enter a relative path here, which can be obtained from the image menu"}</div>
+        ${plugin.i18n.customimagePath}
+        <div class="b3-label__text">${plugin.i18n.customimagePathTip}</div>
     </div>
     <span class="fn__space"></span>
     <input class="b3-text-field fn__flex-center fn__size200" id="asri-enhance-customimage-path" spellcheck="false">
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-blur">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageBlur || "Image Blur"}
-        <div class="b3-label__text">${plugin.i18n?.customimageBlurTip || "Default: 0px"}</div>
+        ${plugin.i18n.customimageBlur}
+        <div class="b3-label__text">${plugin.i18n.customimageBlurTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-blur-tooltip" aria-label="0px">   
@@ -319,15 +319,15 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-frosted">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageFrosted || "磨砂效果"}
-        <div class="b3-label__text">${plugin.i18n?.customimageFrostedTip || "使背景图具有磨砂质感"}</div>
+        ${plugin.i18n.customimageFrosted}
+        <div class="b3-label__text">${plugin.i18n.customimageFrostedTip}</div>
     </div>
     <span class="fn__space"></span>
     <input class="b3-switch fn__flex-center" id="asri-enhance-customimage-frosted" type="checkbox">
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-opacity-light">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageOpacityLight || "Image Opacity (Light Mode)"}
-        <div class="b3-label__text">${plugin.i18n?.customimageOpacityLightTip || "Default: 0.15"}</div>
+        ${plugin.i18n.customimageOpacityLight}
+        <div class="b3-label__text">${plugin.i18n.customimageOpacityLightTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-opacity-tooltip-light" aria-label="0.15">   
@@ -335,24 +335,24 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-effect-light">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageEffectLight || "效果（明亮模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageEffectLightTip || "Default: Normal"}</div>
+        ${plugin.i18n.customimageEffectLight}
+        <div class="b3-label__text">${plugin.i18n.customimageEffectLightTip}</div>
     </div>
     <span class="fn__space"></span>
     <select class="b3-select fn__flex-center fn__size200" id="asri-enhance-customimage-effect-light">
-      <option value="normal">${plugin.i18n?.customimageEffectNormal || "普通"}</option>
-      <option value="multiply">${plugin.i18n?.customimageEffectMultiply || "正片叠底"}</option>
-      <option value="luminosity">${plugin.i18n?.customimageEffectLuminosity || "明度"}</option>
-      <option value="screen">${plugin.i18n?.customimageEffectScreen || "滤色"}</option>
-      <option value="color">${plugin.i18n?.customimageEffectColor || "染色"}</option>
-      <option value="overlay">${plugin.i18n?.customimageEffectOverlay || "叠加"}</option>
-      <option value="color-burn">${plugin.i18n?.customimageEffectColorBurn || "加深"}</option>
-      <option value="color-dodge">${plugin.i18n?.customimageEffectColorDodge || "减淡"}</option>
+      <option value="normal">${plugin.i18n.customimageEffectNormal}</option>
+      <option value="multiply">${plugin.i18n.customimageEffectMultiply}</option>
+      <option value="luminosity">${plugin.i18n.customimageEffectLuminosity}</option>
+      <option value="screen">${plugin.i18n.customimageEffectScreen}</option>
+      <option value="color">${plugin.i18n.customimageEffectColor}</option>
+      <option value="overlay">${plugin.i18n.customimageEffectOverlay}</option>
+      <option value="color-burn">${plugin.i18n.customimageEffectColorBurn}</option>
+      <option value="color-dodge">${plugin.i18n.customimageEffectColorDodge}</option>
     </select>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-opacity-dark">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageOpacityDark || "Image Opacity (Dark Mode)"}
-        <div class="b3-label__text">${plugin.i18n?.customimageOpacityDarkTip || "Default: 0.1"}</div>
+        ${plugin.i18n.customimageOpacityDark}
+        <div class="b3-label__text">${plugin.i18n.customimageOpacityDarkTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-opacity-tooltip-dark" aria-label="0.1">   
@@ -360,24 +360,24 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-effect-dark">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageEffectDark || "效果（暗黑模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageEffectDarkTip || "Default: Normal"}</div>
+        ${plugin.i18n.customimageEffectDark}
+        <div class="b3-label__text">${plugin.i18n.customimageEffectDarkTip}</div>
     </div>
     <span class="fn__space"></span>
     <select class="b3-select fn__flex-center fn__size200" id="asri-enhance-customimage-effect-dark">
-      <option value="normal">${plugin.i18n?.customimageEffectNormal || "普通"}</option>
-      <option value="multiply">${plugin.i18n?.customimageEffectMultiply || "正片叠底"}</option>
-      <option value="luminosity">${plugin.i18n?.customimageEffectLuminosity || "明度"}</option>
-      <option value="screen">${plugin.i18n?.customimageEffectScreen || "滤色"}</option>
-      <option value="color">${plugin.i18n?.customimageEffectColor || "染色"}</option>
-      <option value="overlay">${plugin.i18n?.customimageEffectOverlay || "叠加"}</option>
-      <option value="color-burn">${plugin.i18n?.customimageEffectColorBurn || "加深"}</option>
-      <option value="color-dodge">${plugin.i18n?.customimageEffectColorDodge || "减淡"}</option>
+      <option value="normal">${plugin.i18n.customimageEffectNormal}</option>
+      <option value="multiply">${plugin.i18n.customimageEffectMultiply}</option>
+      <option value="luminosity">${plugin.i18n.customimageEffectLuminosity}</option>
+      <option value="screen">${plugin.i18n.customimageEffectScreen}</option>
+      <option value="color">${plugin.i18n.customimageEffectColor}</option>
+      <option value="overlay">${plugin.i18n.customimageEffectOverlay}</option>
+      <option value="color-burn">${plugin.i18n.customimageEffectColorBurn}</option>
+      <option value="color-dodge">${plugin.i18n.customimageEffectColorDodge}</option>
     </select>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-x">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimagePositionX || "X Position"}
-        <div class="b3-label__text">${plugin.i18n?.customimagePositionXTip || "Default: 50%"}</div>
+        ${plugin.i18n.customimagePositionX}
+        <div class="b3-label__text">${plugin.i18n.customimagePositionXTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-x-tooltip" aria-label="50%">   
@@ -385,8 +385,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-y">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimagePositionY || "Y Position"}
-        <div class="b3-label__text">${plugin.i18n?.customimagePositionYTip || "Default: 50%"}</div>
+        ${plugin.i18n.customimagePositionY}
+        <div class="b3-label__text">${plugin.i18n.customimagePositionYTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-y-tooltip" aria-label="50%">   
@@ -394,8 +394,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-brightness-light">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageBrightnessLight || "亮度（明亮模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageBrightnessLightTip || "Default: 1"}</div>
+        ${plugin.i18n.customimageBrightnessLight}
+        <div class="b3-label__text">${plugin.i18n.customimageBrightnessLightTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-brightness-tooltip-light" aria-label="1">   
@@ -403,8 +403,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-brightness-dark">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageBrightnessDark || "亮度（暗黑模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageBrightnessDarkTip || "Default: 1"}</div>
+        ${plugin.i18n.customimageBrightnessDark}
+        <div class="b3-label__text">${plugin.i18n.customimageBrightnessDarkTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-brightness-tooltip-dark" aria-label="1">   
@@ -412,8 +412,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-saturation-light">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageSaturationLight || "饱和度（明亮模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageSaturationLightTip || "Default: 1"}</div>
+        ${plugin.i18n.customimageSaturationLight}
+        <div class="b3-label__text">${plugin.i18n.customimageSaturationLightTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-saturation-tooltip-light" aria-label="1">   
@@ -421,8 +421,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-saturation-dark">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageSaturationDark || "饱和度（暗黑模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageSaturationDarkTip || "Default: 1"}</div>
+        ${plugin.i18n.customimageSaturationDark}
+        <div class="b3-label__text">${plugin.i18n.customimageSaturationDarkTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-saturation-tooltip-dark" aria-label="1">   
@@ -430,8 +430,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-contrast-light">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageContrastLight || "对比度（明亮模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageContrastLightTip || "Default: 1"}</div>
+        ${plugin.i18n.customimageContrastLight}
+        <div class="b3-label__text">${plugin.i18n.customimageContrastLightTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-contrast-tooltip-light" aria-label="1">   
@@ -439,8 +439,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-contrast-dark">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageContrastDark || "对比度（暗黑模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageContrastDarkTip || "Default: 1"}</div>
+        ${plugin.i18n.customimageContrastDark}
+        <div class="b3-label__text">${plugin.i18n.customimageContrastDarkTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-contrast-tooltip-dark" aria-label="1">   
@@ -448,8 +448,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-grayscale-light">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageGrayscaleLight || "灰度（明亮模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageGrayscaleLightTip || "Default: 0"}</div>
+        ${plugin.i18n.customimageGrayscaleLight}
+        <div class="b3-label__text">${plugin.i18n.customimageGrayscaleLightTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-grayscale-tooltip-light" aria-label="0">   
@@ -457,8 +457,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-grayscale-dark">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageGrayscaleDark || "灰度（暗黑模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageGrayscaleDarkTip || "Default: 0"}</div>
+        ${plugin.i18n.customimageGrayscaleDark}
+        <div class="b3-label__text">${plugin.i18n.customimageGrayscaleDarkTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-grayscale-tooltip-dark" aria-label="0">   
@@ -466,8 +466,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-hue-rotate-light">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageHueRotateLight || "色相偏移（明亮模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageHueRotateLightTip || "Default: 0deg"}</div>
+        ${plugin.i18n.customimageHueRotateLight}
+        <div class="b3-label__text">${plugin.i18n.customimageHueRotateLightTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-hue-rotate-tooltip-light" aria-label="0deg">   
@@ -475,25 +475,25 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     </div>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-hue-rotate-dark">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimageHueRotateDark || "色相偏移（暗黑模式）"}
-        <div class="b3-label__text">${plugin.i18n?.customimageHueRotateDarkTip || "Default: 0deg"}</div>
+        ${plugin.i18n.customimageHueRotateDark}
+        <div class="b3-label__text">${plugin.i18n.customimageHueRotateDarkTip}</div>
     </div>
     <span class="fn__space"></span>
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-hue-rotate-tooltip-dark" aria-label="0deg">   
         <input class="b3-slider fn__size200" id="asri-enhance-customimage-hue-rotate-dark" max="360" min="0" step="1" type="range" value="0">
     </div>
 </div></div><div class="b3-dialog__action" style="padding-bottom: 6px;">
-    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-toggle-detail">${plugin.i18n?.customimageShowDetail || "显示详细参数"}</button>
+    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-toggle-detail">${plugin.i18n.customimageShowDetail}</button>
     <div class="fn__space"></div>
-    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-reset-preset">${plugin.i18n?.customimageResetPreset || "Reset to defaults"}</button>
+    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-reset-preset">${plugin.i18n.customimageResetPreset}</button>
 </div><div class="b3-dialog__action">
-    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-cancel">${plugin.i18n?.cancel || "Cancel"}</button>
+    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-cancel">${plugin.i18n.cancel}</button>
     <div class="fn__space"></div>
-    <button class="b3-button b3-button--remove" id="asri-enhance-customimage-delete-preset">${plugin.i18n?.customimageDeletePreset || "Delete this preset"}</button>
+    <button class="b3-button b3-button--remove" id="asri-enhance-customimage-delete-preset">${plugin.i18n.customimageDeletePreset}</button>
     <div class="fn__space"></div>
-    <button class="b3-button b3-button--text" id="asri-enhance-customimage-update-preset">${plugin.i18n?.customimageUpdatePreset || "Update current preset"}</button>
+    <button class="b3-button b3-button--text" id="asri-enhance-customimage-update-preset">${plugin.i18n.customimageUpdatePreset}</button>
     <div class="fn__space"></div>
-    <button class="b3-button b3-button--text" id="asri-enhance-customimage-save-preset">${plugin.i18n?.customimageSavePreset || "Save as preset"}</button>
+    <button class="b3-button b3-button--text" id="asri-enhance-customimage-save-preset">${plugin.i18n.customimageSavePreset}</button>
 </div>`,
         width: "90vw",
         height: "90vh",
@@ -608,10 +608,10 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
         ev.stopPropagation();
         isDetailVisible = !isDetailVisible;
         if (isDetailVisible) {
-            toggleDetailButton.textContent = plugin.i18n?.customimageHideDetail || "隐藏详细参数";
+            toggleDetailButton.textContent = plugin.i18n.customimageHideDetail;
             dialog.element.classList.add("asri-enhance-customimage-detail");
         } else {
-            toggleDetailButton.textContent = plugin.i18n?.customimageShowDetail || "显示详细参数";
+            toggleDetailButton.textContent = plugin.i18n.customimageShowDetail;
             dialog.element.classList.remove("asri-enhance-customimage-detail");
         }
     });
@@ -654,7 +654,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            msg: plugin.i18n?.customimagePresetDeleteForbidden || "The \"default\" preset cannot be deleted",
+                            msg: plugin.i18n.customimagePresetDeleteForbidden,
                             timeout: 3000,
                         }),
                     });
@@ -663,15 +663,15 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
             })();
             return;
         }
-        const title = plugin.i18n?.customimagePresetDeleteConfirmTitle || "Confirm delete?";
-        const contentTemplate = plugin.i18n?.customimagePresetDeleteConfirmContent || "Preset \"${name}\" will be deleted";
+        const title = plugin.i18n.customimagePresetDeleteConfirmTitle;
+        const contentTemplate = plugin.i18n.customimagePresetDeleteConfirmContent;
         const contentText = contentTemplate.replace("${name}", name);
         const confirmDialog = new Dialog({
             title,
             content: `<div class="b3-dialog__content">${contentText}</div><div class="b3-dialog__action">
-    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-delete-cancel">${plugin.i18n?.cancel || "Cancel"}</button>
+    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-delete-cancel">${plugin.i18n.cancel}</button>
     <div class="fn__space"></div>
-    <button class="b3-button b3-button--text" id="asri-enhance-customimage-delete-confirm">${plugin.i18n?.confirm || "Confirm"}</button>
+    <button class="b3-button b3-button--text" id="asri-enhance-customimage-delete-confirm">${plugin.i18n.confirm}</button>
 </div>`,
             width: "max(360px, 30vw)",
         });
@@ -713,7 +713,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                 }
                 applyCustomImageCssFromConfig(finalConfig);
                 try {
-                    const msgTemplate = plugin.i18n?.customimagePresetDeleted || "Preset \"${name}\" has been deleted";
+                    const msgTemplate = plugin.i18n.customimagePresetDeleted;
                     const msg = msgTemplate.replace("${name}", name);
                     await fetch("/api/notification/pushMsg", {
                         method: "POST",
@@ -751,7 +751,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
             };
             await saveData(plugin, CONFIG_FILE, finalConfig);
             try {
-                const msgTemplate = plugin.i18n?.customimagePresetUpdated || "Preset \"${name}\" has been updated";
+                const msgTemplate = plugin.i18n.customimagePresetUpdated;
                 const msg = msgTemplate.replace("${name}", name);
                 await fetch("/api/notification/pushMsg", {
                     method: "POST",
@@ -772,18 +772,18 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
         ev.preventDefault();
         ev.stopPropagation();
         const presetDialog = new Dialog({
-            title: plugin.i18n?.customimageSavePresetTitle || "保存当前参数为方案",
+            title: plugin.i18n.customimageSavePresetTitle,
             content: `<div class="b3-dialog__content"><div class="fn__flex b3-label config__item">
     <div class="fn__flex-1">
-        ${plugin.i18n?.customimagePresetName || "方案名称"}
-        <div class="b3-label__text">${plugin.i18n?.customimagePresetNameTip || "填入方案名称"}</div>
+        ${plugin.i18n.customimagePresetName}
+        <div class="b3-label__text">${plugin.i18n.customimagePresetNameTip}</div>
     </div>
     <span class="fn__space"></span>
     <input class="b3-text-field fn__flex-center fn__size200" id="asri-enhance-customimage-preset-name" spellcheck="false">
 </div></div><div class="b3-dialog__action">
-    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-preset-cancel">${plugin.i18n?.cancel || "Cancel"}</button>
+    <button class="b3-button b3-button--cancel" id="asri-enhance-customimage-preset-cancel">${plugin.i18n.cancel}</button>
     <div class="fn__space"></div>
-    <button class="b3-button b3-button--text" id="asri-enhance-customimage-preset-confirm">${plugin.i18n?.confirm || "Confirm"}</button>
+    <button class="b3-button b3-button--text" id="asri-enhance-customimage-preset-confirm">${plugin.i18n.confirm}</button>
 </div>`,
             width: "max(480px, 30vw)",
         });
@@ -801,7 +801,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            msg: plugin.i18n?.customimagePresetNameEmpty || "Preset name cannot be empty",
+                            msg: plugin.i18n.customimagePresetNameEmpty,
                             timeout: 3000,
                         }),
                     });
@@ -817,7 +817,7 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                             "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                            msg: plugin.i18n?.customimagePresetNameReserved || "Preset name cannot be \"current\"",
+                            msg: plugin.i18n.customimagePresetNameReserved,
                             timeout: 3000,
                         }),
                     });
@@ -837,8 +837,8 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
                 await saveData(plugin, CONFIG_FILE, finalConfig);
                 try {
                     const msgTemplate = isExisting
-                        ? (plugin.i18n?.customimagePresetUpdated || "Preset \"${name}\" has been updated")
-                        : (plugin.i18n?.customimagePresetSaved || "Preset \"${name}\" has been saved");
+                        ? (plugin.i18n.customimagePresetUpdated)
+                        : (plugin.i18n.customimagePresetSaved);
                     const msg = msgTemplate.replace("${name}", name);
                     await fetch("/api/notification/pushMsg", {
                         method: "POST",

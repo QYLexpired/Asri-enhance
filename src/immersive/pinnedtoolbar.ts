@@ -252,34 +252,34 @@ export function onPinnedToolbarSettingsClick(plugin: Plugin, event: MouseEvent):
     event.preventDefault();
     event.stopPropagation();
     const dialog = new Dialog({
-        title: plugin.i18n?.pinnedToolbarSettings || "Configure Pinned Toolbar",
+        title: plugin.i18n.pinnedToolbarSettings,
         content: `<div class="b3-dialog__content">
     <div class="fn__flex b3-label config__item">
         <div class="fn__flex-1">
-            ${plugin.i18n?.pinnedToolbarDirection || "Default Direction"}
-            <div class="b3-label__text">${plugin.i18n?.pinnedToolbarDirectionTip || "Set the default pinned direction for the toolbar"}</div>
+            ${plugin.i18n.pinnedToolbarDirection}
+            <div class="b3-label__text">${plugin.i18n.pinnedToolbarDirectionTip}</div>
         </div>
         <span class="fn__space"></span>
         <select class="b3-select fn__flex-center fn__size200" id="asri-enhance-pinnedtoolbar-direction">
-            <option value="top">${plugin.i18n?.pinnedToolbarTop || "Top"}</option>
-            <option value="bottom">${plugin.i18n?.pinnedToolbarBottom || "Bottom"}</option>
-            <option value="left">${plugin.i18n?.pinnedToolbarLeft || "Left"}</option>
-            <option value="right">${plugin.i18n?.pinnedToolbarRight || "Right"}</option>
+            <option value="top">${plugin.i18n.pinnedToolbarTop}</option>
+            <option value="bottom">${plugin.i18n.pinnedToolbarBottom}</option>
+            <option value="left">${plugin.i18n.pinnedToolbarLeft}</option>
+            <option value="right">${plugin.i18n.pinnedToolbarRight}</option>
         </select>
     </div>
     <div class="fn__flex b3-label config__item">
         <div class="fn__flex-1">
-            ${plugin.i18n?.pinnedToolbarLiquidGlass || "Liquid Glass"}
-            <div class="b3-label__text">${plugin.i18n?.pinnedToolbarLiquidGlassTip || "Give the pinned toolbar a liquid glass effect"}</div>
+            ${plugin.i18n.pinnedToolbarLiquidGlass}
+            <div class="b3-label__text">${plugin.i18n.pinnedToolbarLiquidGlassTip}</div>
         </div>
         <span class="fn__space"></span>
         <input class="b3-switch fn__flex-center" id="asri-enhance-pinnedtoolbar-liquid-glass" type="checkbox">
     </div>
 </div>
 <div class="b3-dialog__action">
-    <button class="b3-button b3-button--cancel" id="asri-enhance-pinnedtoolbar-cancel">${plugin.i18n?.cancel || "Cancel"}</button>
+    <button class="b3-button b3-button--cancel" id="asri-enhance-pinnedtoolbar-cancel">${plugin.i18n.cancel}</button>
     <div class="fn__space"></div>
-    <button class="b3-button b3-button--text" id="asri-enhance-pinnedtoolbar-confirm">${plugin.i18n?.confirm || "Confirm"}</button>
+    <button class="b3-button b3-button--text" id="asri-enhance-pinnedtoolbar-confirm">${plugin.i18n.confirm}</button>
 </div>`,
         width: "620px",
         height: "auto",
