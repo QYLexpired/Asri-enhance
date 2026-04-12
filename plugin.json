@@ -2,7 +2,7 @@
   "name": "Asri-enhance",
   "author": "QYL",
   "url": "https://github.com/QYLexpired/Asri-enhance",
-  "version": "2.3.9",
+  "version": "2.3.10",
   "minAppVersion": "3.5.0",
   "backends": [
     "all"
@@ -12,11 +12,11 @@
   ],
   "disabledInPublish": false,
   "displayName": {
-    "default": "Asri Theme Enhancer",
-    "zh_CN": "Asri主题增强"
+    "default": "Asri+",
+    "zh_CN": "Asri+"
   },
   "description": {
-    "default": "Asri Theme Enhancer",
+    "default": "A plugin for Asri theme",
     "zh_CN": "专为Asri主题设计的增强插件"
   },
   "readme": {

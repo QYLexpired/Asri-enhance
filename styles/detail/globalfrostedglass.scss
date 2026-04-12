@@ -150,6 +150,15 @@
             }
         }
     }
+    // 菜单
+    .protyle-hint {
+       & > input.b3-text-field {
+            background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+            &:focus {
+                background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+            }
+       }
+    }
     // 集市
     .config-bazaar__content .b3-card {
         background-color: transparent;

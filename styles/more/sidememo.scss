@@ -56,7 +56,7 @@
                 right: min(calc(-1 * var(--asri-enhance-sidememo-protyle-padding) + var(--asri-enhance-sidememo-re)), var(--asri-enhance-sidememo-re));
                 transition: all 0.25s;
                 &.asri-enhance-sidememo-container-resize {
-                    opacity: 0.38;
+                    opacity: 0.5;
                     .asri-enhance-sidememo-inlinememo-item,
                     .asri-enhance-sidememo-blockmemo-item,
                     .asri-enhance-sidememo-filememo-item {
@@ -85,7 +85,7 @@
                     }
                     &[asri-enhance-sidememo-fold] {
                         padding: 0.5em;
-                        opacity: 0.38;
+                        opacity: 0.5;
                         .asri-enhance-sidememo-inlinememo-item-title,
                         .asri-enhance-sidememo-blockmemo-item-title,
                         .asri-enhance-sidememo-filememo-item-title {

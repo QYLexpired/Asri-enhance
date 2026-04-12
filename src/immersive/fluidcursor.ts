@@ -43,7 +43,7 @@ const getCursorColor = () => {
 const randomCursorColor = () => {
     const modeRand = Math.random();
     const baseColor = getCursorColor();
-    if (modeRand < 0.02) {
+    if (modeRand < 0.05) {
         const rand = Math.random();
         let randomHue: number;
         if (rand < 0.8) {

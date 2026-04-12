@@ -13,7 +13,7 @@
         pointer-events: none;
         opacity: 1;
         background-color: var(--asri-enhance-smooth-caret-color, var(--b3-theme-accent));
-        transition: 0.5s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.3s;
+        transition: 0.75s cubic-bezier(0.1, 0.9, 0.2, 1), opacity 0.3s;
         will-change: transform, height;
         &.asri-enhance-smooth-caret-item-none {
             opacity: 0;

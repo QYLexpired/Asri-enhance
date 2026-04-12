@@ -1,7 +1,8 @@
 @use "../asri/asri-enhance" as *;
 [data-asri-enhance-colored-list="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-colored-list", "#asri-enhance-detail-adjustment");
-    .protyle-wysiwyg [data-node-id].list:not(.list .list) {
+    .protyle-wysiwyg [data-node-id].list:not(.list .list):not(.protyle-wysiwyg > .li .list) {
+    // :not(.protyle-wysiwyg > .li .list)排除列表项聚焦
         & > [data-node-id].li {
             @for $i from 0 through 7 {
                 $hue-offset: #{$i * 45};
@@ -35,7 +36,6 @@
                 }
                 & + [data-node-id]:not(.list) {
                     color: var(--asri-enhance-li-color);
-                    font-weight: bold;
                     & [spellcheck] {
                         color: var(--asri-enhance-li-color);
                     }
