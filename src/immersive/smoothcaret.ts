@@ -21,6 +21,7 @@ const initSmoothCaret = () => {
             return cachedZIndex;
         }
         let currentElement: Element | null = targetElement;
+        let fullscreenZIndex: number | null = null;
         while (currentElement && currentElement !== document.body) {
             if (currentElement.classList.contains('b3-dialog') ||
                 currentElement.classList.contains('block__popover--open') ||
@@ -32,11 +33,16 @@ const initSmoothCaret = () => {
                 lastTargetElement = targetElement;
                 return zIndex;
             }
+            if (currentElement.classList.contains('fullscreen') && fullscreenZIndex === null) {
+                const computedStyle = window.getComputedStyle(currentElement);
+                const zIndexValue = computedStyle.zIndex;
+                fullscreenZIndex = parseInt(zIndexValue) || 0;
+            }
             currentElement = currentElement.parentElement;
         }
-        cachedZIndex = 0;
+        cachedZIndex = fullscreenZIndex !== null ? fullscreenZIndex : 0;
         lastTargetElement = targetElement;
-        return 0;
+        return cachedZIndex;
     };
     const updateCaretPosition = () => {
         isAnimationFramePending = false;
