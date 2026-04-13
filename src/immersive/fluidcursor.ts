@@ -1,7 +1,10 @@
-import { Plugin } from "siyuan";
+import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-fluidcursor";
+const isMobile = () => {
+    return getFrontend().endsWith("mobile");
+};
 const FLUID_CURSOR_CANVAS_ID = 'asri-enhance-fluid-cursor-canvas';
 let animationFrameId: number | null = null;
 let resizeHandler: (() => void) | null = null;
@@ -245,6 +248,9 @@ const destroyFluidCursor = () => {
 };
 export { destroyFluidCursor };
 export async function onFluidCursorClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     if (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -269,6 +275,9 @@ export async function onFluidCursorClick(plugin: Plugin, event?: MouseEvent): Pr
     });
 }
 export async function applyFluidCursorConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
+    if (isMobile()) {
+        return;
+    }
     const htmlEl = document.documentElement;
     if (!htmlEl) {
         return;
