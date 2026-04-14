@@ -12,6 +12,18 @@ $cardlayout-dock-transparency-selectors: (
 );
 [data-asri-enhance-card-layout="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-card-layout");
+    // Windows客户端
+    body.body--win32 {
+        #toolbar {
+            &:not(.asri-enhance-dockr-expand):not(.asri-enhance-dockr-hidden) {
+                #windowControls {
+                    & .toolbar__item:last-child {
+                        padding-left: 24px;
+                    }
+                }
+            }
+        }
+    }
     &.asri-palette-polar {
         .layout__dockl,
         .dock,

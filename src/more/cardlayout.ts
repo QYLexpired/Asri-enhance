@@ -5,6 +5,13 @@ const CONFIG_KEY = "asri-enhance-card-layout";
 const isMobile = () => {
     return getFrontend().endsWith("mobile");
 };
+const isWindowsClient = (): boolean => {
+    const win = window as any;
+    return !isMobile() &&
+        typeof win !== 'undefined' &&
+        win.process &&
+        win.process.platform === 'win32';
+};
 class ProtyleFullscreenDetector {
     private hasFullscreen = false;
     private timer: ReturnType<typeof setTimeout> | null = null;
@@ -43,6 +50,53 @@ class ProtyleFullscreenDetector {
     }
 }
 let fullscreenDetector: ProtyleFullscreenDetector | null = null;
+let dockRightObserver: MutationObserver | null = null;
+let dockRightRetryCount = 0;
+const DOCK_RIGHT_RETRY_INTERVAL = 100;
+const MAX_DOCK_RIGHT_RETRIES = 10;
+function findDockRightAndToolbar(): { dockRight: Element | null; toolbar: Element | null } {
+    return {
+        dockRight: document.querySelector("#dockRight"),
+        toolbar: document.querySelector("#toolbar"),
+    };
+}
+function updateToolbarClasses(): void {
+    const { dockRight, toolbar } = findDockRightAndToolbar();
+    if (!toolbar) {
+        return;
+    }
+    if (dockRight) {
+        toolbar.classList.toggle("asri-enhance-dockr-expand", dockRight.classList.contains("dock-layout-expanded"));
+        toolbar.classList.toggle("asri-enhance-dockr-hidden", dockRight.classList.contains("fn__none"));
+    } else {
+        toolbar.classList.remove("asri-enhance-dockr-expand", "asri-enhance-dockr-hidden");
+    }
+}
+function startDockRightObserver(): void {
+    if (!isWindowsClient()) {
+        return;
+    }
+    const { dockRight, toolbar } = findDockRightAndToolbar();
+    if (!dockRight) {
+        if (dockRightRetryCount < MAX_DOCK_RIGHT_RETRIES) {
+            dockRightRetryCount++;
+            setTimeout(startDockRightObserver, DOCK_RIGHT_RETRY_INTERVAL);
+        }
+        return;
+    }
+    dockRightRetryCount = 0;
+    if (!toolbar) {
+        return;
+    }
+    updateToolbarClasses();
+    dockRightObserver = new MutationObserver(() => {
+        updateToolbarClasses();
+    });
+    dockRightObserver.observe(dockRight, {
+        attributes: true,
+        attributeFilter: ["class"],
+    });
+}
 export async function onCardLayoutClick(plugin: Plugin, event?: MouseEvent): Promise<void> {
     if (isMobile()) {
         return;
@@ -63,6 +117,7 @@ export async function onCardLayoutClick(plugin: Plugin, event?: MouseEvent): Pro
         restoreMacTrafficLights();
         fullscreenDetector?.stop();
         fullscreenDetector = null;
+        stopDockRightObserver();
     }
     else {
         htmlEl.setAttribute("data-asri-enhance-card-layout", "true");
@@ -79,6 +134,7 @@ export async function onCardLayoutClick(plugin: Plugin, event?: MouseEvent): Pro
                 adjustMacTrafficLights();
             }
         });
+        startDockRightObserver();
     }
     await saveData(plugin, CONFIG_FILE, config).catch(() => {
     });
@@ -133,8 +189,17 @@ export async function applyCardLayoutConfig(plugin: Plugin, config?: Record<stri
                 adjustMacTrafficLights();
             }
         });
+        startDockRightObserver();
     }
     else {
         htmlEl.removeAttribute("data-asri-enhance-card-layout");
+        stopDockRightObserver();
     }
+}
+export function stopDockRightObserver(): void {
+    if (dockRightObserver) {
+        dockRightObserver.disconnect();
+        dockRightObserver = null;
+    }
+    dockRightRetryCount = 0;
 }

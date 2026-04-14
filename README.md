@@ -1,5 +1,7 @@
 ### Updates
+- Optimized the appearance of card layout control buttons in the top right corner on Windows client
 - Fixed the issue where the smooth caret was invisible in fullscreen mode
+- Increased the probability of hue offset for fluid cursor
 - Colored list no longer applies when list items are focused
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style

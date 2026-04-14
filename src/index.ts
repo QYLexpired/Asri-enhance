@@ -31,7 +31,7 @@ import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtranspar
 import { applySmoothCaretConfig, destroySmoothCaret } from "./immersive/smoothcaret";
 import { applyFluidCursorConfig, destroyFluidCursor } from "./immersive/fluidcursor";
 import { applyPinnedToolbarConfig, destroyPinnedToolbar } from "./immersive/pinnedtoolbar";
-import { applyCardLayoutConfig, restoreMacTrafficLights } from "./more/cardlayout";
+import { applyCardLayoutConfig, restoreMacTrafficLights, stopDockRightObserver } from "./more/cardlayout";
 import { applyPaperConfig } from "./texture/paper";
 import { applyNoiseConfig } from "./texture/noise";
 import { applyAcrylicConfig } from "./texture/acrylic";
@@ -283,6 +283,7 @@ class AsriEnhancePlugin extends Plugin {
         destroyTypewriterMode();
         removeCustomImageConfig();
         restoreMacTrafficLights();
+        stopDockRightObserver();
         const htmlEl = document.documentElement;
         if (htmlEl) {
             const attrs = Array.from(htmlEl.attributes);
