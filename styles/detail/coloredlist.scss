@@ -30,7 +30,6 @@
             }
             & > .protyle-action {
                 color: var(--asri-enhance-li-color) !important;
-                font-weight: bold;
                 &.protyle-action--task::before {
                     background-color: var(--asri-enhance-li-color);
                 }
