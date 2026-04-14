@@ -5,13 +5,6 @@ const CONFIG_KEY = "asri-enhance-card-layout";
 const isMobile = () => {
     return getFrontend().endsWith("mobile");
 };
-const isWindowsClient = (): boolean => {
-    const win = window as any;
-    return !isMobile() &&
-        typeof win !== 'undefined' &&
-        win.process &&
-        win.process.platform === 'win32';
-};
 class ProtyleFullscreenDetector {
     private hasFullscreen = false;
     private timer: ReturnType<typeof setTimeout> | null = null;
@@ -51,40 +44,44 @@ class ProtyleFullscreenDetector {
 }
 let fullscreenDetector: ProtyleFullscreenDetector | null = null;
 let dockRightObserver: MutationObserver | null = null;
-let dockRightRetryCount = 0;
-const DOCK_RIGHT_RETRY_INTERVAL = 100;
-const MAX_DOCK_RIGHT_RETRIES = 10;
-function findDockRightAndToolbar(): { dockRight: Element | null; toolbar: Element | null } {
+let dockLeftObserver: MutationObserver | null = null;
+let dockRetryCount = 0;
+const DOCK_RETRY_INTERVAL = 100;
+const MAX_DOCK_RETRIES = 10;
+function findDockElements(): { dockRight: Element | null; dockLeft: Element | null; toolbar: Element | null } {
     return {
         dockRight: document.querySelector("#dockRight"),
+        dockLeft: document.querySelector("#dockLeft"),
         toolbar: document.querySelector("#toolbar"),
     };
 }
 function updateToolbarClasses(): void {
-    const { dockRight, toolbar } = findDockRightAndToolbar();
+    const { dockRight, dockLeft, toolbar } = findDockElements();
     if (!toolbar) {
         return;
     }
     if (dockRight) {
         toolbar.classList.toggle("asri-enhance-dockr-expand", dockRight.classList.contains("dock-layout-expanded"));
-        toolbar.classList.toggle("asri-enhance-dockr-hidden", dockRight.classList.contains("fn__none"));
+        toolbar.classList.toggle("asri-enhance-dock-hidden", dockRight.classList.contains("fn__none"));
     } else {
-        toolbar.classList.remove("asri-enhance-dockr-expand", "asri-enhance-dockr-hidden");
+        toolbar.classList.remove("asri-enhance-dockr-expand", "asri-enhance-dock-hidden");
+    }
+    if (dockLeft) {
+        toolbar.classList.toggle("asri-enhance-dockl-expand", dockLeft.classList.contains("dock-layout-expanded"));
+    } else {
+        toolbar.classList.remove("asri-enhance-dockl-expand");
     }
 }
-function startDockRightObserver(): void {
-    if (!isWindowsClient()) {
-        return;
-    }
-    const { dockRight, toolbar } = findDockRightAndToolbar();
-    if (!dockRight) {
-        if (dockRightRetryCount < MAX_DOCK_RIGHT_RETRIES) {
-            dockRightRetryCount++;
-            setTimeout(startDockRightObserver, DOCK_RIGHT_RETRY_INTERVAL);
+function startDockObservers(): void {
+    const { dockRight, dockLeft, toolbar } = findDockElements();
+    if (!dockRight || !dockLeft) {
+        if (dockRetryCount < MAX_DOCK_RETRIES) {
+            dockRetryCount++;
+            setTimeout(startDockObservers, DOCK_RETRY_INTERVAL);
         }
         return;
     }
-    dockRightRetryCount = 0;
+    dockRetryCount = 0;
     if (!toolbar) {
         return;
     }
@@ -93,6 +90,13 @@ function startDockRightObserver(): void {
         updateToolbarClasses();
     });
     dockRightObserver.observe(dockRight, {
+        attributes: true,
+        attributeFilter: ["class"],
+    });
+    dockLeftObserver = new MutationObserver(() => {
+        updateToolbarClasses();
+    });
+    dockLeftObserver.observe(dockLeft, {
         attributes: true,
         attributeFilter: ["class"],
     });
@@ -117,7 +121,7 @@ export async function onCardLayoutClick(plugin: Plugin, event?: MouseEvent): Pro
         restoreMacTrafficLights();
         fullscreenDetector?.stop();
         fullscreenDetector = null;
-        stopDockRightObserver();
+        stopDockObservers();
     }
     else {
         htmlEl.setAttribute("data-asri-enhance-card-layout", "true");
@@ -134,7 +138,7 @@ export async function onCardLayoutClick(plugin: Plugin, event?: MouseEvent): Pro
                 adjustMacTrafficLights();
             }
         });
-        startDockRightObserver();
+        startDockObservers();
     }
     await saveData(plugin, CONFIG_FILE, config).catch(() => {
     });
@@ -189,17 +193,21 @@ export async function applyCardLayoutConfig(plugin: Plugin, config?: Record<stri
                 adjustMacTrafficLights();
             }
         });
-        startDockRightObserver();
+        startDockObservers();
     }
     else {
         htmlEl.removeAttribute("data-asri-enhance-card-layout");
-        stopDockRightObserver();
+        stopDockObservers();
     }
 }
-export function stopDockRightObserver(): void {
+export function stopDockObservers(): void {
     if (dockRightObserver) {
         dockRightObserver.disconnect();
         dockRightObserver = null;
     }
-    dockRightRetryCount = 0;
+    if (dockLeftObserver) {
+        dockLeftObserver.disconnect();
+        dockLeftObserver = null;
+    }
+    dockRetryCount = 0;
 }

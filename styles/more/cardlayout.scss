@@ -12,18 +12,6 @@ $cardlayout-dock-transparency-selectors: (
 );
 [data-asri-enhance-card-layout="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-card-layout");
-    // Windows客户端
-    body.body--win32 {
-        #toolbar {
-            &:not(.asri-enhance-dockr-expand):not(.asri-enhance-dockr-hidden) {
-                #windowControls {
-                    & .toolbar__item:last-child {
-                        padding-left: 24px;
-                    }
-                }
-            }
-        }
-    }
     &.asri-palette-polar {
         .layout__dockl,
         .dock,
@@ -124,7 +112,12 @@ $cardlayout-dock-transparency-selectors: (
                 opacity: 0;
             }
             &:is(body:is(.body--fullscreen.body-asri--mac, .body-asri--browser, :not(.body-asri--mac)) #toolbar) {
-                &:not([style*="--topbar-left-spacing: 0"]):not([style*="--topbar-left-spacing:0"]):not([style*="--topbar-left-spacing: 0px"]):not([style*="--topbar-left-spacing:0px"]) {
+                &.asri-enhance-dock-hidden:not(.asri-enhance-dockl-expand) {
+                    #barWorkspace {
+                        margin-left: var(--asri-enhance-cardlayout-gap);
+                    }
+                }
+                &:not(.asri-enhance-dockl-expand):not(.asri-enhance-dock-hidden:not(.asri-enhance-dockl-expand)) {
                     #barWorkspace {
                         width: 26px;
                         max-width: 26px;
@@ -171,6 +164,7 @@ $cardlayout-dock-transparency-selectors: (
             padding-top: max(calc(var(--avoid-topbar) + var(--asri-enhance-cardlayout-gap)), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;
             padding-bottom: var(--asri-enhance-cardlayout-gap);
             border-left: none !important;
+            transition: background-color .15s ease-in-out .15s,display .2s allow-discrete,width .2s,height .2s,border-color .1s .2s, padding .2s var(--asri-ease-in-out-4);
             &.dock-layout-expanded {
                 padding-top: max(var(--avoid-topbar), calc(var(--asri-enhance-cardlayout-gap) + 4px)) !important;
             }
@@ -304,6 +298,33 @@ $cardlayout-dock-transparency-selectors: (
                         z-index: 3;
                     }
                 }
+            }
+        }
+    }
+    // Windows客户端
+    body.body--win32 {
+        #toolbar {
+            #windowControls {
+                transition-timing-function: var(--asri-ease-in-out-4);
+                transition-duration: .3s;
+            }
+            &:not(.asri-enhance-dockr-expand):not(.asri-enhance-dock-hidden) {
+                #windowControls {
+                    margin-right: 42px;
+                }
+            }
+            &.asri-enhance-dock-hidden:not(.asri-enhance-dockr-expand) {
+                #windowControls {
+                    margin-right: var(--asri-enhance-cardlayout-gap);
+                }
+            }
+        }
+        #dockRight {
+            .dock__items {
+                z-index: 1;
+            }
+            &:not(.dock-layout-expanded) {
+                padding-top: max(calc(var(--avoid-topbar) + var(--asri-enhance-cardlayout-gap) - 40px), calc(var(--asri-enhance-cardlayout-gap) + 4px - 40px)) !important;
             }
         }
     }
