@@ -1,4 +1,5 @@
 ### Updates
+- Added animation effects for the card layout main menu button
 - Optimized the appearance of card layout control buttons in the top right corner on Windows client
 - Fixed the issue where the smooth caret was invisible in fullscreen mode
 - Increased the probability of hue offset for fluid cursor
