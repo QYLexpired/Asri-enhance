@@ -1,39 +1,18 @@
 import { getFrontend, Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 import { createFetchInterceptor } from "../utils/fetchInterceptor";
-import { marked } from "../module/marked/marked.esm.js";
-import markedKatex from "../module/marked/marked-katex-extension.js";
 const isMobile = () => {
     return getFrontend().endsWith("mobile");
 };
 let globalPlugin: Plugin | null = null;
-try {
-    if (marked && typeof marked.use === "function" && typeof markedKatex === "function") {
-        marked.use(markedKatex({ throwOnError: false }));
+let lute: any = null;
+function getLute() {
+    if (!lute && typeof (window as any).Lute !== "undefined") {
+        lute = ((window as any).Lute as any).New();
     }
+	lute.SetMark(true);
+    return lute;
 }
-catch (e) {
-}
-try {
-    const globalHljs = (window as any)?.hljs;
-    if (marked && typeof (marked as any).setOptions === "function") {
-        (marked as any).setOptions({
-            highlight: (code: string, lang: string) => {
-                try {
-                    if (globalHljs) {
-                        if (lang && globalHljs.getLanguage && globalHljs.getLanguage(lang)) {
-                            return globalHljs.highlight(code, { language: lang }).value;
-                        }
-                        if (globalHljs.highlightAuto) {
-                            return globalHljs.highlightAuto(code).value;
-                        }
-                    }
-                } catch (err) {}
-                return code;
-            },
-        });
-    }
-} catch (e) {}
 function applySyntaxHighlighting(container: HTMLElement) {
 	try {
 		const globalHljs = (window as any)?.hljs;
@@ -55,6 +34,34 @@ function applySyntaxHighlighting(container: HTMLElement) {
 					}
 				}
 			} catch (err) {}
+		});
+	} catch (err) {}
+}
+function renderKatexInContainer(container: HTMLElement) {
+	try {
+		const globalKatex = (window as any)?.katex;
+		if (!globalKatex) return;
+		container.querySelectorAll('span.language-math').forEach(function(el) {
+			try {
+				const text = (el.textContent || "").trim();
+				if (text) {
+					globalKatex.render(text, el, {
+						throwOnError: false,
+						displayMode: false
+					});
+				}
+			} catch (e) {}
+		});
+		container.querySelectorAll('div.language-math').forEach(function(el) {
+			try {
+				const text = (el.textContent || "").trim();
+				if (text) {
+					globalKatex.render(text, el, {
+						throwOnError: false,
+						displayMode: true
+					});
+				}
+			} catch (e) {}
 		});
 	} catch (err) {}
 }
@@ -553,16 +560,8 @@ function populateSidememoContainer(
 				const contentDiv = document.createElement("div");
 				contentDiv.className = "asri-enhance-sidememo-inlinememo-item-content";
 				try {
-					const mdHtml =
-						typeof marked === "function"
-							? marked(content)
-							: marked && (marked.parse || marked.default)
-								? marked.parse
-									? marked.parse(content)
-									: marked.default
-										? marked.default(content)
-										: content
-								: content;
+					const lute = getLute();
+					const mdHtml = lute ? lute.Md2HTML(content) : content;
 					contentDiv.innerHTML = mdHtml;
 					try {
 						applySyntaxHighlighting(contentDiv);
@@ -607,30 +606,22 @@ function populateSidememoContainer(
 				item.style.position = "absolute";
 				const title = document.createElement("div");
 				title.className = "asri-enhance-sidememo-blockmemo-item-title";
-				title.textContent = titleText;
-				const content = document.createElement("div");
-				content.className =
-					"asri-enhance-sidememo-blockmemo-item-content";
+			title.textContent = titleText;
+			const content = document.createElement("div");
+			content.className =
+				"asri-enhance-sidememo-blockmemo-item-content";
+			try {
+				const lute = getLute();
+				const mdHtml = lute ? lute.Md2HTML(contentText) : contentText;
+				content.innerHTML = mdHtml;
 				try {
-					const mdHtml =
-						typeof marked === "function"
-							? marked(contentText)
-							: marked && (marked.parse || marked.default)
-								? marked.parse
-									? marked.parse(contentText)
-									: marked.default
-										? marked.default(contentText)
-										: contentText
-								: contentText;
-					content.innerHTML = mdHtml;
-					try {
-						applySyntaxHighlighting(content);
-					} catch (e) {}
-				} catch (e) {
-					content.textContent = contentText;
-				}
-				item.appendChild(title);
-				item.appendChild(content);
+					applySyntaxHighlighting(content);
+				} catch (e) {}
+			} catch (e) {
+				content.textContent = contentText;
+			}
+			item.appendChild(title);
+			item.appendChild(content);
 				try {
 					if (memoEl.hasAttribute && memoEl.hasAttribute("asri-enhance-sidememo-fold")) {
 						item.setAttribute("asri-enhance-sidememo-fold", "");
@@ -674,36 +665,28 @@ function populateSidememoContainer(
 				if (!titleText) {
 					titleText = (memoEl.textContent || "").trim();
 				}
-				const contentText = memoEl.getAttribute("memo") || "";
-				const item = document.createElement("div");
-				item.className = "asri-enhance-sidememo-filememo-item";
-				item.style.position = "absolute";
-				const title = document.createElement("div");
-				title.className = "asri-enhance-sidememo-filememo-item-title";
-				title.textContent = titleText;
-				const content = document.createElement("div");
-				content.className =
-					"asri-enhance-sidememo-filememo-item-content";
-				try {
-					const mdHtml =
-						typeof marked === "function"
-							? marked(contentText)
-							: marked && (marked.parse || marked.default)
-								? marked.parse
-									? marked.parse(contentText)
-									: marked.default
-										? marked.default(contentText)
-										: contentText
-								: contentText;
-					content.innerHTML = mdHtml;
-					try {
-						applySyntaxHighlighting(content);
-					} catch (e) {}
-				} catch (e) {
-					content.textContent = contentText;
-				}
-				item.appendChild(title);
-				item.appendChild(content);
+		const contentText = memoEl.getAttribute("memo") || "";
+		const item = document.createElement("div");
+		item.className = "asri-enhance-sidememo-filememo-item";
+		item.style.position = "absolute";
+		const title = document.createElement("div");
+		title.className = "asri-enhance-sidememo-filememo-item-title";
+		title.textContent = titleText;
+		const content = document.createElement("div");
+		content.className =
+			"asri-enhance-sidememo-filememo-item-content";
+		try {
+			const lute = getLute();
+			const mdHtml = lute ? lute.Md2HTML(contentText) : contentText;
+			content.innerHTML = mdHtml;
+			try {
+				applySyntaxHighlighting(content);
+			} catch (e) {}
+		} catch (e) {
+			content.textContent = contentText;
+		}
+		item.appendChild(title);
+		item.appendChild(content);
 				try {
 					if (memoEl.hasAttribute && memoEl.hasAttribute("asri-enhance-sidememo-fold")) {
 						item.setAttribute("asri-enhance-sidememo-fold", "");
@@ -741,6 +724,7 @@ function populateSidememoContainer(
 		it.el.style.top = `${finalTop}px`;
 		cursor = finalTop + it.height + GAP;
 	});
+	renderKatexInContainer(container);
 	const toggleTooltipMemoNoneFor = (relatedEl: HTMLElement | null, add: boolean) => {
 		try {
 			if (!relatedEl) return;

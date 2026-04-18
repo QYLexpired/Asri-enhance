@@ -155,46 +155,16 @@
                     margin-bottom: 0;
                 }
             }
-            h1 {
-                font-size: 1.5em;
-                color: var(--b3-theme-primary);
-                &:is([data-asri-enhance-coloredheading="true"] h1) {
-                    color: oklch(from var(--b3-theme-primary) l c calc(h + 50));
-                }
-            }
-            h2 {
-                font-size: 1.4em;
-                color: var(--b3-theme-primary);
-                &:is([data-asri-enhance-coloredheading="true"] h2) {
-                    color: oklch(from var(--b3-theme-primary) l c calc(h + 100));
-                }
-            }
-            h3 {
-                font-size: 1.3em;
-                color: var(--b3-theme-primary);
-                &:is([data-asri-enhance-coloredheading="true"] h3) {
-                    color: oklch(from var(--b3-theme-primary) l c calc(h + 150));
-                }
-            }
-            h4 {
-                font-size: 1.2em;
-                color: var(--b3-theme-primary);
-                &:is([data-asri-enhance-coloredheading="true"] h4) {
-                    color: oklch(from var(--b3-theme-primary) l c calc(h + 200));
-                }
-            }
-            h5 {
-                font-size: 1.1em;
-                color: var(--b3-theme-primary);
-                &:is([data-asri-enhance-coloredheading="true"] h5) {
-                    color: oklch(from var(--b3-theme-primary) l c calc(h + 250));
-                }
-            }
-            h6 {
-                font-size: 1em;
-                color: var(--b3-theme-primary);
-                &:is([data-asri-enhance-coloredheading="true"] h6) {
-                    color: oklch(from var(--b3-theme-primary) l c calc(h + 300));
+            @for $i from 1 through 6 {
+                $l: l;
+                $c: 0.075;
+                $h: calc(h + #{$i * 50});
+                h#{$i} {
+                    font-size: #{(1.6 - $i * 0.1)}em;
+                    color: var(--b3-theme-primary);
+                    &:is([data-asri-enhance-coloredheading="true"] h#{$i}) {
+                        color: oklch(from var(--b3-theme-accent) $l $c $h);
+                    }
                 }
             }
             blockquote {
@@ -224,11 +194,42 @@
                 word-break: break-word;
                 background-size: 20px 20px;
                 white-space: pre-wrap;
-                background-color: var(--b3-protyle-code-background);
                 box-decoration-break: clone;
                 -webkit-box-decoration-break: clone;
                 border-radius: .4em;
                 color: inherit;
+                background-color: color-mix(in srgb, currentColor 12%, rgba(0, 0, 0, 0));
+                box-shadow: 0 0 0 1px color-mix(in srgb, currentColor 5%, rgba(0, 0, 0, 0)) inset;
+            }
+            mark {
+                background: rgba(0, 0, 0, 0);
+                box-shadow: 0 -0.5em 0 0 inset var(--b3-protyle-inline-mark-background), 0 .1em 0 0 var(--b3-protyle-inline-mark-background);
+                color: inherit;
+            }
+            kbd {
+                --kbd-shadow-line-color: color-mix(in srgb, currentColor 10%, #0000);
+                border-color: color-mix(in srgb, currentColor 15%, rgba(0, 0, 0, 0));
+                background-color: color-mix(in srgb, currentColor 10%, rgba(0, 0, 0, 0));
+                font: 80% SF Pro, Consolas, "Liberation Mono", Menlo, Courier, var(--b3-font-family);
+                font-weight: inherit;
+                color: inherit;
+                padding: .125em .5em;
+                border-radius: 1em;
+                box-decoration-break: clone;
+                -webkit-box-decoration-break: clone;
+                vertical-align: .1em;
+                box-shadow: inset 0 -1px 0 hsla(0, 0%, 100%, .4), inset 0 1px 0 hsla(0, 0%, 100%, .6666666667);
+                background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2666666667), var(--kbd-shadow-line-color));
+                background-clip: padding-box;
+                background-size: contain;
+                margin: auto .25em;
+                text-shadow: 0 1px hsla(0, 0%, 100%, .6666666667);
+                &:is(.asri-mode-dark kbd) {
+                    box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .1333333333), 0 1px 0 rgba(0, 0, 0, .2666666667), inset 0 0 0 1px var(--kbd-shadow-line-color);
+                    background-image: linear-gradient(to bottom, var(--kbd-shadow-line-color), rgba(0, 0, 0, 0.2));
+                    border: none;
+                    text-shadow: 0 -1px rgba(0, 0, 0, .7333333333);
+                }
             }
             a {
                 color: inherit;
@@ -317,16 +318,21 @@
                     background-color: var(--b3-border-color-trans);
                 }
             }
+            li.vditor-task {
+                &::marker {
+                    color: transparent !important;
+                }
+            }
             input[type="checkbox"] {
-                visibility: hidden;
+                width: 0;
                 position: relative;
                 &::before {
                     content: "";
                     position: absolute;
-                    visibility: visible;
                     width: 1.1em;
                     height: 1.1em;
-                    transform: translateY(-0.12em);
+                    left: -1.35em;
+                    transform: translateY(-0.15em);
                     background-color: var(--b3-theme-on-surface);
                     -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round"/><rect width="18.5" height="18.5" x="2.75" y="2.75" rx="6"/></g></svg>');
                     mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round"/><rect width="18.5" height="18.5" x="2.75" y="2.75" rx="6"/></g></svg>');
@@ -339,14 +345,12 @@
                     }
                 }
             }
-            ul {
+            ul, ol {
                 padding-left: 1.2em;
                 line-height: 1.45;
                 li {
                     margin: 0.35em 0;
                     padding-left: 0;
-                    list-style: disc;
-                    list-style-position: outside;
                     &::marker {
                         color: var(--b3-theme-on-surface);
                     }
@@ -354,24 +358,50 @@
                     & ol {
                         margin-top: 0.25em;
                         margin-bottom: 0;
-                        padding-left: 1.05em;
+                        padding-left: 1.5em;
+                        position: relative;
+                        &::before {
+                            content: "";
+                            position: absolute;
+                            border-left: 1px solid;
+                            border-left-color: inherit;
+                            height: 100%;
+                            top: 0;
+                            inset-inline-start: -0.8em;
+                            opacity: 0.1;
+                        }
                     }
                 }
             }
-            ol {
-                padding-left: 1.2em;
-                line-height: 1.45;
-                li {
-                    margin: 0.35em 0;
-                    padding-left: 0;
-                    &::marker {
-                        color: var(--b3-theme-on-surface);
+            ul {
+                & > li {
+                    list-style: disc;
+                    list-style-position: outside;
+                }
+            }
+            & > ul,
+            & > ol {
+                & > li {
+                    @for $i from 0 through 7 {
+                        $hue-offset: #{$i * 45};
+                        &:nth-child(8n + #{$i + 1}) {
+                            --asri-enhance-li-color: oklch(from var(--b3-theme-accent) l 0.075 calc(h + #{$hue-offset}));
+                        }
                     }
-                    & > ol,
-                    & > ul {
-                        margin-top: 0.25em;
-                        margin-bottom: 0;
-                        padding-left: 1.05em;
+                    &:is([data-asri-enhance-colored-list="true"] li) {
+                        color: var(--asri-enhance-li-color);
+                        & > :not(:first-child) {
+                            color: var(--b3-theme-on-surface);
+                        }
+                        &::marker {
+                            color: var(--asri-enhance-li-color);
+                        }
+                        & input[type="checkbox"]:checked::before {
+                            background-color: var(--asri-enhance-li-color);
+                        }
+                        & > input[type="checkbox"]:not(:checked)::before {
+                            background-color: var(--asri-enhance-li-color);
+                        }
                     }
                 }
             }
@@ -383,6 +413,7 @@
                 padding: 0.5em;
                 & code {
                     background-color: transparent;
+                    box-shadow: none;
                 }
             }
         }
