@@ -2,10 +2,10 @@
 @mixin layout-tab-bar-item-focus($color) {
     .layout__center :not(.av__views) > .layout-tab-bar .item:not(.item--readonly):not(.item--full.item--focus):hover,
     .layout__center :not(.av__views) > .layout-tab-bar .item--focus {
-        background-color: #{$color}33;
+        background-color: #{$color};
     }
     [data-type="wnd"]:not(.layout__wnd--active) :not(.av__views) > .layout-tab-bar .item--focus {
-        background-color: #{$color}33 !important;
+        background-color: #{$color} !important;
     }
 }
 @mixin palette-heading-color($color) {

@@ -9,8 +9,8 @@
             flex-grow: 1;
         }
     }
-    @for $i from 0 through 20 {
-        $value: $i * 0.05;
+    @for $i from 0 through 100 {
+        $value: $i * 0.01;
         &[data-asri-enhance-windowtransparencyvalue="#{$value}"] {
             --asri-enhance-windowtransparency-value: #{$value};
         }

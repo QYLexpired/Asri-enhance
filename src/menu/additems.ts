@@ -269,7 +269,7 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
         button.id = "asri-enhance-windowtransparencyvalue";
-        button.innerHTML = `<div aria-label="${plugin.i18n.windowTransparencyValue}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.05" value="0.5"></div>`;
+        button.innerHTML = `<div aria-label="${plugin.i18n.windowTransparencyValue}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.01" value="0.5"></div>`;
         detailAdjustmentSubmenu.appendChild(button);
     }
     const windowTransparencyItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-windowtransparencyvalue");

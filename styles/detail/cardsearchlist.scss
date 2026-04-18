@@ -2,7 +2,7 @@
 @use "../asri/asri-enhance" as *;
 [data-asri-enhance-cardsearchlist="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-cardsearchlist", "#asri-enhance-detail-adjustment");
-    #searchList:not(:has( > .search__empty)),
+    #searchList:not(:has( > .search__empty)):not(:has(>.b3-list-item:not([data-type=search-item]))),
     #searchUnRefList:not(:has( > .search__empty)),
     #searchAssetList:not(:has( > .search__empty)) {
         display: grid;

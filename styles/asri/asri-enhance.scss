@@ -69,6 +69,18 @@
             }
         }
     }
+    #searchList,
+    #searchUnRefList,
+    #searchAssetList {
+        // 搜索结果为空
+        & > .b3-list-item[data-type="search-new"] {
+            margin: 1px 8px;
+            padding: 0px 4px;
+            border-radius: var(--b3-border-radius);
+            position: relative;
+            top: 0;
+        }
+    }
     // 闪卡按钮
     .card__action {
         button.b3-button {
