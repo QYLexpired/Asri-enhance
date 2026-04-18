@@ -132,6 +132,9 @@
         .asri-enhance-sidememo-inlinememo-item-content,
         .asri-enhance-sidememo-blockmemo-item-content,
         .asri-enhance-sidememo-filememo-item-content {
+            img {
+                pointer-events: none;
+            }
             & > h1,
             & > h2,
             & > h3,
