@@ -70,7 +70,7 @@
                     max-width: calc(var(--b3-width-protyle-content) - 2 * var(--asri-enhance-sidememo-re));
                     border-radius: 14px;
                     corner-shape: superellipse(1.4);
-                    box-shadow: 0 0 0 0.5px inset var(--b3-border-color-trans);
+                    box-shadow: 0 0 0 0.75px inset var(--b3-border-color-trans);
                     font-size: 0.8125em;
                     color: var(--b3-theme-on-surface);
                     transition: all 0.25s, top 0s;
@@ -79,7 +79,7 @@
                     &[asri-enhance-sidememo-highlight] {
                         &:not(.asri-enhance-sidememo-filememo-item) {
                             background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
-                            box-shadow: 0 0 0 0.5px oklch(from var(--b3-theme-accent) l c h / 0.25);
+                            box-shadow: 0 0 0 0.75px oklch(from var(--b3-theme-accent) l c h / 0.25);
                             scale: 1.035;
                         }
                     }

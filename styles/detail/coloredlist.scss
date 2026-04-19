@@ -71,17 +71,17 @@
                         color: var(--b3-theme-on-surface);
                     }
                     &::marker {
-                        color: var(--asri-enhance-li-color);
+                        color: var(--asri-enhance-li-color) !important;
                     }
                     & input[type="checkbox"]:checked::before {
-                        background-color: var(--asri-enhance-li-color);
+                        background-color: var(--asri-enhance-li-color) !important;
                     }
                     & > input[type="checkbox"]:not(:checked)::before {
-                        background-color: var(--asri-enhance-li-color);
+                        background-color: var(--asri-enhance-li-color) !important;
                     }
                     & > :first-child {
                         & > input[type="checkbox"]:not(:checked)::before {
-                            background-color: var(--asri-enhance-li-color);
+                            background-color: var(--asri-enhance-li-color) !important;
                         }
                     }
                 }
