@@ -1,5 +1,6 @@
 ### Updates
 - Changed the Markdown parser for side memo to Lute
+- Fixed an issue where side memo couldn't render Markdown correctly due to HTML escaping in some cases
 - Optimized side memo list style
 - Support for more precise window transparency adjustment
 - Card search list no longer takes effect when search results are grouped by document

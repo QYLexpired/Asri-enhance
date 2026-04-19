@@ -13,6 +13,11 @@ function getLute() {
 	lute.SetMark(true);
     return lute;
 }
+const decodeHTML = (str: string): string => {
+	const textarea = document.createElement("textarea");
+	textarea.innerHTML = str;
+	return textarea.value;
+};
 function applySyntaxHighlighting(container: HTMLElement) {
 	try {
 		const globalHljs = (window as any)?.hljs;
@@ -561,7 +566,7 @@ function populateSidememoContainer(
 				contentDiv.className = "asri-enhance-sidememo-inlinememo-item-content";
 				try {
 					const lute = getLute();
-					const mdHtml = lute ? lute.Md2HTML(content) : content;
+					const mdHtml = lute ? lute.Md2HTML(decodeHTML(content)) : content;
 					contentDiv.innerHTML = mdHtml;
 					try {
 						applySyntaxHighlighting(contentDiv);
@@ -612,7 +617,7 @@ function populateSidememoContainer(
 				"asri-enhance-sidememo-blockmemo-item-content";
 			try {
 				const lute = getLute();
-				const mdHtml = lute ? lute.Md2HTML(contentText) : contentText;
+				const mdHtml = lute ? lute.Md2HTML(decodeHTML(contentText)) : contentText;
 				content.innerHTML = mdHtml;
 				try {
 					applySyntaxHighlighting(content);
@@ -677,7 +682,7 @@ function populateSidememoContainer(
 			"asri-enhance-sidememo-filememo-item-content";
 		try {
 			const lute = getLute();
-			const mdHtml = lute ? lute.Md2HTML(contentText) : contentText;
+			const mdHtml = lute ? lute.Md2HTML(decodeHTML(contentText)) : contentText;
 			content.innerHTML = mdHtml;
 			try {
 				applySyntaxHighlighting(content);
