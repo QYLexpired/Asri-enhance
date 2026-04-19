@@ -17,6 +17,15 @@
             }
         }
     }
+    // 侧边备注
+    .asri-enhance-sidememo-container {
+        @for $i from 1 through 6 {
+            $h: calc(h + #{$i * 50});
+            h#{$i} {
+                color: oklch(from var(--b3-theme-accent) $l $c $h) !important;
+            }
+        }
+    }
     .sy__outline,
     [data-type="sidebar-outline"] {
         @for $i from 1 through 6 {

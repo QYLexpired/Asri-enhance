@@ -52,4 +52,40 @@
             --asri-enhance-listbulletline-highlight-color: var(--asri-enhance-li-color);
         }
     }
+    // 侧边备注
+    .asri-enhance-sidememo-container {
+        .asri-enhance-sidememo-inlinememo-item-content,
+        .asri-enhance-sidememo-blockmemo-item-content,
+        .asri-enhance-sidememo-filememo-item-content {
+            & > ul,
+            & > ol {
+                & > li {
+                    @for $i from 0 through 7 {
+                        $hue-offset: #{$i * 45};
+                        &:nth-child(8n + #{$i + 1}) {
+                            --asri-enhance-li-color: oklch(from var(--b3-theme-accent) l 0.075 calc(h + #{$hue-offset}));
+                        }
+                    }
+                    color: var(--asri-enhance-li-color);
+                    & > :not(:first-child) {
+                        color: var(--b3-theme-on-surface);
+                    }
+                    &::marker {
+                        color: var(--asri-enhance-li-color);
+                    }
+                    & input[type="checkbox"]:checked::before {
+                        background-color: var(--asri-enhance-li-color);
+                    }
+                    & > input[type="checkbox"]:not(:checked)::before {
+                        background-color: var(--asri-enhance-li-color);
+                    }
+                    & > :first-child {
+                        & > input[type="checkbox"]:not(:checked)::before {
+                            background-color: var(--asri-enhance-li-color);
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

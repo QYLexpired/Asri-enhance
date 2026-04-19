@@ -11,6 +11,7 @@ function getLute() {
         lute = ((window as any).Lute as any).New();
     }
 	lute.SetMark(true);
+	lute.SetTag(true);
     return lute;
 }
 const decodeHTML = (str: string): string => {

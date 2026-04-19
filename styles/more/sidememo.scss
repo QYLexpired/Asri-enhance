@@ -159,15 +159,9 @@
                 }
             }
             @for $i from 1 through 6 {
-                $l: l;
-                $c: 0.075;
-                $h: calc(h + #{$i * 50});
                 h#{$i} {
                     font-size: #{(1.6 - $i * 0.1)}em;
                     color: var(--b3-theme-primary);
-                    &:is([data-asri-enhance-coloredheading="true"] h#{$i}) {
-                        color: oklch(from var(--b3-theme-accent) $l $c $h);
-                    }
                 }
             }
             blockquote {
@@ -334,7 +328,7 @@
                     position: absolute;
                     width: 1.1em;
                     height: 1.1em;
-                    left: -1.35em;
+                    left: -1.3em;
                     transform: translateY(-0.15em);
                     background-color: var(--b3-theme-on-surface);
                     -webkit-mask-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round"/><rect width="18.5" height="18.5" x="2.75" y="2.75" rx="6"/></g></svg>');
@@ -380,32 +374,6 @@
                 & > li {
                     list-style: disc;
                     list-style-position: outside;
-                }
-            }
-            & > ul,
-            & > ol {
-                & > li {
-                    @for $i from 0 through 7 {
-                        $hue-offset: #{$i * 45};
-                        &:nth-child(8n + #{$i + 1}) {
-                            --asri-enhance-li-color: oklch(from var(--b3-theme-accent) l 0.075 calc(h + #{$hue-offset}));
-                        }
-                    }
-                    &:is([data-asri-enhance-colored-list="true"] li) {
-                        color: var(--asri-enhance-li-color);
-                        & > :not(:first-child) {
-                            color: var(--b3-theme-on-surface);
-                        }
-                        &::marker {
-                            color: var(--asri-enhance-li-color);
-                        }
-                        & input[type="checkbox"]:checked::before {
-                            background-color: var(--asri-enhance-li-color);
-                        }
-                        & > input[type="checkbox"]:not(:checked)::before {
-                            background-color: var(--asri-enhance-li-color);
-                        }
-                    }
                 }
             }
             pre {
