@@ -1,4 +1,5 @@
 ### 更新内容
+- 侧边备注新增支持渲染：Mindmap、Mermaid、Echarts、abc music notation、Graphviz、Flowchart、PlantUML
 - 将侧边备注的Markdown解析器更改为思源内置解析器（Lute）
 - 修复某些情况下因Html转义导致侧边备注无法正确渲染Markdown的问题
 - 优化侧边备注列表样式

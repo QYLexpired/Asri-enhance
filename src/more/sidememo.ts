@@ -25,21 +25,19 @@ function applySyntaxHighlighting(container: HTMLElement) {
 		if (!globalHljs) return;
 		const codeEls = Array.from(container.querySelectorAll<HTMLElement>("pre code"));
 		codeEls.forEach((el) => {
-			try {
-				if (typeof globalHljs.highlightElement === "function") {
-					globalHljs.highlightElement(el);
-				} else {
-					const cls = el.className || "";
-					const langMatch = cls.match(/language-([a-z0-9-]+)/i);
-					const lang = (langMatch && langMatch[1]) || "";
-					const codeText = el.textContent || "";
-					if (lang && globalHljs.getLanguage && globalHljs.getLanguage(lang)) {
-						el.innerHTML = globalHljs.highlight(codeText, { language: lang }).value;
-					} else if (globalHljs.highlightAuto) {
-						el.innerHTML = globalHljs.highlightAuto(codeText).value;
-					}
+			if (typeof globalHljs.highlightElement === "function") {
+				globalHljs.highlightElement(el);
+			} else {
+				const cls = el.className || "";
+				const langMatch = cls.match(/language-([a-z0-9-]+)/i);
+				const lang = (langMatch && langMatch[1]) || "";
+				const codeText = el.textContent || "";
+				if (lang && globalHljs.getLanguage && globalHljs.getLanguage(lang)) {
+					el.innerHTML = globalHljs.highlight(codeText, { language: lang }).value;
+				} else if (globalHljs.highlightAuto) {
+					el.innerHTML = globalHljs.highlightAuto(codeText).value;
 				}
-			} catch (err) {}
+			}
 		});
 	} catch (err) {}
 }
@@ -47,7 +45,7 @@ function renderKatexInContainer(container: HTMLElement) {
 	try {
 		const globalKatex = (window as any)?.katex;
 		if (!globalKatex) return;
-		container.querySelectorAll('span.language-math').forEach(function(el) {
+		container.querySelectorAll('span.language-math').forEach((el) => {
 			try {
 				const text = (el.textContent || "").trim();
 				if (text) {
@@ -58,7 +56,7 @@ function renderKatexInContainer(container: HTMLElement) {
 				}
 			} catch (e) {}
 		});
-		container.querySelectorAll('div.language-math').forEach(function(el) {
+		container.querySelectorAll('div.language-math').forEach((el) => {
 			try {
 				const text = (el.textContent || "").trim();
 				if (text) {
@@ -68,6 +66,138 @@ function renderKatexInContainer(container: HTMLElement) {
 					});
 				}
 			} catch (e) {}
+		});
+	} catch (err) {}
+}
+async function renderMermaidInContainer(container: HTMLElement) {
+	try {
+		const mermaid = (window as any)?.mermaid;
+		if (!mermaid) return;
+		container.querySelectorAll("div.language-mermaid").forEach((el) => {
+			try {
+				const codeText = el.textContent || "";
+				if (!codeText.trim()) return;
+				const parent = el.parentElement;
+				if (!parent || !parent.classList.contains("mermaid")) {
+					if (parent) {
+						parent.classList.add("mermaid");
+					} else {
+						el.classList.add("mermaid");
+					}
+				}
+			} catch (e) {}
+		});
+		try {
+			await mermaid.run({
+				querySelector: ".asri-enhance-sidememo-container .language-mermaid"
+			});
+		} catch (e) {}
+	} catch (err) {}
+}
+function renderEchartsInContainer(container: HTMLElement) {
+	try {
+		const echarts = (window as any)?.echarts;
+		if (!echarts) return;
+		container.querySelectorAll("div.language-echarts").forEach((e: HTMLElement) => {
+			const cfg = (e.textContent || "").trim();
+			if (!cfg) return;
+			const existing = echarts.getInstanceByDom(e);
+			if (existing) {
+				existing.dispose();
+			}
+			const chart = echarts.init(e);
+			chart.setOption(JSON.parse(cfg));
+		});
+	} catch (err) {}
+}
+function renderMindmapInContainer(container: HTMLElement) {
+	try {
+		const echarts = (window as any)?.echarts;
+		if (!echarts) return;
+		container.querySelectorAll("div.language-mindmap").forEach((e: HTMLElement) => {
+			const code = e.dataset.code;
+			if (!code) return;
+			const existing = echarts.getInstanceByDom(e);
+			if (existing) {
+				existing.dispose();
+			}
+			const chart = echarts.init(e);
+			chart.setOption({
+				series: [{
+					type: "tree",
+					data: [JSON.parse(decodeURIComponent(code))],
+					left: 20,
+					right: 120,
+					top: 20,
+					bottom: 20,
+					symbolSize: 8,
+					orient: "LR",
+					label: { position: "left", verticalAlign: "middle", align: "right" },
+					leaves: { label: { position: "right", verticalAlign: "middle", align: "left" } },
+					lineStyle: { curveness: 0.5 },
+					initialTreeDepth: -1,
+					roam: true
+				}]
+			});
+		});
+	} catch (err) {}
+}
+function renderAbcInContainer(container: HTMLElement) {
+	try {
+		const ABCJS = (window as any)?.ABCJS;
+		if (!ABCJS) return;
+		container.querySelectorAll("div.language-abc").forEach((e: HTMLElement) => {
+			const abc = (e.textContent || "").trim();
+			if (!abc) return;
+			ABCJS.renderAbc(e, abc, {}, {}, { responsive: "resize" });
+		});
+	} catch (err) {}
+}
+async function renderGraphvizInContainer(container: HTMLElement) {
+	try {
+		const Viz = (window as any)?.Viz;
+		if (!Viz) return;
+		const viz = await Viz.instance();
+		container.querySelectorAll("div.language-graphviz").forEach((e: HTMLElement) => {
+			const dot = (e.textContent || "").trim();
+			if (!dot) return;
+			const svg = viz.renderSVGElement(dot);
+			svg.style.width = "100%";
+			svg.style.height = "auto";
+			e.innerHTML = "";
+			e.appendChild(svg);
+		});
+	} catch (err) {}
+}
+function renderFlowchartInContainer(container: HTMLElement) {
+	try {
+		const flowchart = (window as any)?.flowchart;
+		if (!flowchart) {
+			setTimeout(() => renderFlowchartInContainer(container), 100);
+			return;
+		}
+		container.querySelectorAll("div.language-flowchart").forEach((e: HTMLElement) => {
+			if (e.querySelector("svg")) return;
+			let code = e.dataset.flowchartCode || e.textContent || "";
+			if (!code.trim()) return;
+			e.dataset.flowchartCode = code;
+			e.innerHTML = "";
+			flowchart.parse(code).drawSVG(e);
+		});
+	} catch (err) {}
+}
+function renderPlantumlInContainer(container: HTMLElement) {
+	try {
+		const plantumlEncoder = (window as any)?.plantumlEncoder;
+		if (!plantumlEncoder) {
+			setTimeout(() => renderPlantumlInContainer(container), 100);
+			return;
+		}
+		container.querySelectorAll("div.language-plantuml").forEach((e: HTMLElement) => {
+			const code = (e.textContent || "").trim();
+			if (code) {
+				e.innerHTML = `<img src="https://www.plantuml.com/plantuml/svg/~1${plantumlEncoder.encode(code)}" style="width:100%;height:auto;display:block;">`;
+			}
 		});
 	} catch (err) {}
 }
@@ -148,7 +278,13 @@ async function initSidememoRely(): Promise<boolean> {
 			});
 		const needKatex = !(window as any).katex;
 		const needHljs = !(window as any).hljs;
-		if (!needKatex && !needHljs) {
+		const needMermaid = !(window as any).mermaid;
+		const needEcharts = !(window as any).echarts;
+		const needAbcjs = !(window as any).ABCJS;
+		const needGraphviz = !(window as any).Viz;
+		const needFlowchart = !(window as any).flowchart;
+		const needPlantuml = !(window as any).plantumlEncoder;
+		if (!needKatex && !needHljs && !needMermaid && !needEcharts && !needAbcjs && !needGraphviz && !needFlowchart && !needPlantuml) {
 			return true;
 		}
 		const resources: Array<Record<string, string>> = [];
@@ -161,6 +297,26 @@ async function initSidememoRely(): Promise<boolean> {
 			resources.push({ type: "link", id: "protyleHljsStyle", href: "/stage/protyle/js/highlight.js/styles/github.min.css?v=11.11.1" });
 			resources.push({ type: "script", id: "protyleHljsScript", src: "/stage/protyle/js/highlight.js/highlight.min.js?v=11.11.1" });
 		}
+		if (needMermaid) {
+			resources.push({ type: "script", id: "protyleMermaidScript", src: "/stage/protyle/js/mermaid/mermaid.min.js?v=11.13.0" });
+			resources.push({ type: "script", id: "protyleMermaidZenumlScript", src: "/stage/protyle/js/mermaid/mermaid-zenuml.min.js?v=0.2.2" });
+		}
+		if (needEcharts) {
+			resources.push({ type: "script", id: "protyleEchartsScript", src: "/stage/protyle/js/echarts/echarts.min.js?v=5.3.2" });
+			resources.push({ type: "script", id: "protyleEchartsGLScript", src: "/stage/protyle/js/echarts/echarts-gl.min.js?v=2.0.9" });
+		}
+		if (needAbcjs) {
+			resources.push({ type: "script", id: "protyleAbcjsScript", src: "/stage/protyle/js/abcjs/abcjs-basic-min.js?v=6.5.0" });
+		}
+		if (needGraphviz) {
+			resources.push({ type: "script", id: "protyleGraphVizScript", src: "/stage/protyle/js/graphviz/viz.js?v=3.11.0" });
+		}
+		if (needFlowchart) {
+			resources.push({ type: "script", id: "protyleFlowchartScript", src: "/stage/protyle/js/flowchart.js/flowchart.min.js?v=1.18.0" });
+		}
+		if (needPlantuml) {
+			resources.push({ type: "script", id: "protylePlantumlScript", src: "/stage/protyle/js/plantuml/plantuml-encoder.min.js?v=0.0.0" });
+		}
 		for (const r of resources) {
 			try {
 				if (r.type === "link") {
@@ -171,7 +327,7 @@ async function initSidememoRely(): Promise<boolean> {
 			} catch (e) {}
 		}
 	} catch (e) {}
-	return ((window as any).katex !== undefined) || ((window as any).hljs !== undefined);
+	return ((window as any).katex !== undefined) || ((window as any).hljs !== undefined) || ((window as any).mermaid !== undefined) || ((window as any).echarts !== undefined) || ((window as any).ABCJS !== undefined) || ((window as any).Viz !== undefined) || ((window as any).flowchart !== undefined) || ((window as any).plantumlEncoder !== undefined);
 }
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-side-memo";
@@ -265,13 +421,13 @@ function updateAllProtyleMemoClasses(): void {
 		} catch (e) {}
 	}
 }
-function ensureSidememoContainers(): void {
+async function ensureSidememoContainers(): Promise<void> {
 	const titleElements = Array.from(
 		document.querySelectorAll<HTMLElement>(
 			".asri-enhance-sidememo .protyle-top .protyle-title",
 		),
 	);
-	titleElements.forEach((titleEl) => {
+	for (const titleEl of titleElements) {
 		try {
 			let container = titleEl.querySelector<HTMLElement>(
 				".asri-enhance-sidememo-container",
@@ -311,13 +467,13 @@ function ensureSidememoContainers(): void {
 				".protyle-content",
 			) as HTMLElement | null;
 			if (protyleContent) {
-				populateSidememoContainer(container, protyleContent);
+				await populateSidememoContainer(container, protyleContent);
 				try {
 					attachNoRightClick(container);
 				} catch (e) {}
 			}
 		} catch (err) {}
-	});
+	}
 	const allContainers = Array.from(
 		document.querySelectorAll<HTMLElement>(
 			".protyle-top .protyle-title > .asri-enhance-sidememo-container",
@@ -396,10 +552,10 @@ function ensureSidememoContainers(): void {
 		} catch (e) {}
 	}
 }
-function populateSidememoContainer(
+async function populateSidememoContainer(
 	container: HTMLElement,
 	protyleContent: HTMLElement,
-): void {
+): Promise<void> {
 	const existingMemoEls = Array.from(
 		protyleContent.querySelectorAll<HTMLElement>(
 			'[data-type*="inline-memo"], [memo]',
@@ -731,6 +887,13 @@ function populateSidememoContainer(
 		cursor = finalTop + it.height + GAP;
 	});
 	renderKatexInContainer(container);
+	renderMermaidInContainer(container);
+	renderEchartsInContainer(container);
+	renderMindmapInContainer(container);
+	renderAbcInContainer(container);
+	await renderGraphvizInContainer(container);
+	renderFlowchartInContainer(container);
+	renderPlantumlInContainer(container);
 	const toggleTooltipMemoNoneFor = (relatedEl: HTMLElement | null, add: boolean) => {
 		try {
 			if (!relatedEl) return;

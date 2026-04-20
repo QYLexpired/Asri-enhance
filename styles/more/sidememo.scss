@@ -135,6 +135,12 @@
             img {
                 pointer-events: none;
             }
+            .language-echarts,
+            .language-mindmap { 
+                width: 100%;
+                aspect-ratio: 16 / 9;
+                min-height: 100px;
+            }
             & > h1,
             & > h2,
             & > h3,

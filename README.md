@@ -1,5 +1,6 @@
 ### Updates
-- Changed the Markdown parser for side memo to Lute
+- Side memo now supports rendering: Mindmap, Mermaid, ECharts, abc music notation, Graphviz, Flowchart, PlantUML
+- Changed the Markdown parser for side memo to the built-in SiYuan parser (Lute)
 - Fixed an issue where side memo couldn't render Markdown correctly due to HTML escaping in some cases
 - Optimized side memo list style
 - Support for more precise window transparency adjustment
