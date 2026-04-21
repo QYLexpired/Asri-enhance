@@ -9,9 +9,9 @@ let lute: any = null;
 function getLute() {
     if (!lute && typeof (window as any).Lute !== "undefined") {
         lute = ((window as any).Lute as any).New();
+		lute.SetMark(true);
+		lute.SetTag(true);
     }
-	lute.SetMark(true);
-	lute.SetTag(true);
     return lute;
 }
 const decodeHTML = (str: string): string => {

@@ -83,8 +83,6 @@
                     &[asri-enhance-sidememo-highlight] {
                         &:not(.asri-enhance-sidememo-filememo-item) {
                             background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
-                            box-shadow: 0 0 0 0.75px oklch(from var(--b3-theme-accent) l c h / 0.25);
-                            scale: 1.035;
                         }
                     }
                     &[asri-enhance-sidememo-fold] {
