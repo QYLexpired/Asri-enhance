@@ -272,7 +272,7 @@ async function initSidememoRely(): Promise<boolean> {
 				head.appendChild(link);
 			} catch (e) {}
 		};
-		const createScript = (id: string, src: string) =>
+		const createScript = (id: string, src: string, async = true) =>
 			new Promise<void>((resolve, reject) => {
 				try {
 					if (document.getElementById(id)) {
@@ -282,21 +282,11 @@ async function initSidememoRely(): Promise<boolean> {
 					const script = document.createElement("script");
 					script.id = id;
 					script.src = src;
-					script.async = true;
-					script.onload = () => {
-						try {
-							resolve();
-						} catch (e) {}
-					};
-					script.onerror = () => {
-						try {
-							reject();
-						} catch (e) {}
-					};
+					script.async = async;
+					script.onload = () => resolve();
+					script.onerror = () => reject();
 					head.appendChild(script);
-				} catch (e) {
-					reject(e);
-				}
+				} catch (e) { reject(e); }
 			});
 		const needKatex = !(window as any).katex;
 		const needHljs = !(window as any).hljs;
@@ -312,20 +302,26 @@ async function initSidememoRely(): Promise<boolean> {
 		const resources: Array<Record<string, string>> = [];
 		if (needKatex) {
 			resources.push({ type: "link", id: "protyleKatexStyle", href: "/stage/protyle/js/katex/katex.min.css?v=0.16.9" });
-			resources.push({ type: "script", id: "protyleKatexScript", src: "/stage/protyle/js/katex/katex.min.js?v=0.16.9" });
-			resources.push({ type: "script", id: "protyleKatexMhchemScript", src: "/stage/protyle/js/katex/mhchem.min.js?v=0.16.9" });
+			try {
+				await createScript("protyleKatexScript", "/stage/protyle/js/katex/katex.min.js?v=0.16.9", false);
+				await createScript("protyleKatexMhchemScript", "/stage/protyle/js/katex/mhchem.min.js?v=0.16.9", false);
+			} catch (e) {}
 		}
 		if (needHljs) {
 			resources.push({ type: "link", id: "protyleHljsStyle", href: "/stage/protyle/js/highlight.js/styles/github.min.css?v=11.11.1" });
 			resources.push({ type: "script", id: "protyleHljsScript", src: "/stage/protyle/js/highlight.js/highlight.min.js?v=11.11.1" });
 		}
 		if (needMermaid) {
-			resources.push({ type: "script", id: "protyleMermaidScript", src: "/stage/protyle/js/mermaid/mermaid.min.js?v=11.13.0" });
-			resources.push({ type: "script", id: "protyleMermaidZenumlScript", src: "/stage/protyle/js/mermaid/mermaid-zenuml.min.js?v=0.2.2" });
+			try {
+				await createScript("protyleMermaidScript", "/stage/protyle/js/mermaid/mermaid.min.js?v=11.13.0", false);
+				await createScript("protyleMermaidZenumlScript", "/stage/protyle/js/mermaid/mermaid-zenuml.min.js?v=0.2.2", false);
+			} catch (e) {}
 		}
 		if (needEcharts) {
-			resources.push({ type: "script", id: "protyleEchartsScript", src: "/stage/protyle/js/echarts/echarts.min.js?v=5.3.2" });
-			resources.push({ type: "script", id: "protyleEchartsGLScript", src: "/stage/protyle/js/echarts/echarts-gl.min.js?v=2.0.9" });
+			try {
+				await createScript("protyleEchartsScript", "/stage/protyle/js/echarts/echarts.min.js?v=5.3.2", false);
+				await createScript("protyleEchartsGLScript", "/stage/protyle/js/echarts/echarts-gl.min.js?v=2.0.9", false);
+			} catch (e) {}
 		}
 		if (needAbcjs) {
 			resources.push({ type: "script", id: "protyleAbcjsScript", src: "/stage/protyle/js/abcjs/abcjs-basic-min.js?v=6.5.0" });
