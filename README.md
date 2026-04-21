@@ -1,10 +1,5 @@
 ### Updates
-- Side memo now supports rendering: Mindmap, Mermaid, ECharts, abc music notation, Graphviz, Flowchart, PlantUML
-- Changed the Markdown parser for side memo to the built-in SiYuan parser (Lute)
-- Fixed an issue where side memo couldn't render Markdown correctly due to HTML escaping in some cases
-- Optimized side memo list style
-- Support for more precise window transparency adjustment
-- Card search list no longer takes effect when search results are grouped by document
+- Side memo now supports rendering ECharts in IIFE/JS object format
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 * Mobile adaptation available - adjust Asri theme color schemes and this plugin's features on mobile devices

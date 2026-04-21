@@ -243,7 +243,7 @@ $cardlayout-dock-transparency-selectors: (
     .config__panel .b3-tab-bar {
         corner-shape: superellipse(1.4);
         border-radius: 16.8px;
-        margin: var(--asri-enhance-cardlayout-gap);
+        margin: var(--asri-enhance-cardlayout-gap) 0 var(--asri-enhance-cardlayout-gap) var(--asri-enhance-cardlayout-gap);
         padding: var(--asri-enhance-cardlayout-gap);
         height: calc(100% - 2 * var(--asri-enhance-cardlayout-gap));
         max-height: calc(100% - 2 * var(--asri-enhance-cardlayout-gap));

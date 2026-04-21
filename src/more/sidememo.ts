@@ -106,7 +106,25 @@ function renderEchartsInContainer(container: HTMLElement) {
 				existing.dispose();
 			}
 			const chart = echarts.init(e);
-			chart.setOption(JSON.parse(cfg));
+			let option: any;
+			try {
+				option = JSON.parse(cfg);
+			} catch (jsonErr) {
+				try {
+					const fn = new Function('echarts', 'return ' + cfg);
+					option = fn(echarts);
+				} catch (exprErr) {
+					try {
+						const fn = new Function('echarts', cfg + '; return option;');
+						option = fn(echarts);
+					} catch (stmtErr) {
+						return;
+					}
+				}
+			}
+			if (option && typeof option === 'object') {
+				chart.setOption(option);
+			}
 		});
 	} catch (err) {}
 }
@@ -169,11 +187,13 @@ async function renderGraphvizInContainer(container: HTMLElement) {
 		});
 	} catch (err) {}
 }
-function renderFlowchartInContainer(container: HTMLElement) {
+function renderFlowchartInContainer(container: HTMLElement, retryCount = 0) {
 	try {
 		const flowchart = (window as any)?.flowchart;
 		if (!flowchart) {
-			setTimeout(() => renderFlowchartInContainer(container), 100);
+			if (retryCount < 50) {
+				setTimeout(() => renderFlowchartInContainer(container, retryCount + 1), 100);
+			}
 			return;
 		}
 		container.querySelectorAll("div.language-flowchart").forEach((e: HTMLElement) => {
@@ -186,11 +206,13 @@ function renderFlowchartInContainer(container: HTMLElement) {
 		});
 	} catch (err) {}
 }
-function renderPlantumlInContainer(container: HTMLElement) {
+function renderPlantumlInContainer(container: HTMLElement, retryCount = 0) {
 	try {
 		const plantumlEncoder = (window as any)?.plantumlEncoder;
 		if (!plantumlEncoder) {
-			setTimeout(() => renderPlantumlInContainer(container), 100);
+			if (retryCount < 50) {
+				setTimeout(() => renderPlantumlInContainer(container, retryCount + 1), 100);
+			}
 			return;
 		}
 		container.querySelectorAll("div.language-plantuml").forEach((e: HTMLElement) => {

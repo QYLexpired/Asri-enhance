@@ -1,5 +1,8 @@
 @use "../asri/overflowfadein" as *;
 @use "../asri/asri-enhance" as *;
+.asri-enhance-sidememo-container {
+    display: none;
+}
 [data-asri-enhance-side-memo="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-sidememo");
     body:not(.body-asri--mobile) {
@@ -50,6 +53,7 @@
                 }
             }
             & .asri-enhance-sidememo-container {
+                display: block;
                 position: absolute;
                 width: var(--asri-enhance-sidememo-container-width);
                 max-width: calc(var(--b3-width-protyle-content) - 2 * var(--asri-enhance-sidememo-re));

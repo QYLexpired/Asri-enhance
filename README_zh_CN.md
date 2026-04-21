@@ -1,10 +1,5 @@
 ### 更新内容
-- 侧边备注新增支持渲染：Mindmap、Mermaid、Echarts、abc music notation、Graphviz、Flowchart、PlantUML
-- 将侧边备注的Markdown解析器更改为思源内置解析器（Lute）
-- 修复某些情况下因Html转义导致侧边备注无法正确渲染Markdown的问题
-- 优化侧边备注列表样式
-- 支持更精确的窗体透明度调整
-- 卡片化搜索列表不再对搜索结果按文档分组时生效
+- 侧边备注新增支持渲染IIFE/JS对象格式的Echarts图表
 ### 关于插件
 * [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
 * 适配移动端，可在移动端调整Asri主题配色和本插件的功能
