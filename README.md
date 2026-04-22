@@ -13,8 +13,7 @@
     * Left-click the title area (first line) of the side memo card to open the note editing window
     * Right-click the title area (first line) of the side memo card to temporarily collapse the note
     * Long press the side memo card for 1s to drag and adjust the side memo width
-    * Supports markdown parsing (including formulas, code syntax highlighting)
-    * Supports HTML parsing
+    * Supports markdown parsing (including formulas, code syntax highlighting, charts) and HTML parsing
 * Card Layout
 ### Immersive Editing
 * Typewriter mode
