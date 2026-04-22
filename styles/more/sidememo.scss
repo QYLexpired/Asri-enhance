@@ -86,7 +86,7 @@
                         }
                     }
                     &[asri-enhance-sidememo-fold] {
-                        padding: 0.5em;
+                        padding: 0.75em;
                         opacity: 0.5;
                         .asri-enhance-sidememo-inlinememo-item-title,
                         .asri-enhance-sidememo-blockmemo-item-title,
@@ -111,7 +111,7 @@
                         cursor: pointer;
                         color: var(--b3-theme-on-surface-light);
                         transition: all 0.25s;
-                        padding: 0.5em 0.5em 0 0.5em;
+                        padding: 0.75em 0.75em 0 0.75em;
                         &:hover {
                             color: var(--b3-theme-accent);
                         }
@@ -122,7 +122,7 @@
                         word-wrap: break-word;
                         max-height: 500px;
                         overflow: scroll;
-                        padding: 0.5em;
+                        padding: 0.75em;
                         @include overflow-indicator-fadein-mask($fadeout-size-l, "top bottom");
                     }
                 }

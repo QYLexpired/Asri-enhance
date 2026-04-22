@@ -2,7 +2,7 @@
 [data-asri-enhance-coloredheading="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-colored-heading", "#asri-enhance-detail-adjustment");
     $l: l;
-    $c: 0.075;
+    $c: 0.1;
     .protyle-title__input {
         color: var(--b3-theme-accent) !important;
     }
