@@ -1,4 +1,5 @@
 ### Updates
+- Side memo now supports rendering block-ref links (clickable preview)
 - Side memo now supports rendering tags (clickable tag search)
 - Traditional Chinese and Arabic Support
 ### About the Plugin

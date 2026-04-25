@@ -231,7 +231,6 @@
                 background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.2666666667), var(--kbd-shadow-line-color));
                 background-clip: padding-box;
                 background-size: contain;
-                margin: auto .25em;
                 text-shadow: 0 1px hsla(0, 0%, 100%, .6666666667);
                 &:is(.asri-mode-dark kbd) {
                     box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .1333333333), 0 1px 0 rgba(0, 0, 0, .2666666667), inset 0 0 0 1px var(--kbd-shadow-line-color);
@@ -271,6 +270,29 @@
                     --tag-color-border: #ffa44460;
                     --tag-color-bg: #ffa44420;
                     --tag-color-text: #ffa444;
+                }
+            }
+            span[data-type="block-ref"] {
+                cursor: pointer;
+                --bg-clr: var(--b3-theme-primary-lightest);
+                color: inherit;
+                text-decoration-line: underline;
+                text-decoration-style: dashed;
+                text-decoration-color: var(--b3-theme-primary);
+                text-decoration-thickness: .08em;
+                background: linear-gradient(90deg, var(--bg-clr) 100%, transparent 0%) center right;
+                background-size: 0;
+                background-repeat: no-repeat;
+                opacity: 1;
+                transition: background-size .2s;
+                &:hover {
+                    background-position: center left;
+                    text-decoration-style: solid;
+                    background-size: 100%;
+                    transition-delay: .125s;
+                }
+                &:is(.asri-mode-dark span[data-type="block-ref"]) {
+                    --bg-clr: var(--b3-theme-primary-lighter);
                 }
             }
             table {

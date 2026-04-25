@@ -4,28 +4,54 @@ import { createFetchInterceptor } from "../utils/fetchInterceptor";
 const isMobile = () => {
     return getFrontend().endsWith("mobile");
 };
+declare const window: any;
 let globalPlugin: Plugin | null = null;
 let lute: any = null;
 function getLute() {
-    if (!lute && typeof (window as any).Lute !== "undefined") {
-        lute = ((window as any).Lute as any).New();
-        lute.SetMark((window as any).siyuan.config.editor.markdown.inlineMark);
-        lute.SetTag((window as any).siyuan.config.editor.markdown.inlineTag);
+    if (!lute && typeof window.Lute !== "undefined") {
+        lute = (window.Lute as any).New();
+        lute.SetBlockRef(true);
+        lute.SetMark(window.siyuan.config.editor.markdown.inlineMark);
+        lute.SetTag(window.siyuan.config.editor.markdown.inlineTag);
+        let ref: { id?: string; text?: string } = {};
         lute.SetJSRenderers({
             renderers: {
                 Md2HTML: {
                     renderTag: (node: any, entering: boolean) => {
                         if (entering) {
-                            return [`<span data-type="tag">`, (window as any).Lute.WalkContinue];
+                            return [`<span data-type="tag">`, window.Lute.WalkContinue];
                         } else {
-                            return [`</span>`, (window as any).Lute.WalkContinue];
+                            return [`</span>`, window.Lute.WalkContinue];
                         }
                     },
                     renderTagOpenMarker: (node: any, entering: boolean) => {
-                        return ["", (window as any).Lute.WalkContinue];
+                        return ["", window.Lute.WalkContinue];
                     },
                     renderTagCloseMarker: (node: any, entering: boolean) => {
-                        return ["", (window as any).Lute.WalkContinue];
+                        return ["", window.Lute.WalkContinue];
+                    },
+                    renderBlockRef: (node: any, entering: boolean) => {
+                        if (entering) {
+                            ref = {};
+                            return ['', window.Lute.WalkContinue];
+                        }
+                        const html = `<span data-type="block-ref" data-id="${ref.id || ''}">${ref.text || ''}</span>`;
+                        return [html, window.Lute.WalkContinue];
+                    },
+                    renderBlockRefID: (node: any, entering: boolean) => {
+                        if (entering) ref.id = node.TokensStr();
+                        return ['', window.Lute.WalkContinue];
+                    },
+                    renderBlockRefText: (node: any, entering: boolean) => {
+                        if (entering) {
+                            let t = node.TokensStr();
+                            if (t.startsWith('"') && t.endsWith('"')) t = t.slice(1, -1);
+                            ref.text = t;
+                        }
+                        return ['', window.Lute.WalkContinue];
+                    },
+                    renderBlockRefSpace: (node: any, entering: boolean) => {
+                        return ['', window.Lute.WalkContinue];
                     }
                 }
             }
@@ -40,7 +66,7 @@ const decodeHTML = (str: string): string => {
 };
 function applySyntaxHighlighting(container: HTMLElement) {
     try {
-        const globalHljs = (window as any)?.hljs;
+        const globalHljs = window?.hljs;
         if (!globalHljs) return;
         const codeEls = Array.from(container.querySelectorAll<HTMLElement>("pre code"));
         codeEls.forEach((el) => {
@@ -62,7 +88,7 @@ function applySyntaxHighlighting(container: HTMLElement) {
 }
 function renderKatexInContainer(container: HTMLElement) {
     try {
-        const globalKatex = (window as any)?.katex;
+        const globalKatex = window?.katex;
         if (!globalKatex) return;
         container.querySelectorAll('span.language-math').forEach((el) => {
             try {
@@ -84,7 +110,7 @@ function renderKatexInContainer(container: HTMLElement) {
 }
 async function renderMermaidInContainer(container: HTMLElement) {
     try {
-        const mermaid = (window as any)?.mermaid;
+        const mermaid = window?.mermaid;
         if (!mermaid) return;
         container.querySelectorAll("div.language-mermaid").forEach((el) => {
             try {
@@ -104,7 +130,7 @@ async function renderMermaidInContainer(container: HTMLElement) {
 }
 function renderEchartsInContainer(container: HTMLElement) {
     try {
-        const echarts = (window as any)?.echarts;
+        const echarts = window?.echarts;
         if (!echarts) return;
         container.querySelectorAll("div.language-echarts").forEach((e: HTMLElement) => {
             const cfg = (e.textContent || "").trim();
@@ -136,7 +162,7 @@ function renderEchartsInContainer(container: HTMLElement) {
 }
 function renderMindmapInContainer(container: HTMLElement) {
     try {
-        const echarts = (window as any)?.echarts;
+        const echarts = window?.echarts;
         if (!echarts) return;
         container.querySelectorAll("div.language-mindmap").forEach((e: HTMLElement) => {
             const code = e.dataset.code;
@@ -162,7 +188,7 @@ function renderMindmapInContainer(container: HTMLElement) {
 }
 function renderAbcInContainer(container: HTMLElement) {
     try {
-        const ABCJS = (window as any)?.ABCJS;
+        const ABCJS = window?.ABCJS;
         if (!ABCJS) return;
         container.querySelectorAll("div.language-abc").forEach((e: HTMLElement) => {
             const abc = (e.textContent || "").trim();
@@ -173,7 +199,7 @@ function renderAbcInContainer(container: HTMLElement) {
 }
 async function renderGraphvizInContainer(container: HTMLElement) {
     try {
-        const Viz = (window as any)?.Viz;
+        const Viz = window?.Viz;
         if (!Viz) return;
         const viz = await Viz.instance();
         container.querySelectorAll("div.language-graphviz").forEach((e: HTMLElement) => {
@@ -189,7 +215,7 @@ async function renderGraphvizInContainer(container: HTMLElement) {
 }
 function renderFlowchartInContainer(container: HTMLElement, retryCount = 0) {
     try {
-        const flowchart = (window as any)?.flowchart;
+        const flowchart = window?.flowchart;
         if (!flowchart) {
             if (retryCount < 50) {
                 setTimeout(() => renderFlowchartInContainer(container, retryCount + 1), 100);
@@ -208,7 +234,7 @@ function renderFlowchartInContainer(container: HTMLElement, retryCount = 0) {
 }
 function renderPlantumlInContainer(container: HTMLElement, retryCount = 0) {
     try {
-        const plantumlEncoder = (window as any)?.plantumlEncoder;
+        const plantumlEncoder = window?.plantumlEncoder;
         if (!plantumlEncoder) {
             if (retryCount < 50) {
                 setTimeout(() => renderPlantumlInContainer(container, retryCount + 1), 100);
@@ -284,6 +310,30 @@ function renderMemoContent(contentDiv: HTMLElement, contentText: string): void {
                             }
                         } catch (err) {}
                     });
+                });
+            });
+        } catch (e) {}
+        try {
+            contentDiv.querySelectorAll<HTMLElement>('span[data-type="block-ref"]').forEach((refEl) => {
+                const stopHover = (e: Event) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    e.stopImmediatePropagation();
+                };
+                refEl.addEventListener("mouseenter", stopHover, true);
+                refEl.addEventListener("mouseover", stopHover, true);
+                refEl.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    refEl.removeEventListener("mouseover", stopHover, true);
+                    refEl.dispatchEvent(new MouseEvent("mouseover", {
+                        bubbles: true,
+                        cancelable: true,
+                        view: window,
+                        clientX: e.clientX,
+                        clientY: e.clientY,
+                    }));
+                    refEl.addEventListener("mouseover", stopHover, true);
                 });
             });
         } catch (e) {}
@@ -405,14 +455,14 @@ async function initSidememoRely(): Promise<boolean> {
                     head.appendChild(script);
                 } catch (e) { reject(e); }
             });
-        const needKatex = !(window as any).katex;
-        const needHljs = !(window as any).hljs;
-        const needMermaid = !(window as any).mermaid;
-        const needEcharts = !(window as any).echarts;
-        const needAbcjs = !(window as any).ABCJS;
-        const needGraphviz = !(window as any).Viz;
-        const needFlowchart = !(window as any).flowchart;
-        const needPlantuml = !(window as any).plantumlEncoder;
+        const needKatex = !window.katex;
+        const needHljs = !window.hljs;
+        const needMermaid = !window.mermaid;
+        const needEcharts = !window.echarts;
+        const needAbcjs = !window.ABCJS;
+        const needGraphviz = !window.Viz;
+        const needFlowchart = !window.flowchart;
+        const needPlantuml = !window.plantumlEncoder;
         if (!needKatex && !needHljs && !needMermaid && !needEcharts && !needAbcjs && !needGraphviz && !needFlowchart && !needPlantuml) {
             return true;
         }
@@ -462,7 +512,7 @@ async function initSidememoRely(): Promise<boolean> {
             } catch (e) {}
         }
     } catch (e) {}
-    return ((window as any).katex !== undefined) || ((window as any).hljs !== undefined) || ((window as any).mermaid !== undefined) || ((window as any).echarts !== undefined) || ((window as any).ABCJS !== undefined) || ((window as any).Viz !== undefined) || ((window as any).flowchart !== undefined) || ((window as any).plantumlEncoder !== undefined);
+    return (window.katex !== undefined) || (window.hljs !== undefined) || (window.mermaid !== undefined) || (window.echarts !== undefined) || (window.ABCJS !== undefined) || (window.Viz !== undefined) || (window.flowchart !== undefined) || (window.plantumlEncoder !== undefined);
 }
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-side-memo";
