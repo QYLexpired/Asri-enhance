@@ -249,6 +249,28 @@ function renderPlantumlInContainer(container: HTMLElement, retryCount = 0) {
         });
     } catch (err) {}
 }
+function fixDynamicBlockRef(container: HTMLElement) {
+    container.querySelectorAll<HTMLElement>('span[data-type="block-ref"]').forEach(refEl => {
+        if ((refEl.textContent || '').trim() !== '') return;
+        let prev = refEl.previousSibling;
+        while (prev && prev.nodeType === Node.TEXT_NODE && (prev.textContent || '').trim() === '') {
+            const toRemove = prev;
+            prev = prev.previousSibling;
+            toRemove.parentNode?.removeChild(toRemove);
+        }
+        if (!prev || prev.nodeType !== Node.TEXT_NODE) return;
+        const textNode = prev as Text;
+        const trimmed = (textNode.textContent || '').trim();
+        if (!(trimmed.startsWith("'") && trimmed.endsWith("'") && trimmed.length >= 3)) {
+            return;
+        }
+        const cleanText = trimmed.slice(1, -1);
+        if (cleanText) {
+            refEl.textContent = cleanText;
+            textNode.parentNode?.removeChild(textNode);
+        }
+    });
+}
 function getUidFromElement(el: HTMLElement): string | null {
     try {
         const attrs = el.getAttributeNames();
@@ -275,6 +297,7 @@ function renderMemoContent(contentDiv: HTMLElement, contentText: string): void {
         const lute = getLute();
         const mdHtml = lute ? lute.Md2HTML(decodeHTML(contentText)) : contentText;
         contentDiv.innerHTML = mdHtml;
+        fixDynamicBlockRef(contentDiv);
         try {
             contentDiv.querySelectorAll<HTMLElement>('span[data-type="tag"]').forEach((tagEl) => {
                 contentDiv.querySelectorAll<HTMLElement>('span[data-type="tag"]').forEach((tagEl) => {
