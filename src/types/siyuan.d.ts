@@ -52,4 +52,10 @@ declare module "siyuan" {
         destroy?: boolean;
         transparent?: boolean;
     }
+    export function openTab(options: {
+        app: App;
+        search?: { k: string; [key: string]: any };
+        [key: string]: any;
+    }): void;
+    export function getAllTabs(): Tab[];
 }

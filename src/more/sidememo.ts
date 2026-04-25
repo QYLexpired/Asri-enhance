@@ -1,4 +1,4 @@
-import { getFrontend, Plugin } from "siyuan";
+import { getFrontend, Plugin, openTab, getAllTabs } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 import { createFetchInterceptor } from "../utils/fetchInterceptor";
 const isMobile = () => {
@@ -9,8 +9,27 @@ let lute: any = null;
 function getLute() {
     if (!lute && typeof (window as any).Lute !== "undefined") {
         lute = ((window as any).Lute as any).New();
-        lute.SetMark(true);
-        lute.SetTag(true);
+        lute.SetMark((window as any).siyuan.config.editor.markdown.inlineMark);
+        lute.SetTag((window as any).siyuan.config.editor.markdown.inlineTag);
+        lute.SetJSRenderers({
+            renderers: {
+                Md2HTML: {
+                    renderTag: (node: any, entering: boolean) => {
+                        if (entering) {
+                            return [`<span data-type="tag">`, (window as any).Lute.WalkContinue];
+                        } else {
+                            return [`</span>`, (window as any).Lute.WalkContinue];
+                        }
+                    },
+                    renderTagOpenMarker: (node: any, entering: boolean) => {
+                        return ["", (window as any).Lute.WalkContinue];
+                    },
+                    renderTagCloseMarker: (node: any, entering: boolean) => {
+                        return ["", (window as any).Lute.WalkContinue];
+                    }
+                }
+            }
+        });
     }
     return lute;
 }
@@ -230,6 +249,44 @@ function renderMemoContent(contentDiv: HTMLElement, contentText: string): void {
         const lute = getLute();
         const mdHtml = lute ? lute.Md2HTML(decodeHTML(contentText)) : contentText;
         contentDiv.innerHTML = mdHtml;
+        try {
+            contentDiv.querySelectorAll<HTMLElement>('span[data-type="tag"]').forEach((tagEl) => {
+                contentDiv.querySelectorAll<HTMLElement>('span[data-type="tag"]').forEach((tagEl) => {
+                    tagEl.addEventListener("click", (e) => {
+                        try {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            const tagQuery = `#${(tagEl.textContent || "").trim()}#`;
+                            if (!tagQuery || !globalPlugin?.app) return;
+                            let reused = false;
+                            try {
+                                const tabs = getAllTabs();
+                                const searchTab = tabs.find(tab => 
+                                    tab?.model && typeof tab.model.updateSearch === "function"
+                                );
+                                if (searchTab) {
+                                    searchTab.headElement?.dispatchEvent(
+                                        new MouseEvent("click", { bubbles: true })
+                                    );
+                                    searchTab.model.updateSearch(tagQuery, true);
+                                    if (typeof searchTab.model.search === "function") {
+                                        searchTab.model.search();
+                                    }
+                                    reused = true;
+                                }
+                            } catch (e) {}
+                            if (!reused) {
+                                openTab({
+                                    app: globalPlugin.app,
+                                    search: { k: tagQuery },
+                                    position: "right"
+                                });
+                            }
+                        } catch (err) {}
+                    });
+                });
+            });
+        } catch (e) {}
         try {
             applySyntaxHighlighting(contentDiv);
         } catch (e) {}

@@ -1,4 +1,5 @@
 ### 更新内容
+- 侧边备注支持渲染标签（支持点击搜索标签）
 - 适配繁体中文、阿拉伯语
 ### 关于插件
 * [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
