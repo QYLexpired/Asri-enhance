@@ -2,13 +2,12 @@
 @include palette-mode(sakura, "light");
 .asri-palette-sakura.asri-mode-light.asri-enhance-enable {
     @include palette-common(sakura);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     &.asri-mode-light {
         --sakura-base-accent: #e68e94;
         --asri-theme-accent-customized: var(--sakura-base-accent);
         --b3-theme-primary: var(--sakura-base-accent);
-        --b3-theme-accent: var(--sakura-base-accent);
+        --b3-theme-accent: #cf8b8b;
         --b3-theme-background: #fffaf4;
         --b3-theme-surface: #ffede7;
         --b3-theme-on-background: #56487c;

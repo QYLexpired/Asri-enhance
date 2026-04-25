@@ -2,7 +2,6 @@
 @include palette-mode(amber, "all");
 .asri-palette-amber.asri-enhance-enable {
     @include palette-common(amber);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     &.asri-mode-light {
 		--amber-base-accent: #b79d7b;

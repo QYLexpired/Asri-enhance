@@ -2,7 +2,6 @@
 @include palette-mode(gingko, "light");
 .asri-palette-gingko.asri-mode-light.asri-enhance-enable {
     @include palette-common(gingko);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --gingko-base-accent: #d55a5a;
     --asri-theme-accent-customized: var(--gingko-base-accent);

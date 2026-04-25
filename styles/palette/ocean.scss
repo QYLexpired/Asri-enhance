@@ -2,7 +2,6 @@
 @include palette-mode(ocean, "dark");
 .asri-palette-ocean.asri-mode-dark.asri-enhance-enable {
     @include palette-common(ocean);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --ocean-base-accent: #b8e53f;
     --asri-theme-accent-customized: var(--ocean-base-accent);

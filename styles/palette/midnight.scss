@@ -2,7 +2,6 @@
 @include palette-mode(midnight, "dark");
 .asri-palette-midnight.asri-mode-dark.asri-enhance-enable {
     @include palette-common(midnight);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --midnight-base-accent: #4875b3;
     --asri-theme-accent-customized: var(--midnight-base-accent);

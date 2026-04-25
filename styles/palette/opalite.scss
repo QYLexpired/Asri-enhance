@@ -2,7 +2,6 @@
 @include palette-mode(opalite, "light");
 .asri-palette-opalite.asri-mode-light.asri-enhance-enable {
     @include palette-common(opalite);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --opalite-base-accent: #5e7cc6;
     --asri-theme-accent-customized: var(--opalite-base-accent);

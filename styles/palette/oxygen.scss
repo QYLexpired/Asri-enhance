@@ -2,7 +2,6 @@
 @include palette-mode(oxygen, "dark");
 .asri-palette-oxygen.asri-mode-dark.asri-enhance-enable {
     @include palette-common(oxygen);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --oxygen-base-accent: #efa685;
     --asri-theme-accent-customized: var(--oxygen-base-accent);

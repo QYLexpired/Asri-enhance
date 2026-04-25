@@ -8,13 +8,6 @@
         background-color: #{$color} !important;
     }
 }
-@mixin palette-heading-color($color) {
-    .protyle-title__input,
-    [data-type="NodeHeading"],
-    h1, h2, h3, h4, h5, h6 {
-        color: #{$color};
-    }
-}
 @mixin palette-primary-color-scope($color) {
     .b3-button--outline,
     .protyle-breadcrumb__icon {

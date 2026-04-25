@@ -2,7 +2,6 @@
 @include palette-mode(twilight, "dark");
 .asri-palette-twilight.asri-mode-dark.asri-enhance-enable {
     @include palette-common(twilight);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --twilight-base-accent: #b7c9ff;
     --asri-theme-accent-customized: var(--twilight-base-accent);

@@ -2,7 +2,6 @@
 @include palette-mode(dusk, "light");
 .asri-palette-dusk.asri-mode-light.asri-enhance-enable {
     @include palette-common(dusk);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --dusk-base-accent: #d6957d;
     --asri-theme-accent-customized: var(--dusk-base-accent);

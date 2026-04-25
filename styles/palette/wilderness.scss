@@ -2,7 +2,6 @@
 @include palette-mode(wilderness, "all");
 .asri-palette-wilderness.asri-enhance-enable {
     @include palette-common(wilderness);
-    @include palette-heading-color(var(--b3-theme-primary));
     @include palette-primary-color-scope(var(--b3-theme-accent));
     &.asri-mode-light {
         --wilderness-base-accent: #74b49a;

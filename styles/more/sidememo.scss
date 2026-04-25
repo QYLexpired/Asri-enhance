@@ -79,10 +79,14 @@
                     color: var(--b3-theme-on-surface);
                     transition: all 0.25s, top 0s;
                     box-sizing: border-box;
-                    &:hover,
+                    &:hover {
+                        &:not(.asri-enhance-sidememo-filememo-item) {
+                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.05);
+                        }
+                    }
                     &[asri-enhance-sidememo-highlight] {
                         &:not(.asri-enhance-sidememo-filememo-item) {
-                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.12);
+                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.1);
                         }
                     }
                     &[asri-enhance-sidememo-fold] {

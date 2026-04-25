@@ -2,7 +2,6 @@
 @include palette-mode(lavender, "all");
 .asri-palette-lavender.asri-enhance-enable {
 	@include palette-common(lavender);
-	@include palette-heading-color(var(--b3-theme-primary));
 	@include palette-primary-color-scope(var(--lavender-base-accent));
 	&.asri-mode-light {
 		--lavender-base-accent: #a095bd;
