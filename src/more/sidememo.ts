@@ -11,6 +11,8 @@ function getLute() {
     if (!lute && typeof window.Lute !== "undefined") {
         lute = (window.Lute as any).New();
         lute.SetBlockRef(true);
+        lute.SetSup(window.siyuan.config.editor.markdown.inlineSup);
+        lute.SetSub(window.siyuan.config.editor.markdown.inlineSub);
         lute.SetMark(window.siyuan.config.editor.markdown.inlineMark);
         lute.SetTag(window.siyuan.config.editor.markdown.inlineTag);
         let ref: { id?: string; text?: string } = {};

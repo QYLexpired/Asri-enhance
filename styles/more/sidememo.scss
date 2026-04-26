@@ -24,18 +24,14 @@
                         transition-delay: 0s;
                         &:hover,
                         &[asri-enhance-sidememo-highlight] {
-                            --memo-bg: oklch(from var(--b3-theme-accent) 0.85 0.088 h);
+                            --memo-bg: var(--b3-theme-accent);
                             background-color: var(--memo-bg);
                             box-shadow: 0 0 0 8px var(--memo-bg);
                             text-decoration-color: var(--memo-bg) !important;
-                            color: var(--b3-theme-on-background) !important;
+                            color: var(--b3-theme-background) !important;
                             border-radius: 1px;
                             z-index: 1;
                             position: relative;
-                            &:is(.asri-mode-dark [data-type~=inline-memo]) {
-                                --memo-bg: oklch(from var(--b3-theme-accent) 0.82 0.125 h);
-                                color: var(--b3-theme-background) !important;
-                            }
                         }
                     }
                     & [memo] {
@@ -133,7 +129,7 @@
             }
         }
     }
-    //markdown解析
+    //渲染
     .asri-enhance-sidememo-container {
         .asri-enhance-sidememo-inlinememo-item-content,
         .asri-enhance-sidememo-blockmemo-item-content,
@@ -360,14 +356,14 @@
                 }
             }
             hr {
-                margin: 0.5em 0;
+                margin: 0.5em -0.15em;
                 visibility: hidden;
                 &::before {
                     content: "";
                     display: block;
                     visibility: visible;
                     border-radius: 2px;
-                    height: 2px;
+                    height: 1.5px;
                     width: 100%;
                     background-color: var(--b3-border-color-trans);
                 }
