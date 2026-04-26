@@ -12,16 +12,18 @@
             background-repeat: repeat;
             background-color: var(--b3-theme-background);
             mix-blend-mode: multiply;
-            opacity: 0.65;
+            opacity: 0.8;
             pointer-events: none;
             z-index: 99;
+            filter: brightness(1.1);
         }
     }
     &.asri-mode-dark {
         body {
             &::before {
-                opacity: 0.15;
+                opacity: 0.2;
                 mix-blend-mode: screen;
+                filter: brightness(0.8);
             }
         }
     }
