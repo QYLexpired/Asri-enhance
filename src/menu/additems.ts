@@ -15,7 +15,7 @@ import { onColoredTreeClick } from "../detail/coloredtree";
 import { onColoredListClick } from "../detail/coloredlist";
 import { onListBulletLineClick } from "../more/listbulletline";
 import { onVerticalTabClick } from "../more/verticaltab";
-import { onSideMemoClick } from "../more/sidememo";
+import { onSideMemoClick, onSideMemoSettingsClick } from "../more/sidememo";
 import { onGlobalFrostedGlassClick } from "../detail/globalfrostedglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
 import { onHideTabClick } from "../detail/hidetab";
@@ -218,7 +218,7 @@ function injectMoreMenu(plugin: Plugin, topbarFusionPlus: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-more";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.verticalTab}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span></button><button class="b3-menu__item" id="asri-enhance-card-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.cardLayout}</span></button></div></div>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.verticalTab}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.sidememoSettings}"><use xlink:href="#iconSettings"></use></svg></button><button class="b3-menu__item" id="asri-enhance-card-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.cardLayout}</span></button></div></div>`;
         if (topbarFusionPlus.nextSibling) {
             parent.insertBefore(button, topbarFusionPlus.nextSibling);
         } else {
@@ -237,6 +237,13 @@ function injectMoreMenu(plugin: Plugin, topbarFusionPlus: HTMLElement): void {
             item.onclick = (e) => handler(plugin, e);
         }
     });
+    const sidememoItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-sidememo");
+    if (sidememoItem) {
+        const settingsIcon = sidememoItem.querySelector(".asri-enhance-settings-icon");
+        if (settingsIcon) {
+            settingsIcon.addEventListener("click", (e: MouseEvent) => onSideMemoSettingsClick(plugin, e));
+        }
+    }
     injectDetailAdjustmentMenu(plugin, parent);
     injectTextureMenu(plugin, parent);
     injectImmersiveMenu(plugin, parent);

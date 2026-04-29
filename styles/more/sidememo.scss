@@ -19,6 +19,10 @@
                 & ~ .protyle-wysiwyg {
                     padding-right: var(--asri-enhance-protyle-padding-right-re) !important;
                     padding-left: var(--asri-enhance-protyle-padding-left-re) !important;
+                    &:is(.asri-enhance-sidememo-left .protyle-wysiwyg) {
+                        padding-left: var(--asri-enhance-protyle-padding-right-re) !important;
+                        padding-right: var(--asri-enhance-protyle-padding-left-re) !important;
+                    }
                     & span[data-type~=inline-memo] {
                         transition: all 0.25s;
                         transition-delay: 0s;
@@ -55,6 +59,10 @@
                 max-width: calc(var(--b3-width-protyle-content) - 2 * var(--asri-enhance-sidememo-re));
                 right: min(calc(-1 * var(--asri-enhance-sidememo-protyle-padding) + var(--asri-enhance-sidememo-re)), var(--asri-enhance-sidememo-re));
                 transition: all 0.25s;
+                &:is(.asri-enhance-sidememo-left .asri-enhance-sidememo-container) {
+                    right: auto;
+                    left: min(calc(-1 * var(--asri-enhance-sidememo-protyle-padding) + var(--asri-enhance-sidememo-re)), var(--asri-enhance-sidememo-re));
+                }
                 &.asri-enhance-sidememo-container-resize {
                     opacity: 0.5;
                     .asri-enhance-sidememo-inlinememo-item,

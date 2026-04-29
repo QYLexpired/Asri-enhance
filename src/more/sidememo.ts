@@ -1,4 +1,4 @@
-import { getFrontend, Plugin, openTab, getAllTabs } from "siyuan";
+import { getFrontend, Plugin, openTab, getAllTabs, Dialog } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 import { createFetchInterceptor } from "../utils/fetchInterceptor";
 const isMobile = () => {
@@ -7,6 +7,7 @@ const isMobile = () => {
 declare const window: any;
 let globalPlugin: Plugin | null = null;
 let lute: any = null;
+let fetchDebounceTimer: ReturnType<typeof setTimeout> | null = null;
 function getLute() {
     if (!lute && typeof window.Lute !== "undefined") {
         lute = (window.Lute as any).New();
@@ -302,39 +303,37 @@ function renderMemoContent(contentDiv: HTMLElement, contentText: string): void {
         fixDynamicBlockRef(contentDiv);
         try {
             contentDiv.querySelectorAll<HTMLElement>('span[data-type="tag"]').forEach((tagEl) => {
-                contentDiv.querySelectorAll<HTMLElement>('span[data-type="tag"]').forEach((tagEl) => {
-                    tagEl.addEventListener("click", (e) => {
+                tagEl.addEventListener("click", (e) => {
+                    try {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const tagQuery = `#${(tagEl.textContent || "").trim()}#`;
+                        if (!tagQuery || !globalPlugin?.app) return;
+                        let reused = false;
                         try {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            const tagQuery = `#${(tagEl.textContent || "").trim()}#`;
-                            if (!tagQuery || !globalPlugin?.app) return;
-                            let reused = false;
-                            try {
-                                const tabs = getAllTabs();
-                                const searchTab = tabs.find(tab => 
-                                    tab?.model && typeof tab.model.updateSearch === "function"
+                            const tabs = getAllTabs();
+                            const searchTab = tabs.find(tab => 
+                                tab?.model && typeof tab.model.updateSearch === "function"
+                            );
+                            if (searchTab) {
+                                searchTab.headElement?.dispatchEvent(
+                                    new MouseEvent("click", { bubbles: true })
                                 );
-                                if (searchTab) {
-                                    searchTab.headElement?.dispatchEvent(
-                                        new MouseEvent("click", { bubbles: true })
-                                    );
-                                    searchTab.model.updateSearch(tagQuery, true);
-                                    if (typeof searchTab.model.search === "function") {
-                                        searchTab.model.search();
-                                    }
-                                    reused = true;
+                                searchTab.model.updateSearch(tagQuery, true);
+                                if (typeof searchTab.model.search === "function") {
+                                    searchTab.model.search();
                                 }
-                            } catch (e) {}
-                            if (!reused) {
-                                openTab({
-                                    app: globalPlugin.app,
-                                    search: { k: tagQuery },
-                                    position: "right"
-                                });
+                                reused = true;
                             }
-                        } catch (err) {}
-                    });
+                        } catch (e) {}
+                        if (!reused) {
+                            openTab({
+                                app: globalPlugin.app,
+                                search: { k: tagQuery },
+                                position: "right"
+                            });
+                        }
+                    } catch (err) {}
                 });
             });
         } catch (e) {}
@@ -541,7 +540,39 @@ async function initSidememoRely(): Promise<boolean> {
 }
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-side-memo";
+const CONFIG_POSITION_KEY = "asri-enhance-side-memo-default-position";
+const POSITION_CLASS_LEFT = "asri-enhance-sidememo-left";
+const POSITION_CLASS_RIGHT = "asri-enhance-sidememo-right";
+type SideMemoPosition = "left" | "right";
 let sidememoDocumentRightClickHandler: ((ev: MouseEvent) => void) | null = null;
+let currentSideMemoPosition: SideMemoPosition = "right";
+async function getSideMemoPosition(): Promise<SideMemoPosition> {
+    try {
+        const config = await loadData(globalPlugin!, CONFIG_FILE);
+        const position = (config?.[CONFIG_POSITION_KEY] as SideMemoPosition) || "right";
+        currentSideMemoPosition = position;
+        return position;
+    } catch (e) {}
+    currentSideMemoPosition = "right";
+    return "right";
+}
+function updateSideMemoPositionClass(position: SideMemoPosition): void {
+    const bodyEl = document.body;
+    if (!bodyEl) return;
+    bodyEl.classList.remove(POSITION_CLASS_LEFT);
+    bodyEl.classList.remove(POSITION_CLASS_RIGHT);
+    if (position === "left") {
+        bodyEl.classList.add(POSITION_CLASS_LEFT);
+    } else {
+        bodyEl.classList.add(POSITION_CLASS_RIGHT);
+    }
+}
+function removeSideMemoPositionClass(): void {
+    const bodyEl = document.body;
+    if (!bodyEl) return;
+    bodyEl.classList.remove(POSITION_CLASS_LEFT);
+    bodyEl.classList.remove(POSITION_CLASS_RIGHT);
+}
 function attachNoRightClick(el: HTMLElement): void {
     try {
         if (!el) return;
@@ -576,18 +607,19 @@ function syncSidememoState(): void {
     });
     const htmlEl = document.documentElement;
     const isActive = !!(htmlEl && htmlEl.hasAttribute("data-asri-enhance-side-memo"));
+    const currentPosition = (htmlEl?.getAttribute("data-asri-enhance-side-memo-position") as SideMemoPosition) || "right";
     const protyleContents = Array.from(document.querySelectorAll<HTMLElement>(".protyle-content"));
     protyleContents.forEach((el) => {
         try {
             const hasInlineOrBlockMemo = el.querySelector('[data-type*="inline-memo"], [memo]') !== null;
             if (isActive && hasInlineOrBlockMemo) {
-                el.classList.add("asri-enhance-sidememo");
+                el.classList.add("asri-enhance-sidememo", `asri-enhance-sidememo-${currentPosition}`);
                 el.classList.remove("asri-enhance-sidememo-none");
             } else if (isActive && !hasInlineOrBlockMemo) {
-                el.classList.remove("asri-enhance-sidememo");
+                el.classList.remove("asri-enhance-sidememo", `asri-enhance-sidememo-${currentPosition}`);
                 el.classList.add("asri-enhance-sidememo-none");
             } else {
-                el.classList.remove("asri-enhance-sidememo");
+                el.classList.remove("asri-enhance-sidememo", "asri-enhance-sidememo-left", "asri-enhance-sidememo-right");
                 el.classList.remove("asri-enhance-sidememo-none");
             }
         } catch (err) {}
@@ -969,11 +1001,13 @@ async function populateSidememoContainer(container: HTMLElement, protyleContent:
                     try { containerEl.classList.add("asri-enhance-sidememo-container-resize"); } catch (e) {}
                     const widthStr = getComputedStyle(asriParent).getPropertyValue("--asri-enhance-sidememo-container-width") || "";
                     const initialWidth = Math.max(50, Math.min(600, Math.round(parseFloat(widthStr) || 200)));
+                    const isLeftPosition = currentSideMemoPosition === "left";
                     let _rafId: number | null = null;
                     let _pendingWidth: number | null = null;
                     const dragMove = (mv: MouseEvent) => {
                         try {
-                            const computed = Math.round(initialWidth + (startX - mv.clientX));
+                            const delta = startX - mv.clientX;
+                            const computed = Math.round(initialWidth + (isLeftPosition ? -delta : delta));
                             const clamped = Math.max(50, Math.min(600, computed));
                             _pendingWidth = clamped;
                             if (_rafId === null) {
@@ -1222,9 +1256,11 @@ async function startObserver(): Promise<void> {
         const interceptor = createFetchInterceptor(
             /setUILayout|transactions|setBlockAttrs|getDoc|renameDoc/,
             () => {
-                setTimeout(() => {
+                if (fetchDebounceTimer) clearTimeout(fetchDebounceTimer);
+                fetchDebounceTimer = setTimeout(() => {
                     try { syncSidememoState(); } catch (err) {}
-                }, 200);
+                    fetchDebounceTimer = null;
+                }, 500);
             },
         );
         fetchInterceptorDisconnect = () => {
@@ -1249,6 +1285,7 @@ export async function onSideMemoClick(plugin: Plugin, event?: MouseEvent): Promi
     if (isActive) {
         htmlEl.removeAttribute("data-asri-enhance-side-memo");
         config[CONFIG_KEY] = false;
+        removeSideMemoPositionClass();
         removeAllSidememoArtifacts();
         syncSidememoState();
         stopObserver();
@@ -1256,10 +1293,63 @@ export async function onSideMemoClick(plugin: Plugin, event?: MouseEvent): Promi
         htmlEl.setAttribute("data-asri-enhance-side-memo", "true");
         config[CONFIG_KEY] = true;
         await initSidememoRely().catch(() => {});
+        const position = await getSideMemoPosition();
+        updateSideMemoPositionClass(position);
         syncSidememoState();
         startObserver().catch(() => {});
     }
     await saveData(plugin, CONFIG_FILE, config).catch(() => {});
+}
+export function onSideMemoSettingsClick(plugin: Plugin, event: MouseEvent): void {
+    event.preventDefault();
+    event.stopPropagation();
+    const dialog = new Dialog({
+        title: plugin.i18n.sidememoSettings,
+        content: `<div class="b3-dialog__content">
+    <div class="fn__flex b3-label config__item">
+        <div class="fn__flex-1">
+            ${plugin.i18n.sidememoDefaultPosition}
+            <div class="b3-label__text">${plugin.i18n.sidememoDefaultPositionTip}</div>
+        </div>
+        <span class="fn__space"></span>
+        <select class="b3-select fn__flex-center fn__size200" id="asri-enhance-sidememo-default-position">
+            <option value="right">${plugin.i18n.sidememoPositionRight}</option>
+            <option value="left">${plugin.i18n.sidememoPositionLeft}</option>
+        </select>
+    </div>
+</div>
+<div class="b3-dialog__action">
+    <button class="b3-button b3-button--cancel" id="asri-enhance-sidememo-cancel">${plugin.i18n.cancel}</button>
+    <div class="fn__space"></div>
+    <button class="b3-button b3-button--text" id="asri-enhance-sidememo-confirm">${plugin.i18n.confirm}</button>
+</div>`,
+        width: "620px",
+        height: "auto",
+    });
+    dialog.element.setAttribute("data-key", "dialog-asri-enhance-sidememo-settings");
+    const positionSelect = dialog.element.querySelector<HTMLSelectElement>("#asri-enhance-sidememo-default-position");
+    void loadData(plugin, CONFIG_FILE).then((config) => {
+        const savedPosition = config?.[CONFIG_POSITION_KEY] || "right";
+        if (positionSelect) positionSelect.value = savedPosition;
+    }).catch(() => { });
+    dialog.element.querySelector("#asri-enhance-sidememo-cancel")?.addEventListener("click", () => {
+        dialog.destroy();
+    });
+    dialog.element.querySelector("#asri-enhance-sidememo-confirm")?.addEventListener("click", () => {
+        const selectedPosition = positionSelect?.value || "right";
+        void (async () => {
+            const config = await loadData(plugin, CONFIG_FILE) || {};
+            config[CONFIG_POSITION_KEY] = selectedPosition;
+            await saveData(plugin, CONFIG_FILE, config).catch(() => { });
+            currentSideMemoPosition = selectedPosition as SideMemoPosition;
+            const isActive = document.documentElement.hasAttribute("data-asri-enhance-side-memo");
+            if (isActive) {
+                updateSideMemoPositionClass(currentSideMemoPosition);
+                syncSidememoState();
+            }
+            dialog.destroy();
+        })();
+    });
 }
 export async function applySidememoConfig(plugin: Plugin, config?: Record<string, any> | null): Promise<void> {
     if (isMobile()) return;
@@ -1267,13 +1357,17 @@ export async function applySidememoConfig(plugin: Plugin, config?: Record<string
     const htmlEl = document.documentElement;
     if (!htmlEl) return;
     const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
+    const savedPosition = (configData?.[CONFIG_POSITION_KEY] as SideMemoPosition) || "right";
+    currentSideMemoPosition = savedPosition;
     if (configData && configData[CONFIG_KEY] === true) {
         htmlEl.setAttribute("data-asri-enhance-side-memo", "true");
+        updateSideMemoPositionClass(savedPosition);
         await initSidememoRely().catch(() => {});
         syncSidememoState();
         startObserver().catch(() => {});
     } else {
         htmlEl.removeAttribute("data-asri-enhance-side-memo");
+        removeSideMemoPositionClass();
         removeAllSidememoArtifacts();
         syncSidememoState();
         stopObserver();
