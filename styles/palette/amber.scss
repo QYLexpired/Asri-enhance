@@ -1,9 +1,10 @@
 @use "manager" as *;
 @include palette-mode(amber, "all");
-.asri-palette-amber.asri-enhance-enable {
+.asri-palette-amber.asri-enhance-enable,
+.asri-palette-amber.asri-enhance-enable-neo {
     @include palette-common(amber);
     @include palette-primary-color-scope(var(--b3-theme-accent));
-    &.asri-mode-light {
+    &[data-theme-mode="light"] {
 		--amber-base-accent: #b79d7b;
 		--asri-theme-accent-customized: var(--amber-base-accent);
 		--b3-theme-primary: var(--amber-base-accent);
@@ -12,15 +13,17 @@
 		--b3-theme-surface: #f2ece3;
 		--b3-theme-on-background: #593e22;
 		--b3-theme-on-surface: #836b49;
-		#{$layout-tab-bar-item-focus-selectors} {
-			background-color: #8e742a33 !important;
+		&.asri-enhance-enable {
+			#{$layout-tab-bar-item-focus-selectors} {
+				background-color: #8e742a33 !important;
+			}
 		}
 		#{$primary-color-reverse-selectors} {
 			--b3-theme-primary: #eecb9e;
 			--b3-theme-on-primary: #473400;
 		}
     }
-    &.asri-mode-dark {
+    &[data-theme-mode="dark"] {
 		--amber-base-accent: #d5ab7c;
 		--asri-theme-accent-customized: var(--amber-base-accent);
 		--b3-theme-primary: var(--amber-base-accent);
@@ -29,8 +32,10 @@
 		--b3-theme-surface: #423939;
 		--b3-theme-on-background: #f4e6d2;
 		--b3-theme-on-surface: #9d8b8b;
-		#{$layout-tab-bar-item-focus-selectors} {
-			background-color: #caab8373 !important;
+		&.asri-enhance-enable {
+			#{$layout-tab-bar-item-focus-selectors} {
+				background-color: #caab8373 !important;
+			}
 		}
 		#{$primary-color-reverse-selectors} {
 			--b3-theme-primary: #ebc9a4;

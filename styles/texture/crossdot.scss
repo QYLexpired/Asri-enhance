@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-crossdot="true"].asri-enhance-enable {
+[data-asri-enhance-crossdot="true"].asri-enhance-enable,
+[data-asri-enhance-crossdot="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-texture", "#asri-enhance-crossdot");
     body {
         &::before {
@@ -18,7 +19,7 @@
             background-color: transparent;
         }
     }
-    &.asri-mode-dark {
+    &[data-theme-mode="dark"] {
         body {
             &::before {
                 opacity: 0.045;

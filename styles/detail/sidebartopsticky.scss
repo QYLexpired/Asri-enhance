@@ -1,4 +1,5 @@
 @use "../asri/asri-enhance" as *;
+@include asri-enhance-item-neo-hide("#asri-enhance-sidebar-top-sticky");
 [data-asri-enhance-sidebar-top-sticky="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-sidebar-top-sticky", "#asri-enhance-detail-adjustment");
     body:not(.body-asri--mobile) .file-tree .block__icons {

@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-listbulletline="true"].asri-enhance-enable {
+[data-asri-enhance-listbulletline="true"].asri-enhance-enable,
+[data-asri-enhance-listbulletline="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-list-bullet-line");
     --asri-enhance-listbulletline-highlight-color: var(--b3-theme-primary);
     [asri-enhance-bullet-line]:not(.protyle-wysiwyg--select):not(.protyle-wysiwyg--hl):not([custom-list-view] [asri-enhance-bullet-line])::after {

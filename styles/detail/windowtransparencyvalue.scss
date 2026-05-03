@@ -1,5 +1,6 @@
 @use "../asri/asri" as *;
 @use "../asri/asri-enhance" as *;
+@include asri-enhance-item-neo-hide("#asri-enhance-windowtransparencyvalue, #asri-enhance-windowtransparencyvalue + .b3-menu__separator");
 [data-asri-enhance-windowtransparencyvalue].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-windowtransparencyvalue");
     #asri-enhance-windowtransparencyvalue {

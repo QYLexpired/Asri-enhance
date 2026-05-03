@@ -29,7 +29,7 @@ $other-transparency-selectors: (
     ".layout__center [data-type="wnd"]"
 );
 @mixin darkmode-counterpart($root: false) {
-    $selector: if($root, "&.asri-mode-dark", ".asri-mode-dark &");
+    $selector: if($root, "&[data-theme-mode="dark"]", "[data-theme-mode="dark"] &");
     #{$selector} {
         @content;
     }

@@ -178,3 +178,12 @@
         }
     }
 }
+@mixin asri-enhance-item-neo-hide($selectors...) {
+    $selector-group: ();
+    @each $selector in $selectors {
+        $selector-group: list.append($selector-group, #{$selector}, comma);
+    }
+    #{$selector-group} {
+        display: none;
+    }
+}

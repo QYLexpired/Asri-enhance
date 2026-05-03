@@ -1,9 +1,10 @@
 @use "manager" as *;
 @include palette-mode(sakura, "light");
-.asri-palette-sakura.asri-mode-light.asri-enhance-enable {
+.asri-palette-sakura[data-theme-mode="light"].asri-enhance-enable,
+.asri-palette-sakura[data-theme-mode="light"].asri-enhance-enable-neo {
     @include palette-common(sakura);
     @include palette-primary-color-scope(var(--b3-theme-accent));
-    &.asri-mode-light {
+    &[data-theme-mode="light"] {
         --sakura-base-accent: #e68e94;
         --asri-theme-accent-customized: var(--sakura-base-accent);
         --b3-theme-primary: var(--sakura-base-accent);
@@ -15,8 +16,10 @@
         --b3-border-color: oklch( from var(--b3-theme-background) 0.9 c h );
         --b3-theme-surface-lighter: var(--b3-border-color);
         --b3-menu-background: oklch(from var(--b3-theme-background) 0.97 0.018 h);
+        .asri-enhance-enable {
         #{$layout-tab-bar-item-focus-selectors} {
-            background-color: #ff888840 !important;
+                background-color: #ff888840 !important;
+            }
         }
         #{$primary-color-reverse-selectors} {
             --b3-theme-primary: #ffcaca;

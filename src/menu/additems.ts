@@ -1,4 +1,5 @@
 import { Plugin } from "siyuan";
+import { getCurrentThemeType, type ThemeType } from "../utils/guard";
 import { onAmberClick } from "../palette/amber";
 import { onSakuraClick } from "../palette/sakura";
 import { onWildernessClick } from "../palette/wilderness";
@@ -123,6 +124,26 @@ export function listenBarModeClick(plugin: Plugin, onClick: (event: MouseEvent) 
     };
 }
 export function addAsriEnhanceItems(plugin: Plugin, event: MouseEvent): void {
+    const currentTheme = getCurrentThemeType();
+    if (currentTheme === "neo") {
+        const themeOS = document.querySelector<HTMLElement>('[data-id="themeOS"]');
+        if (themeOS && themeOS.parentElement) {
+            const parent = themeOS.parentElement;
+            const separator = document.createElement("button");
+            separator.className = "b3-menu__separator";
+            if (themeOS.nextSibling) {
+                parent.insertBefore(separator, themeOS.nextSibling);
+            } else {
+                parent.appendChild(separator);
+            }
+            addAsriEnhancePaletteButton(plugin, parent, separator);
+            const paletteButton = parent.querySelector<HTMLElement>("#asri-enhance-palette");
+            if (paletteButton) {
+                addAsriEnhanceMoreButton(plugin, parent, paletteButton);
+            }
+        }
+        return;
+    }
     const menu = document.querySelector<HTMLElement>('#commonMenu[data-name="barmode"]');
     if (!menu) return;
     const pollState: ListenerState = {
@@ -143,25 +164,31 @@ export function addAsriEnhanceItems(plugin: Plugin, event: MouseEvent): void {
     };
     findAndInjectItems();
 }
-function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
-    const parent = pickColor.parentElement;
-    if (!parent) return;
-    if (!parent.querySelector("#asri-enhance-palette")) {
-        const button = document.createElement("button");
-        button.className = "b3-menu__item asri-enhance";
-        button.id = "asri-enhance-palette";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.morePresetColors}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sakura}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.amber}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wilderness}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.midnight}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.ocean}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.twilight}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.lavender}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.opalite}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.oxygen}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.dusk}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.gingko}</span></button></div></div>`;
-        let insertBeforeElement = pickColor;
-        let previousElement = pickColor.previousElementSibling;
-        while (previousElement) {
-            if (previousElement.classList && previousElement.classList.contains('b3-menu__separator')) {
-                insertBeforeElement = previousElement as HTMLElement;
-                break;
-            }
-            previousElement = previousElement.previousElementSibling;
-        }
-        parent.insertBefore(button, insertBeforeElement);
-    }
+function getPaletteButtonHTML(plugin: Plugin): string {
+    return `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.morePresetColors}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sakura}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.amber}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wilderness}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.midnight}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.ocean}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.twilight}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.lavender}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.opalite}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.oxygen}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.dusk}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.gingko}</span></button></div></div>`;
+}
+function getMoreButtonHTML(plugin: Plugin): string {
+    return `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.verticalTab}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.sidememoSettings}"><use xlink:href="#iconSettings"></use></svg></button><button class="b3-menu__item" id="asri-enhance-card-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.cardLayout}</span></button></div></div>`;
+}
+function addAsriEnhancePaletteButton(plugin: Plugin, parent: HTMLElement, insertAfterElement: HTMLElement): void {
+    if (parent.querySelector("#asri-enhance-palette")) return;
+    const button = document.createElement("button");
+    button.className = "b3-menu__item asri-enhance";
+    button.id = "asri-enhance-palette";
+    button.innerHTML = getPaletteButtonHTML(plugin);
+    insertAfterElement.parentElement?.insertBefore(button, insertAfterElement.nextSibling);
+    bindPaletteItems(plugin, parent);
+}
+function addAsriEnhanceMoreButton(plugin: Plugin, parent: HTMLElement, insertAfterElement: HTMLElement): void {
+    if (parent.querySelector("#asri-enhance-more")) return;
+    const button = document.createElement("button");
+    button.className = "b3-menu__item asri-enhance";
+    button.id = "asri-enhance-more";
+    button.innerHTML = getMoreButtonHTML(plugin);
+    insertAfterElement.parentElement?.insertBefore(button, insertAfterElement.nextSibling);
+    bindMoreMenuItems(plugin, parent);
+}
+function bindPaletteItems(plugin: Plugin, parent: HTMLElement): void {
     const paletteItems = [
         { id: "asri-enhance-sakura", handler: onSakuraClick },
         { id: "asri-enhance-amber", handler: onAmberClick },
@@ -181,6 +208,51 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
             item.onclick = (e) => handler(plugin, e);
         }
     });
+}
+function bindMoreMenuItems(plugin: Plugin, parent: HTMLElement): void {
+    const mainMenuItems = [
+        { id: "asri-enhance-list-bullet-line", handler: onListBulletLineClick },
+        { id: "asri-enhance-vertical-tab", handler: onVerticalTabClick },
+        { id: "asri-enhance-sidememo", handler: onSideMemoClick },
+        { id: "asri-enhance-card-layout", handler: onCardLayoutClick },
+    ];
+    mainMenuItems.forEach(({ id, handler }) => {
+        const item = parent.querySelector<HTMLButtonElement>(`#${id}`);
+        if (item) {
+            item.onclick = (e) => handler(plugin, e);
+        }
+    });
+    const sidememoItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-sidememo");
+    if (sidememoItem) {
+        const settingsIcon = sidememoItem.querySelector(".asri-enhance-settings-icon");
+        if (settingsIcon) {
+            settingsIcon.addEventListener("click", (e: MouseEvent) => onSideMemoSettingsClick(plugin, e));
+        }
+    }
+    injectDetailAdjustmentMenu(plugin, parent);
+    injectTextureMenu(plugin, parent);
+    injectImmersiveMenu(plugin, parent);
+}
+function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
+    const parent = pickColor.parentElement;
+    if (!parent) return;
+    if (!parent.querySelector("#asri-enhance-palette")) {
+        const button = document.createElement("button");
+        button.className = "b3-menu__item asri-enhance";
+        button.id = "asri-enhance-palette";
+        button.innerHTML = getPaletteButtonHTML(plugin);
+        let insertBeforeElement = pickColor;
+        let previousElement = pickColor.previousElementSibling;
+        while (previousElement) {
+            if (previousElement.classList && previousElement.classList.contains('b3-menu__separator')) {
+                insertBeforeElement = previousElement as HTMLElement;
+                break;
+            }
+            previousElement = previousElement.previousElementSibling;
+        }
+        parent.insertBefore(button, insertBeforeElement);
+    }
+    bindPaletteItems(plugin, parent);
     const followCoverImgColor = document.querySelector<HTMLElement>('#commonMenu[data-name="barmode"] #followCoverImgColor');
     if (followCoverImgColor && !parent.querySelector("#asri-enhance-follow-time")) {
         const savedColor = document.documentElement.style.getPropertyValue("--asri-enhance-follow-time-base-color") || "#3478f6";
@@ -218,35 +290,14 @@ function injectMoreMenu(plugin: Plugin, topbarFusionPlus: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-more";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.verticalTab}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.sidememoSettings}"><use xlink:href="#iconSettings"></use></svg></button><button class="b3-menu__item" id="asri-enhance-card-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.cardLayout}</span></button></div></div>`;
+        button.innerHTML = getMoreButtonHTML(plugin);
         if (topbarFusionPlus.nextSibling) {
             parent.insertBefore(button, topbarFusionPlus.nextSibling);
         } else {
             parent.appendChild(button);
         }
     }
-    const mainMenuItems = [
-        { id: "asri-enhance-list-bullet-line", handler: onListBulletLineClick },
-        { id: "asri-enhance-vertical-tab", handler: onVerticalTabClick },
-        { id: "asri-enhance-sidememo", handler: onSideMemoClick },
-        { id: "asri-enhance-card-layout", handler: onCardLayoutClick },
-    ];
-    mainMenuItems.forEach(({ id, handler }) => {
-        const item = parent.querySelector<HTMLButtonElement>(`#${id}`);
-        if (item) {
-            item.onclick = (e) => handler(plugin, e);
-        }
-    });
-    const sidememoItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-sidememo");
-    if (sidememoItem) {
-        const settingsIcon = sidememoItem.querySelector(".asri-enhance-settings-icon");
-        if (settingsIcon) {
-            settingsIcon.addEventListener("click", (e: MouseEvent) => onSideMemoSettingsClick(plugin, e));
-        }
-    }
-    injectDetailAdjustmentMenu(plugin, parent);
-    injectTextureMenu(plugin, parent);
-    injectImmersiveMenu(plugin, parent);
+    bindMoreMenuItems(plugin, parent);
 }
 function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
     const detailAdjustmentItem = parent.querySelector<HTMLButtonElement>("#asri-enhance-detail-adjustment");

@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-smoothcaret="true"].asri-enhance-enable {
+[data-asri-enhance-smoothcaret="true"].asri-enhance-enable,
+[data-asri-enhance-smoothcaret="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-smooth-caret", "#asri-enhance-immersive");
     .protyle-wysiwyg,
     .protyle-title__input,

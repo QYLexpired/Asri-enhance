@@ -1,8 +1,9 @@
 ### 更新内容
-- 侧边备注支持显示在编辑器左侧
+- Neo主题可使用此插件
 ### 关于插件
 * [Asri](https://github.com/mustakshif/Asri)是[mustakshif](https://github.com/mustakshif)制作的一款极富现代感的精美主题。本插件为该主题的**第三方**增强插件，旨在为Asri主题增加更多配置选项及一系列实用功能，并在风格上完全匹配Asri主题
-* 适配移动端，可在移动端调整Asri主题配色和本插件的功能
+* 同时适配Neo主题（部分选项仅在Asri主题可用）
+* 适配移动端，可在移动端调整Asri主题和Neo主题配色和本插件的功能
 * 不在文档中写入或修改任何数据，仅进行功能性优化和外观改善，卸载后无任何残留
 * Asri主题版本不能低于v3.6.9
 * 所有功能默认关闭，点击顶栏<span data-type="kbd">外观模式</span>按钮，可出现Asri主题的设置菜单，需在<span data-type="kbd">更多预设配色</span>和<span data-type="kbd">更多</span>两个选项中进行配置

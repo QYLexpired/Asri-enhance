@@ -1,6 +1,7 @@
 @use "manager" as *;
 @include palette-mode(opalite, "light");
-.asri-palette-opalite.asri-mode-light.asri-enhance-enable {
+.asri-palette-opalite[data-theme-mode="light"].asri-enhance-enable,
+.asri-palette-opalite[data-theme-mode="light"].asri-enhance-enable-neo {
     @include palette-common(opalite);
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --opalite-base-accent: #5e7cc6;
@@ -11,8 +12,10 @@
     --b3-theme-surface: #f0efd0;
     --b3-theme-on-background: #336260;
     --b3-theme-on-surface: #6c8687;
-    #{$layout-tab-bar-item-focus-selectors} {
-        background-color: #3c6da838 !important;
+    &.asri-enhance-enable {
+        #{$layout-tab-bar-item-focus-selectors} {
+            background-color: #3c6da838 !important;
+        }
     }
     #{$primary-color-reverse-selectors} {
         --b3-theme-primary: #b8d2e8;

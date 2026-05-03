@@ -1,6 +1,7 @@
 @use "manager" as *;
 @include palette-mode(twilight, "dark");
-.asri-palette-twilight.asri-mode-dark.asri-enhance-enable {
+.asri-palette-twilight[data-theme-mode="dark"].asri-enhance-enable,
+.asri-palette-twilight[data-theme-mode="dark"].asri-enhance-enable-neo {
     @include palette-common(twilight);
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --twilight-base-accent: #b7c9ff;

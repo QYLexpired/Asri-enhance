@@ -3,7 +3,8 @@
 .asri-enhance-sidememo-container {
     display: none;
 }
-[data-asri-enhance-side-memo="true"].asri-enhance-enable {
+[data-asri-enhance-side-memo="true"].asri-enhance-enable,
+[data-asri-enhance-side-memo="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-sidememo");
     body:not(.body-asri--mobile) {
         .tooltip--memo#tooltip.asri-enhance-sidememo-tooltip-memo-none {
@@ -238,7 +239,7 @@
                 background-clip: padding-box;
                 background-size: contain;
                 text-shadow: 0 1px hsla(0, 0%, 100%, .6666666667);
-                &:is(.asri-mode-dark kbd) {
+                &:is([data-theme-mode="dark"] kbd) {
                     box-shadow: inset 0 1px 0 hsla(0, 0%, 100%, .1333333333), 0 1px 0 rgba(0, 0, 0, .2666666667), inset 0 0 0 1px var(--kbd-shadow-line-color);
                     background-image: linear-gradient(to bottom, var(--kbd-shadow-line-color), rgba(0, 0, 0, 0.2));
                     border: none;
@@ -272,7 +273,7 @@
                 &:hover {
                     background-color: rgba(0, 0, 0, 0);
                 }
-                &:is(.asri-mode-dark span[data-type="tag"]) {
+                &:is([data-theme-mode="dark"] span[data-type="tag"]) {
                     --tag-color-border: #ffa44460;
                     --tag-color-bg: #ffa44420;
                     --tag-color-text: #ffa444;
@@ -297,7 +298,7 @@
                     background-size: 100%;
                     transition-delay: .125s;
                 }
-                &:is(.asri-mode-dark span[data-type="block-ref"]) {
+                &:is([data-theme-mode="dark"] span[data-type="block-ref"]) {
                     --bg-clr: var(--b3-theme-primary-lighter);
                 }
             }
@@ -323,7 +324,7 @@
                 }
                 & thead tr th {
                     background-color: rgba(127,127,127,.05);
-                    &:is(.asri-mode-dark th) {
+                    &:is([data-theme-mode="dark"] th) {
                         background-color: rgba(127,127,127,.15)
                     }
                 }
@@ -338,7 +339,7 @@
                 }
                 & tbody tr:nth-child(2n) td {
                     background-color: rgba(127,127,127,.05);
-                    &:is(.asri-mode-dark td) {
+                    &:is([data-theme-mode="dark"] td) {
                         background-color: rgba(127,127,127,.15);
                     }
                 }
@@ -354,13 +355,13 @@
                 & thead tr th {
                     background-color: oklch(from var(--b3-theme-surface) 0.95 c h/0.8);
                     border-top: none;
-                    &:is(.asri-mode-dark th) {
+                    &:is([data-theme-mode="dark"] th) {
                         background-color: oklch(from var(--b3-theme-surface) 0.32 c h/0.7)
                     }
                 }
                 & tbody tr:nth-child(2n) td {
                     background-color: oklch(from var(--b3-theme-surface) 0.95 c h/0.8);
-                    &:is(.asri-mode-dark td) {
+                    &:is([data-theme-mode="dark"] td) {
                         background-color: oklch(from var(--b3-theme-surface) 0.32 c h/0.7);
                     }
                 }

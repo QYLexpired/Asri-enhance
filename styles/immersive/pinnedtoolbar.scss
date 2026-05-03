@@ -6,7 +6,8 @@
         }
     }
 }
-[data-asri-enhance-pinnedtoolbar="true"].asri-enhance-enable {
+[data-asri-enhance-pinnedtoolbar="true"].asri-enhance-enable,
+[data-asri-enhance-pinnedtoolbar="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-pinnedtoolbar", "#asri-enhance-immersive");
     body.asri-enhance-pinnedtoolbar-liquid-glass {
         .layout__center .protyle > .protyle-toolbar.asri-enhance-pinnedtoolbar-notreadonly {
@@ -14,7 +15,7 @@
             &.asri-enhance-pinnedtoolbar-bottom {
                 backdrop-filter: url(#pinnedtoolbar-row) saturate(1.5) brightness(1.1) !important;
                 background-color: oklch(from var(--b3-theme-surface) l c h / 0.7) !important;
-                &:is(.asri-mode-dark .protyle-toolbar) {
+                &:is([data-theme-mode="dark"] .protyle-toolbar) {
                     backdrop-filter: url(#pinnedtoolbar-row) saturate(1.5) brightness(0.9) !important;
                 }
             }
@@ -22,7 +23,7 @@
             &.asri-enhance-pinnedtoolbar-right {
                 backdrop-filter: url(#pinnedtoolbar-column) saturate(1.5) brightness(1.1) !important;
                 background-color: oklch(from var(--b3-theme-surface) l c h / 0.7) !important;
-                &:is(.asri-mode-dark .protyle-toolbar) {
+                &:is([data-theme-mode="dark"] .protyle-toolbar) {
                     backdrop-filter: url(#pinnedtoolbar-column) saturate(1.5) brightness(0.9) !important;
                 }
             }

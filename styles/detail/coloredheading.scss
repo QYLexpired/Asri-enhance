@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-coloredheading="true"].asri-enhance-enable {
+[data-asri-enhance-coloredheading="true"].asri-enhance-enable,
+[data-asri-enhance-coloredheading="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-colored-heading", "#asri-enhance-detail-adjustment");
     $l: l;
     $c: 0.1;

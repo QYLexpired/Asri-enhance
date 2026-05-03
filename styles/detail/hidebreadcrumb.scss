@@ -1,5 +1,6 @@
 @use "./hidetab" as *;
 @use "../asri/asri-enhance" as *;
+@include asri-enhance-item-neo-hide("#asri-enhance-hide-breadcrumb, #asri-enhance-detail-sep-3");
 [data-asri-enhance-hide-breadcrumb="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-hide-breadcrumb", "#asri-enhance-detail-adjustment");
     body:not(.asri-tfp) #asri-enhance-hide-breadcrumb {

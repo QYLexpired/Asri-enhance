@@ -38,13 +38,15 @@
 }
 @mixin palette-mode($palette-name, $mode) {
     @if $mode == "light" {
-        .asri-mode-dark.asri-enhance-enable {
+        [data-theme-mode="dark"].asri-enhance-enable,
+        [data-theme-mode="dark"].asri-enhance-enable-neo {
             #asri-enhance-#{"" + $palette-name} {
                 display: none;
             }
         }
     } @else if $mode == "dark" {
-        .asri-mode-light.asri-enhance-enable {
+        [data-theme-mode="light"].asri-enhance-enable,
+        [data-theme-mode="light"].asri-enhance-enable-neo {
             #asri-enhance-#{"" + $palette-name} {
                 display: none;
             }

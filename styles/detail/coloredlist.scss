@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-colored-list="true"].asri-enhance-enable {
+[data-asri-enhance-colored-list="true"].asri-enhance-enable,
+[data-asri-enhance-colored-list="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-colored-list", "#asri-enhance-detail-adjustment");
     .protyle-wysiwyg [data-node-id].list:not(.list .list):not(.protyle-wysiwyg > .li .list) {
     // :not(.protyle-wysiwyg > .li .list)排除列表项聚焦

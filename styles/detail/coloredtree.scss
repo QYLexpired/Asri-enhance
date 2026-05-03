@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-colored-tree="true"].asri-enhance-enable {
+[data-asri-enhance-colored-tree="true"].asri-enhance-enable,
+[data-asri-enhance-colored-tree="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-colored-tree", "#asri-enhance-detail-adjustment");
     --asri-enhance-colored-tree-border-width: 3px;
     .layout__dockl {

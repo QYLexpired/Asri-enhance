@@ -1,6 +1,7 @@
 @use "manager" as *;
 @include palette-mode(ocean, "dark");
-.asri-palette-ocean.asri-mode-dark.asri-enhance-enable {
+.asri-palette-ocean[data-theme-mode="dark"].asri-enhance-enable,
+.asri-palette-ocean[data-theme-mode="dark"].asri-enhance-enable-neo {
     @include palette-common(ocean);
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --ocean-base-accent: #b8e53f;
@@ -11,8 +12,10 @@
     --b3-theme-surface: #11172c;
     --b3-theme-on-background: #ebebeb;
     --b3-theme-on-surface: #919fb1;
-    #{$layout-tab-bar-item-focus-selectors} {
-        background-color: #7a93cf59 !important;
+    &.asri-enhance-enable {
+        #{$layout-tab-bar-item-focus-selectors} {
+            background-color: #7a93cf59 !important;
+        }
     }
     #{$primary-color-reverse-selectors} {
         --b3-theme-primary: var(--ocean-base-accent);

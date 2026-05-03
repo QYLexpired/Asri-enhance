@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-multicolslashmenu="true"].asri-enhance-enable {
+[data-asri-enhance-multicolslashmenu="true"].asri-enhance-enable,
+[data-asri-enhance-multicolslashmenu="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-multicolslashmenu", "#asri-enhance-detail-adjustment");
     @mixin multicol-menu($min-width, $column-width) {
         .protyle-hint.hint--menu {   

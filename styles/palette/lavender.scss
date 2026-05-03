@@ -1,9 +1,10 @@
 @use "manager" as *;
 @include palette-mode(lavender, "all");
-.asri-palette-lavender.asri-enhance-enable {
+.asri-palette-lavender.asri-enhance-enable,
+.asri-palette-lavender.asri-enhance-enable-neo {
 	@include palette-common(lavender);
 	@include palette-primary-color-scope(var(--lavender-base-accent));
-	&.asri-mode-light {
+	&[data-theme-mode="light"] {
 		--lavender-base-accent: #a095bd;
 		--asri-theme-accent-customized: var(--lavender-base-accent);
 		--b3-theme-primary: var(--lavender-base-accent);
@@ -14,15 +15,17 @@
 		--b3-theme-on-surface: #797593;
 		--b3-border-color: oklch( from var(--b3-theme-background) 0.88 c h );
         --b3-theme-surface-lighter: var(--b3-border-color);
-		#{$layout-tab-bar-item-focus-selectors} {
-			background-color: #b4637a33 !important;
+		&.asri-enhance-enable {
+			#{$layout-tab-bar-item-focus-selectors} {
+				background-color: #b4637a33 !important;
+			}
 		}
 		#{$primary-color-reverse-selectors} {
 			--b3-theme-primary: var(--lavender-base-accent);
 			--b3-theme-on-primary: #faf4ed;
 		}
 	}
-	&.asri-mode-dark {
+	&[data-theme-mode="dark"] {
 		--lavender-base-accent: #ebc3bc;
 		--asri-theme-accent-customized: var(--lavender-base-accent);
 		--b3-theme-primary: var(--lavender-base-accent);
@@ -31,8 +34,10 @@
 		--b3-theme-surface: #1f1d2e;
 		--b3-theme-on-background: #e0def4;
 		--b3-theme-on-surface: #8d89a6;
-		#{$layout-tab-bar-item-focus-selectors} {
-			background-color: #f1cccc66 !important;
+		&.asri-enhance-enable {
+			#{$layout-tab-bar-item-focus-selectors} {
+				background-color: #f1cccc66 !important;
+			}
 		}
 		#{$primary-color-reverse-selectors} {
 			--b3-theme-primary: var(--lavender-base-accent);

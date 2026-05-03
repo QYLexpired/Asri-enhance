@@ -1,6 +1,7 @@
 @use "manager" as *;
 @include palette-mode(dusk, "light");
-.asri-palette-dusk.asri-mode-light.asri-enhance-enable {
+.asri-palette-dusk[data-theme-mode="light"].asri-enhance-enable,
+.asri-palette-dusk[data-theme-mode="light"].asri-enhance-enable-neo {
     @include palette-common(dusk);
     @include palette-primary-color-scope(var(--b3-theme-accent));
     --dusk-base-accent: #d6957d;
@@ -11,8 +12,10 @@
     --b3-theme-surface: #f8e5d3;
     --b3-theme-on-background: #575279;
     --b3-theme-on-surface: #908d9f;
-    #{$layout-tab-bar-item-focus-selectors} {
-        background-color: #c69e704d !important;
+    &.asri-enhance-enable {
+        #{$layout-tab-bar-item-focus-selectors} {
+            background-color: #c69e704d !important;
+        }
     }
     #{$primary-color-reverse-selectors} {
         --b3-theme-primary: var(--dusk-base-accent);

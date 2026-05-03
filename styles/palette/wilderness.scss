@@ -1,9 +1,10 @@
 @use "manager" as *;
 @include palette-mode(wilderness, "all");
-.asri-palette-wilderness.asri-enhance-enable {
+.asri-palette-wilderness.asri-enhance-enable,
+.asri-palette-wilderness.asri-enhance-enable-neo {
     @include palette-common(wilderness);
     @include palette-primary-color-scope(var(--b3-theme-accent));
-    &.asri-mode-light {
+    &[data-theme-mode="light"] {
         --wilderness-base-accent: #74b49a;
         --asri-theme-accent-customized: var(--wilderness-base-accent);
         --b3-theme-primary: var(--wilderness-base-accent);
@@ -14,8 +15,10 @@
         --b3-theme-on-surface: #6f8892;
         --b3-border-color: oklch( from var(--b3-theme-background) 0.88 clamp(0, 0.009 * var(--asri-c-factor, 1) * var(--asri-c-0, 1), 0.04) h );
         --b3-theme-surface-lighter: var(--b3-border-color);
-        #{$layout-tab-bar-item-focus-selectors} {
-            background-color: #2d853e33 !important;
+        &.asri-enhance-enable {
+            #{$layout-tab-bar-item-focus-selectors} {
+                background-color: #2d853e33 !important;
+            }
         }
         #{$primary-color-reverse-selectors} {
             --b3-theme-primary: #beea9d;
@@ -26,7 +29,7 @@
             --b3-theme-on-primary: #437224;
         }
     }
-    &.asri-mode-dark {
+    &[data-theme-mode="dark"] {
         --wilderness-base-accent: #d8ed8d;
         --asri-theme-accent-customized: var(--wilderness-base-accent);
         --b3-theme-primary: var(--wilderness-base-accent);

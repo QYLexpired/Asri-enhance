@@ -1,7 +1,8 @@
 @use "../asri/asri-enhance" as *;
+@include asri-enhance-item-neo-hide("#asri-enhance-global-frosted-glass");
 [data-asri-enhance-global-frosted-glass="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-global-frosted-glass", "#asri-enhance-detail-adjustment");
-    &.asri-mode-light {
+    &[data-theme-mode="light"] {
         --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(1.1);
@@ -15,7 +16,7 @@
             }
         }
     }
-    &.asri-mode-dark {
+    &[data-theme-mode="dark"] {
         --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
         --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
         --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(0.9);
@@ -44,7 +45,7 @@
     body:not(.asri-disable-backdrop-blur) .protyle-toolbar {
         background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
         backdrop-filter: blur(6px) saturate(1.5) brightness(1.1);
-        &:is(.asri-mode-dark .protyle-toolbar) {
+        &:is([data-theme-mode="dark"] .protyle-toolbar) {
             backdrop-filter: blur(6px) saturate(1.5) brightness(0.9);
         }
     }
@@ -93,7 +94,7 @@
                 background-color: var(--asri-enhance-global-frosted-glass-background);
                 backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
             }
-            &:is(.asri-mode-dark .b3-dialog__container) {
+            &:is([data-theme-mode="dark"] .b3-dialog__container) {
                 &::before {
                     border: 1px solid var(--b3-border-color-trans);
                 }
@@ -222,7 +223,7 @@
             background-color: var(--asri-enhance-global-frosted-glass-background);
             backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
         }
-        &:is(.asri-mode-dark .block__popover.block__popover--open) {
+        &:is([data-theme-mode="dark"] .block__popover.block__popover--open) {
             &::before {
                 border: 1px solid var(--b3-border-color-trans);
             }

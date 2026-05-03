@@ -1,5 +1,6 @@
 @use "../asri/asri" as *;
 @use "../asri/asri-enhance" as *;
+@include asri-enhance-item-neo-hide(".asri-enhance-windowtransparencyvalue-subtitle, #asri-enhance-wholewindowtransparency");
 [data-asri-enhance-wholewindowtransparency="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-wholewindowtransparency", "#asri-enhance-detail-adjustment");
     &[data-asri-enhance-windowtransparencyvalue="0"] {
@@ -10,24 +11,24 @@
         }
     }
     &:not([data-asri-enhance-windowtransparencyvalue="0"]) {
-        &.asri-mode-light {
+        &[data-theme-mode="light"] {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-background);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1.1 - var(--asri-enhance-windowtransparency-value)));
         }
-        &.asri-mode-dark {
+        &[data-theme-mode="dark"] {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-background);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1.1 - var(--asri-enhance-windowtransparency-value)));
         }
-        &.asri-palette-polar.asri-mode-light,
-        &.asri-palette-polar.asri-mode-dark {
+        &.asri-palette-polar[data-theme-mode="light"],
+        &.asri-palette-polar[data-theme-mode="dark"] {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-background);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-background) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
         }
-        &[data-asri-enhance-windowtransparencyvalue="1"]:not(.asri-palette-polar).asri-mode-light,
-        &[data-asri-enhance-windowtransparencyvalue="1"]:not(.asri-palette-polar).asri-mode-dark {
+        &[data-asri-enhance-windowtransparencyvalue="1"]:not(.asri-palette-polar)[data-theme-mode="light"],
+        &[data-asri-enhance-windowtransparencyvalue="1"]:not(.asri-palette-polar)[data-theme-mode="dark"] {
             --asri-enhance-whole-window-transparency-base: var(--b3-theme-surface);
             --asri-enhance-whole-window-transparency-dockl: oklch(from var(--b3-theme-surface) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
             --asri-enhance-whole-window-transparency-other: oklch(from var(--asri-enhance-whole-window-transparency-base) l c h / calc(1 - var(--asri-enhance-windowtransparency-value)));
@@ -92,7 +93,7 @@
                 background-color: transparent;
             }
             // 数据库
-            .av .av__views .layout-tab-bar .item--focus:not(.asri-mode-dark .item--focus) {
+            .av .av__views .layout-tab-bar .item--focus:not([data-theme-mode="dark"] .item--focus) {
                 background-color: #ffffff99 !important;
             }
             .av__row--header:not([style*=transform]), .av__row--footer, .av__colsticky {
@@ -168,7 +169,7 @@
                 &:hover {
                     background-color: oklch(from var(--b3-theme-primary) 0.5 calc(c * 0.9 * var(--asri-c-0, 1)) h/0.1) !important;
                 }
-                &:is(.asri-mode-dark li) {
+                &:is([data-theme-mode="dark"] li) {
                     &:hover {
                         background-color: oklch(from var(--b3-theme-primary) 0.9 calc(c * 0.9 * var(--asri-c-0, 1)) h/0.13) !important;
                     }

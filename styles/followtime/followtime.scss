@@ -51,10 +51,10 @@
     }
     --asri-c-0: unset;
     --asri-on-primary-reverse: unset;
-    &.asri-mode-light {
+    &[data-theme-mode="light"] {
         --asri-enhance-follow-time-fallback: #3478f6;
     }
-    &.asri-mode-dark {
+    &[data-theme-mode="dark"] {
         --asri-enhance-follow-time-fallback: #118bff;
     }
     --asri-base-color: oklch(from var(--asri-enhance-follow-time-base-color, var(--asri-enhance-follow-time-fallback)) l c calc(h + var(--asri-enhance-follow-time-vary, 0))) !important;

@@ -1,5 +1,6 @@
 @use "../asri/overflowfadein" as *;
 @use "../asri/asri-enhance" as *;
+@include asri-enhance-item-neo-hide("#asri-enhance-vertical-tab");
 [data-asri-enhance-vertical-tab="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-vertical-tab");
     & body.asri-tfp:not(.body-asri--mobilem):not(.body--window) {
@@ -41,7 +42,7 @@
                         background-color: transparent !important;
                         backdrop-filter: none !important;
                     }
-                    &:is(.asri-mode-dark .protyle-breadcrumb) {
+                    &:is([data-theme-mode="dark"] .protyle-breadcrumb) {
                         &::before {
                             box-shadow: 0 .5px 0 0 hsla(0,0%,100%,.1333333333),0 -8px 5px -5px rgb(from var(--b3-theme-background) r g b/0.25) inset;
                         }

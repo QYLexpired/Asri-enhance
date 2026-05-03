@@ -1,5 +1,6 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-typewriter="true"].asri-enhance-enable {
+[data-asri-enhance-typewriter="true"].asri-enhance-enable,
+[data-asri-enhance-typewriter="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-typewriter", "#asri-enhance-immersive");
     .protyle-content {
         transform: translateZ(0);

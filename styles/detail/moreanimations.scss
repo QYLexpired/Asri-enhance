@@ -1,4 +1,5 @@
 @use "../asri/asri-enhance" as *;
+@include asri-enhance-item-neo-hide("#asri-enhance-moreanimations");
 [data-asri-enhance-moreanimations="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-moreanimations", "#asri-enhance-detail-adjustment");
     // 按钮光效

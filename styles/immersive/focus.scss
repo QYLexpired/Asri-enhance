@@ -14,7 +14,8 @@
     inherits: false;
     initial-value: oklch(from var(--b3-theme-primary) l c h / 0.1);
 }
-[data-asri-enhance-focus="true"].asri-enhance-enable {
+[data-asri-enhance-focus="true"].asri-enhance-enable,
+[data-asri-enhance-focus="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-focus", "#asri-enhance-immersive");
     &:not([data-asri-enhance-typewriter="true"]) {
         #asri-enhance-focus {

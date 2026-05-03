@@ -1,4 +1,5 @@
 @use "../asri/asri-enhance" as *;
-[data-asri-enhance-fluidcursor="true"].asri-enhance-enable {
+[data-asri-enhance-fluidcursor="true"].asri-enhance-enable,
+[data-asri-enhance-fluidcursor="true"].asri-enhance-enable-neo {
     @include asri-enhance-item-highlight("#asri-enhance-fluid-cursor", "#asri-enhance-immersive");
 }
