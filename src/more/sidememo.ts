@@ -274,6 +274,100 @@ function fixDynamicBlockRef(container: HTMLElement) {
         }
     });
 }
+let _connectorState: { sourceEl: HTMLElement; targetEl: HTMLElement; container: HTMLElement } | null = null;
+let _scrollHandler: (() => void) | null = null;
+let _rafId: number | null = null;
+function getConnectorSvg(container: HTMLElement): SVGElement | null {
+    let svg = container.querySelector<SVGElement>(".asri-enhance-sidememo-connector");
+    if (!svg) {
+        svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+        svg.classList.add("asri-enhance-sidememo-connector");
+        svg.setAttribute("overflow", "visible");
+        container.appendChild(svg);
+    }
+    return svg;
+}
+function getConnectorPath(svg: SVGElement): SVGPathElement {
+    let path = svg.querySelector<SVGPathElement>("path");
+    if (!path) {
+        path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        svg.appendChild(path);
+    }
+    return path;
+}
+function clearConnector(container: HTMLElement): void {
+    if (_rafId !== null) {
+        cancelAnimationFrame(_rafId);
+        _rafId = null;
+    }
+    const svg = container.querySelector(".asri-enhance-sidememo-connector");
+    if (svg) {
+        svg.innerHTML = "";
+    }
+    if (_scrollHandler) {
+        document.removeEventListener("scroll", _scrollHandler, true);
+        _scrollHandler = null;
+    }
+    _connectorState = null;
+}
+function updateConnectorPath(sourceEl: HTMLElement, targetEl: HTMLElement, container: HTMLElement): void {
+    const svg = getConnectorSvg(container);
+    if (!svg) return;
+    const sourceRect = sourceEl.getBoundingClientRect();
+    const targetRect = targetEl.getBoundingClientRect();
+    const svgRect = svg.getBoundingClientRect();
+    const sourceCenterX = sourceRect.left + sourceRect.width / 2;
+    const targetCenterX = targetRect.left + targetRect.width / 2;
+    const isSourceLeftOfTarget = sourceCenterX < targetCenterX;
+    let x1: number, y1: number, x2: number, y2: number;
+    let cpX1: number, cpX2: number;
+    if (isSourceLeftOfTarget) {
+        x1 = sourceRect.right - svgRect.left;
+        y1 = sourceRect.top + sourceRect.height / 2 - svgRect.top;
+        x2 = targetRect.left - svgRect.left;
+        y2 = targetRect.top + targetRect.height / 2 - svgRect.top;
+        const cpOffset = Math.min(150, Math.abs(x2 - x1) / 2);
+        cpX1 = x1 + cpOffset;
+        cpX2 = x2 - cpOffset;
+    } else {
+        x1 = sourceRect.left - svgRect.left;
+        y1 = sourceRect.top + sourceRect.height / 2 - svgRect.top;
+        x2 = targetRect.right - svgRect.left;
+        y2 = targetRect.top + targetRect.height / 2 - svgRect.top;
+        const cpOffset = Math.min(150, Math.abs(x2 - x1) / 2);
+        cpX1 = x1 - cpOffset;
+        cpX2 = x2 + cpOffset;
+    }
+    const cpY1 = y1;
+    const cpY2 = y2;
+    const path = getConnectorPath(svg);
+    path.setAttribute("d", `M${x1},${y1} C${cpX1},${cpY1} ${cpX2},${cpY2} ${x2},${y2}`);
+}
+function drawConnector(sourceEl: HTMLElement, targetEl: HTMLElement, container: HTMLElement): void {
+    updateConnectorPath(sourceEl, targetEl, container);
+    _connectorState = { sourceEl, targetEl, container };
+    if (!_scrollHandler) {
+        _scrollHandler = () => {
+            if (_rafId !== null) return;
+            _rafId = requestAnimationFrame(() => {
+                _rafId = null;
+                if (_connectorState?.container) {
+                    const { sourceEl, targetEl, container } = _connectorState;
+                    if (
+                        sourceEl && targetEl &&
+                        document.contains(sourceEl) &&
+                        document.contains(targetEl)
+                    ) {
+                        updateConnectorPath(sourceEl, targetEl, container);
+                    } else {
+                        clearConnector(container);
+                    }
+                }
+            });
+        };
+        document.addEventListener("scroll", _scrollHandler, { capture: true, passive: true });
+    }
+}
 function getUidFromElement(el: HTMLElement): string | null {
     try {
         const attrs = el.getAttributeNames();
@@ -541,11 +635,13 @@ async function initSidememoRely(): Promise<boolean> {
 const CONFIG_FILE = "config.json";
 const CONFIG_KEY = "asri-enhance-side-memo";
 const CONFIG_POSITION_KEY = "asri-enhance-side-memo-default-position";
+const CONFIG_CONNECTOR_KEY = "asri-enhance-side-memo-connector";
 const POSITION_CLASS_LEFT = "asri-enhance-sidememo-left";
 const POSITION_CLASS_RIGHT = "asri-enhance-sidememo-right";
 type SideMemoPosition = "left" | "right";
 let sidememoDocumentRightClickHandler: ((ev: MouseEvent) => void) | null = null;
 let currentSideMemoPosition: SideMemoPosition = "right";
+let currentSideMemoConnector: boolean = false;
 async function getSideMemoPosition(): Promise<SideMemoPosition> {
     try {
         const config = await loadData(globalPlugin!, CONFIG_FILE);
@@ -949,19 +1045,76 @@ async function populateSidememoContainer(container: HTMLElement, protyleContent:
             } catch (e) {}
         } catch (e) {}
     };
+            const findMemoIconElement = (memoEl: HTMLElement): HTMLElement | null => {
+        try {
+            return memoEl.querySelector<HTMLElement>(".protyle-attr .protyle-attr--memo");
+        } catch (e) {
+            return null;
+        }
+    };
     items.forEach((it) => {
         try {
             const relatedEls = it.sourceEls || (it.sourceEl ? [it.sourceEl] : []);
             if (relatedEls.length === 0) return;
-            const onItemEnter = () => { relatedEls.forEach(el => el.setAttribute("asri-enhance-sidememo-highlight", "")); };
-            const onItemLeave = () => { relatedEls.forEach(el => el.removeAttribute("asri-enhance-sidememo-highlight")); };
+            const shouldDrawConnector = currentSideMemoConnector;
+            const onItemEnter = () => {
+                relatedEls.forEach(el => el.setAttribute("asri-enhance-sidememo-highlight", ""));
+                if (shouldDrawConnector && relatedEls[0] && it.el) {
+                    if (it.type === 'block') {
+                        const memoIconEl = findMemoIconElement(relatedEls[0]);
+                        if (memoIconEl) drawConnector(memoIconEl, it.el, container);
+                    } else if (it.type === 'file') {
+                        const titleMemoEl = container.closest(".protyle-top")?.querySelector<HTMLElement>(".protyle-title .protyle-attr--memo svg");
+                        if (titleMemoEl) {
+                            titleMemoEl.setAttribute("asri-enhance-sidememo-highlight", "");
+                            drawConnector(titleMemoEl, it.el, container);
+                        }
+                    } else {
+                        drawConnector(relatedEls[0], it.el, container);
+                    }
+                }
+            };
+            const onItemLeave = () => {
+                relatedEls.forEach(el => el.removeAttribute("asri-enhance-sidememo-highlight"));
+                if (it.type === 'file') {
+                    const titleMemoEl = container.closest(".protyle-top")?.querySelector<HTMLElement>(".protyle-title .protyle-attr--memo svg");
+                    if (titleMemoEl) titleMemoEl.removeAttribute("asri-enhance-sidememo-highlight");
+                }
+                clearConnector(container);
+            };
             const onMemoEnter = () => {
-                it.el.setAttribute("asri-enhance-sidememo-highlight", "");
+                if (it.type !== 'file') {
+                    it.el.setAttribute("asri-enhance-sidememo-highlight", "");
+                }
                 try { relatedEls.forEach(el => toggleTooltipMemoNoneFor(el, true)); } catch (e) {}
+                if (shouldDrawConnector && relatedEls[0] && it.el && it.type !== 'file') {
+                    if (it.type === 'block') {
+                        const memoIconEl = findMemoIconElement(relatedEls[0]);
+                        if (memoIconEl) {
+                            memoIconEl.setAttribute("asri-enhance-sidememo-highlight", "");
+                            drawConnector(memoIconEl, it.el, container);
+                        }
+                    } else {
+                        drawConnector(relatedEls[0], it.el, container);
+                    }
+                }
             };
             const onMemoLeave = () => {
-                it.el.removeAttribute("asri-enhance-sidememo-highlight");
+                if (it.type !== 'file') {
+                    it.el.removeAttribute("asri-enhance-sidememo-highlight");
+                }
+                try {
+                    relatedEls.forEach(el => {
+                        if (it.type === 'block') {
+                            const memoIconEl = findMemoIconElement(el);
+                            if (memoIconEl) memoIconEl.removeAttribute("asri-enhance-sidememo-highlight");
+                        }
+                    });
+                } catch (e) {}
                 try { relatedEls.forEach(el => toggleTooltipMemoNoneFor(el, false)); } catch (e) {}
+                if (it.type !== 'file') {
+                    clearConnector(container);
+                }
             };
             it.el.addEventListener("mouseenter", onItemEnter);
             it.el.addEventListener("mouseleave", onItemLeave);
@@ -1170,6 +1323,20 @@ async function showMergeMemoTip(): Promise<void> {
 let fetchInterceptorDisconnect: (() => void) | null = null;
 export function removeAllSidememoArtifacts(): void {
     try {
+        if (_rafId !== null) {
+            cancelAnimationFrame(_rafId);
+            _rafId = null;
+        }
+        if (_scrollHandler) {
+            document.removeEventListener("scroll", _scrollHandler, true);
+            _scrollHandler = null;
+        }
+        _connectorState = null;
+        document.querySelectorAll(".asri-enhance-sidememo-connector").forEach(el => {
+            try { el.remove(); } catch (e) {}
+        });
+    } catch (e) {}
+    try {
         if (sidememoDocumentRightClickHandler) {
             try { document.removeEventListener("contextmenu", sidememoDocumentRightClickHandler, true); } catch (e) {}
             sidememoDocumentRightClickHandler = null;
@@ -1317,6 +1484,14 @@ export function onSideMemoSettingsClick(plugin: Plugin, event: MouseEvent): void
             <option value="left">${plugin.i18n.sidememoPositionLeft}</option>
         </select>
     </div>
+    <div class="fn__flex b3-label config__item">
+        <div class="fn__flex-1">
+            ${plugin.i18n.sidememoConnector}
+            <div class="b3-label__text">${plugin.i18n.sidememoConnectorTip}</div>
+        </div>
+        <span class="fn__space"></span>
+        <input class="b3-switch fn__flex-center" id="asri-enhance-sidememo-connector" type="checkbox">
+    </div>
 </div>
 <div class="b3-dialog__action">
     <button class="b3-button b3-button--cancel" id="asri-enhance-sidememo-cancel">${plugin.i18n.cancel}</button>
@@ -1328,20 +1503,25 @@ export function onSideMemoSettingsClick(plugin: Plugin, event: MouseEvent): void
     });
     dialog.element.setAttribute("data-key", "dialog-asri-enhance-sidememo-settings");
     const positionSelect = dialog.element.querySelector<HTMLSelectElement>("#asri-enhance-sidememo-default-position");
+    const connectorCheckbox = dialog.element.querySelector<HTMLInputElement>("#asri-enhance-sidememo-connector");
     void loadData(plugin, CONFIG_FILE).then((config) => {
         const savedPosition = config?.[CONFIG_POSITION_KEY] || "right";
         if (positionSelect) positionSelect.value = savedPosition;
+        if (connectorCheckbox) connectorCheckbox.checked = config?.[CONFIG_CONNECTOR_KEY] === true;
     }).catch(() => { });
     dialog.element.querySelector("#asri-enhance-sidememo-cancel")?.addEventListener("click", () => {
         dialog.destroy();
     });
     dialog.element.querySelector("#asri-enhance-sidememo-confirm")?.addEventListener("click", () => {
         const selectedPosition = positionSelect?.value || "right";
+        const selectedConnector = connectorCheckbox?.checked ?? false;
         void (async () => {
             const config = await loadData(plugin, CONFIG_FILE) || {};
             config[CONFIG_POSITION_KEY] = selectedPosition;
+            config[CONFIG_CONNECTOR_KEY] = selectedConnector;
             await saveData(plugin, CONFIG_FILE, config).catch(() => { });
             currentSideMemoPosition = selectedPosition as SideMemoPosition;
+            currentSideMemoConnector = selectedConnector;
             const isActive = document.documentElement.hasAttribute("data-asri-enhance-side-memo");
             if (isActive) {
                 updateSideMemoPositionClass(currentSideMemoPosition);
@@ -1358,7 +1538,9 @@ export async function applySidememoConfig(plugin: Plugin, config?: Record<string
     if (!htmlEl) return;
     const configData = config !== undefined ? config : await loadData(plugin, CONFIG_FILE);
     const savedPosition = (configData?.[CONFIG_POSITION_KEY] as SideMemoPosition) || "right";
+    const savedConnector = configData?.[CONFIG_CONNECTOR_KEY] === true;
     currentSideMemoPosition = savedPosition;
+    currentSideMemoConnector = savedConnector;
     if (configData && configData[CONFIG_KEY] === true) {
         htmlEl.setAttribute("data-asri-enhance-side-memo", "true");
         updateSideMemoPositionClass(savedPosition);

@@ -46,6 +46,8 @@
   "sidememoDefaultPositionTip": "تعيين الموضع الافتراضي لعرض الملاحظات الجانبية",
   "sidememoPositionRight": "يمين المحرر",
   "sidememoPositionLeft": "يسار المحرر",
+  "sidememoConnector": "خط الربط",
+  "sidememoConnectorTip": "رسم خط بين الملاحظة الأصلية والملاحظة الجانبية",
   "globalFrostedGlass": "تأثير الزجاج الضبابي العام",
   "multicolSlashMenu": "قائمة الشرطة المائلة متعددة الأعمدة",
   "cardSearchList": "قائمة البحث على شكل بطاقات",

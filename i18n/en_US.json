@@ -46,6 +46,8 @@
   "sidememoDefaultPositionTip": "Set the default display position for side memos",
   "sidememoPositionRight": "Right of Editor",
   "sidememoPositionLeft": "Left of Editor",
+  "sidememoConnector": "Connector",
+  "sidememoConnectorTip": "Draw a line between the source memo and side memo",
   "globalFrostedGlass": "Global Frosted Glass Effect",
   "multicolSlashMenu": "Multi Column Slash Menu",
   "cardSearchList": "Card Search List",

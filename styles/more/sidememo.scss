@@ -3,6 +3,18 @@
 .asri-enhance-sidememo-container {
     display: none;
 }
+@keyframes asri-enhance-sidememo-connector {
+    from {
+        opacity: 0;
+        stroke-dashoffset: 0;
+        filter: blur(2px);
+    }
+    to {
+        opacity: 1;
+        stroke-dashoffset: -45;
+        filter: blur(0px);
+    }
+}
 [data-asri-enhance-side-memo="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-sidememo");
     body:not(.body-asri--mobile) {
@@ -15,6 +27,16 @@
             --asri-enhance-sidememo-re: 35px;
             --asri-enhance-protyle-padding-right-re: max(var(--asri-enhance-sidememo-protyle-padding), calc(var(--asri-enhance-sidememo-container-width) + var(--asri-enhance-sidememo-re) + 24px));
             --asri-enhance-protyle-padding-left-re: max(calc(var(--asri-enhance-sidememo-protyle-padding) - max(calc(var(--asri-enhance-protyle-padding-right-re) - var(--asri-enhance-sidememo-protyle-padding)), 0px)), 24px);
+            .protyle-title .protyle-attr--memo {
+                svg {
+                    transition: 0.2s;
+                    &[asri-enhance-sidememo-highlight] {
+                        padding: 0 2px;
+                        transform: scale(1.5);
+                        color: var(--b3-theme-accent);
+                    }
+                }
+            }
             & .protyle-top:not(.asri-enhance-sidememo-protyle-title-none) {
                 & ~ .protyle-wysiwyg {
                     padding-right: var(--asri-enhance-protyle-padding-right-re) !important;
@@ -41,10 +63,8 @@
                     }
                     & [memo] {
                         transition: all 0.25s;
+                        &:hover,
                         &[asri-enhance-sidememo-highlight] {
-                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.12) !important;
-                            box-shadow: 0 0 0 0.5px oklch(from var(--b3-theme-accent) l c h / 0.25) !important;
-                            color: var(--b3-theme-accent) !important;
                             &  > .protyle-attr .protyle-attr--memo {
                                 transform: scale(1.5);
                                 color: var(--b3-theme-accent);
@@ -86,9 +106,7 @@
                     transition: all 0.25s, top 0s;
                     box-sizing: border-box;
                     &:hover {
-                        &:not(.asri-enhance-sidememo-filememo-item) {
-                            background-color: oklch(from var(--b3-theme-accent) l c h / 0.05);
-                        }
+                        background-color: oklch(from var(--b3-theme-accent) l c h / 0.05);
                     }
                     &[asri-enhance-sidememo-highlight] {
                         &:not(.asri-enhance-sidememo-filememo-item) {
@@ -134,6 +152,24 @@
                         overflow: scroll;
                         padding: 0.75em;
                         @include overflow-indicator-fadein-mask($fadeout-size-l, "top bottom");
+                    }
+                }
+                .asri-enhance-sidememo-connector {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100vw;
+                    height: 100vh;
+                    pointer-events: none;
+                    overflow: visible;
+                    z-index: 99;
+                    path {
+                        stroke: var(--b3-theme-accent);
+                        stroke-width: 2;
+                        fill: none;
+                        stroke-dasharray: 6,4;
+                        opacity: 0;
+                        animation: asri-enhance-sidememo-connector 0.5s ease-out forwards;
                     }
                 }
             }

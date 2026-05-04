@@ -46,6 +46,8 @@
   "sidememoDefaultPositionTip": "设置侧边备注的默认显示位置",
   "sidememoPositionRight": "编辑器右侧",
   "sidememoPositionLeft": "编辑器左侧",
+  "sidememoConnector": "连线",
+  "sidememoConnectorTip": "在源备注和侧边备注间连线",
   "globalFrostedGlass": "全局毛玻璃效果",
   "multicolSlashMenu": "多列斜杠菜单",
   "cardSearchList": "卡片化搜索列表",
