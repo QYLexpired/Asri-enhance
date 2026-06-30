@@ -13,15 +13,15 @@
   "disabledInPublish": false,
   "displayName": {
     "default": "Asri+",
-    "zh_CN": "Asri+"
+    "zh-CN": "Asri+"
   },
   "description": {
     "default": "A plugin for Asri theme",
-    "zh_CN": "专为Asri主题设计的增强插件"
+    "zh-CN": "专为Asri主题设计的增强插件"
   },
   "readme": {
     "default": "README.md",
-    "zh_CN": "README_zh_CN.md"
+    "zh-CN": "README.zh-CN.md"
   },
   "funding": {
     "custom": [

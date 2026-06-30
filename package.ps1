@@ -2,7 +2,7 @@ $filesToPack = @(
 	"index.js",
 	"index.css",
 	"README.md",
-	"README_zh_CN.md",
+	"README.zh-CN.md",
 	"i18n",
 	"icon.png",
 	"plugin.json",

@@ -17,21 +17,15 @@ import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyColoredListConfig } from "./detail/coloredlist";
 import { applyListBulletLineConfig, removeListBulletLineEffect } from "./more/listbulletline";
-import { applyVerticalTabConfig, stopObserver as stopVerticalTabObserver } from "./more/verticaltab";
 import { applySidememoConfig, onSideMemoClick, stopObserver as stopSidememoObserver, removeAllSidememoArtifacts } from "./more/sidememo";
 import { applyGlobalFrostedGlassConfig } from "./detail/globalfrostedglass";
 import { applySidebarTopStickyConfig } from "./detail/sidebartopsticky";
-import { applyHideTabConfig } from "./detail/hidetab";
-import { applyHideBreadcrumbConfig } from "./detail/hidebreadcrumb";
 import { applyMoreAnimationsConfig } from "./detail/moreanimations";
 import { applyMulticolSlashMenuConfig } from "./detail/multicolslashmenu";
 import { applyCardSearchListConfig } from "./detail/cardsearchlist";
-import { applyWindowTransparencyValueConfig } from "./detail/windowtransparencyvalue";
-import { applyWholeWindowTransparencyConfig } from "./detail/wholewindowtransparency";
 import { applySmoothCaretConfig, destroySmoothCaret } from "./immersive/smoothcaret";
 import { applyFluidCursorConfig, destroyFluidCursor } from "./immersive/fluidcursor";
 import { applyPinnedToolbarConfig, destroyPinnedToolbar } from "./immersive/pinnedtoolbar";
-import { applyCardLayoutConfig, restoreMacTrafficLights, stopDockObservers } from "./more/cardlayout";
 import { applyPaperConfig } from "./texture/paper";
 import { applyNoiseConfig } from "./texture/noise";
 import { applyAcrylicConfig } from "./texture/acrylic";
@@ -72,21 +66,15 @@ class AsriEnhancePlugin extends Plugin {
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyColoredListConfig(this, config).catch(() => { }),
             applyListBulletLineConfig(this, config).catch(() => { }),
-            applyVerticalTabConfig(this, config).catch(() => { }),
             applySidememoConfig(this, config).catch(() => { }),
             applyGlobalFrostedGlassConfig(this, config).catch(() => { }),
             applySidebarTopStickyConfig(this, config).catch(() => { }),
-            applyHideTabConfig(this, config).catch(() => { }),
-            applyHideBreadcrumbConfig(this, config).catch(() => { }),
             applyMoreAnimationsConfig(this, config).catch(() => { }),
             applyMulticolSlashMenuConfig(this, config).catch(() => { }),
             applyCardSearchListConfig(this, config).catch(() => { }),
-            applyWindowTransparencyValueConfig(this, config).catch(() => { }),
-            applyWholeWindowTransparencyConfig(this, config).catch(() => { }),
             applySmoothCaretConfig(this, config).catch(() => { }),
             applyFluidCursorConfig(this, config).catch(() => { }),
             applyPinnedToolbarConfig(this, config).catch(() => { }),
-            applyCardLayoutConfig(this, config).catch(() => { }),
             applyPaperConfig(this, config).catch(() => { }),
             applyNoiseConfig(this, config).catch(() => { }),
             applyAcrylicConfig(this, config).catch(() => { }),
@@ -274,7 +262,6 @@ class AsriEnhancePlugin extends Plugin {
             this.paletteDisableDebounceTimer = null;
         }
         removeListBulletLineEffect();
-        stopVerticalTabObserver();
         removeAllSidememoArtifacts();
         stopSidememoObserver();
         destroySmoothCaret();
@@ -282,8 +269,6 @@ class AsriEnhancePlugin extends Plugin {
         destroyPinnedToolbar();
         destroyTypewriterMode();
         removeCustomImageConfig();
-        restoreMacTrafficLights();
-        stopDockObservers();
         const htmlEl = document.documentElement;
         if (htmlEl) {
             const attrs = Array.from(htmlEl.attributes);

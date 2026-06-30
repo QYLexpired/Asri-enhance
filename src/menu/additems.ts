@@ -14,21 +14,15 @@ import { onColoredHeadingClick } from "../detail/coloredheading";
 import { onColoredTreeClick } from "../detail/coloredtree";
 import { onColoredListClick } from "../detail/coloredlist";
 import { onListBulletLineClick } from "../more/listbulletline";
-import { onVerticalTabClick } from "../more/verticaltab";
 import { onSideMemoClick, onSideMemoSettingsClick } from "../more/sidememo";
 import { onGlobalFrostedGlassClick } from "../detail/globalfrostedglass";
 import { onSidebarTopStickyClick } from "../detail/sidebartopsticky";
-import { onHideTabClick } from "../detail/hidetab";
-import { onHideBreadcrumbClick } from "../detail/hidebreadcrumb";
 import { onMoreAnimationsClick } from "../detail/moreanimations";
 import { onMulticolSlashMenuClick } from "../detail/multicolslashmenu";
 import { onCardSearchListClick } from "../detail/cardsearchlist";
-import { onWindowTransparencyValueClick, saveWindowTransparencyValue } from "../detail/windowtransparencyvalue";
-import { onWholeWindowTransparencyClick } from "../detail/wholewindowtransparency";
 import { onSmoothCaretClick } from "../immersive/smoothcaret";
 import { onFluidCursorClick } from "../immersive/fluidcursor";
 import { onPinnedToolbarClick, onPinnedToolbarSettingsClick } from "../immersive/pinnedtoolbar";
-import { onCardLayoutClick } from "../more/cardlayout";
 import { onPaperClick } from "../texture/paper";
 import { onNoiseClick } from "../texture/noise";
 import { onAcrylicClick } from "../texture/acrylic";
@@ -131,36 +125,50 @@ export function addAsriEnhanceItems(plugin: Plugin, event: MouseEvent): void {
     };
     const findAndInjectItems = (searchAttempt: number = 0) => {
         const pickColor = menu.querySelector<HTMLElement>("#pickColor");
-        const topbarFusionPlus = menu.querySelector<HTMLElement>("#topbarFusionPlus");
-        if (!pickColor || !topbarFusionPlus) {
+        if (!pickColor) {
             if (searchAttempt + 1 < MAX_ATTEMPTS) {
                 schedulePoll(pollState, () => findAndInjectItems(searchAttempt + 1), SEARCH_INTERVAL_MS);
             }
             return;
         }
         injectPaletteMenu(plugin, pickColor);
-        injectMoreMenu(plugin, topbarFusionPlus);
+        injectMoreMenu(plugin, pickColor);
     };
     findAndInjectItems();
 }
 function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
     const parent = pickColor.parentElement;
     if (!parent) return;
+    if (!parent.querySelector("#asri-enhance-follow-time")) {
+        const savedColor = document.documentElement.style.getPropertyValue("--asri-enhance-follow-time-base-color") || "#3478f6";
+        const followTimeButton = document.createElement("button");
+        followTimeButton.className = "b3-menu__item asri-enhance";
+        followTimeButton.id = "asri-enhance-follow-time";
+        followTimeButton.innerHTML = `<svg class="b3-menu__icon"></svg><input id="asri-enhance-followtime-colorpicker" type="color" value="${savedColor}"><span class="b3-menu__label">${plugin.i18n.followTime}</span>`;
+        parent.appendChild(followTimeButton);
+        const colorPicker = followTimeButton.querySelector<HTMLInputElement>("#asri-enhance-followtime-colorpicker");
+        if (colorPicker) {
+            followTimeButton.addEventListener("click", async (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                await onFollowTimeClick(plugin);
+                colorPicker.click();
+            });
+            colorPicker.addEventListener("click", (e) => {
+                e.stopPropagation();
+            });
+            colorPicker.addEventListener("input", async (e) => {
+                const target = e.target as HTMLInputElement;
+                await saveFollowTimeColor(plugin, target.value);
+            });
+        }
+    }
     if (!parent.querySelector("#asri-enhance-palette")) {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-palette";
         button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.morePresetColors}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sakura}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.amber}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wilderness}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.midnight}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.ocean}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.twilight}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.lavender}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.opalite}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.oxygen}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.dusk}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.gingko}</span></button></div></div>`;
-        let insertBeforeElement = pickColor;
-        let previousElement = pickColor.previousElementSibling;
-        while (previousElement) {
-            if (previousElement.classList && previousElement.classList.contains('b3-menu__separator')) {
-                insertBeforeElement = previousElement as HTMLElement;
-                break;
-            }
-            previousElement = previousElement.previousElementSibling;
-        }
-        parent.insertBefore(button, insertBeforeElement);
+        parent.appendChild(button);
     }
     const paletteItems = [
         { id: "asri-enhance-sakura", handler: onSakuraClick },
@@ -181,55 +189,20 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
             item.onclick = (e) => handler(plugin, e);
         }
     });
-    const followCoverImgColor = document.querySelector<HTMLElement>('#commonMenu[data-name="barmode"] #followCoverImgColor');
-    if (followCoverImgColor && !parent.querySelector("#asri-enhance-follow-time")) {
-        const savedColor = document.documentElement.style.getPropertyValue("--asri-enhance-follow-time-base-color") || "#3478f6";
-        const followTimeButton = document.createElement("button");
-        followTimeButton.className = "b3-menu__item asri-enhance";
-        followTimeButton.id = "asri-enhance-follow-time";
-        followTimeButton.innerHTML = `<svg class="b3-menu__icon"></svg><input id="asri-enhance-followtime-colorpicker" type="color" value="${savedColor}"><span class="b3-menu__label">${plugin.i18n.followTime}</span>`;
-        if (followCoverImgColor.nextSibling) {
-            parent.insertBefore(followTimeButton, followCoverImgColor.nextSibling);
-        } else {
-            parent.appendChild(followTimeButton);
-        }
-        const colorPicker = followTimeButton.querySelector<HTMLInputElement>("#asri-enhance-followtime-colorpicker");
-        if (colorPicker) {
-            followTimeButton.addEventListener("click", async (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                await onFollowTimeClick(plugin);
-                colorPicker.click();
-            });
-            colorPicker.addEventListener("click", (e) => {
-                e.stopPropagation();
-            });
-            colorPicker.addEventListener("input", async (e) => {
-                const target = e.target as HTMLInputElement;
-                await saveFollowTimeColor(plugin, target.value);
-            });
-        }
-    }
 }
-function injectMoreMenu(plugin: Plugin, topbarFusionPlus: HTMLElement): void {
-    const parent = topbarFusionPlus.parentElement;
+function injectMoreMenu(plugin: Plugin, _pickColor: HTMLElement): void {
+    const parent = _pickColor.parentElement;
     if (!parent) return;
     if (!parent.querySelector("#asri-enhance-more")) {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-more";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-vertical-tab">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.verticalTab}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.sidememoSettings}"><use xlink:href="#iconSettings"></use></svg></button><button class="b3-menu__item" id="asri-enhance-card-layout">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.cardLayout}</span></button></div></div>`;
-        if (topbarFusionPlus.nextSibling) {
-            parent.insertBefore(button, topbarFusionPlus.nextSibling);
-        } else {
-            parent.appendChild(button);
-        }
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.sidememoSettings}"><use xlink:href="#iconSettings"></use></svg></button></div></div>`;
+        parent.appendChild(button);
     }
     const mainMenuItems = [
         { id: "asri-enhance-list-bullet-line", handler: onListBulletLineClick },
-        { id: "asri-enhance-vertical-tab", handler: onVerticalTabClick },
         { id: "asri-enhance-sidememo", handler: onSideMemoClick },
-        { id: "asri-enhance-card-layout", handler: onCardLayoutClick },
     ];
     mainMenuItems.forEach(({ id, handler }) => {
         const item = parent.querySelector<HTMLButtonElement>(`#${id}`);
@@ -253,65 +226,6 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
     if (!detailAdjustmentItem) return;
     const detailAdjustmentSubmenu = detailAdjustmentItem.querySelector<HTMLElement>(".b3-menu__submenu .b3-menu__items");
     if (!detailAdjustmentSubmenu) return;
-    if (!detailAdjustmentSubmenu.querySelector(".menu-item__subtitle")) {
-        const subtitle = document.createElement("div");
-        subtitle.className = "menu-item__subtitle asri-enhance-windowtransparencyvalue-subtitle";
-        subtitle.style.userSelect = "none";
-        subtitle.style.padding = "0 14px";
-        subtitle.textContent = plugin.i18n.windowTransparencyValueSubtitle;
-        detailAdjustmentSubmenu.appendChild(subtitle);
-    }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-wholewindowtransparency")) {
-        const button = document.createElement("button");
-        button.className = "b3-menu__item";
-        button.id = "asri-enhance-wholewindowtransparency";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wholeWindowTransparency}</span>`;
-        detailAdjustmentSubmenu.appendChild(button);
-    }
-    const wholeWindowItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-wholewindowtransparency");
-    if (wholeWindowItem) {
-        wholeWindowItem.onclick = (e) => onWholeWindowTransparencyClick(plugin, e);
-    }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-windowtransparencyvalue")) {
-        const button = document.createElement("button");
-        button.className = "b3-menu__item";
-        button.id = "asri-enhance-windowtransparencyvalue";
-        button.innerHTML = `<div aria-label="${plugin.i18n.windowTransparencyValue}: 0.5" class="b3-tooltips b3-tooltips__n"><input style="box-sizing: border-box" type="range" class="b3-slider fn__block" min="0" max="1" step="0.01" value="0.5"></div>`;
-        detailAdjustmentSubmenu.appendChild(button);
-    }
-    const windowTransparencyItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-windowtransparencyvalue");
-    if (windowTransparencyItem) {
-        windowTransparencyItem.onclick = (e) => onWindowTransparencyValueClick(plugin, e);
-        const slider = windowTransparencyItem.querySelector<HTMLInputElement>("input[type='range']");
-        if (slider) {
-            loadData(plugin, "config.json").then((config) => {
-                const savedValue = config?.["asri-enhance-windowtransparencyvalue"];
-                if (savedValue !== undefined) {
-                    const value = parseFloat(savedValue);
-                    slider.value = String(value);
-                    const label = slider.parentElement?.getAttribute("aria-label")?.split(":")[0];
-                    if (label) {
-                        slider.parentElement?.setAttribute("aria-label", `${label}: ${value}`);
-                    }
-                }
-            }).catch(() => { });
-            slider.addEventListener("input", async (e) => {
-                const target = e.target as HTMLInputElement;
-                const value = parseFloat(target.value);
-                await saveWindowTransparencyValue(plugin, value);
-                const label = target.parentElement?.getAttribute("aria-label")?.split(":")[0];
-                if (label) {
-                    target.parentElement?.setAttribute("aria-label", `${label}: ${value}`);
-                }
-            });
-        }
-    }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-detail-sep-1")) {
-        const separator = document.createElement("button");
-        separator.className = "b3-menu__separator";
-        separator.id = "asri-enhance-detail-sep-1";
-        detailAdjustmentSubmenu.appendChild(separator);
-    }
     if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-sidebar-top-sticky")) {
         const button = document.createElement("button");
         button.className = "b3-menu__item";
@@ -414,34 +328,6 @@ function injectDetailAdjustmentMenu(plugin: Plugin, parent: HTMLElement): void {
     const globalFrostedGlassItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-global-frosted-glass");
     if (globalFrostedGlassItem) {
         globalFrostedGlassItem.onclick = (e) => onGlobalFrostedGlassClick(plugin, e);
-    }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-detail-sep-3")) {
-        const separator = document.createElement("button");
-        separator.className = "b3-menu__separator";
-        separator.id = "asri-enhance-detail-sep-3";
-        detailAdjustmentSubmenu.appendChild(separator);
-    }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-hide-tab")) {
-        const button = document.createElement("button");
-        button.className = "b3-menu__item";
-        button.id = "asri-enhance-hide-tab";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.hideTab}</span>`;
-        detailAdjustmentSubmenu.appendChild(button);
-    }
-    const hideTabItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-hide-tab");
-    if (hideTabItem) {
-        hideTabItem.onclick = (e) => onHideTabClick(plugin, e);
-    }
-    if (!detailAdjustmentSubmenu.querySelector("#asri-enhance-hide-breadcrumb")) {
-        const button = document.createElement("button");
-        button.className = "b3-menu__item";
-        button.id = "asri-enhance-hide-breadcrumb";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.hideBreadcrumb}</span>`;
-        detailAdjustmentSubmenu.appendChild(button);
-    }
-    const hideBreadcrumbItem = detailAdjustmentSubmenu.querySelector<HTMLButtonElement>("#asri-enhance-hide-breadcrumb");
-    if (hideBreadcrumbItem) {
-        hideBreadcrumbItem.onclick = (e) => onHideBreadcrumbClick(plugin, e);
     }
 }
 function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
