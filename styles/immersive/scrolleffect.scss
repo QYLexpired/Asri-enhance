@@ -1,0 +1,4 @@
+@use "../asri/asri-enhance" as *;
+.asri-enhance-scrolleffect {
+    @include asri-enhance-item-highlight("#asri-enhance-scrolleffect", "#asri-enhance-immersive");
+}

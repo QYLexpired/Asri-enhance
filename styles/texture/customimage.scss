@@ -41,8 +41,8 @@
             position: fixed;
             width: 100%;
             height: 100%;
-            background-repeat: no-repeat;
-            background-size: cover;
+            background-repeat: var(--asri-enhance-customimage-repeat, no-repeat);
+            background-size: var(--asri-enhance-customimage-size, cover);
             background-position: center;
             background-color: var(--b3-theme-background);
             pointer-events: none;

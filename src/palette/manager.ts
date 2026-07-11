@@ -14,6 +14,10 @@ export const PALETTE_NAMES = [
     "opalite",
     "oxygen",
     "gingko",
+    "titaniumspace",
+    "tundra",
+    "firefly",
+    "songyan",
 ] as const;
 export type PaletteName = typeof PALETTE_NAMES[number];
 export interface PaletteConfig {

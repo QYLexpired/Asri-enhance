@@ -232,6 +232,26 @@ const CUSTOM_IMAGE_FIELDS: CustomImageField[] = [
         valueFromConfig: (v: string) => v,
         valueToConfig: (v: string) => v,
     },
+    {
+        configKey: "asri-enhance-customimage-fill-mode",
+        cssVar: "--asri-enhance-customimage-repeat",
+        toCss: (raw: string | undefined) => raw === "tile" ? "repeat" : "no-repeat",
+        inputSelector: "#asri-enhance-customimage-fill-mode",
+        event: "change",
+        tooltipSuffix: "",
+        valueFromConfig: (v: string) => v,
+        valueToConfig: (v: string) => v,
+    },
+    {
+        configKey: "asri-enhance-customimage-fill-mode",
+        cssVar: "--asri-enhance-customimage-size",
+        toCss: (raw: string | undefined) => raw === "tile" ? "auto" : "cover",
+        inputSelector: "#asri-enhance-customimage-fill-mode",
+        event: "change",
+        tooltipSuffix: "",
+        valueFromConfig: (v: string) => v,
+        valueToConfig: (v: string) => v,
+    },
 ];
 function getPreset(config: Record<string, any> | null | undefined, name: string): Record<string, any> {
     if (!config) return {};
@@ -317,6 +337,16 @@ export function onCustomImageSettingsClick(plugin: Plugin, event: MouseEvent) {
     <div class="b3-tooltips b3-tooltips__n fn__flex-center" id="asri-enhance-customimage-blur-tooltip" aria-label="0px">   
         <input class="b3-slider fn__size200" id="asri-enhance-customimage-blur" max="50" min="0" step="1" type="range" value="0">
     </div>
+</div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-fill-mode">
+    <div class="fn__flex-1">
+        ${plugin.i18n.customimageFillMode}
+        <div class="b3-label__text">${plugin.i18n.customimageFillModeTip}</div>
+    </div>
+    <span class="fn__space"></span>
+    <select class="b3-select fn__flex-center fn__size200" id="asri-enhance-customimage-fill-mode">
+      <option value="scale">${plugin.i18n.customimageFillModeScale}</option>
+      <option value="tile">${plugin.i18n.customimageFillModeTile}</option>
+    </select>
 </div><div class="fn__flex b3-label config__item config__item-asri-enhance-customimage-frosted">
     <div class="fn__flex-1">
         ${plugin.i18n.customimageFrosted}

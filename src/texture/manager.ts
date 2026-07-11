@@ -9,6 +9,9 @@ export const TEXTURE_NAMES = [
     "crossdot",
     "wood",
     "camouflage",
+    "granule",
+    "feathery",
+    "velvet",
     "customimage",
 ] as const;
 export type TextureName = typeof TEXTURE_NAMES[number];

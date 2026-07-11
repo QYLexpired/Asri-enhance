@@ -1,0 +1,21 @@
+@use "manager" as *;
+@include palette-mode(tundra, "light");
+.asri-palette-tundra.asri-mode-light.asri-enhance-enable {
+    @include palette-common(tundra);
+    @include palette-primary-color-scope(var(--b3-theme-accent));
+    --tundra-base-accent: #2aa198;
+    --asri-theme-accent-customized: var(--tundra-base-accent);
+    --b3-theme-primary: var(--tundra-base-accent);
+    --b3-theme-accent: var(--tundra-base-accent);
+    --b3-theme-background: #fdf6e3;
+    --b3-theme-surface: #eee8d5;
+    --b3-theme-on-background: #43555c;
+    --b3-theme-on-surface: #5b7179;
+    #{$layout-tab-bar-item-focus-selectors} {
+        background-color: #2aa19840 !important;
+    }
+    #{$primary-color-reverse-selectors} {
+        --b3-theme-primary: #2aa198;
+        --b3-theme-on-primary: #fff;
+    }
+}

@@ -1,10 +1,10 @@
 ### Updates
-- Adapted to Asri theme v3.7.0
-- Removed Card Layout
-- Removed Vertical Tabs
-- Removed Window Transparency Adjustment
-- Removed Hide Tab
-- Removed Hide Breadcrumb
+- Added immersive editing feature: Scroll Effect
+- Added textures: Grain, Feather, Velvet
+- Added preset color schemes: Titanium Space, Tundra, Firefly, Song Yan
+- Smooth caret now supports easing parameters, motion effects, and styles
+- Custom image now supports fill mode configuration
+- Fixed colored document tree styling
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 * Mobile adaptation available — adjust Asri theme color schemes and this plugin's features on mobile devices
@@ -14,10 +14,10 @@
 ### Features
 * List bullet lines
 * Side memo (displays inline notes, block notes, and document notes on the right side of the editor)
-    * Left-click the title area (first line) of the side memo card to open the note editing window
-    * Right-click the title area (first line) of the side memo card to temporarily collapse the note
+    * Quick edit note: Left-click the title area (first line) of the side memo card to open the note editing window
+    * Temporary collapse: Right-click the title area (first line) of the side memo card to temporarily collapse the note
     * Long press the side memo card for 1s to drag and adjust the side memo width
-    * Supports markdown parsing (including formulas, code syntax highlighting, charts) and HTML parsing
+    * Supports rendering Markdown, formulas, code syntax highlighting, charts, and HTML
 ### Immersive Editing
 * Typewriter mode
 * Focus mode
@@ -25,9 +25,10 @@
 * Fluid cursor
 * Pinned Toolbar
     * Right-click the toolbar area to toggle the pinning direction (top, left, bottom, or right of the editor area)
+* Scroll Effect
 ### Detail Adjustments
 * Preset textures and custom image background
-* Sidebar top always visible: Cancels the sidebar top collapse/expand animation of the Asri theme, always displays the top
+* Expanded sidebar header: Cancels the sidebar top collapse/expand animation of the Asri theme
 * Multi-column slash menu (supports keyboard arrow key navigation)
 * Card search list
 * Colored headings

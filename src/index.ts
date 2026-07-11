@@ -13,6 +13,10 @@ import { applyLavenderConfig } from "./palette/lavender";
 import { applyOpaliteConfig } from "./palette/opalite";
 import { applyOxygenConfig } from "./palette/oxygen";
 import { applyGingkoConfig } from "./palette/gingko";
+import { applyTitaniumspaceConfig } from "./palette/titaniumspace";
+import { applyTundraConfig } from "./palette/tundra";
+import { applyFireflyConfig } from "./palette/firefly";
+import { applySongyanConfig } from "./palette/songyan";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyColoredListConfig } from "./detail/coloredlist";
@@ -34,9 +38,13 @@ import { applyGridConfig } from "./texture/grid";
 import { applyCrossDotConfig } from "./texture/crossdot";
 import { applyWoodConfig } from "./texture/wood";
 import { applyCamouflageConfig } from "./texture/camouflage";
+import { applyGranuleConfig } from "./texture/granule";
+import { applyFeatheryConfig } from "./texture/feathery";
+import { applyVelvetConfig } from "./texture/velvet";
 import { applyCustomImageConfig, removeCustomImageConfig } from "./texture/customimage";
 import { applyTypewriterModeConfig, destroyTypewriterMode, onTypewriterModeClick } from "./immersive/typewriter";
 import { applyFocusModeConfig, onFocusModeClick } from "./immersive/focus";
+import { applyScrollEffectConfig, destroyScrollEffect } from "./immersive/scrolleffect";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, disableAllPalettesForCurrentTheme } from "./palette/manager";
 import { loadData } from "./utils/storage";
@@ -62,6 +70,10 @@ class AsriEnhancePlugin extends Plugin {
             applyOpaliteConfig(this, config).catch(() => { }),
             applyOxygenConfig(this, config).catch(() => { }),
             applyGingkoConfig(this, config).catch(() => { }),
+            applyTitaniumspaceConfig(this, config).catch(() => { }),
+            applyTundraConfig(this, config).catch(() => { }),
+            applyFireflyConfig(this, config).catch(() => { }),
+            applySongyanConfig(this, config).catch(() => { }),
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyColoredListConfig(this, config).catch(() => { }),
@@ -83,9 +95,13 @@ class AsriEnhancePlugin extends Plugin {
             applyCrossDotConfig(this, config).catch(() => { }),
             applyWoodConfig(this, config).catch(() => { }),
             applyCamouflageConfig(this, config).catch(() => { }),
+            applyGranuleConfig(this, config).catch(() => { }),
+            applyFeatheryConfig(this, config).catch(() => { }),
+            applyVelvetConfig(this, config).catch(() => { }),
             applyCustomImageConfig(this, config).catch(() => { }),
             applyTypewriterModeConfig(this, config).catch(() => { }),
             applyFocusModeConfig(this, config).catch(() => { }),
+            applyScrollEffectConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
         ]);
     }
