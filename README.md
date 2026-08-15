@@ -1,10 +1,8 @@
 ### Updates
-- Added immersive editing feature: Scroll Effect
-- Added textures: Grain, Feather, Velvet
-- Added preset color schemes: Titanium Space, Tundra, Firefly, Song Yan
-- Smooth caret now supports easing parameters, motion effects, and styles
-- Custom image now supports fill mode configuration
-- Fixed colored document tree styling
+- Reworked the global frosted glass effect to match Asri's Luminous Frost Glass material
+- Added the focus block indicator feature
+- Added preset color schemes: Starry, Abyss, Violet, Lakeside
+- Added texture: Embossed Paper
 ### About the Plugin
 * [Asri](https://github.com/mustakshif/Asri) is a modern and beautiful theme created by [mustakshif](https://github.com/mustakshif). This plugin is a **third-party** enhancement plugin for the theme, designed to add more configuration options and a series of practical features, and completely matches the Asri theme in style
 * Mobile adaptation available — adjust Asri theme color schemes and this plugin's features on mobile devices

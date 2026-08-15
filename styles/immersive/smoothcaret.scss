@@ -13,8 +13,12 @@
 [data-asri-enhance-smoothcaret="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-smooth-caret", "#asri-enhance-immersive");
     .protyle-wysiwyg,
-    .protyle-title__input {
+    .protyle-title__input,
+    body:not(.body-asri--mobile) .agent-chat__input-area {
         caret-color: transparent !important;
+    }
+    .body-asri--mobile .agent-chat__input-area .protyle-wysiwyg {
+        caret-color: currentColor !important;
     }
     #asri-enhance-smooth-caret-item {
         position: fixed;

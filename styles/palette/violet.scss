@@ -1,0 +1,23 @@
+@use "manager" as *;
+@include palette-mode(violet, "light");
+.asri-palette-violet.asri-mode-light.asri-enhance-enable {
+    @include palette-common(violet);
+    @include palette-primary-color-scope(var(--b3-theme-accent));
+    &.asri-mode-light {
+        --violet-base-accent: #ad7a97;
+        --asri-theme-accent-customized: var(--violet-base-accent);
+        --b3-theme-primary: var(--violet-base-accent);
+        --b3-theme-accent: #c35794;
+        --b3-theme-background: #f8f6ff;
+        --b3-theme-surface: #efebff;
+        --b3-theme-on-background: #160045;
+        --b3-theme-on-surface: #5b4785;
+        #{$layout-tab-bar-item-focus-selectors} {
+            background-color: #ad7a9740 !important;
+        }
+        #{$primary-color-reverse-selectors} {
+            --b3-theme-primary: var(--violet-base-accent);
+            --b3-theme-on-primary: #ffffff;
+        }
+    }
+}

@@ -2,60 +2,39 @@
 [data-asri-enhance-global-frosted-glass="true"].asri-enhance-enable {
     @include asri-enhance-item-highlight("#asri-enhance-global-frosted-glass", "#asri-enhance-detail-adjustment");
     &.asri-mode-light {
-        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
-        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
-        --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(1.1);
-        &.asri-palette-polar {
-            --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
-            .config__panel .b3-tab-bar,
-            .config__panel .item__side {
-                background-color: transparent !important;
-            }
-        }
+        --_blur-background: oklch(from var(--b3-theme-background) l c h/0.8);
+        --_blur-before-shadow: 0 0 0 3px oklch(from var(--b3-theme-background) 0.25 0.03 h/0.3) inset;
+        --_blur-after-shadow: 0 1px 2px -1.5px inset color(display-p3 1.8247962953 1.8247962953 1.8247962953), 0 -1px 1.5px -1.5px inset color(display-p3 1.8247962953 1.8247962953 1.8247962953 / .8), 0 4px 8px -4px color(display-p3 1.1941765347 1.1941765347 1.1941765347 / .2), 1px 0 0 0 oklch(from var(--b3-theme-background) 0.25 c h / 0.15), -1px 0 0 0 oklch(from var(--b3-theme-background) 0.25 c h / 0.15), 0 0 0 1px oklch(from var(--b3-theme-background) 0.25 c h / 0.1), 8px 0 16px 0px oklch(from var(--b3-theme-background) l c h / 0.6) inset, -8px 0 16px 0px oklch(from var(--b3-theme-background) l c h / 0.6) inset;
     }
     &.asri-mode-dark {
-        --asri-enhance-global-frosted-glass-background: oklch(from var(--b3-theme-background) l c h / 0.7);
-        --asri-enhance-global-frosted-glass-surface: oklch(from var(--b3-theme-surface) l c h / 0.7);
-        --asri-enhance-global-frosted-glass-backdrop-filter: blur(20px) saturate(1.5) brightness(0.9);
-        &.asri-palette-polar {
-            --asri-enhance-global-frosted-glass-surface: var(--asri-enhance-global-frosted-glass-background);
-            .config__panel .b3-tab-bar,
-            .config__panel .item__side {
-                background-color: transparent !important;
-            }
-        }
+        --_blur-background: oklch(from var(--b3-theme-background) l c h/0.8);
+        --_blur-before-shadow: 0 0 0 3px rgba(0,0,0,.8) inset;
+        --_blur-after-shadow: 0 1px 1px -0.5px inset oklch(from var(--b3-theme-background) 0.96 c h/0.6),0 -1px 1px -0.5px inset oklch(from var(--b3-theme-background) 0.96 c h/0.4),1px 0 0 0 rgba(0,0,0,.2),-1px 0 0 0 rgba(0,0,0,.2),0 0 0 1px oklch(from var(--b3-theme-on-background) l 0.1 h/0.05) inset,8px 0 16px 0px oklch(from var(--b3-menu-background) calc(l + 0.05) c h/0.3) inset,-8px 0 16px 0px oklch(from var(--b3-menu-background) calc(l + 0.05) c h/0.3) inset;
     }
-    // 修改Asri本体毛玻璃效果
-    body:not(.asri-disable-backdrop-blur) .b3-menu::before,
-    body:not(.asri-disable-backdrop-blur) .b3-menu__submenu::before {
-        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+    @mixin blur-before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        border-radius: inherit;
+        corner-shape: inherit;
+        box-shadow: var(--_blur-before-shadow);
+        filter: blur(7px);
+        pointer-events: none;
+        transform: translate(0px, 16px);
     }
-    body:not(.asri-disable-backdrop-blur) #dockBottom.fn__none:not(.has-layout-dockb-float)~.status,
-    body:not(.asri-disable-backdrop-blur).body-asri--mobile .status {
-        background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
-    }
-    body:not(.asri-disable-backdrop-blur) .protyle-hint>div:not(.emojis) {
-        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
-    }
-    body:not(.asri-disable-backdrop-blur) .protyle-toolbar {
-        background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
-        backdrop-filter: blur(6px) saturate(1.5) brightness(1.1);
-        &:is(.asri-mode-dark .protyle-toolbar) {
-            backdrop-filter: blur(6px) saturate(1.5) brightness(0.9);
-        }
-    }
-    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer #dialogContainer .dialog {
-        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
-    }
-    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer #findbar:not(.fn__hidden),
-    body:not(.asri-disable-backdrop-blur) [data-type=wnd] #outerContainer .pdf__util {
-        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
-    }
-    body:not(.asri-disable-backdrop-blur) #message.b3-snackbars .b3-snackbar__content {
-        background-color: oklch(from var(--b3-theme-surface) l c h / 0.7);
-    }
-    body:not(.asri-disable-backdrop-blur) .protyle-util {
-        background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
+    @mixin blur-after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        corner-shape: inherit;
+        z-index: -1;
+        pointer-events: none;
+        backdrop-filter: blur(4px) saturate(1.1);
+        box-shadow: var(--_blur-after-shadow);
     }
     // 窗口
     @keyframes b3-dialog__scrim-blur {
@@ -71,28 +50,19 @@
             background-color: transparent;
             transition: none;
             animation: b3-dialog__scrim-blur 0.2s forwards;
-        }
-        .b3-dialog__content {
-            background-color: transparent !important;
+            z-index: -2;
         }
         .b3-dialog__container {
-            background-color: transparent;
+            background-color: var(--_blur-background);
             transition-property: transform;
             border: unset;
+            box-shadow: none;
+            overflow: visible;
             &::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                z-index: -1;
-                corner-shape: inherit;
-                border-radius: inherit;
-                background-color: var(--asri-enhance-global-frosted-glass-background);
-                backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
+                @include blur-before;
             }
-            &:is(.asri-mode-dark .b3-dialog__container) {
-                &::before {
-                    border: 1px solid var(--b3-border-color-trans);
-                }
+            &::after {
+                @include blur-after;
             }
             .config__tab-wrap {
                 background-color: transparent;
@@ -100,128 +70,46 @@
                     background-color: transparent;
                 }
             }
-            .config__panel .b3-tab-bar {
-                background-color: var(--asri-enhance-global-frosted-glass-surface);
-            }
-            .search__header {
-                background: transparent;
-                .b3-text-field {
-                    background-color: transparent;
-                }
-            }
-            .search__preview:not(.fullscreen) {
-                background-color: transparent;
-            }
+            .b3-dialog__content,
+            .config__panel,
+            .search__header,
+            .search__header .b3-text-field,
+            .search__preview:not(.fullscreen),
             .search__list,
             #searchList,
-            #searchUnRefList {
-                background-color: transparent;
+            #searchUnRefList,
+            .protyle:not(.fullscreen),
+            .protyle:not(.fullscreen) .protyle-breadcrumb,
+            .layout-tab-bar + .fn__flex-1,
+            .config-bazaar__content .b3-card,
+            .card__main,
+            .card__empty, 
+            .history__panel>.b3-list,
+            .history__panel>.history__diff,
+            .history__text,
+            .item__side,
+            .item__main {
+                background-color: transparent !important;
             }
-            .protyle:not(.fullscreen) {
-                background-color: transparent;
-                .protyle-breadcrumb {
-                    background-color: transparent;
-                }
-                // 修复部分窗口毛玻璃失效
-                .protyle-wysiwyg [data-node-id] {
-                    z-index: 1; 
-                }
-                .protyle-background {
-                    z-index: 1;
-                }
+            // 修复部分窗口毛玻璃失效
+            .protyle-wysiwyg [data-node-id],
+            .protyle-background {
+                z-index: 1; 
             }
-            .fullscreen {
-                background-color: var(--asri-enhance-global-frosted-glass-background);
-                backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
-                .protyle-breadcrumb {
-                    background-color: transparent;
-                }
-                // 修复部分窗口毛玻璃失效
-                .protyle-wysiwyg [data-node-id] {
-                    z-index: 1; 
-                }
-            }
-            .layout-tab-bar + .fn__flex-1 {
-                background-color: transparent;
-            }
-        }
-    }
-    // 菜单
-    .protyle-hint {
-       & > input.b3-text-field {
-            background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
-            &:focus {
-                background-color: oklch(from var(--b3-menu-background) l c h / 0.7);
-            }
-       }
-    }
-    // 集市
-    .config-bazaar__content .b3-card {
-        background-color: transparent;
-    }
-    #configBazaarReadme {
-        background-color: var(--asri-enhance-global-frosted-glass-background);
-        backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
-        .item__side {
-            background-color: var(--asri-enhance-global-frosted-glass-surface);
-        }
-        .item__main  {
-            background-color: transparent;
-        }
-    }
-    [data-name=bazaar] {
-        .config-bazaar__panel {
-            &::before {
-                display: none;
-            }
-            .config-bazaar__title {
-                background-color: transparent;
-                input,
-                select,
-                button {
-                    backdrop-filter: blur(20px);
-                }
-                button {
-                    padding: 2px 4px;
-                }
-                .b3-form__icon-icon {
-                    z-index: 1;
-                }
-            }
-        }
-    }
-    // 账户
-    .config-account {
-        background-color: transparent;
-        .config-account__center {
-            background-color: transparent;
-        }
-        .config-account__cover[style="background-image: url()"] {
-            background: radial-gradient(circle at bottom, oklch(from var(--b3-theme-primary) l calc(c * 1.05) h / 0.3) 30%, oklch(from var(--b3-theme-primary) l calc(c * 1.1) calc(h + 30) / 0.1) 85%) !important;
-        }
-        .config-account__info {
-            background-color: transparent;
         }
     }
     // 弹出窗口
     .block__popover.block__popover--open {
-        background-color: transparent;
-        animation: none;
+        background-color: var(--_blur-background);
+        transition-property: transform;
         border: unset;
+        box-shadow: none;
+        overflow: visible;
         &::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            z-index: -1;
-            corner-shape: inherit;
-            border-radius: inherit;
-            background-color: var(--asri-enhance-global-frosted-glass-background);
-            backdrop-filter: var(--asri-enhance-global-frosted-glass-backdrop-filter);
+            @include blur-before;
         }
-        &:is(.asri-mode-dark .block__popover.block__popover--open) {
-            &::before {
-                border: 1px solid var(--b3-border-color-trans);
-            }
+        &::after {
+            @include blur-after;
         }
         .block__icons {
             background-color: transparent;
@@ -236,39 +124,6 @@
                 .protyle-wysiwyg [data-node-id] {
                     z-index: 1; 
                 }
-            }
-        }
-    }
-    // 闪卡
-    [data-key="dialog-opencard"],
-    [data-key="dialog-viewcards"] {
-        .b3-dialog {
-            .b3-dialog__scrim {
-                background-color: transparent !important;
-            }
-            .card__main {
-                background-color: transparent;
-            }
-            .card__empty {
-                background-color: transparent;
-            }
-        }
-    }
-    // 最近的文档
-    [data-key="dialog-recentdocs"] {
-        .b3-dialog {
-            .b3-list--background:first-child {
-                background-color: transparent;
-            }
-        }
-    }
-    // 数据历史
-    [data-key="dialog-history"], [data-key="dialog-historycompare"] {
-        .b3-dialog {
-            .history__panel>.b3-list,
-            .history__panel>.history__diff,
-            .history__text {
-                background-color: transparent;
             }
         }
     }

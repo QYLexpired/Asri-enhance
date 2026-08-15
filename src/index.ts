@@ -17,6 +17,10 @@ import { applyTitaniumspaceConfig } from "./palette/titaniumspace";
 import { applyTundraConfig } from "./palette/tundra";
 import { applyFireflyConfig } from "./palette/firefly";
 import { applySongyanConfig } from "./palette/songyan";
+import { applyStarryConfig } from "./palette/starry";
+import { applyAbyssConfig } from "./palette/abyss";
+import { applyVioletConfig } from "./palette/violet";
+import { applyLakesideConfig } from "./palette/lakeside";
 import { applyColoredHeadingConfig } from "./detail/coloredheading";
 import { applyColoredTreeConfig } from "./detail/coloredtree";
 import { applyColoredListConfig } from "./detail/coloredlist";
@@ -30,7 +34,7 @@ import { applyCardSearchListConfig } from "./detail/cardsearchlist";
 import { applySmoothCaretConfig, destroySmoothCaret } from "./immersive/smoothcaret";
 import { applyFluidCursorConfig, destroyFluidCursor } from "./immersive/fluidcursor";
 import { applyPinnedToolbarConfig, destroyPinnedToolbar } from "./immersive/pinnedtoolbar";
-import { applyPaperConfig } from "./texture/paper";
+import { applyNewsprintConfig } from "./texture/newsprint";
 import { applyNoiseConfig } from "./texture/noise";
 import { applyAcrylicConfig } from "./texture/acrylic";
 import { applyCheckerboardConfig } from "./texture/checkerboard";
@@ -41,9 +45,11 @@ import { applyCamouflageConfig } from "./texture/camouflage";
 import { applyGranuleConfig } from "./texture/granule";
 import { applyFeatheryConfig } from "./texture/feathery";
 import { applyVelvetConfig } from "./texture/velvet";
+import { applyEmbossedpaperConfig } from "./texture/embossedpaper";
 import { applyCustomImageConfig, removeCustomImageConfig } from "./texture/customimage";
 import { applyTypewriterModeConfig, destroyTypewriterMode, onTypewriterModeClick } from "./immersive/typewriter";
 import { applyFocusModeConfig, onFocusModeClick } from "./immersive/focus";
+import { applyFocusBlockIndicatorConfig, destroyFocusBlockIndicator } from "./more/focusblockindicator";
 import { applyScrollEffectConfig, destroyScrollEffect } from "./immersive/scrolleffect";
 import { applyFollowTimeConfig } from "./followtime/followtime";
 import { removePaletteConfig, clearAllPluginConfig, PALETTE_NAMES, disableAllPalettesForCurrentTheme } from "./palette/manager";
@@ -74,6 +80,10 @@ class AsriEnhancePlugin extends Plugin {
             applyTundraConfig(this, config).catch(() => { }),
             applyFireflyConfig(this, config).catch(() => { }),
             applySongyanConfig(this, config).catch(() => { }),
+            applyStarryConfig(this, config).catch(() => { }),
+            applyAbyssConfig(this, config).catch(() => { }),
+            applyVioletConfig(this, config).catch(() => { }),
+            applyLakesideConfig(this, config).catch(() => { }),
             applyColoredHeadingConfig(this, config).catch(() => { }),
             applyColoredTreeConfig(this, config).catch(() => { }),
             applyColoredListConfig(this, config).catch(() => { }),
@@ -87,7 +97,7 @@ class AsriEnhancePlugin extends Plugin {
             applySmoothCaretConfig(this, config).catch(() => { }),
             applyFluidCursorConfig(this, config).catch(() => { }),
             applyPinnedToolbarConfig(this, config).catch(() => { }),
-            applyPaperConfig(this, config).catch(() => { }),
+            applyNewsprintConfig(this, config).catch(() => { }),
             applyNoiseConfig(this, config).catch(() => { }),
             applyAcrylicConfig(this, config).catch(() => { }),
             applyCheckerboardConfig(this, config).catch(() => { }),
@@ -98,9 +108,11 @@ class AsriEnhancePlugin extends Plugin {
             applyGranuleConfig(this, config).catch(() => { }),
             applyFeatheryConfig(this, config).catch(() => { }),
             applyVelvetConfig(this, config).catch(() => { }),
+            applyEmbossedpaperConfig(this, config).catch(() => { }),
             applyCustomImageConfig(this, config).catch(() => { }),
             applyTypewriterModeConfig(this, config).catch(() => { }),
             applyFocusModeConfig(this, config).catch(() => { }),
+            applyFocusBlockIndicatorConfig(this, config).catch(() => { }),
             applyScrollEffectConfig(this, config).catch(() => { }),
             applyFollowTimeConfig(this, config).catch(() => { }),
         ]);
@@ -284,6 +296,7 @@ class AsriEnhancePlugin extends Plugin {
         destroyFluidCursor();
         destroyPinnedToolbar();
         destroyTypewriterMode();
+        destroyFocusBlockIndicator();
         removeCustomImageConfig();
         const htmlEl = document.documentElement;
         if (htmlEl) {

@@ -1,7 +1,7 @@
 import { Plugin } from "siyuan";
 import { saveData, loadData } from "../utils/storage";
 export const TEXTURE_NAMES = [
-    "paper",
+    "newsprint",
     "noise",
     "acrylic",
     "checkerboard",
@@ -12,6 +12,7 @@ export const TEXTURE_NAMES = [
     "granule",
     "feathery",
     "velvet",
+    "embossedpaper",
     "customimage",
 ] as const;
 export type TextureName = typeof TEXTURE_NAMES[number];

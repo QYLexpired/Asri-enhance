@@ -14,6 +14,10 @@ import { onTitaniumspaceClick } from "../palette/titaniumspace";
 import { onTundraClick } from "../palette/tundra";
 import { onFireflyClick } from "../palette/firefly";
 import { onSongyanClick } from "../palette/songyan";
+import { onStarryClick } from "../palette/starry";
+import { onAbyssClick } from "../palette/abyss";
+import { onVioletClick } from "../palette/violet";
+import { onLakesideClick } from "../palette/lakeside";
 import { onColoredHeadingClick } from "../detail/coloredheading";
 import { onColoredTreeClick } from "../detail/coloredtree";
 import { onColoredListClick } from "../detail/coloredlist";
@@ -27,7 +31,7 @@ import { onCardSearchListClick } from "../detail/cardsearchlist";
 import { onSmoothCaretClick, showSmoothCaretSettings } from "../immersive/smoothcaret";
 import { onFluidCursorClick } from "../immersive/fluidcursor";
 import { onPinnedToolbarClick, onPinnedToolbarSettingsClick } from "../immersive/pinnedtoolbar";
-import { onPaperClick } from "../texture/paper";
+import { onNewsprintClick } from "../texture/newsprint";
 import { onNoiseClick } from "../texture/noise";
 import { onAcrylicClick } from "../texture/acrylic";
 import { onCheckerboardClick } from "../texture/checkerboard";
@@ -38,9 +42,11 @@ import { onCamouflageClick } from "../texture/camouflage";
 import { onGranuleClick } from "../texture/granule";
 import { onFeatheryClick } from "../texture/feathery";
 import { onVelvetClick } from "../texture/velvet";
+import { onEmbossedpaperClick } from "../texture/embossedpaper";
 import { onCustomImageClick, onCustomImageSettingsClick } from "../texture/customimage";
 import { onTypewriterModeClick } from "../immersive/typewriter";
 import { onFocusModeClick } from "../immersive/focus";
+import { onFocusBlockIndicatorClick } from "../more/focusblockindicator";
 import { onScrollEffectClick } from "../immersive/scrolleffect";
 import { loadData } from "../utils/storage";
 import { onFollowTimeClick, saveFollowTimeColor } from "../followtime/followtime";
@@ -175,7 +181,7 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-palette";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.morePresetColors}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sakura}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.amber}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wilderness}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.midnight}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.ocean}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.twilight}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.lavender}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.opalite}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.oxygen}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.dusk}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.gingko}</span></button><button class="b3-menu__item" id="asri-enhance-titaniumspace">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.titaniumspace}</span></button><button class="b3-menu__item" id="asri-enhance-tundra">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.tundra}</span></button><button class="b3-menu__item" id="asri-enhance-firefly">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.firefly}</span></button><button class="b3-menu__item" id="asri-enhance-songyan">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.songyan}</span></button></div></div>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.morePresetColors}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-sakura">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sakura}</span></button><button class="b3-menu__item" id="asri-enhance-amber">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.amber}</span></button><button class="b3-menu__item" id="asri-enhance-wilderness">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.wilderness}</span></button><button class="b3-menu__item" id="asri-enhance-midnight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.midnight}</span></button><button class="b3-menu__item" id="asri-enhance-ocean">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.ocean}</span></button><button class="b3-menu__item" id="asri-enhance-twilight">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.twilight}</span></button><button class="b3-menu__item" id="asri-enhance-lavender">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.lavender}</span></button><button class="b3-menu__item" id="asri-enhance-opalite">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.opalite}</span></button><button class="b3-menu__item" id="asri-enhance-oxygen">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.oxygen}</span></button><button class="b3-menu__item" id="asri-enhance-dusk">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.dusk}</span></button><button class="b3-menu__item" id="asri-enhance-gingko">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.gingko}</span></button><button class="b3-menu__item" id="asri-enhance-titaniumspace">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.titaniumspace}</span></button><button class="b3-menu__item" id="asri-enhance-tundra">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.tundra}</span></button><button class="b3-menu__item" id="asri-enhance-firefly">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.firefly}</span></button><button class="b3-menu__item" id="asri-enhance-songyan">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.songyan}</span></button><button class="b3-menu__item" id="asri-enhance-starry">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.starry}</span></button><button class="b3-menu__item" id="asri-enhance-abyss">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.abyss}</span></button><button class="b3-menu__item" id="asri-enhance-violet">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.violet}</span></button><button class="b3-menu__item" id="asri-enhance-lakeside">${PALETTE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.lakeside}</span></button></div></div>`;
         parent.appendChild(button);
     }
     const paletteItems = [
@@ -194,6 +200,10 @@ function injectPaletteMenu(plugin: Plugin, pickColor: HTMLElement): void {
         { id: "asri-enhance-tundra", handler: onTundraClick },
         { id: "asri-enhance-firefly", handler: onFireflyClick },
         { id: "asri-enhance-songyan", handler: onSongyanClick },
+        { id: "asri-enhance-starry", handler: onStarryClick },
+        { id: "asri-enhance-abyss", handler: onAbyssClick },
+        { id: "asri-enhance-violet", handler: onVioletClick },
+        { id: "asri-enhance-lakeside", handler: onLakesideClick },
     ];
     paletteItems.forEach(({ id, handler }) => {
         const item = parent.querySelector<HTMLButtonElement>(`#${id}`);
@@ -209,12 +219,13 @@ function injectMoreMenu(plugin: Plugin, _pickColor: HTMLElement): void {
         const button = document.createElement("button");
         button.className = "b3-menu__item asri-enhance";
         button.id = "asri-enhance-more";
-        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.sidememoSettings}"><use xlink:href="#iconSettings"></use></svg></button></div></div>`;
+        button.innerHTML = `${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.more}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"><button class="b3-menu__item" id="asri-enhance-detail-adjustment">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.detailAdjustment}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-texture">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.texture}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__item" id="asri-enhance-immersive">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.immersive}</span><svg class="b3-menu__icon b3-menu__icon--small"><use xlink:href="#iconRight"></use></svg><div class="b3-menu__submenu"><div class="b3-menu__items"></div></div></button><button class="b3-menu__separator"></button><button class="b3-menu__item" id="asri-enhance-list-bullet-line">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.listBulletLine}</span></button><button class="b3-menu__item" id="asri-enhance-sidememo">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.sidememo}</span><svg class="asri-enhance-settings-icon b3-menu__icon ariaLabel" aria-label="${plugin.i18n.sidememoSettings}"><use xlink:href="#iconSettings"></use></svg></button><button class="b3-menu__item" id="asri-enhance-focus-block-indicator">${MORE_ICON_SVG}<span class="b3-menu__label">${plugin.i18n.focusBlockIndicator}</span></button></div></div>`;
         parent.appendChild(button);
     }
     const mainMenuItems = [
         { id: "asri-enhance-list-bullet-line", handler: onListBulletLineClick },
         { id: "asri-enhance-sidememo", handler: onSideMemoClick },
+        { id: "asri-enhance-focus-block-indicator", handler: onFocusBlockIndicatorClick },
     ];
     mainMenuItems.forEach(({ id, handler }) => {
         const item = parent.querySelector<HTMLButtonElement>(`#${id}`);
@@ -349,7 +360,8 @@ function injectTextureMenu(plugin: Plugin, parent: HTMLElement): void {
     if (!textureSubmenu) return;
     const textureItems = [
         { id: "customimage", label: plugin.i18n.customimage, handler: onCustomImageClick },
-        { id: "paper", label: plugin.i18n.paper, handler: onPaperClick },
+        { id: "newsprint", label: plugin.i18n.newsprint, handler: onNewsprintClick },
+        { id: "embossedpaper", label: plugin.i18n.embossedpaper, handler: onEmbossedpaperClick },
         { id: "noise", label: plugin.i18n.noise, handler: onNoiseClick },
         { id: "acrylic", label: plugin.i18n.acrylic, handler: onAcrylicClick },
         { id: "checkerboard", label: plugin.i18n.checkerboard, handler: onCheckerboardClick },

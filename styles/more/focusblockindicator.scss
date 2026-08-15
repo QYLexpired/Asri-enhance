@@ -1,0 +1,33 @@
+@use "../asri/asri-enhance" as *;
+[data-asri-enhance-focusblockindicator="true"].asri-enhance-enable {
+    @include asri-enhance-item-highlight("#asri-enhance-focus-block-indicator", "#asri-enhance-more");
+    .protyle-wysiwyg [asri-enhance-focus-block] {
+        &::before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 3.5px;
+            height: calc(100% - 1em);
+            border-radius: 8px;
+            inset-inline-start: -8px;
+            top: 50%;
+            transform: translateY(-50%) scaleY(0);
+            background-color: var(--b3-theme-accent);
+            animation: asri-focusblock-entrance-vertical-line 0.3s var(--asri-ease-spring-3) forwards;
+        }
+    }
+    .agent-chat__composer-host,
+    .agent-chat__edit-editor {
+        .protyle-wysiwyg [asri-enhance-focus-block]::before {
+            inset-inline-start: -2px;
+        }
+    }
+}
+@keyframes asri-focusblock-entrance-vertical-line {
+    from {
+        transform: translateY(-50%) scaleY(0);
+    }
+    to {
+        transform: translateY(-50%) scaleY(1);
+    }
+}
